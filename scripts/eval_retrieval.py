@@ -61,10 +61,27 @@ def level_metrics(rank_lists: list[list[int]], n_ideal: list[int],
     return out
 
 
+def warm_templates() -> int:
+    from zelos.rag.query_builder import GENERIC, _templates
+
+    r = HybridRetriever.load({"rerank_min_interval_s": 6.2})
+    qs = list(dict.fromkeys([*_templates().values(), GENERIC]))
+    emb.embed_texts(qs, "search_query", provider=r.provider)
+    for q in qs:
+        r.search(q, k=5, mode="hybrid_rerank")
+    print(f"warmed {len(qs)} template queries; cohere calls this run={dict(emb.LIVE_CALLS)}")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--offline", action="store_true")
+    ap.add_argument("--warm-templates", action="store_true",
+                    help="only record embeddings and rerank scores for the cause-label query templates so the "
+                         "keyless API can replay them; does not write results")
     args = ap.parse_args()
+    if args.warm_templates:
+        return warm_templates()
     if args.offline:
         os.environ.pop("COHERE", None)
     gold = [json.loads(line) for line in GOLD.read_text().splitlines() if line.strip()]
