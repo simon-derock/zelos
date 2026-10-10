@@ -1,0 +1,8 @@
+.venv
+.git
+data/raw
+cache
+runs
+web/node_modules
+web/dist
+.env

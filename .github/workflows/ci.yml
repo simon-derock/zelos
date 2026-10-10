@@ -1,0 +1,70 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    name: lint · types · security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12", cache: pip}
+      - run: pip install -r requirements.txt -r requirements-dev.txt && pip install -e .
+      - run: ruff check src tests scripts evaluate.py
+      - run: mypy src/zelos --ignore-missing-imports || echo "::warning::mypy reported issues"
+      - run: bandit -q -r src -ll
+      - run: pip-audit -r requirements.txt --progress-spinner off || echo "::warning::pip-audit reported advisories"
+  test:
+    name: tests (py${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "${{ matrix.python }}", cache: pip}
+      - run: pip install -r requirements.txt -r requirements-dev.txt && pip install -e .
+      - name: pytest (offline, no secrets)
+        env: {ZELOS_LLM_MODE: replay}
+        run: pytest -q --cov=zelos --cov-report=xml --cov-report=term-missing:skip-covered
+      - uses: actions/upload-artifact@v4
+        if: matrix.python == '3.12'
+        with: {name: coverage, path: coverage.xml}
+  smoke:
+    name: reviewer smoke run (make judge, offline)
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12", cache: pip}
+      - run: pip install -r requirements.txt -r requirements-dev.txt && pip install -e .
+      - env: {ZELOS_LLM_MODE: replay}
+        run: python evaluate.py --skip-vision --check-provenance
+  web:
+    name: web console build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: "20", cache: npm, cache-dependency-path: web/package-lock.json}
+      - run: npm ci && npm run build
+        working-directory: web
+  docker:
+    name: docker build
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with: {context: ., push: false, tags: "zelos:ci"}
