@@ -20,9 +20,9 @@ function Tile({ label, value, sub, tone }: { label: string; value: ReactNode; su
   )
 }
 
-function Card({ title, lede, children, foot }: { title: string; lede?: ReactNode; children: ReactNode; foot?: ReactNode }) {
+function Card({ title, lede, children, foot, half }: { title: string; lede?: ReactNode; children: ReactNode; foot?: ReactNode; half?: boolean }) {
   return (
-    <Reveal className="bcard">
+    <Reveal className={`bcard ${half ? 'half' : ''}`}>
       <h3>{title}</h3>
       {lede && <p className="muted bcard-lede">{lede}</p>}
       {children}
@@ -301,12 +301,12 @@ function GenericTable({ obj }: { obj: Obj }) {
   )
 }
 
-function E4({ data }: { data: SiteData }) {
+function E4({ data, half }: { data: SiteData; half?: boolean }) {
   const e4 = data.results?.e4 as Obj | undefined
   if (!isObj(e4)) return null
   const n = num(e4.n_queries) ?? num(e4.n)
   return (
-    <Card title="Evidence retrieval" lede="How well the literature search finds the passages that support a cause and its fix." foot={<Source file="e4" sha={sha(data, 'e4')} n={n} />}>
+    <Card half={half} title="Evidence retrieval" lede="How well the literature search finds the passages that support a cause and its fix." foot={<Source file="e4" sha={sha(data, 'e4')} n={n} />}>
       <GenericTable obj={e4} />
     </Card>
   )
@@ -335,13 +335,13 @@ function E5({ data }: { data: SiteData }) {
   const fi = isObj(e5.gate_fault_injection) ? (e5.gate_fault_injection as Obj) : undefined
   const caught = fi ? rateOf(fi.injected_fabrications_caught) : undefined
   const fb = fi ? rateOf(fi.false_block_rate) : undefined
-  const n = isObj(e5.n) ? Object.values(e5.n as Obj).reduce((a: number, b: any) => a + (num(b) ?? 0), 0) : num(e5.n)
+  const n = num(conds[0]?.[1]?.n_cases) ?? (isObj(e5.n) ? Object.values(e5.n as Obj).reduce((a: number, b: any) => a + (num(b) ?? 0), 0) : num(e5.n))
   const ung = conds.map(([k, c]) => ({ k, r: rateOf(c.unsupported_claim_rate_in_output) })).filter((x) => x.r.rate !== undefined)
   return (
     <Card
       title="The grounding gate"
       lede="The same language-model drafts, shown with and without the gate. The gate is the only difference."
-      foot={<Source file="e5" sha={sha(data, 'e5')} n={n || undefined} />}
+      foot={<Source file="e5" sha={sha(data, 'e5')} n={n ? `${n} cases per condition` : undefined} />}
     >
       {ung.length > 0 && (
         <ul className="gbars" aria-label="Unsupported claims shown, by condition">
@@ -349,7 +349,7 @@ function E5({ data }: { data: SiteData }) {
             <li key={k}>
               <span className="gname">{nice[k] ?? human(k)}</span>
               <span className="gtrack">
-                <span className={`gfill ${k.includes('ungated') ? 'is-bad' : 'is-ok'}`} style={{ width: `${Math.max(0.6, (r.rate ?? 0) * 100 * 4)}%` }} />
+                <span className={`gfill ${k.includes('ungated') ? 'is-bad' : 'is-ok'}`} style={{ width: `${Math.max(0, Math.min(1, r.rate ?? 0)) * 100}%` }} />
               </span>
               <span className="gval">
                 {pct(r.rate, 1)}
@@ -357,7 +357,6 @@ function E5({ data }: { data: SiteData }) {
               </span>
             </li>
           ))}
-          <li className="muted small gnote">Bars use a 4× scale so small rates stay visible.</li>
         </ul>
       )}
       {present.length > 0 && (
@@ -411,13 +410,13 @@ function E5({ data }: { data: SiteData }) {
 
 /* ---------- E9 ---------- */
 
-function E9({ data }: { data: SiteData }) {
+function E9({ data, half }: { data: SiteData; half?: boolean }) {
   const e9 = data.results?.e9 as Obj | undefined
   if (!isObj(e9)) return null
   const t = (k: string, label: string, sub?: string) =>
     num(e9[k]) !== undefined ? <Tile key={k} label={label} value={<>{fmt(e9[k], 0)}<span className="unit"> ms</span></>} sub={sub} /> : null
   return (
-    <Card title="Speed" lede="Wall-clock time per image on a laptop CPU, no GPU." foot={<Source file="e9" sha={sha(data, 'e9')} n={num(e9.n)} />}>
+    <Card half={half} title="Speed" lede="Wall-clock time per image on a laptop CPU, no GPU." foot={<Source file="e9" sha={sha(data, 'e9')} n={num(e9.n)} />}>
       <div className="tiles">
         {t('inspect_ms_p50', 'Full inspection, median')}
         {t('inspect_ms_p95', 'Full inspection, 95th percentile')}
@@ -431,6 +430,7 @@ function E9({ data }: { data: SiteData }) {
 export function Benchmarks({ data }: { data: SiteData }) {
   const findings = Array.isArray(data.results?.findings) ? (data.results!.findings as unknown[]).filter((x) => typeof x === 'string') as string[] : []
   const g = data.generated
+  const pair = isObj(data.results?.e4) && isObj(data.results?.e9)
   return (
     <section className="section alt" id="benchmarks" aria-labelledby="bench-h">
       <div className="wrap wide">
@@ -453,8 +453,8 @@ export function Benchmarks({ data }: { data: SiteData }) {
           <E1 data={data} />
           <E2 data={data} />
           <E5 data={data} />
-          <E4 data={data} />
-          <E9 data={data} />
+          <E4 data={data} half={pair} />
+          <E9 data={data} half={pair} />
         </div>
         {g?.git_sha && (
           <p className="gen">

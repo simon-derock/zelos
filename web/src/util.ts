@@ -9,8 +9,17 @@ export const isObj = (v: unknown): v is Record<string, any> =>
   typeof v === 'object' && v !== null && !Array.isArray(v)
 export const num = (v: unknown): number | undefined =>
   typeof v === 'number' && isFinite(v) ? v : undefined
-export const human = (s: string): string =>
-  s.replace(/_/g, ' ').replace(/\b(\w)/, (m) => m.toUpperCase())
+const ACRONYMS: Record<string, string> = { qc: 'QC', llm: 'LLM', rms: 'RMS', hf: 'HF', jpeg: 'JPEG', auroc: 'AUROC', knn: 'kNN', lbp: 'LBP', bm25: 'BM25', mrr: 'MRR' }
+export const human = (s: string): string => {
+  const words = s.replace(/_/g, ' ').split(' ')
+  return words
+    .map((w, i) => {
+      const a = ACRONYMS[w.toLowerCase()]
+      if (a) return a
+      return i === 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w
+    })
+    .join(' ')
+}
 export const sentence = (s?: string): string =>
   s ? s.replace(/_/g, ' ').toLowerCase().replace(/^\w/, (m) => m.toUpperCase()) : ''
 export const shortSha = (s?: string): string => (s ? s.slice(0, 7) : 'unknown')

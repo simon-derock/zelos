@@ -66,7 +66,7 @@ export function Pipeline() {
                   {s.det ? (
                     <span className="tag tag-det">0 LLM calls</span>
                   ) : (
-                    <span className="tag tag-llm">Language model</span>
+                    <span className="tag tag-llm">1 LLM call</span>
                   )}
                 </div>
               </li>
