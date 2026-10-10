@@ -8,6 +8,7 @@ Research tool. Not a medical device. No clinical or diagnostic claims.
 from __future__ import annotations
 
 import json
+from functools import lru_cache
 from pathlib import Path
 
 from fastmcp import FastMCP
@@ -16,6 +17,7 @@ mcp = FastMCP("zelos")
 IMAGE_EXT = {".png", ".tif", ".tiff", ".jpg", ".jpeg", ".bmp"}
 
 
+@lru_cache(maxsize=1)
 def _retriever():
     try:
         from zelos.rag.retriever import HybridRetriever
