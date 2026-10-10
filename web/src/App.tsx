@@ -4,11 +4,13 @@ import { Hero } from './components/Hero'
 import { Problem, Pipeline, Reproduce, Footer, Proof, Domain } from './components/Sections'
 import { Console } from './components/Console'
 import { Benchmarks } from './components/Benchmarks'
+import { Try } from './components/Try'
 
 const LINKS = [
   ['problem', 'Problem'],
   ['how', 'How it works'],
   ['console', 'Console'],
+  ['try', 'Try it'],
   ['benchmarks', 'Benchmarks'],
   ['reproduce', 'Reproduce'],
 ] as const
@@ -70,6 +72,7 @@ export default function App() {
         {data ? (
           <>
             <Console data={data} />
+            <Try />
             <Benchmarks data={data} />
           </>
         ) : (
@@ -81,6 +84,7 @@ export default function App() {
             </div>
           </section>
         )}
+        {!data && <Try />}
         <Reproduce />
       </main>
       <Footer data={data} />
