@@ -11,3 +11,4 @@ candidates: 30
 rrf_k: 60
 rerank_pool: 20   # fused candidates sent to the reranker (one call per search)
 cohere_embed_batch: 96
+rerank_min_interval_s: 0   # set >0 only to pace live rerank calls under a rate-limited trial key (eval script uses 6.5)

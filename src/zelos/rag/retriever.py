@@ -53,6 +53,7 @@ class HybridRetriever:
         self._lock = threading.Lock()
         self._rr_cache: dict[str, list] | None = None
         self.rerank_calls = 0
+        self._last_rerank = 0.0
 
         from rank_bm25 import BM25Okapi
 
@@ -125,6 +126,13 @@ class HybridRetriever:
         import cohere
 
         co = cohere.ClientV2(api_key=api, timeout=60)
+        gap = float(self.cfg.get("rerank_min_interval_s", 0))
+        if gap > 0:  # optional client-side pacing for rate-limited (trial) keys
+            with self._lock:
+                wait = self._last_rerank + gap - time.monotonic()
+                if wait > 0:
+                    time.sleep(wait)
+                self._last_rerank = time.monotonic()
         r = None
         for attempt in range(6):
             try:

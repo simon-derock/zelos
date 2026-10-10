@@ -57,6 +57,17 @@ def _load_cache() -> dict[str, np.ndarray]:
     return _CACHE
 
 
+def _refresh_from_disk() -> None:
+    """Merge entries written to the cache file by other processes (never drops in-memory entries)."""
+    if CACHE_PATH.exists():
+        with np.load(CACHE_PATH, allow_pickle=False) as z:
+            keys, vecs = z["keys"], z["vecs"]
+            with _LOCK:
+                c = _load_cache()
+                for i, k in enumerate(keys):
+                    c.setdefault(str(k), vecs[i])
+
+
 def flush_cache() -> None:
     """Persist the in-memory cache atomically (no-op if nothing new)."""
     global _DIRTY
@@ -115,15 +126,16 @@ def _cohere_embed(texts: list[str], input_type: str) -> np.ndarray:
     out: list[np.ndarray] = []
     for i in range(0, len(texts), batch):
         part = texts[i : i + batch]
-        for attempt in range(6):
+        for attempt in range(12):
             try:
                 r = co.embed(texts=part, model=model, input_type=input_type, embedding_types=["float"],
                              output_dimension=DIM)
                 break
-            except Exception as e:  # rate limit / transient
-                if attempt == 5:
+            except Exception as e:  # trial keys are limited to 100k tokens/min: wait for the window to reset
+                if attempt == 11:
                     raise
-                time.sleep(min(30, 4 * (attempt + 1)) if "429" in str(e) or "rate" in str(e).lower() else 2)
+                time.sleep(12 if ("429" in str(e) or "rate" in str(e).lower() or "TooMany" in type(e).__name__)
+                           else 3)
         log_cohere_call("embed", len(part))
         out.append(np.asarray(r.embeddings.float_, dtype=np.float32))
     return np.concatenate(out, axis=0)
@@ -157,16 +169,23 @@ def embed_texts(texts: list[str], input_type: str, provider: str | None = None) 
         raise ValueError(f"unknown provider {provider!r}")
     cache = _load_cache()
     keys = [cache_key("cohere", input_type, t) for t in texts]
-    missing = sorted({i for i, k in enumerate(keys) if k not in cache}, key=lambda i: i)
-    if missing:
-        uniq: dict[str, int] = {}
-        for i in missing:
-            uniq.setdefault(texts[i], i)
-        todo = list(uniq)
-        vecs = _l2(_cohere_embed(todo, input_type)).astype(np.float16)
-        with _LOCK:
-            for t, v in zip(todo, vecs, strict=True):
-                cache[cache_key("cohere", input_type, t)] = v
-            _DIRTY = True
+    if any(k not in cache for k in keys):
+        _refresh_from_disk()  # another process may have filled the cache meanwhile
+    uniq: dict[str, str] = {}
+    for t, k in zip(texts, keys, strict=True):
+        if k not in cache:
+            uniq.setdefault(k, t)
+    if uniq:
+        batch = int(load_config("rag").get("cohere_embed_batch", 96))
+        items = list(uniq.items())
+        for i in range(0, len(items), batch):
+            part = items[i : i + batch]
+            vecs = _l2(_cohere_embed([t for _, t in part], input_type)).astype(np.float16)
+            with _LOCK:
+                for (k, _), v in zip(part, vecs, strict=True):
+                    cache[k] = v
+                _DIRTY = True
+            if (i // batch) % 2 == 1:
+                flush_cache()  # persist progress so an interrupted build is not lost
         flush_cache()
     return _l2(np.stack([cache[k] for k in keys]).astype(np.float32))

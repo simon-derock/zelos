@@ -43,8 +43,12 @@ def ndcg(rels: list[int], n_ideal: int, k: int = 5) -> float:
     return dcg / idcg if idcg else 0.0
 
 
-def level_metrics(rank_lists: list[list[int]], n_ideal: list[int]) -> dict:
-    """rank_lists[i] = binary relevance of retrieved items (top DEPTH) for query i."""
+def level_metrics(rank_lists: list[list[int]], n_ideal: list[int],
+                  ndcg_lists: list[list[int]] | None = None) -> dict:
+    """rank_lists[i] = binary relevance of retrieved items (top DEPTH) for query i.
+
+    Hit@k and MRR use rank_lists. nDCG@5 uses ndcg_lists when given (paper level: relevance of the
+    de-duplicated paper ranking, so a paper is credited once), else rank_lists."""
     n = len(rank_lists)
     out: dict = {"n": n}
     for k in KS:
@@ -52,7 +56,8 @@ def level_metrics(rank_lists: list[list[int]], n_ideal: list[int]) -> dict:
         out[f"hit@{k}"] = hits / n
         out[f"hit@{k}_ci95"] = wilson(hits, n)
     out["mrr"] = float(np.mean([next((1 / (i + 1) for i, v in enumerate(r) if v), 0.0) for r in rank_lists]))
-    out["ndcg@5"] = float(np.mean([ndcg(r, ni) for r, ni in zip(rank_lists, n_ideal, strict=True)]))
+    nl = ndcg_lists if ndcg_lists is not None else rank_lists
+    out["ndcg@5"] = float(np.mean([ndcg(r, ni) for r, ni in zip(nl, n_ideal, strict=True)]))
     return out
 
 
@@ -66,16 +71,14 @@ def main() -> int:
     ret_q = [g for g in gold if g["type"] in ("answerable", "reworded")]
     un_q = [g for g in gold if g["type"] == "unanswerable"]
     t_start = time.time()
-    r = HybridRetriever.load()
+    r = HybridRetriever.load({"rerank_min_interval_s": 6.5})  # pacing for the 10 calls/min trial limit
     # one batched Cohere call for every query vector (replayed from cache afterwards)
     emb.embed_texts([g["question"] for g in gold], "search_query", provider=r.provider)
-    n_chunks_per_paper: dict[str, int] = {}
-    for c in r.chunks:
-        n_chunks_per_paper[c["pmcid"]] = n_chunks_per_paper.get(c["pmcid"], 0) + 1
+    paper_ids = {c["pmcid"] for c in r.chunks}
 
     res: dict = {"modes": {}, "abstention": {}}
     for mode in MODES:
-        paper_rl, chunk_rl, ideal_p, ideal_c, lat = [], [], [], [], []
+        paper_rl, paper_dd, chunk_rl, ideal_p, ideal_c, lat = [], [], [], [], [], []
         by_type: dict[str, list[int]] = {"answerable": [], "reworded": []}
         for g in ret_q:
             t0 = time.perf_counter()
@@ -86,12 +89,19 @@ def main() -> int:
             pr += [0] * (DEPTH - len(pr))
             cr += [0] * (DEPTH - len(cr))
             paper_rl.append(pr)
+            seen: set[str] = set()
+            dd = []
+            for h in hits:  # first occurrence of each paper only
+                if h["pmcid"] not in seen:
+                    seen.add(h["pmcid"])
+                    dd.append(int(h["pmcid"] in g["gold_pmcids"]))
+            paper_dd.append(dd + [0] * (DEPTH - len(dd)))
             chunk_rl.append(cr)
-            ideal_p.append(sum(n_chunks_per_paper.get(p, 0) for p in g["gold_pmcids"]))
+            ideal_p.append(len(g["gold_pmcids"]))
             ideal_c.append(len(g["gold_chunk_ids"]))
             by_type[g["type"]].append(int(any(pr[:5])))
         res["modes"][mode] = {
-            "paper_level": level_metrics(paper_rl, ideal_p),
+            "paper_level": level_metrics(paper_rl, ideal_p, paper_dd),
             "chunk_level": level_metrics(chunk_rl, ideal_c),
             "paper_hit@5_by_type": {t: {"n": len(v), "hit@5": float(np.mean(v))} for t, v in by_type.items()},
             "latency_ms_p50": float(np.median(lat)),
@@ -114,7 +124,7 @@ def main() -> int:
             "top_score_kind": "rerank_relevance" if key else "max(bm25_top, dense_top) raw",
         }
 
-    n_papers = len(n_chunks_per_paper)
+    n_papers = len(paper_ids)
     res["config"] = {"k_depth": DEPTH, "embedding_provider": r.provider,
                      "embedding_model": emb._model(r.provider), "rerank_model": r.rerank_model,
                      "rerank_available": res["abstention"]["hybrid_rerank"]["top_score_kind"] == "rerank_relevance",
@@ -173,7 +183,9 @@ def write_md(res: dict) -> None:
                      f"[{_f(d['accuracy_on_unanswerable_ci95'][0])}, {_f(d['accuracy_on_unanswerable_ci95'][1])}] | "
                      f"{_f(d['false_abstention_rate_on_answerable'])} ({d['n_answerable']}) "
                      f"[{_f(d['false_abstention_rate_ci95'][0])}, {_f(d['false_abstention_rate_ci95'][1])}] |")
-    lines += ["", "Thresholds are fixed a priori in configs/rag.yaml and were not tuned on this gold set. "
+    lines += ["", "Paper level: relevance = the hit belongs to the gold paper; Hit@k and MRR use the ranked chunk list, "
+              "nDCG@5 uses the de-duplicated paper ranking (ideal DCG = 1). Chunk level: relevance = exact gold "
+              "chunk id.", "", "Thresholds are fixed a priori in configs/rag.yaml and were not tuned on this gold set. "
               "Gold questions were written by an automated assistant from chunk text and spot-checked; see "
               "eval/README_retrieval.md for limits.", ""]
     Path(ROOT / "results" / "e4.md").write_text("\n".join(lines))
