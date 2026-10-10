@@ -62,6 +62,7 @@ export default function App() {
       <Nav sample={sample} />
       <main>
         <Hero />
+        <div className="grain" aria-hidden="true" />
         <Proof data={data} />
         <Problem />
         <Domain />

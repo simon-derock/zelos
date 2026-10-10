@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 
 function lcg(seed: number) {
   let s = seed >>> 0
@@ -29,6 +29,24 @@ export function cellField(seed: number, count: number, w: number, h: number) {
 
 export function Hero() {
   const cells = useMemo(() => cellField(7, 46, 1200, 520), [])
+  const fieldRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let raf = 0
+    const onScroll = () => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        const y = Math.min(window.scrollY, 900)
+        fieldRef.current?.style.setProperty('--py', `${(y * -0.18).toFixed(1)}px`)
+        fieldRef.current?.style.setProperty('--ps', `${(1 + y * 0.00012).toFixed(4)}`)
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(raf)
+    }
+  }, [])
   return (
     <header className="hero" id="top">
       <div className="hero-inner">
@@ -48,7 +66,7 @@ export function Hero() {
           </a>
         </div>
       </div>
-      <div className="field" role="img" aria-label="A microscope field of cells resolving from blurred into sharp focus, then certified.">
+      <div ref={fieldRef} className="field field-pop" role="img" aria-label="A microscope field of cells resolving from blurred into sharp focus, then certified.">
         <svg className="field-cells" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs>
             <radialGradient id="bf" cx="50%" cy="46%" r="75%">
