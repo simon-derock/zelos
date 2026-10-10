@@ -1,0 +1,11 @@
+# Cause label -> what the lab should do next. Written a priori (research guidance, not a protocol).
+# RE-IMAGE: fixable at the microscope right now; INSPECT-CHIP: look at the channel/optics; RE-EXPORT: file problem.
+DEFOCUS_OR_BLUR: RE-IMAGE
+NOISE: RE-IMAGE
+UNEVEN_ILLUMINATION: RE-IMAGE
+OVER_EXPOSED: RE-IMAGE
+UNDER_EXPOSED: RE-IMAGE
+LOW_CONTRAST: RE-IMAGE
+BUBBLE: INSPECT-CHIP
+DEBRIS: INSPECT-CHIP
+COMPRESSION: RE-EXPORT
