@@ -77,7 +77,7 @@ function E1({ data }: { data: SiteData }) {
   return (
     <Card
       title="Corruption benchmark"
-      lede="Eleven kinds of synthetic corruption at five severities, applied to real images. Zelos has to notice each one and name the right cause."
+      lede={`${kinds.length ? `${kinds.length} kinds` : 'Several kinds'} of synthetic corruption${Array.isArray(e1.severities) ? ` at ${e1.severities.length} severities` : ''}, applied to real images. Zelos has to notice each one and name the right cause.`}
       foot={<Source file="e1" sha={sha(data, 'e1')} n={n} />}
     >
       {overall && <E1Tiles o={overall} label={br ? 'Single-image reference' : undefined} />}
@@ -439,6 +439,14 @@ export function Benchmarks({ data }: { data: SiteData }) {
           title="Measured, not claimed."
           lede="Every figure below is read from the results files the evaluation wrote. Where Zelos falls short, it says so."
         />
+        {data.dataset && (
+          <p className="dataset">
+            Evaluated on the {data.dataset.name ?? 'Organ-on-a-Chip image dataset'}
+            {data.dataset.n_images_used ? `, ${data.dataset.n_images_used.toLocaleString('en-US')} images` : ''}
+            {data.dataset.cell_lines?.length ? ` across ${data.dataset.cell_lines.length} cell lines (${data.dataset.cell_lines.join(', ')})` : ''}
+            {data.dataset.citation ? `. ${data.dataset.citation}` : ''}.
+          </p>
+        )}
         {findings.length > 0 && (
           <Reveal className="findings">
             <h3>Honest findings</h3>
