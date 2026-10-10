@@ -219,7 +219,7 @@ function E2({ data }: { data: SiteData }) {
       foot={<Source file="e2" sha={sha(data, 'e2')} n={nTest !== undefined ? `${nTest.toLocaleString('en-US')} held-out${nAll !== undefined ? ` of ${nAll.toLocaleString('en-US')}` : ''} images` : undefined} />}
     >
       <div className="legend" aria-hidden="true">
-        <span><i className="sw sw-dot" />Training-free</span>
+        <span><i className="sw sw-dot" />No model trained</span>
         {anyTrained && <span><i className="sw sw-dot sw-trained" />Label-trained: learns the expert label</span>}
         <span><i className="sw sw-r" />0.5 chance</span>
       </div>

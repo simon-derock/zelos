@@ -108,7 +108,7 @@ export function HeadToHead({ data }: { data: SiteData }) {
       <div className="h2h">
         <div className="h2h-col h2h-z">
           <h4>Zelos</h4>
-          <p className="h2h-sub">{variantName(vname)}, training-free</p>
+          <p className="h2h-sub">{variantName(vname)}, no model trained</p>
           <dl>
             {rows.map((r) => (
               <div key={r.k}>
@@ -197,7 +197,7 @@ export function VlmBaseline({ data }: { data: SiteData }) {
   const v = data.vlm_baseline
   if (!isObj(v) || !isObj(v.models)) return null
   const rows: Array<{ name: string; z?: boolean; m: Obj }> = []
-  if (isObj(v.zelos_stored_reference_calibrated)) rows.push({ name: 'Zelos, training-free', z: true, m: v.zelos_stored_reference_calibrated as Obj })
+  if (isObj(v.zelos_stored_reference_calibrated)) rows.push({ name: 'Zelos, no model trained', z: true, m: v.zelos_stored_reference_calibrated as Obj })
   for (const [k, m] of Object.entries(v.models as Obj)) if (isObj(m)) rows.push({ name: modelName(k), m })
   if (!rows.length) return null
   const hasBA = rows.some((r) => num(r.m.balanced_accuracy_vs_expert) !== undefined)

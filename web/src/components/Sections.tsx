@@ -194,7 +194,7 @@ export function Proof({ data }: { data: SiteData | null }) {
     typeof ms === 'number' && { v: `${Math.round(ms)} ms`, l: 'per image on a laptop CPU. No GPU, no training' },
     typeof knn === 'number' && {
       v: knn.toFixed(2),
-      l: `AUROC against expert culture decisions, training-free${typeof e2n === 'number' ? `, on ${e2n.toLocaleString('en-US')} held-out images${typeof e2s === 'number' ? ` from ${e2s} imaging days` : ''}` : ''}`,
+      l: `AUROC against expert decisions, kNN lookup, no model trained${typeof e2n === 'number' ? `, on ${e2n.toLocaleString('en-US')} held-out images${typeof e2s === 'number' ? ` from ${e2s} imaging days` : ''}` : ''}`,
     },
   ].filter(Boolean) as Array<{ v: string; l: string }>
   if (!items.length) return null
