@@ -1,0 +1,16 @@
+{
+  "metrics_ms_p50": 379.1000314995472,
+  "metrics_ms_p95": 1003.4662293006469,
+  "inspect_ms_p50": 167.5,
+  "inspect_ms_p95": 201.585,
+  "n": 480,
+  "image_shape": "1542x2056 uint8 (analysed at long side 1024)",
+  "cpu_workers": 7,
+  "provenance": {
+    "git_sha": "9a55b2c256ec737731678e115ff51e754be7a29f",
+    "timestamp_utc": "2026-10-10T15:04:40+00:00",
+    "config_hash": "4d7368f2592c8582",
+    "python": "3.12.3",
+    "seed": 1337
+  }
+}
