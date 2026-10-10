@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import threading
 import time
@@ -168,7 +169,14 @@ class HybridRetriever:
         scored = [(cand[x.index], float(x.relevance_score)) for x in r.results]
         with self._lock:
             cache[key] = [[c, s] for c, s in scored]
-            RERANK_CACHE.write_text(json.dumps(cache, sort_keys=True))
+            try:  # merge entries other processes wrote meanwhile, then replace atomically
+                for k2, v2 in json.loads(RERANK_CACHE.read_text()).items():
+                    cache.setdefault(k2, v2)
+            except Exception:
+                pass
+            tmp = RERANK_CACHE.with_name(f"rerank_cache.{os.getpid()}.tmp")
+            tmp.write_text(json.dumps(cache, sort_keys=True))
+            tmp.replace(RERANK_CACHE)
         return scored
 
     # ---------------------------------------------------------------- search

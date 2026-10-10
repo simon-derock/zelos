@@ -116,3 +116,13 @@ def test_default_corpus_files_consistent():
     assert set(c["pmcid"] for c in chunks) == set(m.pmcid)
     assert m.n_chunks.sum() == len(chunks)
     assert set(m.license) <= {"cc by", "cc0", "CC BY", "CC0"}
+
+
+def test_load_is_cache_only_and_falls_back_to_hash():
+    import time
+
+    t0 = time.time()
+    r = HybridRetriever.load(chunks_path=FIXTURE)  # fixture texts are not in the Cohere cache
+    assert r.provider == "hash" and time.time() - t0 < 15
+    hits = r.search("remove air bubbles from channels", k=3)  # default mode degrades without a key
+    assert hits and hits[0]["rank"] == 1
