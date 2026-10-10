@@ -72,7 +72,7 @@ Negative and null results are reported as measured; see [`docs/LIMITATIONS.md`](
 | `make test` / `make quality` | pytest with coverage / ruff, mypy, bandit, pip-audit |
 | `make site` | `web/public/data/site.json`: real pipeline outputs rendered by the console |
 
-CI (GitHub Actions) runs lint, types, security, tests on Python <!--np-->3.11 and 3.12<!--/np-->, the offline reviewer smoke run with a provenance check, the web build and a Docker build on every push; tags publish a Docker image to GHCR and a GitHub Release with `results/`.
+CI (GitHub Actions) runs lint, types, security, tests on Python <!--np-->3.12<!--/np-->, the offline reviewer smoke run with a provenance check, the web build and a Docker build on every push; tags publish a Docker image to GHCR and a GitHub Release with `results/`.
 
 ## Data, models and licenses
 
