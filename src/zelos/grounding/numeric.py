@@ -66,33 +66,45 @@ def _close(c: float, t: float, rel_tol: float) -> bool:
     return abs(c - t) <= rel_tol * max(abs(c), abs(t), 1e-12)
 
 
-def match_number(num: dict, leaves: list[tuple[str, float]], rel_tol: float = 1e-3) -> str | None:
+def _leaf_matches(num: dict, t: float, rel_tol: float) -> bool:
     c, dec = num["value"], num["decimals"]
-    cands = [c] if num["signed"] else [c, -c]
-    for path, t in leaves:
-        for cv in cands:
-            if _close(cv, t, rel_tol):
-                return path
-            if num["sci"] and _close(cv, t, 1e-2):
-                return path
-            if dec >= 1 and abs(cv - t) <= 0.5 * 10 ** (-dec) + 1e-9:
-                return path
-            if num["pct"]:
-                if _close(cv, t * 100.0, rel_tol) or _close(cv / 100.0, t, rel_tol):
-                    return path
-                if dec >= 1 and abs(cv - t * 100.0) <= 0.5 * 10 ** (-dec) + 1e-9:
-                    return path
-    return None
+    for cv in ([c] if num["signed"] else [c, -c]):
+        if _close(cv, t, rel_tol) or (num["sci"] and _close(cv, t, 1e-2)):
+            return True
+        if dec >= 1 and abs(cv - t) <= 0.5 * 10 ** (-dec) + 1e-9:
+            return True
+        if num["pct"] and (_close(cv, t * 100.0, rel_tol) or _close(cv / 100.0, t, rel_tol)
+                           or (dec >= 1 and abs(cv - t * 100.0) <= 0.5 * 10 ** (-dec) + 1e-9)):
+            return True
+    return False
 
 
-def check_numbers(text: str, leaves: list[tuple[str, float]], rel_tol: float = 1e-3) -> dict:
-    """Return {"numbers": [...], "unmatched": [raw,...], "matches": {raw: path}}."""
+def match_all(num: dict, leaves: list[tuple[str, float]], rel_tol: float = 1e-3) -> list[str]:
+    """Every leaf path that the claimed number matches."""
+    return [p for p, t in leaves if _leaf_matches(num, t, rel_tol)]
+
+
+def match_number(num: dict, leaves: list[tuple[str, float]], rel_tol: float = 1e-3) -> str | None:
+    m = match_all(num, leaves, rel_tol)
+    return m[0] if m else None
+
+
+def check_numbers(text: str, leaves: list[tuple[str, float]], rel_tol: float = 1e-3,
+                  metric_of=None, mentioned: set[str] | None = None) -> dict:
+    """Return {"numbers", "unmatched", "matches", "misbound"}.
+
+    Metric binding: if the claim names metric(s) (`mentioned`) and a number matches only leaves that belong to
+    other metrics (metric_of(path) -> name or None), it is "misbound" (a value swapped between metrics)."""
     nums = extract_numbers(text)
-    unmatched, matches = [], {}
+    unmatched, matches, misbound = [], {}, []
     for n in nums:
-        p = match_number(n, leaves, rel_tol)
-        if p is None:
+        hits = match_all(n, leaves, rel_tol)
+        if not hits:
             unmatched.append(n["raw"])
-        else:
-            matches[n["raw"]] = p
-    return {"numbers": nums, "unmatched": unmatched, "matches": matches}
+            continue
+        matches[n["raw"]] = hits[0]
+        if mentioned and metric_of:
+            owners = [metric_of(h) for h in hits]
+            if all(o is not None and o not in mentioned for o in owners):
+                misbound.append(n["raw"])
+    return {"numbers": nums, "unmatched": unmatched, "matches": matches, "misbound": misbound}

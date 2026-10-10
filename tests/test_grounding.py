@@ -108,3 +108,14 @@ def test_calc_safe():
                 "9**9**9", "open('f')", "lambda: 1", "1 if True else 2", ""]:
         with pytest.raises(calc.CalcError):
             calc.safe_eval(bad)
+
+
+def test_metric_swap_and_short_claims_blocked():
+    swap = _verify([{"text": f"focus_lapvar_norm is 0.08 [{TID}].", "type": "numeric", "evidence": [TID]}])
+    assert swap[0]["status"] == "unsupported" and "different metric" in swap[0]["reason"]
+    ok = _verify([{"text": f"focus_lapvar_norm is 0.41 with z = 4.2 [{TID}].", "type": "numeric", "evidence": [TID]}])
+    assert ok[0]["status"] == "supported"
+    both = _verify([{"text": f"noise_sigma_norm is 0.08 and focus_lapvar_norm is 0.41 [{TID}].", "type": "numeric", "evidence": [TID]}])
+    assert both[0]["status"] == "supported"
+    short = _verify([{"text": "8.0", "type": "numeric", "evidence": [TID]}])
+    assert short[0]["status"] == "unsupported"

@@ -398,6 +398,9 @@ def main():
                   "grounded/unsupported rates for every condition are judged by the same independent re-verification of the displayed claims.",
                   "llm_gated shows only gate-approved claims, so its unsupported rate is 0 by construction; the fault-injection block "
                   "measures whether the gate itself catches known fabrications.",
+                  "refusal_correctness counts a response as correct if it is an explicit refusal/abstain or contains only gate-supported, "
+                  "non-clinical claims; explicit_refusal_or_abstain separates real refusals from a model that ignores the request. "
+                  "Only the router produces explicit refusals for template and llm_gated.",
                   "latency_ms_p50 sums recorded LLM latency and local step time; ungated ask latency is the LLM call only."],
         "llm_fallbacks_to_template": sum(r["provider"] == "template" for r in ex),
     }

@@ -10,7 +10,7 @@ from __future__ import annotations
 import re
 
 _REFUSE = re.compile(
-    r"(diagnos(e|is|tic|ing)\b|\bprescrib|\bwhich drug\b|\bdos(e|age)s? (for|of) (a |the |my )?(patient|person|child|human)|"
+    r"(diagnos(e|is|tic|ing)\b|\b(what|which) (drug|medication|medicine|treatment|therapy|dose|dosage)\b|\bgive\b.{0,30}\bpatient\b|\bprescrib|\bwhich drug\b|\bdos(e|age)s? (for|of) (a |the |my )?(patient|person|child|human)|"
     r"\bshould (i|we|the patient|my patient)\b.*\b(take|use|receive|start)\b|\bclinical (advice|decision|recommendation)|"
     r"\bmedical advice\b|\btreat (my|the|this|a|our) (patient|disease|cancer|condition|infection)|\btherapy for\b|"
     r"\bcure (for|the|my)\b|\bis (it|this|the patient) (cancer|malignant|benign)\b|"

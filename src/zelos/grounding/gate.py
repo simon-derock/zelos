@@ -32,6 +32,40 @@ def _grounding_cfg(cfg: dict | None) -> dict:
     return g
 
 
+_METRIC_ROOTS = {"metrics", "z", "zbad", "percentiles"}
+_CAUSE_LEAF = re.compile(r"^(.*causes\[\d+\])\.(value|z)$")
+
+
+def _metric_names(tool_outputs: list[dict]) -> set[str]:
+    names: set[str] = set()
+    for t in tool_outputs:
+        for root in _METRIC_ROOTS:
+            if isinstance(t.get(root), dict):
+                names |= set(t[root])
+        names |= {c["metric"] for c in t.get("causes", []) if isinstance(c, dict) and c.get("metric")}
+    return names
+
+
+def _make_metric_of(tool_outputs: list[dict], tids: list[str]):
+    """path (as 'tid:path') -> metric name it belongs to, or None for global values (qc_score, shape, ...)."""
+    cause_metric = {}
+    for tid, t in zip(tids, tool_outputs, strict=True):
+        for i, c in enumerate(t.get("causes", [])):
+            if isinstance(c, dict) and c.get("metric"):
+                cause_metric[f"{tid}:causes[{i}]"] = c["metric"]
+
+    def metric_of(path: str):
+        tid, _, p = path.partition(":")
+        parts = p.split(".")
+        if len(parts) > 1 and parts[0] in _METRIC_ROOTS:
+            return parts[1]
+        m = _CAUSE_LEAF.match(f"{tid}:{p}")
+        if m:
+            return cause_metric.get(m.group(1))
+        return None
+    return metric_of
+
+
 def tool_ids_of(tool_outputs: list[dict]) -> list[str]:
     return [t.get("tool_call_id") or f"tool-{i}" for i, t in enumerate(tool_outputs)]
 
@@ -42,6 +76,8 @@ def verify(claims: list[dict], tool_outputs: list[dict], evidence: list[dict], c
     leaves_by_tool = {tid: flatten_numeric(t) for tid, t in zip(tids, tool_outputs, strict=True)}
     all_leaves = [(f"{tid}:{p}", v) for tid, ls in leaves_by_tool.items() for p, v in ls]
     chunks = {e["chunk_id"]: e for e in evidence if e.get("chunk_id")}
+    metric_names = _metric_names(tool_outputs)
+    metric_of = _make_metric_of(tool_outputs, tids)
     entries: list[dict] = []
     supported_ids: set[str] = set()
 
@@ -67,9 +103,15 @@ def verify(claims: list[dict], tool_outputs: list[dict], evidence: list[dict], c
             extra_leaves = list(all_leaves)
             for ch in chunk_refs:
                 extra_leaves += [(f"{ch}:text", v) for _, v in flatten_numeric(_chunk_numbers(chunks[ch]))]
-            chk = check_numbers(text, extra_leaves, g["num_rel_tol"])
-            if chk["unmatched"]:
+            low = text.lower()
+            mentioned = {m for m in metric_names if m.lower() in low or m.lower().replace("_", " ") in low}
+            chk = check_numbers(text, extra_leaves, g["num_rel_tol"], metric_of, mentioned)
+            if len(re.findall(r"[A-Za-z]{2,}", re.sub(r"\[[^\]]*\]", " ", text))) < 2:
+                status, reason = "unsupported", "claim too short to verify (fewer than 2 words)"
+            elif chk["unmatched"]:
                 status, reason = "unsupported", f"number(s) not in tool outputs: {', '.join(chk['unmatched'][:3])}"
+            elif chk["misbound"]:
+                status, reason = "unsupported", f"number {chk['misbound'][0]} belongs to a different metric than the one named"
             elif typ == "literature" or chunk_refs:
                 if not chunk_refs:
                     status, reason = "unsupported", "literature claim without a retrieved citation"
