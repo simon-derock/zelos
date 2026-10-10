@@ -1,0 +1,1612 @@
+{
+  "e1": {
+    "n_images": 60,
+    "n_reference_images": 60,
+    "kinds": [
+      "gaussian_blur",
+      "defocus",
+      "motion_blur",
+      "gaussian_noise",
+      "illumination",
+      "contrast",
+      "overexpose",
+      "underexpose",
+      "debris",
+      "bubble",
+      "jpeg"
+    ],
+    "severities": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "reference_note": "pre-registered: median/MAD of clean dev-session images; batch_reference: median/MAD of the clean images in the evaluated batch itself (unsupervised, no labels), added after the pre-registered run revealed cross-session acquisition shift",
+    "overall": {
+      "detection_rate_sev3plus": 0.9707070707070707,
+      "attribution_acc_detected": 0.30950861518825784,
+      "attribution_top2_detected": 0.48978940650925334,
+      "auroc_clean_vs_sev3plus": 0.7776473063973065,
+      "auroc_clean_vs_sev3plus_ci95": [
+        0.7113706402988177,
+        0.8377916765016458
+      ],
+      "auroc_focus_only": 0.6290698653198652,
+      "attribution_random_baseline": 0.1111111111111111
+    },
+    "per_kind": {
+      "gaussian_blur": {
+        "expected_label": "DEFOCUS_OR_BLUR",
+        "spearman_severity_vs_qc": 0.4517074810961822,
+        "auroc_clean_vs_sev3plus": 0.8742129629629629,
+        "auroc_focus_only": 1.0,
+        "detection_rate_by_severity": {
+          "1": 0.9166666666666666,
+          "2": 0.9666666666666667,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.0,
+        "attribution_top2_detected": 0.0,
+        "n": 300
+      },
+      "defocus": {
+        "expected_label": "DEFOCUS_OR_BLUR",
+        "spearman_severity_vs_qc": 0.4866175624537204,
+        "auroc_clean_vs_sev3plus": 0.8824074074074074,
+        "auroc_focus_only": 1.0,
+        "detection_rate_by_severity": {
+          "1": 0.9333333333333333,
+          "2": 0.9666666666666667,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.0,
+        "attribution_top2_detected": 0.0,
+        "n": 300
+      },
+      "motion_blur": {
+        "expected_label": "DEFOCUS_OR_BLUR",
+        "spearman_severity_vs_qc": 0.3643351696630568,
+        "auroc_clean_vs_sev3plus": 0.7944444444444444,
+        "auroc_focus_only": 0.9746296296296295,
+        "detection_rate_by_severity": {
+          "1": 0.9333333333333333,
+          "2": 0.95,
+          "3": 0.9833333333333333,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.0,
+        "attribution_top2_detected": 0.0,
+        "n": 300
+      },
+      "gaussian_noise": {
+        "expected_label": "NOISE",
+        "spearman_severity_vs_qc": 0.39444627252947845,
+        "auroc_clean_vs_sev3plus": 0.6514814814814814,
+        "auroc_focus_only": 0.2933796296296296,
+        "detection_rate_by_severity": {
+          "1": 0.8166666666666667,
+          "2": 0.8833333333333333,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.46099290780141844,
+        "attribution_top2_detected": 0.8687943262411347,
+        "n": 300
+      },
+      "illumination": {
+        "expected_label": "UNEVEN_ILLUMINATION",
+        "spearman_severity_vs_qc": 0.08497776395057507,
+        "auroc_clean_vs_sev3plus": 0.5513888888888889,
+        "auroc_focus_only": 0.6225462962962962,
+        "detection_rate_by_severity": {
+          "1": 0.8,
+          "2": 0.8,
+          "3": 0.8166666666666667,
+          "4": 0.8833333333333333,
+          "5": 0.9
+        },
+        "attribution_acc_detected": 0.015873015873015872,
+        "attribution_top2_detected": 0.19047619047619047,
+        "n": 300
+      },
+      "contrast": {
+        "expected_label": "LOW_CONTRAST",
+        "spearman_severity_vs_qc": 0.6912921610844492,
+        "auroc_clean_vs_sev3plus": 0.8477777777777779,
+        "auroc_focus_only": 0.5002777777777778,
+        "detection_rate_by_severity": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.9233333333333333,
+        "attribution_top2_detected": 1.0,
+        "n": 300
+      },
+      "overexpose": {
+        "expected_label": "OVER_EXPOSED",
+        "spearman_severity_vs_qc": 0.5305325932579794,
+        "auroc_clean_vs_sev3plus": 0.9277314814814814,
+        "auroc_focus_only": 0.6269907407407407,
+        "detection_rate_by_severity": {
+          "1": 0.9166666666666666,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.010169491525423728,
+        "attribution_top2_detected": 0.5966101694915255,
+        "n": 300
+      },
+      "underexpose": {
+        "expected_label": "UNDER_EXPOSED",
+        "spearman_severity_vs_qc": 0.803260182256137,
+        "auroc_clean_vs_sev3plus": 0.895,
+        "auroc_focus_only": 0.4230555555555554,
+        "detection_rate_by_severity": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.3333333333333333,
+        "attribution_top2_detected": 0.39666666666666667,
+        "n": 300
+      },
+      "debris": {
+        "expected_label": "DEBRIS",
+        "spearman_severity_vs_qc": 0.08361088761374853,
+        "auroc_clean_vs_sev3plus": 0.5433333333333332,
+        "auroc_focus_only": 0.4901388888888889,
+        "detection_rate_by_severity": {
+          "1": 0.7666666666666667,
+          "2": 0.7666666666666667,
+          "3": 0.8,
+          "4": 0.8166666666666667,
+          "5": 0.8333333333333334
+        },
+        "attribution_acc_detected": 0.3891213389121339,
+        "attribution_top2_detected": 0.5397489539748954,
+        "n": 300
+      },
+      "bubble": {
+        "expected_label": "BUBBLE",
+        "spearman_severity_vs_qc": 0.4153663344918549,
+        "auroc_clean_vs_sev3plus": 0.6938888888888888,
+        "auroc_focus_only": 0.48574074074074064,
+        "detection_rate_by_severity": {
+          "1": 0.7833333333333333,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.3902439024390244,
+        "attribution_top2_detected": 0.7735191637630662,
+        "n": 300
+      },
+      "jpeg": {
+        "expected_label": "COMPRESSION",
+        "spearman_severity_vs_qc": 0.7482227880138005,
+        "auroc_clean_vs_sev3plus": 0.8924537037037037,
+        "auroc_focus_only": 0.5030092592592592,
+        "detection_rate_by_severity": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.8366666666666667,
+        "attribution_top2_detected": 0.9866666666666667,
+        "n": 300
+      }
+    },
+    "confusion_sev3plus": {
+      "BUBBLE": {
+        "BUBBLE": 96,
+        "COMPRESSION": 0,
+        "DEBRIS": 45,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 39,
+        "NOISE": 0,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "COMPRESSION": {
+        "BUBBLE": 0,
+        "COMPRESSION": 153,
+        "DEBRIS": 26,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 0,
+        "NOISE": 0,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 1,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "DEBRIS": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 69,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 78,
+        "NOISE": 0,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 33
+      },
+      "DEFOCUS_OR_BLUR": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 324,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 215,
+        "NOISE": 0,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 1
+      },
+      "LOW_CONTRAST": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 8,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 172,
+        "NOISE": 0,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "NOISE": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 3,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 7,
+        "NOISE": 123,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 47,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "OVER_EXPOSED": {
+        "BUBBLE": 5,
+        "COMPRESSION": 0,
+        "DEBRIS": 149,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 26,
+        "NOISE": 0,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "UNDER_EXPOSED": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 4,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 76,
+        "NOISE": 0,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 100,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "UNEVEN_ILLUMINATION": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 79,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 73,
+        "NOISE": 0,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 4,
+        "NONE": 24
+      }
+    },
+    "threshold_sweep": {
+      "1.5": {
+        "clean_flag_rate": 0.85,
+        "sev3plus_detection_rate": 0.9858585858585859
+      },
+      "2.0": {
+        "clean_flag_rate": 0.8,
+        "sev3plus_detection_rate": 0.9787878787878788
+      },
+      "2.5": {
+        "clean_flag_rate": 0.7833333333333333,
+        "sev3plus_detection_rate": 0.9777777777777777
+      },
+      "3.0": {
+        "clean_flag_rate": 0.7666666666666667,
+        "sev3plus_detection_rate": 0.9707070707070707
+      },
+      "4.0": {
+        "clean_flag_rate": 0.7666666666666667,
+        "sev3plus_detection_rate": 0.9641414141414142
+      },
+      "5.0": {
+        "clean_flag_rate": 0.75,
+        "sev3plus_detection_rate": 0.9580808080808081
+      },
+      "6.0": {
+        "clean_flag_rate": 0.7166666666666667,
+        "sev3plus_detection_rate": 0.947979797979798
+      }
+    },
+    "clean_flag_rate": 0.7666666666666667,
+    "batch_reference": {
+      "detection_rate_sev3plus": 0.7636363636363637,
+      "attribution_acc_detected": 0.40615647712697733,
+      "attribution_top2_detected": 0.5703292005130398,
+      "auroc_clean_vs_sev3plus": 0.7280471380471379,
+      "auroc_clean_vs_sev3plus_ci95": [
+        0.6579261729280254,
+        0.7970166045582264
+      ],
+      "auroc_focus_only": 0.6198863636363636,
+      "attribution_random_baseline": 0.1111111111111111,
+      "clean_flag_rate": 0.4666666666666667
+    },
+    "per_kind_batch": {
+      "gaussian_blur": {
+        "expected_label": "DEFOCUS_OR_BLUR",
+        "spearman_severity_vs_qc": 0.32145462668158065,
+        "auroc_clean_vs_sev3plus": 0.7556481481481482,
+        "auroc_focus_only": 1.0,
+        "detection_rate_by_severity": {
+          "1": 0.48333333333333334,
+          "2": 0.65,
+          "3": 0.7833333333333333,
+          "4": 0.8666666666666667,
+          "5": 0.6666666666666666
+        },
+        "attribution_acc_detected": 0.0,
+        "attribution_top2_detected": 0.0,
+        "n": 300
+      },
+      "defocus": {
+        "expected_label": "DEFOCUS_OR_BLUR",
+        "spearman_severity_vs_qc": 0.35265902295833246,
+        "auroc_clean_vs_sev3plus": 0.7756481481481482,
+        "auroc_focus_only": 1.0,
+        "detection_rate_by_severity": {
+          "1": 0.5333333333333333,
+          "2": 0.65,
+          "3": 0.8,
+          "4": 0.8833333333333333,
+          "5": 0.6833333333333333
+        },
+        "attribution_acc_detected": 0.0,
+        "attribution_top2_detected": 0.0,
+        "n": 300
+      },
+      "motion_blur": {
+        "expected_label": "DEFOCUS_OR_BLUR",
+        "spearman_severity_vs_qc": 0.19997819727667046,
+        "auroc_clean_vs_sev3plus": 0.6492592592592593,
+        "auroc_focus_only": 0.9746296296296296,
+        "detection_rate_by_severity": {
+          "1": 0.4666666666666667,
+          "2": 0.55,
+          "3": 0.6833333333333333,
+          "4": 0.7,
+          "5": 0.6166666666666667
+        },
+        "attribution_acc_detected": 0.0,
+        "attribution_top2_detected": 0.0,
+        "n": 300
+      },
+      "gaussian_noise": {
+        "expected_label": "NOISE",
+        "spearman_severity_vs_qc": 0.5332087227723654,
+        "auroc_clean_vs_sev3plus": 0.7594444444444445,
+        "auroc_focus_only": 0.25527777777777777,
+        "detection_rate_by_severity": {
+          "1": 0.9333333333333333,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.6722972972972973,
+        "attribution_top2_detected": 0.793918918918919,
+        "n": 300
+      },
+      "illumination": {
+        "expected_label": "UNEVEN_ILLUMINATION",
+        "spearman_severity_vs_qc": 0.24206868101900827,
+        "auroc_clean_vs_sev3plus": 0.6415740740740741,
+        "auroc_focus_only": 0.6184259259259259,
+        "detection_rate_by_severity": {
+          "1": 0.48333333333333334,
+          "2": 0.55,
+          "3": 0.6333333333333333,
+          "4": 0.6,
+          "5": 0.75
+        },
+        "attribution_acc_detected": 0.0055248618784530384,
+        "attribution_top2_detected": 0.14917127071823205,
+        "n": 300
+      },
+      "contrast": {
+        "expected_label": "LOW_CONTRAST",
+        "spearman_severity_vs_qc": 0.17708439737630818,
+        "auroc_clean_vs_sev3plus": 0.4622685185185185,
+        "auroc_focus_only": 0.5003703703703704,
+        "detection_rate_by_severity": {
+          "1": 0.2833333333333333,
+          "2": 0.23333333333333334,
+          "3": 0.2,
+          "4": 0.13333333333333333,
+          "5": 0.1
+        },
+        "attribution_acc_detected": 0.0,
+        "attribution_top2_detected": 0.0,
+        "n": 300
+      },
+      "overexpose": {
+        "expected_label": "OVER_EXPOSED",
+        "spearman_severity_vs_qc": 0.6177092459199179,
+        "auroc_clean_vs_sev3plus": 0.9821296296296297,
+        "auroc_focus_only": 0.6179629629629629,
+        "detection_rate_by_severity": {
+          "1": 0.9666666666666667,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.40268456375838924,
+        "attribution_top2_detected": 0.9832214765100671,
+        "n": 300
+      },
+      "underexpose": {
+        "expected_label": "UNDER_EXPOSED",
+        "spearman_severity_vs_qc": 0.5940061341623284,
+        "auroc_clean_vs_sev3plus": 0.7448148148148148,
+        "auroc_focus_only": 0.4056944444444444,
+        "detection_rate_by_severity": {
+          "1": 0.26666666666666666,
+          "2": 0.2,
+          "3": 0.48333333333333334,
+          "4": 0.6333333333333333,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.7741935483870968,
+        "attribution_top2_detected": 0.9161290322580645,
+        "n": 300
+      },
+      "debris": {
+        "expected_label": "DEBRIS",
+        "spearman_severity_vs_qc": 0.1667946317774496,
+        "auroc_clean_vs_sev3plus": 0.6025462962962962,
+        "auroc_focus_only": 0.47351851851851856,
+        "detection_rate_by_severity": {
+          "1": 0.5,
+          "2": 0.5666666666666667,
+          "3": 0.6166666666666667,
+          "4": 0.6666666666666666,
+          "5": 0.7
+        },
+        "attribution_acc_detected": 0.6612021857923497,
+        "attribution_top2_detected": 0.7049180327868853,
+        "n": 300
+      },
+      "bubble": {
+        "expected_label": "BUBBLE",
+        "spearman_severity_vs_qc": 0.49413949484100067,
+        "auroc_clean_vs_sev3plus": 0.7554166666666666,
+        "auroc_focus_only": 0.4790740740740741,
+        "detection_rate_by_severity": {
+          "1": 0.4666666666666667,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.5970149253731343,
+        "attribution_top2_detected": 0.8097014925373134,
+        "n": 300
+      },
+      "jpeg": {
+        "expected_label": "COMPRESSION",
+        "spearman_severity_vs_qc": 0.7319147985995357,
+        "auroc_clean_vs_sev3plus": 0.8797685185185186,
+        "auroc_focus_only": 0.4937962962962963,
+        "detection_rate_by_severity": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0
+        },
+        "attribution_acc_detected": 0.7633333333333333,
+        "attribution_top2_detected": 0.97,
+        "n": 300
+      }
+    },
+    "confusion_sev3plus_batch": {
+      "BUBBLE": {
+        "BUBBLE": 122,
+        "COMPRESSION": 0,
+        "DEBRIS": 41,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 0,
+        "NOISE": 0,
+        "OVER_EXPOSED": 17,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "COMPRESSION": {
+        "BUBBLE": 0,
+        "COMPRESSION": 143,
+        "DEBRIS": 26,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 0,
+        "NOISE": 0,
+        "OVER_EXPOSED": 10,
+        "UNDER_EXPOSED": 1,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "DEBRIS": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 84,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 0,
+        "NOISE": 9,
+        "OVER_EXPOSED": 26,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 61
+      },
+      "DEFOCUS_OR_BLUR": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 401,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 0,
+        "NOISE": 0,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 139
+      },
+      "LOW_CONTRAST": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 14,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 0,
+        "NOISE": 12,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 154
+      },
+      "NOISE": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 2,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 0,
+        "NOISE": 129,
+        "OVER_EXPOSED": 37,
+        "UNDER_EXPOSED": 12,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "OVER_EXPOSED": {
+        "BUBBLE": 1,
+        "COMPRESSION": 0,
+        "DEBRIS": 127,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 0,
+        "NOISE": 0,
+        "OVER_EXPOSED": 52,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "UNDER_EXPOSED": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 5,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 0,
+        "NOISE": 4,
+        "OVER_EXPOSED": 0,
+        "UNDER_EXPOSED": 171,
+        "UNEVEN_ILLUMINATION": 0,
+        "NONE": 0
+      },
+      "UNEVEN_ILLUMINATION": {
+        "BUBBLE": 0,
+        "COMPRESSION": 0,
+        "DEBRIS": 79,
+        "DEFOCUS_OR_BLUR": 0,
+        "LOW_CONTRAST": 0,
+        "NOISE": 5,
+        "OVER_EXPOSED": 34,
+        "UNDER_EXPOSED": 0,
+        "UNEVEN_ILLUMINATION": 1,
+        "NONE": 61
+      }
+    },
+    "threshold_sweep_batch": {
+      "1.5": {
+        "clean_flag_rate": 0.65,
+        "sev3plus_detection_rate": 0.9434343434343434
+      },
+      "2.0": {
+        "clean_flag_rate": 0.55,
+        "sev3plus_detection_rate": 0.8459595959595959
+      },
+      "2.5": {
+        "clean_flag_rate": 0.48333333333333334,
+        "sev3plus_detection_rate": 0.7823232323232323
+      },
+      "3.0": {
+        "clean_flag_rate": 0.4666666666666667,
+        "sev3plus_detection_rate": 0.7636363636363637
+      },
+      "4.0": {
+        "clean_flag_rate": 0.45,
+        "sev3plus_detection_rate": 0.7474747474747475
+      },
+      "5.0": {
+        "clean_flag_rate": 0.38333333333333336,
+        "sev3plus_detection_rate": 0.7237373737373738
+      },
+      "6.0": {
+        "clean_flag_rate": 0.36666666666666664,
+        "sev3plus_detection_rate": 0.7116161616161616
+      }
+    },
+    "provenance": {
+      "git_sha": "d2b906b8daee35b180320ed359c03381c17d7edd",
+      "timestamp_utc": "2026-10-10T15:04:34+00:00",
+      "config_hash": "4d7368f2592c8582",
+      "python": "3.12.3",
+      "seed": 1337,
+      "data_manifest_sha256": "b89d5a58724a62503246308b756b1838a4e1cb7a84074a2185c8d42bb158aab0"
+    }
+  },
+  "e2": {
+    "n_test": 301,
+    "n_dev": 179,
+    "n_test_bad": 137,
+    "split": "session-grouped (image-id date prefix); no session in both splits",
+    "label": "expert decision good/bad from the dataset",
+    "detectors": {
+      "zelos_qc_score": {
+        "auroc": 0.39324817518248173,
+        "auroc_ci95": [
+          0.33222471739845366,
+          0.45935563231062077
+        ]
+      },
+      "zelos_qc_score_session_reference": {
+        "auroc": 0.4766111803453801,
+        "auroc_ci95": [
+          0.4125746624184,
+          0.5413987118687842
+        ]
+      },
+      "focus_only": {
+        "auroc": 0.5244347516467865,
+        "auroc_ci95": [
+          0.46018712897449,
+          0.5869196059841605
+        ]
+      },
+      "random": {
+        "auroc": 0.5181591596937868,
+        "auroc_ci95": [
+          0.45412512033764285,
+          0.5826908896115431
+        ]
+      },
+      "knn_handcrafted_k15": {
+        "auroc": 0.7099207762150613,
+        "auroc_ci95": [
+          0.6530383160369492,
+          0.7672398665308541
+        ]
+      }
+    },
+    "zelos_at_review_threshold": {
+      "threshold_z": 3.0,
+      "balanced_accuracy": 0.380429944810397,
+      "f1_bad": 0.4398826979472141,
+      "cohen_kappa": -0.22988554925660498,
+      "flag_rate": 0.6777408637873754,
+      "majority_baseline_balanced_accuracy": 0.5
+    },
+    "per_cell_line": {
+      "A549": {
+        "n": 51,
+        "auroc_zelos": 0.7150621118012422,
+        "auroc_knn_handcrafted": 0.6645962732919255
+      },
+      "CACO": {
+        "n": 48,
+        "auroc_zelos": 0.14109347442680775,
+        "auroc_knn_handcrafted": 0.7804232804232804
+      },
+      "HPMEC": {
+        "n": 64,
+        "auroc_zelos": 0.4402834008097166,
+        "auroc_knn_handcrafted": 0.8279352226720648
+      },
+      "HSAEC": {
+        "n": 74,
+        "auroc_zelos": 0.5155210643015521,
+        "auroc_knn_handcrafted": 0.5835181079083518
+      },
+      "HUVEC": {
+        "n": 28,
+        "auroc_zelos": 0.06770833333333334,
+        "auroc_knn_handcrafted": 1.0
+      },
+      "NHBE": {
+        "n": 36,
+        "auroc_zelos": 0.22993827160493827,
+        "auroc_knn_handcrafted": 0.5262345679012346
+      }
+    },
+    "per_metric_auroc": {
+      "focus_lapvar_norm": 0.5220313334520206,
+      "focus_tenengrad_norm": 0.5020473562399858,
+      "focus_hf_ratio": 0.5749510414812177,
+      "contrast_rms": 0.6392647320633791,
+      "contrast_p99_p1": 0.6440270607085633,
+      "mean_intensity": 0.5682748798290903,
+      "clip_low_frac": 0.5047178209008367,
+      "clip_high_frac": 0.6607619725832294,
+      "illum_flatness": 0.5032935730817163,
+      "noise_sigma_norm": 0.5942228947836923,
+      "debris_count": 0.5185374755207406,
+      "debris_area_frac": 0.514999109845113,
+      "bubble_score": 0.5042949973295353,
+      "foreground_frac": 0.5145985401459854,
+      "blob_density_per_mpx": 0.5788454691116254,
+      "texture_lbp_entropy": 0.5845202065159338,
+      "jpeg_blockiness": 0.7280576820366744
+    },
+    "provenance": {
+      "git_sha": "ef8f96b3891b0962f393743a75951caadc1c523e",
+      "timestamp_utc": "2026-10-10T14:58:49+00:00",
+      "config_hash": "4d7368f2592c8582",
+      "python": "3.12.3",
+      "seed": 1337,
+      "data_manifest_sha256": "b89d5a58724a62503246308b756b1838a4e1cb7a84074a2185c8d42bb158aab0"
+    }
+  },
+  "e4": {
+    "modes": {
+      "bm25": {
+        "paper_level": {
+          "n": 61,
+          "hit@1": 0.9180327868852459,
+          "hit@1_ci95": [
+            0.822051145758621,
+            0.9644809570889337
+          ],
+          "hit@3": 0.9672131147540983,
+          "hit@3_ci95": [
+            0.888102992233543,
+            0.9909622991843121
+          ],
+          "hit@5": 0.9836065573770492,
+          "hit@5_ci95": [
+            0.9128093437223194,
+            0.997100343885636
+          ],
+          "mrr": 0.9439890710382512,
+          "ndcg@5": 0.9539760010691198
+        },
+        "chunk_level": {
+          "n": 61,
+          "hit@1": 0.639344262295082,
+          "hit@1_ci95": [
+            0.5139167326739971,
+            0.7482606349418546
+          ],
+          "hit@3": 0.8524590163934426,
+          "hit@3_ci95": [
+            0.7427653049810489,
+            0.920389213106105
+          ],
+          "hit@5": 0.9016393442622951,
+          "hit@5_ci95": [
+            0.8015516580247642,
+            0.9541360486326903
+          ],
+          "mrr": 0.742896174863388,
+          "ndcg@5": 0.7828167246084284
+        },
+        "paper_hit@5_by_type": {
+          "answerable": {
+            "n": 47,
+            "hit@5": 1.0
+          },
+          "reworded": {
+            "n": 14,
+            "hit@5": 0.9285714285714286
+          }
+        },
+        "latency_ms_p50": 5.228295998676913
+      },
+      "dense": {
+        "paper_level": {
+          "n": 61,
+          "hit@1": 0.4426229508196721,
+          "hit@1_ci95": [
+            0.32507608033920443,
+            0.5669685329954449
+          ],
+          "hit@3": 0.7049180327868853,
+          "hit@3_ci95": [
+            0.5811036064161055,
+            0.8044513459601468
+          ],
+          "hit@5": 0.7377049180327869,
+          "hit@5_ci95": [
+            0.6156301967155846,
+            0.8316135480408682
+          ],
+          "mrr": 0.5824551131928181,
+          "ndcg@5": 0.6347223259147464
+        },
+        "chunk_level": {
+          "n": 61,
+          "hit@1": 0.29508196721311475,
+          "hit@1_ci95": [
+            0.19554865403985322,
+            0.4188963935838945
+          ],
+          "hit@3": 0.4426229508196721,
+          "hit@3_ci95": [
+            0.32507608033920443,
+            0.5669685329954449
+          ],
+          "hit@5": 0.47540983606557374,
+          "hit@5_ci95": [
+            0.3553028228679598,
+            0.5984305828468899
+          ],
+          "mrr": 0.37565703877179285,
+          "ndcg@5": 0.39298652677320034
+        },
+        "paper_hit@5_by_type": {
+          "answerable": {
+            "n": 47,
+            "hit@5": 0.8085106382978723
+          },
+          "reworded": {
+            "n": 14,
+            "hit@5": 0.5
+          }
+        },
+        "latency_ms_p50": 21.747778000644757
+      },
+      "hybrid": {
+        "paper_level": {
+          "n": 61,
+          "hit@1": 0.7704918032786885,
+          "hit@1_ci95": [
+            0.6508635609254849,
+            0.858068976211168
+          ],
+          "hit@3": 0.9016393442622951,
+          "hit@3_ci95": [
+            0.8015516580247642,
+            0.9541360486326903
+          ],
+          "hit@5": 0.9672131147540983,
+          "hit@5_ci95": [
+            0.888102992233543,
+            0.9909622991843121
+          ],
+          "mrr": 0.8499089253187614,
+          "ndcg@5": 0.8908109459474073
+        },
+        "chunk_level": {
+          "n": 61,
+          "hit@1": 0.4426229508196721,
+          "hit@1_ci95": [
+            0.32507608033920443,
+            0.5669685329954449
+          ],
+          "hit@3": 0.7704918032786885,
+          "hit@3_ci95": [
+            0.6508635609254849,
+            0.858068976211168
+          ],
+          "hit@5": 0.819672131147541,
+          "hit@5_ci95": [
+            0.7052560663212193,
+            0.8962096593857343
+          ],
+          "mrr": 0.6010473588342441,
+          "ndcg@5": 0.6499116305217788
+        },
+        "paper_hit@5_by_type": {
+          "answerable": {
+            "n": 47,
+            "hit@5": 0.9787234042553191
+          },
+          "reworded": {
+            "n": 14,
+            "hit@5": 0.9285714285714286
+          }
+        },
+        "latency_ms_p50": 60.7633050003642
+      },
+      "hybrid_rerank": {
+        "paper_level": {
+          "n": 61,
+          "hit@1": 0.7704918032786885,
+          "hit@1_ci95": [
+            0.6508635609254849,
+            0.858068976211168
+          ],
+          "hit@3": 0.9016393442622951,
+          "hit@3_ci95": [
+            0.8015516580247642,
+            0.9541360486326903
+          ],
+          "hit@5": 0.9672131147540983,
+          "hit@5_ci95": [
+            0.888102992233543,
+            0.9909622991843121
+          ],
+          "mrr": 0.8499089253187614,
+          "ndcg@5": 0.8908109459474073
+        },
+        "chunk_level": {
+          "n": 61,
+          "hit@1": 0.4426229508196721,
+          "hit@1_ci95": [
+            0.32507608033920443,
+            0.5669685329954449
+          ],
+          "hit@3": 0.7704918032786885,
+          "hit@3_ci95": [
+            0.6508635609254849,
+            0.858068976211168
+          ],
+          "hit@5": 0.819672131147541,
+          "hit@5_ci95": [
+            0.7052560663212193,
+            0.8962096593857343
+          ],
+          "mrr": 0.6010473588342441,
+          "ndcg@5": 0.6499116305217788
+        },
+        "paper_hit@5_by_type": {
+          "answerable": {
+            "n": 47,
+            "hit@5": 0.9787234042553191
+          },
+          "reworded": {
+            "n": 14,
+            "hit@5": 0.9285714285714286
+          }
+        },
+        "latency_ms_p50": 63.92804900133342
+      }
+    },
+    "abstention": {
+      "bm25": {
+        "accuracy_on_unanswerable": 0.0,
+        "n_unanswerable": 12,
+        "accuracy_on_unanswerable_ci95": [
+          0.0,
+          0.2425007574992425
+        ],
+        "false_abstention_rate_on_answerable": 0.0,
+        "n_answerable": 61,
+        "false_abstention_rate_ci95": [
+          0.0,
+          0.05924591620194442
+        ],
+        "top_score_median_unanswerable": 9.512714982552815,
+        "top_score_median_answerable": 29.032427597413363,
+        "top_score_kind": "max(bm25_top, dense_top) raw"
+      },
+      "dense": {
+        "accuracy_on_unanswerable": 0.4166666666666667,
+        "n_unanswerable": 12,
+        "accuracy_on_unanswerable_ci95": [
+          0.19325746190524656,
+          0.6804926643446272
+        ],
+        "false_abstention_rate_on_answerable": 0.32786885245901637,
+        "n_answerable": 61,
+        "false_abstention_rate_ci95": [
+          0.2233495518172607,
+          0.45278428818668737
+        ],
+        "top_score_median_unanswerable": 9.512714982552815,
+        "top_score_median_answerable": 29.032427597413363,
+        "top_score_kind": "max(bm25_top, dense_top) raw"
+      },
+      "hybrid": {
+        "accuracy_on_unanswerable": 0.0,
+        "n_unanswerable": 12,
+        "accuracy_on_unanswerable_ci95": [
+          0.0,
+          0.2425007574992425
+        ],
+        "false_abstention_rate_on_answerable": 0.0,
+        "n_answerable": 61,
+        "false_abstention_rate_ci95": [
+          0.0,
+          0.05924591620194442
+        ],
+        "top_score_median_unanswerable": 9.512714982552815,
+        "top_score_median_answerable": 29.032427597413363,
+        "top_score_kind": "max(bm25_top, dense_top) raw"
+      },
+      "hybrid_rerank": {
+        "accuracy_on_unanswerable": 0.0,
+        "n_unanswerable": 12,
+        "accuracy_on_unanswerable_ci95": [
+          0.0,
+          0.2425007574992425
+        ],
+        "false_abstention_rate_on_answerable": 0.0,
+        "n_answerable": 61,
+        "false_abstention_rate_ci95": [
+          0.0,
+          0.05924591620194442
+        ],
+        "top_score_median_unanswerable": 9.512714982552815,
+        "top_score_median_answerable": 29.032427597413363,
+        "top_score_kind": "max(bm25_top, dense_top) raw"
+      }
+    },
+    "config": {
+      "k_depth": 10,
+      "embedding_provider": "hash",
+      "embedding_model": "hashing-word12-1024",
+      "rerank_model": "rerank-v3.5",
+      "rerank_available": false,
+      "thresholds": {
+        "min_rerank": 0.1,
+        "min_bm25": 3.0,
+        "min_dense": 0.3,
+        "candidates": 30,
+        "rrf_k": 60,
+        "rerank_pool": 20
+      },
+      "offline_flag": true
+    },
+    "corpus": {
+      "n_papers": 48,
+      "n_chunks": 2379,
+      "chunks_sha256": "f5426580481abb5c061c7b19a5ee32e7553d4b969eba48988f77f4ca8a5ce82f"
+    },
+    "gold": {
+      "path": "eval/retrieval_gold.jsonl",
+      "sha256": "493c9ef1d76658f5877d0b4ab31d8f1d0251b9e0f12abb73c2a15e1e1dc8c852",
+      "n_answerable": 47,
+      "n_reworded": 14,
+      "n_unanswerable": 12
+    },
+    "cohere_calls": {
+      "this_run": {
+        "embed": 0,
+        "rerank": 0
+      },
+      "cumulative_recorded_in_ledger": {
+        "embed": 51
+      }
+    },
+    "runtime_s": 38.43744230270386,
+    "provenance": {
+      "git_sha": "fe73ab8e41a02f52393ec40665855a01fe9d2dc4",
+      "timestamp_utc": "2026-10-10T14:58:29+00:00",
+      "config_hash": "4d7368f2592c8582",
+      "python": "3.12.3",
+      "seed": 1337,
+      "corpus_sha256": "f5426580481abb5c061c7b19a5ee32e7553d4b969eba48988f77f4ca8a5ce82f"
+    }
+  },
+  "e5": {
+    "experiment": "E5 grounding",
+    "provenance": {
+      "git_sha": "fe73ab8e41a02f52393ec40665855a01fe9d2dc4",
+      "timestamp_utc": "2026-10-10T14:58:37+00:00",
+      "config_hash": "4d7368f2592c8582",
+      "python": "3.12.3",
+      "seed": 1337,
+      "llm_model": "@cf/meta/llama-3.1-8b-instruct-fast",
+      "gate_vectors": "0",
+      "qc_source": "results/qc_samples.json",
+      "n_qc_distinct": 30,
+      "evidence_source": "bm25 over corpus/chunks.jsonl (replayed from eval/llm_cache/retrieval_cache.json)",
+      "llm_mode": "replay",
+      "thresholds": {
+        "num_rel_tol": 0.001,
+        "theta_lex": 0.3,
+        "theta_vec": 0.35,
+        "repair_rounds": 1
+      }
+    },
+    "n": {
+      "explain": 20,
+      "ask": 18,
+      "adversarial": 14,
+      "unanswerable": 8
+    },
+    "conditions": {
+      "template": {
+        "n_cases": 38,
+        "n_claims_displayed": 114,
+        "supported_claims_per_case": 3.0,
+        "grounded_claim_rate": {
+          "k": 114,
+          "n": 114,
+          "rate": 1.0,
+          "ci95": [
+            0.9674,
+            1.0
+          ]
+        },
+        "unsupported_claim_rate_in_output": {
+          "k": 0,
+          "n": 114,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.0326
+          ]
+        },
+        "numeric_hallucination_rate": {
+          "k": 0,
+          "n": 72,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.0507
+          ]
+        },
+        "citation_exists_rate": {
+          "k": 36,
+          "n": 36,
+          "rate": 1.0,
+          "ci95": [
+            0.9036,
+            1.0
+          ]
+        },
+        "citation_valid_rate": {
+          "k": 36,
+          "n": 36,
+          "rate": 1.0,
+          "ci95": [
+            0.9036,
+            1.0
+          ]
+        },
+        "tokens_per_answer": 0.0,
+        "llm_calls_per_answer": 0.0,
+        "latency_ms_p50": 2.07,
+        "adversarial": {
+          "refusal_correctness": {
+            "k": 14,
+            "n": 14,
+            "rate": 1.0,
+            "ci95": [
+              0.7847,
+              1.0
+            ]
+          },
+          "explicit_refusal_or_abstain": {
+            "k": 11,
+            "n": 14,
+            "rate": 0.7857142857142857,
+            "ci95": [
+              0.5241,
+              0.9243
+            ]
+          },
+          "unsafe_output_rate": {
+            "k": 0,
+            "n": 14,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.2153
+            ]
+          }
+        },
+        "abstention": {
+          "precision": {
+            "k": 8,
+            "n": 10,
+            "rate": 0.8,
+            "ci95": [
+              0.4902,
+              0.9433
+            ]
+          },
+          "recall": {
+            "k": 8,
+            "n": 8,
+            "rate": 1.0,
+            "ci95": [
+              0.6756,
+              1.0
+            ]
+          },
+          "n_unanswerable": 8,
+          "n_answerable": 10
+        }
+      },
+      "llm_ungated": {
+        "n_cases": 38,
+        "n_claims_displayed": 179,
+        "supported_claims_per_case": 4.394736842105263,
+        "grounded_claim_rate": {
+          "k": 167,
+          "n": 179,
+          "rate": 0.9329608938547486,
+          "ci95": [
+            0.8865,
+            0.9612
+          ]
+        },
+        "unsupported_claim_rate_in_output": {
+          "k": 12,
+          "n": 179,
+          "rate": 0.0670391061452514,
+          "ci95": [
+            0.0388,
+            0.1135
+          ]
+        },
+        "numeric_hallucination_rate": {
+          "k": 0,
+          "n": 45,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.0787
+          ]
+        },
+        "citation_exists_rate": {
+          "k": 86,
+          "n": 86,
+          "rate": 1.0,
+          "ci95": [
+            0.9572,
+            1.0
+          ]
+        },
+        "citation_valid_rate": {
+          "k": 77,
+          "n": 86,
+          "rate": 0.8953488372093024,
+          "ci95": [
+            0.8129,
+            0.944
+          ]
+        },
+        "tokens_per_answer": 275.5263157894737,
+        "llm_calls_per_answer": 0.47368421052631576,
+        "latency_ms_p50": 1269.1692939997665,
+        "adversarial": {
+          "refusal_correctness": {
+            "k": 11,
+            "n": 14,
+            "rate": 0.7857142857142857,
+            "ci95": [
+              0.5241,
+              0.9243
+            ]
+          },
+          "explicit_refusal_or_abstain": {
+            "k": 0,
+            "n": 14,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.2153
+            ]
+          },
+          "unsafe_output_rate": {
+            "k": 3,
+            "n": 14,
+            "rate": 0.21428571428571427,
+            "ci95": [
+              0.0757,
+              0.4759
+            ]
+          }
+        },
+        "abstention": {
+          "precision": {
+            "k": 5,
+            "n": 5,
+            "rate": 1.0,
+            "ci95": [
+              0.5655,
+              1.0
+            ]
+          },
+          "recall": {
+            "k": 5,
+            "n": 8,
+            "rate": 0.625,
+            "ci95": [
+              0.3057,
+              0.8632
+            ]
+          },
+          "n_unanswerable": 8,
+          "n_answerable": 10
+        }
+      },
+      "llm_gated": {
+        "n_cases": 38,
+        "n_claims_displayed": 171,
+        "supported_claims_per_case": 4.5,
+        "grounded_claim_rate": {
+          "k": 171,
+          "n": 171,
+          "rate": 1.0,
+          "ci95": [
+            0.978,
+            1.0
+          ]
+        },
+        "unsupported_claim_rate_in_output": {
+          "k": 0,
+          "n": 171,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.022
+          ]
+        },
+        "numeric_hallucination_rate": {
+          "k": 0,
+          "n": 48,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.0741
+          ]
+        },
+        "citation_exists_rate": {
+          "k": 77,
+          "n": 77,
+          "rate": 1.0,
+          "ci95": [
+            0.9525,
+            1.0
+          ]
+        },
+        "citation_valid_rate": {
+          "k": 77,
+          "n": 77,
+          "rate": 1.0,
+          "ci95": [
+            0.9525,
+            1.0
+          ]
+        },
+        "tokens_per_answer": 1280.3947368421052,
+        "llm_calls_per_answer": 0.868421052631579,
+        "latency_ms_p50": 1892.31997150083,
+        "adversarial": {
+          "refusal_correctness": {
+            "k": 14,
+            "n": 14,
+            "rate": 1.0,
+            "ci95": [
+              0.7847,
+              1.0
+            ]
+          },
+          "explicit_refusal_or_abstain": {
+            "k": 11,
+            "n": 14,
+            "rate": 0.7857142857142857,
+            "ci95": [
+              0.5241,
+              0.9243
+            ]
+          },
+          "unsafe_output_rate": {
+            "k": 0,
+            "n": 14,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.2153
+            ]
+          }
+        },
+        "abstention": {
+          "precision": {
+            "k": 8,
+            "n": 10,
+            "rate": 0.8,
+            "ci95": [
+              0.4902,
+              0.9433
+            ]
+          },
+          "recall": {
+            "k": 8,
+            "n": 8,
+            "rate": 1.0,
+            "ci95": [
+              0.6756,
+              1.0
+            ]
+          },
+          "n_unanswerable": 8,
+          "n_answerable": 10
+        }
+      }
+    },
+    "gate_fault_injection": {
+      "known_good_claims": {
+        "k": 98,
+        "n": 98,
+        "rate": 1.0,
+        "ci95": [
+          0.9623,
+          1.0
+        ]
+      },
+      "false_block_rate": {
+        "k": 0,
+        "n": 98,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0377
+        ]
+      },
+      "injected_fabrications_caught": {
+        "k": 100,
+        "n": 100,
+        "rate": 1.0,
+        "ci95": [
+          0.963,
+          1.0
+        ]
+      },
+      "by_kind": {
+        "fabricated_number": {
+          "k": 20,
+          "n": 20,
+          "rate": 1.0,
+          "ci95": [
+            0.8389,
+            1.0
+          ]
+        },
+        "fake_citation": {
+          "k": 20,
+          "n": 20,
+          "rate": 1.0,
+          "ci95": [
+            0.8389,
+            1.0
+          ]
+        },
+        "wrong_support": {
+          "k": 20,
+          "n": 20,
+          "rate": 1.0,
+          "ci95": [
+            0.8389,
+            1.0
+          ]
+        },
+        "uncited_literature": {
+          "k": 20,
+          "n": 20,
+          "rate": 1.0,
+          "ci95": [
+            0.8389,
+            1.0
+          ]
+        },
+        "orphan_inference": {
+          "k": 20,
+          "n": 20,
+          "rate": 1.0,
+          "ci95": [
+            0.8389,
+            1.0
+          ]
+        }
+      }
+    },
+    "verdict": {
+      "explain_qc": {
+        "template_supported_per_case": 4.9,
+        "llm_gated_supported_per_case": 6.15,
+        "llm_gated_grounded_rate": 1.0,
+        "llm_worth_it": true,
+        "rule": "LLM is worth it for a case type only if llm_gated yields more supported claims per case than the template"
+      },
+      "ask_literature": {
+        "template_supported_per_case": 0.8888888888888888,
+        "llm_gated_supported_per_case": 2.6666666666666665,
+        "llm_gated_grounded_rate": 1.0,
+        "llm_worth_it": true,
+        "rule": "LLM is worth it for a case type only if llm_gated yields more supported claims per case than the template"
+      }
+    },
+    "notes": [
+      "llm_ungated and llm_gated share the draft call; llm_gated adds the gate and <=1 repair call.",
+      "grounded/unsupported rates for every condition are judged by the same independent re-verification of the displayed claims.",
+      "llm_gated shows only gate-approved claims, so its unsupported rate is 0 by construction; the fault-injection block measures whether the gate itself catches known fabrications.",
+      "refusal_correctness counts a response as correct if it is an explicit refusal/abstain or contains only gate-supported, non-clinical claims; explicit_refusal_or_abstain separates real refusals from a model that ignores the request. Only the router produces explicit refusals for template and llm_gated.",
+      "latency_ms_p50 sums recorded LLM latency and local step time; ungated ask latency is the LLM call only."
+    ],
+    "llm_fallbacks_to_template": 0
+  },
+  "e9": {
+    "metrics_ms_p50": 379.1000314995472,
+    "metrics_ms_p95": 1003.4662293006469,
+    "inspect_ms_p50": 167.5,
+    "inspect_ms_p95": 201.585,
+    "n": 480,
+    "image_shape": "1542x2056 uint8 (analysed at long side 1024)",
+    "cpu_workers": 7,
+    "provenance": {
+      "git_sha": "9a55b2c256ec737731678e115ff51e754be7a29f",
+      "timestamp_utc": "2026-10-10T15:04:40+00:00",
+      "config_hash": "4d7368f2592c8582",
+      "python": "3.12.3",
+      "seed": 1337
+    }
+  },
+  "findings": [
+    "E1: on 60 real OoC images x 11 corruptions x 5 severities, Zelos flags 97.1% of severity>=3 corruptions and names the injected cause for 31.0% of flagged images (top-2: 49.0%; chance 11.1%).",
+    "E1: the pre-registered dev-session reference also flags 76.7% of clean test images (cross-session acquisition shift). A batch-relative reference (unsupervised, added after that result) lowers clean flags to 46.7% with AUROC 0.728 vs 0.778.",
+    "E2: the expert good/bad label appears to track culture state rather than image artifacts: the artifact QC score reaches AUROC 0.393 while non-parametric kNN label transfer on the same physics features reaches 0.710 (best detector: knn_handcrafted_k15, n_test=301, session-grouped split).",
+    "E4: over 48 open-access papers / 2379 chunks, the best retrieval mode is bm25 with paper-level MRR 0.944.",
+    "E5: see results/e5.md for template vs ungated LLM vs gated LLM grounding rates."
+  ],
+  "provenance": {
+    "git_sha": "67ddd97b33984623f426a15f3f3e981c67165fb0",
+    "timestamp_utc": "2026-10-10T15:07:58+00:00",
+    "config_hash": "1441574f18b2c7b0",
+    "python": "3.12.3",
+    "seed": 1337
+  }
+}

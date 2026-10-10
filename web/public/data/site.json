@@ -1,0 +1,5654 @@
+{
+  "generated": {
+    "git_sha": "726169237c8cf92a26738406b31ae23a9e1387a2",
+    "timestamp_utc": "2026-10-10T15:09:32+00:00",
+    "config_hash": "1441574f18b2c7b0",
+    "python": "3.12.3",
+    "seed": 1337
+  },
+  "dataset": {
+    "name": "Organ-on-a-Chip (OOC) Image Dataset",
+    "citation": "Mov\u010dana et al., Data 9(2):28, 2024",
+    "doi": "10.5281/zenodo.10203721",
+    "license": "CC BY 4.0 (Zenodo) / CC BY-SA (article page)",
+    "n_images_used": 480,
+    "cell_lines": [
+      "A549",
+      "CACO",
+      "HPMEC",
+      "HSAEC",
+      "HUVEC",
+      "NHBE"
+    ]
+  },
+  "samples": [
+    {
+      "id": "221010_86",
+      "cell_line": "A549",
+      "time_bin": "0-1",
+      "expert_label": "good",
+      "thumb": "data/thumbs/221010_86.webp",
+      "variant": "original",
+      "qc": {
+        "tool_call_id": "qc-d2e4ec8c",
+        "image": {
+          "id": "221010_86",
+          "sha256": "d2e4ec8c0f92c0707e2e7c3b22839b8fe921ac3827b2eb4139f70ab6450bd4ab",
+          "shape": [
+            1536,
+            2048
+          ],
+          "dtype": "uint8",
+          "cell_line": "A549"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 4.375771,
+          "focus_tenengrad_norm": 11.463754,
+          "focus_hf_ratio": 0.219704,
+          "contrast_rms": 0.113612,
+          "contrast_p99_p1": 0.532353,
+          "mean_intensity": 0.600197,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.003552,
+          "illum_flatness": 0.23648,
+          "noise_sigma_norm": 0.070327,
+          "debris_count": 5.0,
+          "debris_area_frac": 9.3e-05,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.410566,
+          "blob_density_per_mpx": 2681.732178,
+          "texture_lbp_entropy": 6.888008,
+          "jpeg_blockiness": 1.170294
+        },
+        "z": {
+          "focus_lapvar_norm": -0.253,
+          "focus_tenengrad_norm": -0.28,
+          "focus_hf_ratio": -0.133,
+          "contrast_rms": 0.024,
+          "contrast_p99_p1": 0.089,
+          "mean_intensity": 6.719,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 1.591,
+          "illum_flatness": -0.421,
+          "noise_sigma_norm": -0.244,
+          "debris_count": 5.0,
+          "debris_area_frac": 0.186,
+          "bubble_score": 0.0,
+          "foreground_frac": -0.674,
+          "blob_density_per_mpx": -1.117,
+          "texture_lbp_entropy": -0.173,
+          "jpeg_blockiness": 0.481
+        },
+        "zbad": {
+          "focus_lapvar_norm": 0.253,
+          "focus_tenengrad_norm": 0.28,
+          "focus_hf_ratio": 0.133,
+          "contrast_rms": 0.0,
+          "contrast_p99_p1": 0.0,
+          "mean_intensity": 6.719,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 1.591,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 5.0,
+          "debris_area_frac": 0.186,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.674,
+          "blob_density_per_mpx": 1.117,
+          "texture_lbp_entropy": 0.173,
+          "jpeg_blockiness": 0.481,
+          "mean_intensity_low": 0.0
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 29.3,
+          "focus_tenengrad_norm": 29.8,
+          "focus_hf_ratio": 39.9,
+          "contrast_rms": 60.2,
+          "contrast_p99_p1": 60.6,
+          "mean_intensity": 100.0,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 85.0,
+          "illum_flatness": 18.1,
+          "noise_sigma_norm": 38.7,
+          "debris_count": 85.0,
+          "debris_area_frac": 83.8,
+          "bubble_score": 50.0,
+          "foreground_frac": 19.5,
+          "blob_density_per_mpx": 14.8,
+          "texture_lbp_entropy": 14.3,
+          "jpeg_blockiness": 66.6
+        },
+        "qc_score": 5.0,
+        "level": "REVIEW",
+        "causes": [
+          {
+            "label": "DEBRIS",
+            "note": "particulates or dust",
+            "metric": "debris_count",
+            "value": 5.0,
+            "z": 5.0,
+            "action": "Inspect the channel and optics for particulates; clean or exclude affected regions."
+          }
+        ],
+        "density_state": "NORMAL",
+        "reference": "session batch (n=27)",
+        "latency_ms": 139.3
+      },
+      "card": {
+        "image_id": "221010_86",
+        "tool_call_id": "qc-d2e4ec8c",
+        "level": "REVIEW",
+        "qc_score": 5.0,
+        "density_state": "NORMAL",
+        "primary_cause": "DEBRIS",
+        "claims": [
+          "Contamination during chip assembly or culture is a common issue in OOCs, especially when handling small components and tight connections. [PMC13195612::s25::0]"
+        ],
+        "blocked_claims": [
+          {
+            "text": "The main cause is DEBRIS, with a triggering metric value of 5.0 for debris_count.",
+            "reason": "cites id not in tool results or retrieved evidence: qc-d2e4ec8"
+          },
+          {
+            "text": "The recommended action is to Inspect the channel and optics for particulates; clean or exclude affected regions.",
+            "reason": "cites id not in tool results or retrieved evidence: qc-d2e4ec8"
+          },
+          {
+            "text": "The tool result is based on the analysis of [qc-d2e4ec8].",
+            "reason": "cites id not in tool results or retrieved evidence: qc-d2e4ec8"
+          },
+          {
+            "text": "The verdict is PASS, but with a main cause of DEBRIS.",
+            "reason": "cites id not in tool results or retrieved evidence: qc-d2e4ec8"
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "PMC13195612::s25::0",
+            "title": "Protocol for fibrin-based endothelial-cardiomyocyte co-culture in a microfluidic device",
+            "url": "https://europepmc.org/article/PMC/PMC13195612",
+            "license": "cc by",
+            "excerpt": "Contamination during chip assembly or culture: Related to Step 15\u201317. Microfluidic chips are challenging to assemble under fully sterile conditions because their small components and ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC8879989::s3::1",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "reduce blur. Asghar et al. demonstrated another example of shadow imaging in microfluidic devices [27]. They captured the shadow images of the cells of interest, ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC8879989::s13::1",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "provide important information on how the cells within an OOC are functioning and growing. Another group, Vargas-Ordaz et al. focuses on single-cell 3D imaging in ...",
+            "cited": false
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "Inspect the channel and optics for particulates; clean or exclude affected regions.",
+        "blocked": [
+          "The main cause is DEBRIS, with a triggering metric value of 5.0 for debris_count.",
+          "The recommended action is to Inspect the channel and optics for particulates; clean or exclude affected regions.",
+          "The tool result is based on the analysis of [qc-d2e4ec8].",
+          "The verdict is PASS, but with a main cause of DEBRIS."
+        ]
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "Contamination during chip assembly or culture is a common issue in OOCs, especially when handling small components and tight connections.",
+            "type": "literature",
+            "evidence": [
+              "PMC13195612::s25::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause is DEBRIS, with a triggering metric value of 5.0 for debris_count.",
+            "type": "numeric",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "cites id not in tool results or retrieved evidence: qc-d2e4ec8"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The recommended action is to Inspect the channel and optics for particulates; clean or exclude affected regions.",
+            "type": "numeric",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "cites id not in tool results or retrieved evidence: qc-d2e4ec8"
+          },
+          {
+            "claim_id": "c4",
+            "text": "The tool result is based on the analysis of [qc-d2e4ec8].",
+            "type": "numeric",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "cites id not in tool results or retrieved evidence: qc-d2e4ec8"
+          },
+          {
+            "claim_id": "c5",
+            "text": "The tool result is based on the analysis of [qc-d2e4ec8].",
+            "type": "numeric",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "cites id not in tool results or retrieved evidence: qc-d2e4ec8"
+          },
+          {
+            "claim_id": "c6",
+            "text": "The verdict is PASS, but with a main cause of DEBRIS.",
+            "type": "numeric",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "cites id not in tool results or retrieved evidence: qc-d2e4ec8"
+          },
+          {
+            "claim_id": "c7",
+            "text": "The tool result is based on the analysis of [qc-d2e4ec8].",
+            "type": "numeric",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "cites id not in tool results or retrieved evidence: qc-d2e4ec8"
+          },
+          {
+            "claim_id": "d1",
+            "text": "The verdict is PASS, but with a main cause of DEBRIS.",
+            "type": "numeric",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "blocked at draft: cites id not in tool results or retrieved evidence: qc-d2e4ec8",
+            "repaired": true
+          },
+          {
+            "claim_id": "d2",
+            "text": "The main cause is DEBRIS, with a triggering metric value of 5.0 for debris_count.",
+            "type": "numeric",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "blocked at draft: cites id not in tool results or retrieved evidence: qc-d2e4ec8",
+            "repaired": true
+          },
+          {
+            "claim_id": "d3",
+            "text": "The recommended action is to Inspect the channel and optics for particulates; clean or exclude affected regions.",
+            "type": "numeric",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "blocked at draft: cites id not in tool results or retrieved evidence: qc-d2e4ec8",
+            "repaired": true
+          },
+          {
+            "claim_id": "d4",
+            "text": "The tool result is based on the analysis of [qc-d2e4ec8].",
+            "type": "inference",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "blocked at draft: cites id not in tool results or retrieved evidence: qc-d2e4ec8",
+            "repaired": true
+          },
+          {
+            "claim_id": "d5",
+            "text": "The tool result is based on the analysis of [qc-d2e4ec8].",
+            "type": "inference",
+            "evidence": [
+              "qc-d2e4ec8"
+            ],
+            "status": "unsupported",
+            "reason": "blocked at draft: cites id not in tool results or retrieved evidence: qc-d2e4ec8",
+            "repaired": true
+          }
+        ],
+        "n_supported": 1,
+        "n_unsupported": 11,
+        "grounded_rate": 0.14285714285714285,
+        "n_draft_unsupported": 5
+      },
+      "ungated_draft": [
+        {
+          "text": "The verdict is PASS, but with a main cause of DEBRIS.",
+          "type": "numeric",
+          "evidence": [
+            "qc-d2e4ec8"
+          ]
+        },
+        {
+          "text": "The main cause is DEBRIS, with a triggering metric value of 5.0 for debris_count.",
+          "type": "numeric",
+          "evidence": [
+            "qc-d2e4ec8"
+          ]
+        },
+        {
+          "text": "The recommended action is to Inspect the channel and optics for particulates; clean or exclude affected regions.",
+          "type": "numeric",
+          "evidence": [
+            "qc-d2e4ec8"
+          ]
+        },
+        {
+          "text": "Contamination during chip assembly or culture is a common issue in OOCs, especially when handling small components and tight connections.",
+          "type": "literature",
+          "evidence": [
+            "PMC13195612::s25::0"
+          ]
+        },
+        {
+          "text": "The tool result is based on the analysis of [qc-d2e4ec8].",
+          "type": "inference",
+          "evidence": [
+            "qc-d2e4ec8"
+          ]
+        },
+        {
+          "text": "The tool result is based on the analysis of [qc-d2e4ec8].",
+          "type": "inference",
+          "evidence": [
+            "qc-d2e4ec8"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "221010_86"
+          },
+          "result_hash": "166fa95082daf8db",
+          "latency_ms": 0.08,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "debris particles contamination microfluidic channel cell culture imaging",
+            "k": 3
+          },
+          "result_hash": "e332a9b1dc9973f4",
+          "latency_ms": 899.12,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "b2bf4bf8f47b3b06",
+          "latency_ms": 0.17,
+          "tokens": 1629
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "045a97fa3284e652",
+          "latency_ms": 0.85,
+          "tokens": 0
+        },
+        {
+          "step": "repair",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "3a03f3d0269298a4",
+          "latency_ms": 0.16,
+          "tokens": 1870
+        },
+        {
+          "step": "repair",
+          "tool": "gate.repair",
+          "args": {
+            "n_blocked": 5
+          },
+          "result_hash": "0e76226efa620571",
+          "latency_ms": 0.86,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "prompt_tokens": 2948,
+        "completion_tokens": 551,
+        "llm_latency_ms": 4500.169659999301
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "221215_14",
+      "cell_line": "CACO",
+      "time_bin": "0-1",
+      "expert_label": "good",
+      "thumb": "data/thumbs/221215_14.webp",
+      "variant": "original",
+      "qc": {
+        "tool_call_id": "qc-f317c390",
+        "image": {
+          "id": "221215_14",
+          "sha256": "f317c3900c4cbc1c4a2caeea4cd4551a923fed95741be9548e85e7618d079cbc",
+          "shape": [
+            1536,
+            2048
+          ],
+          "dtype": "uint8",
+          "cell_line": "CACO"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 5.698408,
+          "focus_tenengrad_norm": 15.812482,
+          "focus_hf_ratio": 0.26063,
+          "contrast_rms": 0.177782,
+          "contrast_p99_p1": 0.803922,
+          "mean_intensity": 0.386185,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.011103,
+          "illum_flatness": 0.500764,
+          "noise_sigma_norm": 0.055098,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.555616,
+          "blob_density_per_mpx": 3147.125244,
+          "texture_lbp_entropy": 6.90632,
+          "jpeg_blockiness": 1.134425
+        },
+        "z": {
+          "focus_lapvar_norm": 1.624,
+          "focus_tenengrad_norm": 2.956,
+          "focus_hf_ratio": 1.151,
+          "contrast_rms": 3.277,
+          "contrast_p99_p1": 3.2,
+          "mean_intensity": 1.118,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 5.492,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": -0.784,
+          "debris_count": -0.674,
+          "debris_area_frac": -0.025,
+          "bubble_score": 0.0,
+          "foreground_frac": 1.425,
+          "blob_density_per_mpx": 1.118,
+          "texture_lbp_entropy": 0.451,
+          "jpeg_blockiness": -0.698
+        },
+        "zbad": {
+          "focus_lapvar_norm": 0.0,
+          "focus_tenengrad_norm": 0.0,
+          "focus_hf_ratio": 0.0,
+          "contrast_rms": 0.0,
+          "contrast_p99_p1": 0.0,
+          "mean_intensity": 1.118,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 5.492,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 1.425,
+          "blob_density_per_mpx": 1.118,
+          "texture_lbp_entropy": 0.451,
+          "jpeg_blockiness": 0.0,
+          "mean_intensity_low": 0.0
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 100.0,
+          "focus_tenengrad_norm": 100.0,
+          "focus_hf_ratio": 100.0,
+          "contrast_rms": 100.0,
+          "contrast_p99_p1": 100.0,
+          "mean_intensity": 75.0,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 100.0,
+          "illum_flatness": 50.0,
+          "noise_sigma_norm": 25.0,
+          "debris_count": 35.0,
+          "debris_area_frac": 35.0,
+          "bubble_score": 50.0,
+          "foreground_frac": 100.0,
+          "blob_density_per_mpx": 85.2,
+          "texture_lbp_entropy": 100.0,
+          "jpeg_blockiness": 25.0
+        },
+        "qc_score": 5.492,
+        "level": "FAIL",
+        "causes": [
+          {
+            "label": "OVER_EXPOSED",
+            "note": "saturated (clipped) bright pixels",
+            "metric": "clip_high_frac",
+            "value": 0.011102994283040365,
+            "z": 5.492,
+            "action": "Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered."
+          }
+        ],
+        "density_state": "NORMAL",
+        "reference": "session batch (n=9)",
+        "latency_ms": 171.5
+      },
+      "card": {
+        "image_id": "221215_14",
+        "tool_call_id": "qc-f317c390",
+        "level": "FAIL",
+        "qc_score": 5.492,
+        "density_state": "NORMAL",
+        "primary_cause": "OVER_EXPOSED",
+        "claims": [
+          "The image QC result is FAIL with a qc_score of 5.492. [qc-f317c390]",
+          "The main cause of failure is OVER_EXPOSED due to a clip_high_frac of 0.0111. [qc-f317c390]",
+          "The recommended action is to Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered. [qc-f317c390]",
+          "The variability in image quality, resolution, and color fidelity is due to the heterogeneity in MCI systems, including different microscope-camera configurations. [PMC13393655::s3::0]",
+          "The image QC result is based on the evaluation of the clip_high_frac metric. [qc-f317c390]",
+          "The image restoration process aims to recover an original image from its available degraded version, which is essential for systematic evaluation of image restoration methods. [PMC7275059::s12::0]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC13393655::s3::0",
+            "title": "The Cost of Accessibility: Considerations for Adopting Microscope Camera-Derived Images for Digital and Computational Pathology",
+            "url": "https://europepmc.org/article/PMC/PMC13393655",
+            "license": "cc by",
+            "excerpt": "The wide range of brightfield microscopes, each potentially paired with a variety of different camera models, creates significant heterogeneity in MCI systems, resulting in variability ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC7275059::s12::0",
+            "title": "HISTOBREAST, a collection of brightfield microscopy images of Haematoxylin and Eosin stained breast tissue",
+            "url": "https://europepmc.org/article/PMC/PMC7275059",
+            "license": "cc by",
+            "excerpt": "Image restoration is the process of recovering an original image from its available degraded version. Availability of minimally degraded images (acquired by using the reference ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC13450170::s2::5",
+            "title": "An Integrated Micromirror System for High-Throughput Multi-Parametric Cell Imaging",
+            "url": "https://europepmc.org/article/PMC/PMC13450170",
+            "license": "cc by",
+            "excerpt": "#1 (used for brightfield imaging), the two cameras are positioned at slightly different distances from the optofluidic device to accommodate the distinct image focusing paths. ...",
+            "cited": false
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered.",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is FAIL with a qc_score of 5.492.",
+            "type": "numeric",
+            "evidence": [
+              "qc-f317c390"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of failure is OVER_EXPOSED due to a clip_high_frac of 0.0111.",
+            "type": "numeric",
+            "evidence": [
+              "qc-f317c390"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The recommended action is to Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered.",
+            "type": "numeric",
+            "evidence": [
+              "qc-f317c390"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "The variability in image quality, resolution, and color fidelity is due to the heterogeneity in MCI systems, including different microscope-camera configurations.",
+            "type": "literature",
+            "evidence": [
+              "PMC13393655::s3::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "The image QC result is based on the evaluation of the clip_high_frac metric.",
+            "type": "inference",
+            "evidence": [
+              "qc-f317c390"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c6",
+            "text": "The image restoration process aims to recover an original image from its available degraded version, which is essential for systematic evaluation of image restoration methods.",
+            "type": "literature",
+            "evidence": [
+              "PMC7275059::s12::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 6,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is FAIL with a qc_score of 5.492.",
+          "type": "numeric",
+          "evidence": [
+            "qc-f317c390"
+          ]
+        },
+        {
+          "text": "The main cause of failure is OVER_EXPOSED due to a clip_high_frac of 0.0111.",
+          "type": "numeric",
+          "evidence": [
+            "qc-f317c390"
+          ]
+        },
+        {
+          "text": "The recommended action is to Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered.",
+          "type": "numeric",
+          "evidence": [
+            "qc-f317c390"
+          ]
+        },
+        {
+          "text": "The variability in image quality, resolution, and color fidelity is due to the heterogeneity in MCI systems, including different microscope-camera configurations.",
+          "type": "literature",
+          "evidence": [
+            "PMC13393655::s3::0"
+          ]
+        },
+        {
+          "text": "The image QC result is based on the evaluation of the clip_high_frac metric.",
+          "type": "inference",
+          "evidence": [
+            "qc-f317c390"
+          ]
+        },
+        {
+          "text": "The image restoration process aims to recover an original image from its available degraded version, which is essential for systematic evaluation of image restoration methods.",
+          "type": "literature",
+          "evidence": [
+            "PMC7275059::s12::0"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "221215_14"
+          },
+          "result_hash": "4afb8e640a68827d",
+          "latency_ms": 0.08,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "overexposure saturation brightfield microscopy imaging exposure",
+            "k": 3
+          },
+          "result_hash": "444a52dfe03e34e2",
+          "latency_ms": 547.84,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "4c7a39c787c95bdf",
+          "latency_ms": 0.24,
+          "tokens": 1706
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "3594b08fcdee75d7",
+          "latency_ms": 3.17,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1427,
+        "completion_tokens": 279,
+        "llm_latency_ms": 2066.9079680010327
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "221010_9",
+      "cell_line": "HPMEC",
+      "time_bin": "0-1",
+      "expert_label": "good",
+      "thumb": "data/thumbs/221010_9.webp",
+      "variant": "original",
+      "qc": {
+        "tool_call_id": "qc-5fcd39e8",
+        "image": {
+          "id": "221010_9",
+          "sha256": "5fcd39e83ed168bfddc562a6af998c9f8b2abe24e9384bcdfe3f015a30b8f775",
+          "shape": [
+            1536,
+            2048
+          ],
+          "dtype": "uint8",
+          "cell_line": "HPMEC"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 3.350912,
+          "focus_tenengrad_norm": 8.571157,
+          "focus_hf_ratio": 0.15302,
+          "contrast_rms": 0.093524,
+          "contrast_p99_p1": 0.409804,
+          "mean_intensity": 0.394401,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 1.6e-05,
+          "illum_flatness": 0.547718,
+          "noise_sigma_norm": 0.074181,
+          "debris_count": 1.0,
+          "debris_area_frac": 1.4e-05,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.466895,
+          "blob_density_per_mpx": 3303.527832,
+          "texture_lbp_entropy": 6.932341,
+          "jpeg_blockiness": 1.17751
+        },
+        "z": {
+          "focus_lapvar_norm": -0.599,
+          "focus_tenengrad_norm": -0.743,
+          "focus_hf_ratio": -0.72,
+          "contrast_rms": -1.033,
+          "contrast_p99_p1": -1.151,
+          "mean_intensity": -1.839,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": -0.177,
+          "illum_flatness": 1.767,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 1.0,
+          "debris_area_frac": 0.028,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.0,
+          "blob_density_per_mpx": 0.28,
+          "texture_lbp_entropy": 0.148,
+          "jpeg_blockiness": 0.792
+        },
+        "zbad": {
+          "focus_lapvar_norm": 0.599,
+          "focus_tenengrad_norm": 0.743,
+          "focus_hf_ratio": 0.72,
+          "contrast_rms": 1.033,
+          "contrast_p99_p1": 1.151,
+          "mean_intensity": 1.839,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.0,
+          "illum_flatness": 1.767,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 1.0,
+          "debris_area_frac": 0.028,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.0,
+          "blob_density_per_mpx": 0.28,
+          "texture_lbp_entropy": 0.148,
+          "jpeg_blockiness": 0.792,
+          "mean_intensity_low": 1.839
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 19.7,
+          "focus_tenengrad_norm": 17.6,
+          "focus_hf_ratio": 15.5,
+          "contrast_rms": 0.0,
+          "contrast_p99_p1": 0.0,
+          "mean_intensity": 9.5,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 0.0,
+          "illum_flatness": 89.2,
+          "noise_sigma_norm": 50.0,
+          "debris_count": 66.7,
+          "debris_area_frac": 67.5,
+          "bubble_score": 50.0,
+          "foreground_frac": 50.0,
+          "blob_density_per_mpx": 65.3,
+          "texture_lbp_entropy": 56.9,
+          "jpeg_blockiness": 76.2
+        },
+        "qc_score": 1.767,
+        "level": "PASS",
+        "causes": [],
+        "density_state": "NORMAL",
+        "reference": "session batch (n=27)",
+        "latency_ms": 141.2
+      },
+      "card": {
+        "image_id": "221010_9",
+        "tool_call_id": "qc-5fcd39e8",
+        "level": "PASS",
+        "qc_score": 1.767,
+        "density_state": "NORMAL",
+        "primary_cause": null,
+        "claims": [
+          "The image QC result is PASS. [qc-5fcd39e8]",
+          "The main cause of the result is NORMAL density state. [qc-5fcd39e8]",
+          "The triggering metric values are focus_lapvar_norm: 3.3509, focus_tenengrad_norm: 8.5712, focus_hf_ratio: 0.153. [qc-5fcd39e8]",
+          "The recommended action is to check the focus settings and illumination conditions. [qc-5fcd39e8]",
+          "Brightfield imaging can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions. [PMC8879989::s4::0]",
+          "The image acquisition time is within 10 minutes. [PMC13388963::s10::0]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC8879989::s0::0",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "Microscopic imaging is essential and the most popular method for in situ monitoring and evaluating the outcome of various organ-on-a-chip (OOC) platforms, including the number ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC8879989::s4::0",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "Brightfield imaging can also be used specifically to image organ-on-a-chip (OOC) devices. van der Meer et al. created an OOC device with human umbilical vein ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC13388963::s10::0",
+            "title": "Automation of 3D liver spheroid generation and acetaminophen dose-response on the MO:BOT enhances assay robustness and precision",
+            "url": "https://europepmc.org/article/PMC/PMC13388963",
+            "license": "cc by",
+            "excerpt": "Spheroid morphology was assessed using the MO:CROSCOPE imaging system integrated into the MO:BOT. Cell culture plates were loaded into the MO:CROSCOPE carrier, and brightfield images ...",
+            "cited": true
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is PASS.",
+            "type": "numeric",
+            "evidence": [
+              "qc-5fcd39e8"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of the result is NORMAL density state.",
+            "type": "inference",
+            "evidence": [
+              "qc-5fcd39e8"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The triggering metric values are focus_lapvar_norm: 3.3509, focus_tenengrad_norm: 8.5712, focus_hf_ratio: 0.153.",
+            "type": "numeric",
+            "evidence": [
+              "qc-5fcd39e8"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "The recommended action is to check the focus settings and illumination conditions.",
+            "type": "inference",
+            "evidence": [
+              "qc-5fcd39e8"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "Brightfield imaging can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions.",
+            "type": "literature",
+            "evidence": [
+              "PMC8879989::s4::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c6",
+            "text": "The image acquisition time is within 10 minutes.",
+            "type": "numeric",
+            "evidence": [
+              "PMC13388963::s10::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 6,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is PASS.",
+          "type": "numeric",
+          "evidence": [
+            "qc-5fcd39e8"
+          ]
+        },
+        {
+          "text": "The main cause of the result is NORMAL density state.",
+          "type": "inference",
+          "evidence": [
+            "qc-5fcd39e8"
+          ]
+        },
+        {
+          "text": "The triggering metric values are focus_lapvar_norm: 3.3509, focus_tenengrad_norm: 8.5712, focus_hf_ratio: 0.153.",
+          "type": "numeric",
+          "evidence": [
+            "qc-5fcd39e8"
+          ]
+        },
+        {
+          "text": "The recommended action is to check the focus settings and illumination conditions.",
+          "type": "inference",
+          "evidence": [
+            "qc-5fcd39e8"
+          ]
+        },
+        {
+          "text": "Brightfield imaging can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions.",
+          "type": "literature",
+          "evidence": [
+            "PMC8879989::s4::0"
+          ]
+        },
+        {
+          "text": "The image acquisition time is within 10 minutes.",
+          "type": "numeric",
+          "evidence": [
+            "PMC13388963::s10::0"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "221010_9"
+          },
+          "result_hash": "79e03e9944f4bd47",
+          "latency_ms": 0.07,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "brightfield microscopy image quality control organ-on-a-chip cell culture",
+            "k": 3
+          },
+          "result_hash": "b374ca5e3b40f261",
+          "latency_ms": 583.87,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "8f3a24627bc3c19d",
+          "latency_ms": 0.2,
+          "tokens": 1694
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "01f51a760a0ef381",
+          "latency_ms": 1.81,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1418,
+        "completion_tokens": 276,
+        "llm_latency_ms": 2413.676759999362
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "221010_24",
+      "cell_line": "HSAEC",
+      "time_bin": "0-1",
+      "expert_label": "good",
+      "thumb": "data/thumbs/221010_24.webp",
+      "variant": "original",
+      "qc": {
+        "tool_call_id": "qc-b86f314b",
+        "image": {
+          "id": "221010_24",
+          "sha256": "b86f314be5ec220045ed25bb3a2b1cccf70917a17ae3e2637bc79d9bcc5eb1b4",
+          "shape": [
+            1536,
+            2048
+          ],
+          "dtype": "uint8",
+          "cell_line": "HSAEC"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 15.949581,
+          "focus_tenengrad_norm": 21.510067,
+          "focus_hf_ratio": 0.544339,
+          "contrast_rms": 0.097171,
+          "contrast_p99_p1": 0.443137,
+          "mean_intensity": 0.440472,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 8.7e-05,
+          "illum_flatness": 0.296375,
+          "noise_sigma_norm": 0.136123,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.621891,
+          "blob_density_per_mpx": 3873.18929,
+          "texture_lbp_entropy": 6.996257,
+          "jpeg_blockiness": 1.188763
+        },
+        "z": {
+          "focus_lapvar_norm": 3.659,
+          "focus_tenengrad_norm": 1.329,
+          "focus_hf_ratio": 2.726,
+          "contrast_rms": -0.841,
+          "contrast_p99_p1": -0.813,
+          "mean_intensity": 0.077,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": -0.142,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": 3.929,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 1.856,
+          "blob_density_per_mpx": 1.56,
+          "texture_lbp_entropy": 0.61,
+          "jpeg_blockiness": 1.277
+        },
+        "zbad": {
+          "focus_lapvar_norm": 0.0,
+          "focus_tenengrad_norm": 0.0,
+          "focus_hf_ratio": 0.0,
+          "contrast_rms": 0.841,
+          "contrast_p99_p1": 0.813,
+          "mean_intensity": 0.077,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.0,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": 3.929,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 1.856,
+          "blob_density_per_mpx": 1.56,
+          "texture_lbp_entropy": 0.61,
+          "jpeg_blockiness": 1.277,
+          "mean_intensity_low": 0.0
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 100.0,
+          "focus_tenengrad_norm": 95.3,
+          "focus_hf_ratio": 100.0,
+          "contrast_rms": 10.5,
+          "contrast_p99_p1": 9.1,
+          "mean_intensity": 54.3,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 8.8,
+          "illum_flatness": 50.0,
+          "noise_sigma_norm": 95.1,
+          "debris_count": 60.0,
+          "debris_area_frac": 60.0,
+          "bubble_score": 50.0,
+          "foreground_frac": 92.6,
+          "blob_density_per_mpx": 95.6,
+          "texture_lbp_entropy": 91.5,
+          "jpeg_blockiness": 82.7
+        },
+        "qc_score": 3.929,
+        "level": "REVIEW",
+        "causes": [
+          {
+            "label": "NOISE",
+            "note": "elevated sensor or shot noise",
+            "metric": "noise_sigma_norm",
+            "value": 0.13612300211680597,
+            "z": 3.929,
+            "action": "Re-image with longer exposure or higher illumination and lower gain; check camera temperature."
+          }
+        ],
+        "density_state": "NORMAL",
+        "reference": "session batch (n=27)",
+        "latency_ms": 138.9
+      },
+      "card": {
+        "image_id": "221010_24",
+        "tool_call_id": "qc-b86f314b",
+        "level": "REVIEW",
+        "qc_score": 3.929,
+        "density_state": "NORMAL",
+        "primary_cause": "NOISE",
+        "claims": [
+          "The image QC result is REVIEW with a score of 3.929. [qc-b86f314b]",
+          "The main cause of the issue is NOISE, with a triggering metric value of 0.13612300211680597 for noise_sigma_norm. [qc-b86f314b]",
+          "The recommended action is to re-image with longer exposure or higher illumination and lower gain; check camera temperature. [qc-b86f314b]",
+          "The image was acquired with a normal density state. [qc-b86f314b]",
+          "The use of standardized illumination and focus settings can improve image quality. [PMC13388963::s10::0]",
+          "The variability in image quality, resolution, and color fidelity can be significant due to the heterogeneity of brightfield microscopes and camera models. [PMC13393655::s3::0]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC7275059::s14::0",
+            "title": "HISTOBREAST, a collection of brightfield microscopy images of Haematoxylin and Eosin stained breast tissue",
+            "url": "https://europepmc.org/article/PMC/PMC7275059",
+            "license": "cc by",
+            "excerpt": "The NITs provided in HISTOBREAST were collected with a Leica DM 3000 LED brightfield microscope, equipped with an MC 190 HD camera hosting an s-CMOS ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC13393655::s3::0",
+            "title": "The Cost of Accessibility: Considerations for Adopting Microscope Camera-Derived Images for Digital and Computational Pathology",
+            "url": "https://europepmc.org/article/PMC/PMC13393655",
+            "license": "cc by",
+            "excerpt": "The wide range of brightfield microscopes, each potentially paired with a variety of different camera models, creates significant heterogeneity in MCI systems, resulting in variability ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC13388963::s10::0",
+            "title": "Automation of 3D liver spheroid generation and acetaminophen dose-response on the MO:BOT enhances assay robustness and precision",
+            "url": "https://europepmc.org/article/PMC/PMC13388963",
+            "license": "cc by",
+            "excerpt": "Spheroid morphology was assessed using the MO:CROSCOPE imaging system integrated into the MO:BOT. Cell culture plates were loaded into the MO:CROSCOPE carrier, and brightfield images ...",
+            "cited": true
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "Re-image with longer exposure or higher illumination and lower gain; check camera temperature.",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is REVIEW with a score of 3.929.",
+            "type": "numeric",
+            "evidence": [
+              "qc-b86f314b"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of the issue is NOISE, with a triggering metric value of 0.13612300211680597 for noise_sigma_norm.",
+            "type": "numeric",
+            "evidence": [
+              "qc-b86f314b"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The recommended action is to re-image with longer exposure or higher illumination and lower gain; check camera temperature.",
+            "type": "inference",
+            "evidence": [
+              "qc-b86f314b"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "The image was acquired with a normal density state.",
+            "type": "numeric",
+            "evidence": [
+              "qc-b86f314b"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "The use of standardized illumination and focus settings can improve image quality.",
+            "type": "literature",
+            "evidence": [
+              "PMC13388963::s10::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c6",
+            "text": "The variability in image quality, resolution, and color fidelity can be significant due to the heterogeneity of brightfield microscopes and camera models.",
+            "type": "literature",
+            "evidence": [
+              "PMC13393655::s3::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 6,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is REVIEW with a score of 3.929.",
+          "type": "numeric",
+          "evidence": [
+            "qc-b86f314b"
+          ]
+        },
+        {
+          "text": "The main cause of the issue is NOISE, with a triggering metric value of 0.13612300211680597 for noise_sigma_norm.",
+          "type": "numeric",
+          "evidence": [
+            "qc-b86f314b"
+          ]
+        },
+        {
+          "text": "The recommended action is to re-image with longer exposure or higher illumination and lower gain; check camera temperature.",
+          "type": "inference",
+          "evidence": [
+            "qc-b86f314b"
+          ]
+        },
+        {
+          "text": "The image was acquired with a normal density state.",
+          "type": "numeric",
+          "evidence": [
+            "qc-b86f314b"
+          ]
+        },
+        {
+          "text": "The use of standardized illumination and focus settings can improve image quality.",
+          "type": "literature",
+          "evidence": [
+            "PMC13388963::s10::0"
+          ]
+        },
+        {
+          "text": "The variability in image quality, resolution, and color fidelity can be significant due to the heterogeneity of brightfield microscopes and camera models.",
+          "type": "literature",
+          "evidence": [
+            "PMC13393655::s3::0"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "221010_24"
+          },
+          "result_hash": "1736bfb4ad55bd27",
+          "latency_ms": 0.09,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "image noise sensor exposure brightfield microscopy cell culture imaging quality",
+            "k": 3
+          },
+          "result_hash": "30419b21c21fe2ee",
+          "latency_ms": 583.68,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "2ee16bc9185eeb57",
+          "latency_ms": 0.29,
+          "tokens": 1780
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "6738f500ab425070",
+          "latency_ms": 2.02,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1511,
+        "completion_tokens": 269,
+        "llm_latency_ms": 2038.1410989994038
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "230109_103",
+      "cell_line": "A549",
+      "time_bin": "0-1",
+      "expert_label": "bad",
+      "thumb": "data/thumbs/230109_103.webp",
+      "variant": "original",
+      "qc": {
+        "tool_call_id": "qc-a499fcc3",
+        "image": {
+          "id": "230109_103",
+          "sha256": "a499fcc334f13cce5c09d369baebdd829c180a3739e56cb68c98a0ca963a9b4d",
+          "shape": [
+            1536,
+            2048
+          ],
+          "dtype": "uint8",
+          "cell_line": "A549"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 4.882516,
+          "focus_tenengrad_norm": 13.758464,
+          "focus_hf_ratio": 0.177653,
+          "contrast_rms": 0.157225,
+          "contrast_p99_p1": 0.790196,
+          "mean_intensity": 0.362042,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.006627,
+          "illum_flatness": 0.398578,
+          "noise_sigma_norm": 0.054236,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.363581,
+          "blob_density_per_mpx": 3094.991048,
+          "texture_lbp_entropy": 6.877535,
+          "jpeg_blockiness": 1.131113
+        },
+        "z": {
+          "focus_lapvar_norm": 4.404,
+          "focus_tenengrad_norm": 6.074,
+          "focus_hf_ratio": 1.051,
+          "contrast_rms": -0.328,
+          "contrast_p99_p1": 0.102,
+          "mean_intensity": -0.656,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.113,
+          "illum_flatness": -1.206,
+          "noise_sigma_norm": 0.7,
+          "debris_count": -0.738,
+          "debris_area_frac": -0.761,
+          "bubble_score": 0.0,
+          "foreground_frac": -0.172,
+          "blob_density_per_mpx": 2.281,
+          "texture_lbp_entropy": 0.225,
+          "jpeg_blockiness": -1.519
+        },
+        "zbad": {
+          "focus_lapvar_norm": 0.0,
+          "focus_tenengrad_norm": 0.0,
+          "focus_hf_ratio": 0.0,
+          "contrast_rms": 0.328,
+          "contrast_p99_p1": 0.0,
+          "mean_intensity": 0.656,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.113,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": 0.7,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.172,
+          "blob_density_per_mpx": 2.281,
+          "texture_lbp_entropy": 0.225,
+          "jpeg_blockiness": 0.0,
+          "mean_intensity_low": 0.656
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 100.0,
+          "focus_tenengrad_norm": 100.0,
+          "focus_hf_ratio": 100.0,
+          "contrast_rms": 45.1,
+          "contrast_p99_p1": 54.6,
+          "mean_intensity": 29.5,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 54.9,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": 64.7,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 50.0,
+          "foreground_frac": 45.1,
+          "blob_density_per_mpx": 92.7,
+          "texture_lbp_entropy": 81.4,
+          "jpeg_blockiness": 0.0
+        },
+        "qc_score": 0.7,
+        "level": "PASS",
+        "causes": [],
+        "density_state": "NORMAL",
+        "reference": "session batch (n=12)",
+        "latency_ms": 131.0
+      },
+      "card": {
+        "image_id": "230109_103",
+        "tool_call_id": "qc-a499fcc3",
+        "level": "PASS",
+        "qc_score": 0.7,
+        "density_state": "NORMAL",
+        "primary_cause": null,
+        "claims": [
+          "The image QC result is PASS. [qc-a499fcc3]",
+          "The main cause of the PASS result is not explicitly stated in the TOOL_RESULTS. [qc-a499fcc3]",
+          "The recommended action is to continue with the experiment as the image quality is sufficient for further analysis. [qc-a499fcc3]",
+          "The brightfield imaging method can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions. [PMC8879989::s4::0]",
+          "The foreground fraction is 36.36%. [qc-a499fcc3]",
+          "The blob density per mpx is 3094.99. [qc-a499fcc3]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC8879989::s0::0",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "Microscopic imaging is essential and the most popular method for in situ monitoring and evaluating the outcome of various organ-on-a-chip (OOC) platforms, including the number ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC8879989::s4::0",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "Brightfield imaging can also be used specifically to image organ-on-a-chip (OOC) devices. van der Meer et al. created an OOC device with human umbilical vein ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC13388963::s10::0",
+            "title": "Automation of 3D liver spheroid generation and acetaminophen dose-response on the MO:BOT enhances assay robustness and precision",
+            "url": "https://europepmc.org/article/PMC/PMC13388963",
+            "license": "cc by",
+            "excerpt": "Spheroid morphology was assessed using the MO:CROSCOPE imaging system integrated into the MO:BOT. Cell culture plates were loaded into the MO:CROSCOPE carrier, and brightfield images ...",
+            "cited": false
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is PASS.",
+            "type": "numeric",
+            "evidence": [
+              "qc-a499fcc3"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of the PASS result is not explicitly stated in the TOOL_RESULTS.",
+            "type": "inference",
+            "evidence": [
+              "qc-a499fcc3"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The recommended action is to continue with the experiment as the image quality is sufficient for further analysis.",
+            "type": "inference",
+            "evidence": [
+              "qc-a499fcc3"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "The brightfield imaging method can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions.",
+            "type": "literature",
+            "evidence": [
+              "PMC8879989::s4::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "The foreground fraction is 36.36%.",
+            "type": "numeric",
+            "evidence": [
+              "qc-a499fcc3"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c6",
+            "text": "The blob density per mpx is 3094.99.",
+            "type": "numeric",
+            "evidence": [
+              "qc-a499fcc3"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 6,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is PASS.",
+          "type": "numeric",
+          "evidence": [
+            "qc-a499fcc3"
+          ]
+        },
+        {
+          "text": "The main cause of the PASS result is not explicitly stated in the TOOL_RESULTS.",
+          "type": "inference",
+          "evidence": [
+            "qc-a499fcc3"
+          ]
+        },
+        {
+          "text": "The recommended action is to continue with the experiment as the image quality is sufficient for further analysis.",
+          "type": "inference",
+          "evidence": [
+            "qc-a499fcc3"
+          ]
+        },
+        {
+          "text": "The brightfield imaging method can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions.",
+          "type": "literature",
+          "evidence": [
+            "PMC8879989::s4::0"
+          ]
+        },
+        {
+          "text": "The foreground fraction is 36.36%.",
+          "type": "numeric",
+          "evidence": [
+            "qc-a499fcc3"
+          ]
+        },
+        {
+          "text": "The blob density per mpx is 3094.99.",
+          "type": "numeric",
+          "evidence": [
+            "qc-a499fcc3"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "230109_103"
+          },
+          "result_hash": "a4ca9d60a0b849b0",
+          "latency_ms": 0.07,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "brightfield microscopy image quality control organ-on-a-chip cell culture",
+            "k": 3
+          },
+          "result_hash": "b374ca5e3b40f261",
+          "latency_ms": 16.09,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "5941629b7651a192",
+          "latency_ms": 0.28,
+          "tokens": 1655
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "608bef074f1c526f",
+          "latency_ms": 1.97,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1414,
+        "completion_tokens": 241,
+        "llm_latency_ms": 2257.549910000307
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "230405_119",
+      "cell_line": "CACO",
+      "time_bin": "2-3",
+      "expert_label": "bad",
+      "thumb": "data/thumbs/230405_119.webp",
+      "variant": "original",
+      "qc": {
+        "tool_call_id": "qc-f2061c51",
+        "image": {
+          "id": "230405_119",
+          "sha256": "f2061c51a1da30276af0f76ae54121e1f3b4c86214c31aa1ab9007f41a6afc5c",
+          "shape": [
+            1542,
+            2056
+          ],
+          "dtype": "uint8",
+          "cell_line": "CACO"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 4.138412,
+          "focus_tenengrad_norm": 7.312648,
+          "focus_hf_ratio": 0.287344,
+          "contrast_rms": 0.233466,
+          "contrast_p99_p1": 0.835736,
+          "mean_intensity": 0.694746,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.152468,
+          "illum_flatness": 0.21363,
+          "noise_sigma_norm": 0.062498,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.582375,
+          "blob_density_per_mpx": 3749.847412,
+          "texture_lbp_entropy": 6.85262,
+          "jpeg_blockiness": 0.998372
+        },
+        "z": {
+          "focus_lapvar_norm": -0.215,
+          "focus_tenengrad_norm": -0.744,
+          "focus_hf_ratio": 0.063,
+          "contrast_rms": -1.725,
+          "contrast_p99_p1": -2.092,
+          "mean_intensity": 1.492,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": -0.547,
+          "illum_flatness": -0.84,
+          "noise_sigma_norm": -0.024,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": -1.442,
+          "blob_density_per_mpx": -0.805,
+          "texture_lbp_entropy": -0.082,
+          "jpeg_blockiness": 0.036
+        },
+        "zbad": {
+          "focus_lapvar_norm": 0.215,
+          "focus_tenengrad_norm": 0.744,
+          "focus_hf_ratio": 0.0,
+          "contrast_rms": 1.725,
+          "contrast_p99_p1": 2.092,
+          "mean_intensity": 1.492,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.0,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 1.442,
+          "blob_density_per_mpx": 0.805,
+          "texture_lbp_entropy": 0.082,
+          "jpeg_blockiness": 0.036,
+          "mean_intensity_low": 0.0
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 39.9,
+          "focus_tenengrad_norm": 25.8,
+          "focus_hf_ratio": 55.0,
+          "contrast_rms": 0.0,
+          "contrast_p99_p1": 0.0,
+          "mean_intensity": 99.2,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 21.1,
+          "illum_flatness": 9.4,
+          "noise_sigma_norm": 49.2,
+          "debris_count": 90.0,
+          "debris_area_frac": 90.0,
+          "bubble_score": 50.0,
+          "foreground_frac": 11.9,
+          "blob_density_per_mpx": 28.9,
+          "texture_lbp_entropy": 23.4,
+          "jpeg_blockiness": 69.6
+        },
+        "qc_score": 2.092,
+        "level": "PASS",
+        "causes": [],
+        "density_state": "NORMAL",
+        "reference": "session batch (n=44)",
+        "latency_ms": 113.8
+      },
+      "card": {
+        "image_id": "230405_119",
+        "tool_call_id": "qc-f2061c51",
+        "level": "PASS",
+        "qc_score": 2.092,
+        "density_state": "NORMAL",
+        "primary_cause": null,
+        "claims": [
+          "The image QC result is PASS. [qc-f2061c51]",
+          "The main cause of the result is not explicitly stated in the TOOL_RESULTS. [qc-f2061c51]",
+          "The recommended action is to review the image quality and adjust the imaging settings if necessary. [qc-f2061c51]",
+          "The image quality is sufficient for distinguishing tubular structures, but may not have good enough resolution for monitoring cell\u2013cell interactions. [PMC8879989::s4::0]",
+          "The blob density per mpx is 3749.8474. [qc-f2061c51]",
+          "The foreground fraction is 0.5824. [qc-f2061c51]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC8879989::s0::0",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "Microscopic imaging is essential and the most popular method for in situ monitoring and evaluating the outcome of various organ-on-a-chip (OOC) platforms, including the number ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC8879989::s4::0",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "Brightfield imaging can also be used specifically to image organ-on-a-chip (OOC) devices. van der Meer et al. created an OOC device with human umbilical vein ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC13388963::s10::0",
+            "title": "Automation of 3D liver spheroid generation and acetaminophen dose-response on the MO:BOT enhances assay robustness and precision",
+            "url": "https://europepmc.org/article/PMC/PMC13388963",
+            "license": "cc by",
+            "excerpt": "Spheroid morphology was assessed using the MO:CROSCOPE imaging system integrated into the MO:BOT. Cell culture plates were loaded into the MO:CROSCOPE carrier, and brightfield images ...",
+            "cited": false
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is PASS.",
+            "type": "numeric",
+            "evidence": [
+              "qc-f2061c51"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of the result is not explicitly stated in the TOOL_RESULTS.",
+            "type": "inference",
+            "evidence": [
+              "qc-f2061c51"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The recommended action is to review the image quality and adjust the imaging settings if necessary.",
+            "type": "inference",
+            "evidence": [
+              "qc-f2061c51"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "The image quality is sufficient for distinguishing tubular structures, but may not have good enough resolution for monitoring cell\u2013cell interactions.",
+            "type": "literature",
+            "evidence": [
+              "PMC8879989::s4::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "The blob density per mpx is 3749.8474.",
+            "type": "numeric",
+            "evidence": [
+              "qc-f2061c51"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c6",
+            "text": "The foreground fraction is 0.5824.",
+            "type": "numeric",
+            "evidence": [
+              "qc-f2061c51"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 6,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is PASS.",
+          "type": "numeric",
+          "evidence": [
+            "qc-f2061c51"
+          ]
+        },
+        {
+          "text": "The main cause of the result is not explicitly stated in the TOOL_RESULTS.",
+          "type": "inference",
+          "evidence": [
+            "qc-f2061c51"
+          ]
+        },
+        {
+          "text": "The recommended action is to review the image quality and adjust the imaging settings if necessary.",
+          "type": "inference",
+          "evidence": [
+            "qc-f2061c51"
+          ]
+        },
+        {
+          "text": "The image quality is sufficient for distinguishing tubular structures, but may not have good enough resolution for monitoring cell\u2013cell interactions.",
+          "type": "literature",
+          "evidence": [
+            "PMC8879989::s4::0"
+          ]
+        },
+        {
+          "text": "The blob density per mpx is 3749.8474.",
+          "type": "numeric",
+          "evidence": [
+            "qc-f2061c51"
+          ]
+        },
+        {
+          "text": "The foreground fraction is 0.5824.",
+          "type": "numeric",
+          "evidence": [
+            "qc-f2061c51"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "230405_119"
+          },
+          "result_hash": "ec922ab86355b743",
+          "latency_ms": 0.1,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "brightfield microscopy image quality control organ-on-a-chip cell culture",
+            "k": 3
+          },
+          "result_hash": "b374ca5e3b40f261",
+          "latency_ms": 13.76,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "71bb64e67c72685d",
+          "latency_ms": 0.28,
+          "tokens": 1654
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "1ac11a05bb0691ca",
+          "latency_ms": 1.9,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1417,
+        "completion_tokens": 237,
+        "llm_latency_ms": 2195.210185000178
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "230419_55",
+      "cell_line": "HPMEC",
+      "time_bin": "2-3",
+      "expert_label": "bad",
+      "thumb": "data/thumbs/230419_55.webp",
+      "variant": "original",
+      "qc": {
+        "tool_call_id": "qc-9e501b61",
+        "image": {
+          "id": "230419_55",
+          "sha256": "9e501b612a33e4435b1ac84cabef1edebc895b474e1539223423eab78dffbf35",
+          "shape": [
+            1542,
+            2056
+          ],
+          "dtype": "uint8",
+          "cell_line": "HPMEC"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 5.13109,
+          "focus_tenengrad_norm": 11.737772,
+          "focus_hf_ratio": 0.210598,
+          "contrast_rms": 0.30204,
+          "contrast_p99_p1": 0.947,
+          "mean_intensity": 0.584853,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.17881,
+          "illum_flatness": 0.698127,
+          "noise_sigma_norm": 0.053748,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.833419,
+          "blob_density_per_mpx": 4126.230876,
+          "texture_lbp_entropy": 6.851673,
+          "jpeg_blockiness": 0.993199
+        },
+        "z": {
+          "focus_lapvar_norm": -0.118,
+          "focus_tenengrad_norm": -0.0,
+          "focus_hf_ratio": -0.695,
+          "contrast_rms": 0.5,
+          "contrast_p99_p1": 0.373,
+          "mean_intensity": 0.0,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.2,
+          "illum_flatness": 1.16,
+          "noise_sigma_norm": -0.455,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.456,
+          "blob_density_per_mpx": -0.088,
+          "texture_lbp_entropy": -0.059,
+          "jpeg_blockiness": -0.155
+        },
+        "zbad": {
+          "focus_lapvar_norm": 0.118,
+          "focus_tenengrad_norm": 0.0,
+          "focus_hf_ratio": 0.695,
+          "contrast_rms": 0.0,
+          "contrast_p99_p1": 0.0,
+          "mean_intensity": 0.0,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.2,
+          "illum_flatness": 1.16,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.456,
+          "blob_density_per_mpx": 0.088,
+          "texture_lbp_entropy": 0.059,
+          "jpeg_blockiness": 0.0,
+          "mean_intensity_low": 0.0
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 19.5,
+          "focus_tenengrad_norm": 50.0,
+          "focus_hf_ratio": 19.4,
+          "contrast_rms": 81.5,
+          "contrast_p99_p1": 91.6,
+          "mean_intensity": 50.0,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 65.2,
+          "illum_flatness": 92.9,
+          "noise_sigma_norm": 16.5,
+          "debris_count": 80.0,
+          "debris_area_frac": 80.0,
+          "bubble_score": 90.0,
+          "foreground_frac": 75.0,
+          "blob_density_per_mpx": 34.3,
+          "texture_lbp_entropy": 33.4,
+          "jpeg_blockiness": 25.0
+        },
+        "qc_score": 1.16,
+        "level": "PASS",
+        "causes": [],
+        "density_state": "NORMAL",
+        "reference": "session batch (n=13)",
+        "latency_ms": 116.1
+      },
+      "card": {
+        "image_id": "230419_55",
+        "tool_call_id": "qc-9e501b61",
+        "level": "PASS",
+        "qc_score": 1.16,
+        "density_state": "NORMAL",
+        "primary_cause": null,
+        "claims": [
+          "The image QC result is PASS. [qc-9e501b61]",
+          "The main cause of the result is not specified, but the triggering metric values are: focus_hf_ratio = 0.2106, clip_high_frac = 0.1788, and illum_flatness = 0.6981. [qc-9e501b61]",
+          "The recommended action is to review the image quality and adjust the imaging settings if necessary. [qc-9e501b61]",
+          "Brightfield imaging can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions. [PMC8879989::s4::0]",
+          "The image was acquired under standardized illumination and focus settings using a 5X ZEISS A-Plan objective. [PMC13388963::s10::0]",
+          "The image resolution is 2160 \u00d7 2160 pixels with a pixel size of 0.79 \u03bcm/px. [PMC13388963::s10::0]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC8879989::s0::0",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "Microscopic imaging is essential and the most popular method for in situ monitoring and evaluating the outcome of various organ-on-a-chip (OOC) platforms, including the number ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC8879989::s4::0",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "Brightfield imaging can also be used specifically to image organ-on-a-chip (OOC) devices. van der Meer et al. created an OOC device with human umbilical vein ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC13388963::s10::0",
+            "title": "Automation of 3D liver spheroid generation and acetaminophen dose-response on the MO:BOT enhances assay robustness and precision",
+            "url": "https://europepmc.org/article/PMC/PMC13388963",
+            "license": "cc by",
+            "excerpt": "Spheroid morphology was assessed using the MO:CROSCOPE imaging system integrated into the MO:BOT. Cell culture plates were loaded into the MO:CROSCOPE carrier, and brightfield images ...",
+            "cited": true
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is PASS.",
+            "type": "numeric",
+            "evidence": [
+              "qc-9e501b61"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of the result is not specified, but the triggering metric values are: focus_hf_ratio = 0.2106, clip_high_frac = 0.1788, and illum_flatness = 0.6981.",
+            "type": "numeric",
+            "evidence": [
+              "qc-9e501b61"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The recommended action is to review the image quality and adjust the imaging settings if necessary.",
+            "type": "inference",
+            "evidence": [
+              "qc-9e501b61"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "Brightfield imaging can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions.",
+            "type": "literature",
+            "evidence": [
+              "PMC8879989::s4::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "The image was acquired under standardized illumination and focus settings using a 5X ZEISS A-Plan objective.",
+            "type": "numeric",
+            "evidence": [
+              "PMC13388963::s10::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c6",
+            "text": "The image resolution is 2160 \u00d7 2160 pixels with a pixel size of 0.79 \u03bcm/px.",
+            "type": "numeric",
+            "evidence": [
+              "PMC13388963::s10::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 6,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is PASS.",
+          "type": "numeric",
+          "evidence": [
+            "qc-9e501b61"
+          ]
+        },
+        {
+          "text": "The main cause of the result is not specified, but the triggering metric values are: focus_hf_ratio = 0.2106, clip_high_frac = 0.1788, and illum_flatness = 0.6981.",
+          "type": "numeric",
+          "evidence": [
+            "qc-9e501b61"
+          ]
+        },
+        {
+          "text": "The recommended action is to review the image quality and adjust the imaging settings if necessary.",
+          "type": "inference",
+          "evidence": [
+            "qc-9e501b61"
+          ]
+        },
+        {
+          "text": "Brightfield imaging can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions.",
+          "type": "literature",
+          "evidence": [
+            "PMC8879989::s4::0"
+          ]
+        },
+        {
+          "text": "The image was acquired under standardized illumination and focus settings using a 5X ZEISS A-Plan objective.",
+          "type": "numeric",
+          "evidence": [
+            "PMC13388963::s10::0"
+          ]
+        },
+        {
+          "text": "The image resolution is 2160 \u00d7 2160 pixels with a pixel size of 0.79 \u03bcm/px.",
+          "type": "numeric",
+          "evidence": [
+            "PMC13388963::s10::0"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "230419_55"
+          },
+          "result_hash": "d224690781d618a6",
+          "latency_ms": 0.09,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "brightfield microscopy image quality control organ-on-a-chip cell culture",
+            "k": 3
+          },
+          "result_hash": "b374ca5e3b40f261",
+          "latency_ms": 13.58,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "c4660144bbd0e4b1",
+          "latency_ms": 0.29,
+          "tokens": 1732
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "c859f7196303c34a",
+          "latency_ms": 5.15,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1417,
+        "completion_tokens": 315,
+        "llm_latency_ms": 2273.5908550002932
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "220506_3",
+      "cell_line": "HSAEC",
+      "time_bin": "2-3",
+      "expert_label": "bad",
+      "thumb": "data/thumbs/220506_3.webp",
+      "variant": "original",
+      "qc": {
+        "tool_call_id": "qc-6b7ce05a",
+        "image": {
+          "id": "220506_3",
+          "sha256": "6b7ce05a1d9b1374a131e4c4432ece426ea71e411edfcbc32d33c7d0a507448b",
+          "shape": [
+            1536,
+            2048
+          ],
+          "dtype": "uint8",
+          "cell_line": "HSAEC"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 9.231646,
+          "focus_tenengrad_norm": 17.463516,
+          "focus_hf_ratio": 0.376873,
+          "contrast_rms": 0.118591,
+          "contrast_p99_p1": 0.556863,
+          "mean_intensity": 0.483229,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.000308,
+          "illum_flatness": 0.329426,
+          "noise_sigma_norm": 0.08758,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.358709,
+          "blob_density_per_mpx": 3604.888916,
+          "texture_lbp_entropy": 6.989994,
+          "jpeg_blockiness": 1.134803
+        },
+        "z": {
+          "focus_lapvar_norm": 1.75,
+          "focus_tenengrad_norm": 0.997,
+          "focus_hf_ratio": 0.732,
+          "contrast_rms": 0.212,
+          "contrast_p99_p1": 0.168,
+          "mean_intensity": 0.325,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.069,
+          "illum_flatness": -0.554,
+          "noise_sigma_norm": 0.619,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": -0.602,
+          "blob_density_per_mpx": 0.276,
+          "texture_lbp_entropy": 0.092,
+          "jpeg_blockiness": -0.92
+        },
+        "zbad": {
+          "focus_lapvar_norm": 0.0,
+          "focus_tenengrad_norm": 0.0,
+          "focus_hf_ratio": 0.0,
+          "contrast_rms": 0.0,
+          "contrast_p99_p1": 0.0,
+          "mean_intensity": 0.325,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.069,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": 0.619,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.602,
+          "blob_density_per_mpx": 0.276,
+          "texture_lbp_entropy": 0.092,
+          "jpeg_blockiness": 0.0,
+          "mean_intensity_low": 0.0
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 81.7,
+          "focus_tenengrad_norm": 82.3,
+          "focus_hf_ratio": 75.0,
+          "contrast_rms": 60.1,
+          "contrast_p99_p1": 58.9,
+          "mean_intensity": 61.1,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 60.3,
+          "illum_flatness": 21.6,
+          "noise_sigma_norm": 70.1,
+          "debris_count": 65.0,
+          "debris_area_frac": 65.0,
+          "bubble_score": 50.0,
+          "foreground_frac": 27.0,
+          "blob_density_per_mpx": 65.4,
+          "texture_lbp_entropy": 67.0,
+          "jpeg_blockiness": 14.6
+        },
+        "qc_score": 0.619,
+        "level": "PASS",
+        "causes": [],
+        "density_state": "NORMAL",
+        "reference": "session batch (n=85)",
+        "latency_ms": 140.4
+      },
+      "card": {
+        "image_id": "220506_3",
+        "tool_call_id": "qc-6b7ce05a",
+        "level": "PASS",
+        "qc_score": 0.619,
+        "density_state": "NORMAL",
+        "primary_cause": null,
+        "claims": [
+          "The image QC result is PASS. [qc-6b7ce05a]",
+          "The main cause of the result is not explicitly stated, but the triggering metric values are: focus_lapvar_norm = 9.2316, focus_tenengrad_norm = 17.4635, and focus_hf_ratio = 0.3769. [qc-6b7ce05a]",
+          "The recommended action is to adjust the focus settings to improve the image quality. [qc-6b7ce05a]",
+          "Brightfield imaging can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions. [PMC8879989::s4::0]",
+          "The image was acquired under standardized illumination and focus settings using a 5X ZEISS A-Plan objective. [PMC13388963::s10::0]",
+          "The image resolution is 2160 \u00d7 2160 pixels with a pixel size of 0.79 \u03bcm/px. [PMC13388963::s10::0]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC8879989::s0::0",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "Microscopic imaging is essential and the most popular method for in situ monitoring and evaluating the outcome of various organ-on-a-chip (OOC) platforms, including the number ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC8879989::s4::0",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "Brightfield imaging can also be used specifically to image organ-on-a-chip (OOC) devices. van der Meer et al. created an OOC device with human umbilical vein ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC13388963::s10::0",
+            "title": "Automation of 3D liver spheroid generation and acetaminophen dose-response on the MO:BOT enhances assay robustness and precision",
+            "url": "https://europepmc.org/article/PMC/PMC13388963",
+            "license": "cc by",
+            "excerpt": "Spheroid morphology was assessed using the MO:CROSCOPE imaging system integrated into the MO:BOT. Cell culture plates were loaded into the MO:CROSCOPE carrier, and brightfield images ...",
+            "cited": true
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is PASS.",
+            "type": "numeric",
+            "evidence": [
+              "qc-6b7ce05a"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of the result is not explicitly stated, but the triggering metric values are: focus_lapvar_norm = 9.2316, focus_tenengrad_norm = 17.4635, and focus_hf_ratio = 0.3769.",
+            "type": "numeric",
+            "evidence": [
+              "qc-6b7ce05a"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The recommended action is to adjust the focus settings to improve the image quality.",
+            "type": "inference",
+            "evidence": [
+              "qc-6b7ce05a"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "Brightfield imaging can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions.",
+            "type": "literature",
+            "evidence": [
+              "PMC8879989::s4::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "The image was acquired under standardized illumination and focus settings using a 5X ZEISS A-Plan objective.",
+            "type": "numeric",
+            "evidence": [
+              "PMC13388963::s10::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c6",
+            "text": "The image resolution is 2160 \u00d7 2160 pixels with a pixel size of 0.79 \u03bcm/px.",
+            "type": "numeric",
+            "evidence": [
+              "PMC13388963::s10::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 6,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is PASS.",
+          "type": "numeric",
+          "evidence": [
+            "qc-6b7ce05a"
+          ]
+        },
+        {
+          "text": "The main cause of the result is not explicitly stated, but the triggering metric values are: focus_lapvar_norm = 9.2316, focus_tenengrad_norm = 17.4635, and focus_hf_ratio = 0.3769.",
+          "type": "numeric",
+          "evidence": [
+            "qc-6b7ce05a"
+          ]
+        },
+        {
+          "text": "The recommended action is to adjust the focus settings to improve the image quality.",
+          "type": "inference",
+          "evidence": [
+            "qc-6b7ce05a"
+          ]
+        },
+        {
+          "text": "Brightfield imaging can be used to image organ-on-a-chip devices, but it may not have good enough resolution for monitoring cell\u2013cell interactions.",
+          "type": "literature",
+          "evidence": [
+            "PMC8879989::s4::0"
+          ]
+        },
+        {
+          "text": "The image was acquired under standardized illumination and focus settings using a 5X ZEISS A-Plan objective.",
+          "type": "numeric",
+          "evidence": [
+            "PMC13388963::s10::0"
+          ]
+        },
+        {
+          "text": "The image resolution is 2160 \u00d7 2160 pixels with a pixel size of 0.79 \u03bcm/px.",
+          "type": "numeric",
+          "evidence": [
+            "PMC13388963::s10::0"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "220506_3"
+          },
+          "result_hash": "c8f62476c2f2f912",
+          "latency_ms": 0.12,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "brightfield microscopy image quality control organ-on-a-chip cell culture",
+            "k": 3
+          },
+          "result_hash": "b374ca5e3b40f261",
+          "latency_ms": 18.07,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "49020b0f9691230b",
+          "latency_ms": 0.3,
+          "tokens": 1734
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "84e713eb31912a49",
+          "latency_ms": 5.08,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1419,
+        "completion_tokens": 315,
+        "llm_latency_ms": 2350.7245649998367
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "230525_54-defocus",
+      "cell_line": "A549",
+      "time_bin": "0-1",
+      "expert_label": "good",
+      "thumb": "data/thumbs/230525_54-defocus.webp",
+      "variant": "corrupted:defocus:5",
+      "qc": {
+        "tool_call_id": "qc-ff12b11f",
+        "image": {
+          "id": "230525_54-defocus",
+          "sha256": "ff12b11ff95a2c54d638e8f96e73fbbca40d394c783f25067705e56aea7f628d",
+          "shape": [
+            1542,
+            2056
+          ],
+          "dtype": "uint8",
+          "cell_line": "A549"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 0.006165,
+          "focus_tenengrad_norm": 0.143248,
+          "focus_hf_ratio": 0.000218,
+          "contrast_rms": 0.243828,
+          "contrast_p99_p1": 0.660396,
+          "mean_intensity": 0.224763,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.0,
+          "illum_flatness": 3.208444,
+          "noise_sigma_norm": 0.001141,
+          "debris_count": 468.0,
+          "debris_area_frac": 0.045165,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.384122,
+          "blob_density_per_mpx": 1466.115316,
+          "texture_lbp_entropy": 5.321474,
+          "jpeg_blockiness": 1.004108
+        },
+        "z": {
+          "focus_lapvar_norm": -1.216,
+          "focus_tenengrad_norm": -1.133,
+          "focus_hf_ratio": -0.929,
+          "contrast_rms": -0.11,
+          "contrast_p99_p1": -2.984,
+          "mean_intensity": -2.602,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": -0.717,
+          "illum_flatness": 4.477,
+          "noise_sigma_norm": -1.889,
+          "debris_count": 1.754,
+          "debris_area_frac": 7.716,
+          "bubble_score": 0.0,
+          "foreground_frac": -0.736,
+          "blob_density_per_mpx": -2.737,
+          "texture_lbp_entropy": -10.65,
+          "jpeg_blockiness": 0.363
+        },
+        "zbad": {
+          "focus_lapvar_norm": 1.216,
+          "focus_tenengrad_norm": 1.133,
+          "focus_hf_ratio": 0.929,
+          "contrast_rms": 0.11,
+          "contrast_p99_p1": 2.984,
+          "mean_intensity": 2.602,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.0,
+          "illum_flatness": 4.477,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 1.754,
+          "debris_area_frac": 7.716,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.736,
+          "blob_density_per_mpx": 2.737,
+          "texture_lbp_entropy": 10.65,
+          "jpeg_blockiness": 0.363,
+          "mean_intensity_low": 2.602
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 0.0,
+          "focus_tenengrad_norm": 0.0,
+          "focus_hf_ratio": 0.0,
+          "contrast_rms": 47.8,
+          "contrast_p99_p1": 1.6,
+          "mean_intensity": 13.8,
+          "clip_low_frac": 75.0,
+          "clip_high_frac": 0.0,
+          "illum_flatness": 85.3,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 86.5,
+          "debris_area_frac": 100.0,
+          "bubble_score": 50.0,
+          "foreground_frac": 20.5,
+          "blob_density_per_mpx": 5.4,
+          "texture_lbp_entropy": 0.0,
+          "jpeg_blockiness": 100.0
+        },
+        "qc_score": 7.716,
+        "level": "FAIL",
+        "causes": [
+          {
+            "label": "UNEVEN_ILLUMINATION",
+            "note": "background gradient or vignetting",
+            "metric": "illum_flatness",
+            "value": 3.208443731600335,
+            "z": 4.477,
+            "action": "Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis."
+          }
+        ],
+        "density_state": "NORMAL",
+        "reference": "session batch (n=23)",
+        "latency_ms": 136.6
+      },
+      "card": {
+        "image_id": "230525_54-defocus",
+        "tool_call_id": "qc-ff12b11f",
+        "level": "FAIL",
+        "qc_score": 7.716,
+        "density_state": "NORMAL",
+        "primary_cause": "UNEVEN_ILLUMINATION",
+        "claims": [
+          "The image QC result is FAIL. [qc-ff12b11f]",
+          "The main cause of the failure is UNEVEN_ILLUMINATION. [qc-ff12b11f]",
+          "The triggering metric values for UNEVEN_ILLUMINATION are illum_flatness = 3.2084 and z = 4.477. [qc-ff12b11f]",
+          "The recommended action is to Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis. [qc-ff12b11f]",
+          "Applying flat-field correction can improve image quality and remove uneven illumination artifacts. [PMC12779969::s1::2]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC12779969::s1::2",
+            "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+            "url": "https://europepmc.org/article/PMC/PMC12779969",
+            "license": "cc by",
+            "excerpt": "processing algorithms to remove the artifacts before the final image analysis.Fig. 1Experimental pipeline for optical imaging of large samples in presence of uneven illumination.a The ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC12779969::s6::2",
+            "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+            "url": "https://europepmc.org/article/PMC/PMC12779969",
+            "license": "cc by",
+            "excerpt": "additional step, after prior selection of images with acceptable removal of uneven illumination, to determine the best compromise between flat-field correction and general image quality ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC12779969::s6::3",
+            "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+            "url": "https://europepmc.org/article/PMC/PMC12779969",
+            "license": "cc by",
+            "excerpt": "distribution in the measurement and the number of tiles of the image to be corrected. However, when the optimal method cannot be determined beforehand, EVEN ...",
+            "cited": false
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis.",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is FAIL.",
+            "type": "numeric",
+            "evidence": [
+              "qc-ff12b11f"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of the failure is UNEVEN_ILLUMINATION.",
+            "type": "numeric",
+            "evidence": [
+              "qc-ff12b11f"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The triggering metric values for UNEVEN_ILLUMINATION are illum_flatness = 3.2084 and z = 4.477.",
+            "type": "numeric",
+            "evidence": [
+              "qc-ff12b11f"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "The recommended action is to Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis.",
+            "type": "numeric",
+            "evidence": [
+              "qc-ff12b11f"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "Applying flat-field correction can improve image quality and remove uneven illumination artifacts.",
+            "type": "literature",
+            "evidence": [
+              "PMC12779969::s1::2"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 5,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is FAIL.",
+          "type": "numeric",
+          "evidence": [
+            "qc-ff12b11f"
+          ]
+        },
+        {
+          "text": "The main cause of the failure is UNEVEN_ILLUMINATION.",
+          "type": "numeric",
+          "evidence": [
+            "qc-ff12b11f"
+          ]
+        },
+        {
+          "text": "The triggering metric values for UNEVEN_ILLUMINATION are illum_flatness = 3.2084 and z = 4.477.",
+          "type": "numeric",
+          "evidence": [
+            "qc-ff12b11f"
+          ]
+        },
+        {
+          "text": "The recommended action is to Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis.",
+          "type": "numeric",
+          "evidence": [
+            "qc-ff12b11f"
+          ]
+        },
+        {
+          "text": "Applying flat-field correction can improve image quality and remove uneven illumination artifacts.",
+          "type": "literature",
+          "evidence": [
+            "PMC12779969::s1::2"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "230525_54-defocus"
+          },
+          "result_hash": "2fcbbd52bf6a48d8",
+          "latency_ms": 0.11,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "uneven illumination vignetting flat-field correction brightfield microscopy",
+            "k": 3
+          },
+          "result_hash": "3549060954ea1cc2",
+          "latency_ms": 547.52,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "a7fff763bba409e3",
+          "latency_ms": 0.18,
+          "tokens": 1575
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 5
+          },
+          "result_hash": "e1d1366de93f774a",
+          "latency_ms": 1.12,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1351,
+        "completion_tokens": 224,
+        "llm_latency_ms": 2046.6533070011792
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "230510_30-bubble",
+      "cell_line": "HPMEC",
+      "time_bin": "2-3",
+      "expert_label": "good",
+      "thumb": "data/thumbs/230510_30-bubble.webp",
+      "variant": "corrupted:bubble:5",
+      "qc": {
+        "tool_call_id": "qc-172fcbc1",
+        "image": {
+          "id": "230510_30-bubble",
+          "sha256": "172fcbc151e5ff92d5346f049840caec9a387366e736d43c2294c90c67d0a655",
+          "shape": [
+            1542,
+            2056
+          ],
+          "dtype": "uint8",
+          "cell_line": "HPMEC"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 1.318816,
+          "focus_tenengrad_norm": 2.698553,
+          "focus_hf_ratio": 0.045297,
+          "contrast_rms": 0.257959,
+          "contrast_p99_p1": 0.974113,
+          "mean_intensity": 0.402068,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.019687,
+          "illum_flatness": 1.821442,
+          "noise_sigma_norm": 0.023224,
+          "debris_count": 78.0,
+          "debris_area_frac": 0.001959,
+          "bubble_score": 0.008723,
+          "foreground_frac": 0.37404,
+          "blob_density_per_mpx": 2740.224202,
+          "texture_lbp_entropy": 6.721334,
+          "jpeg_blockiness": 0.99767
+        },
+        "z": {
+          "focus_lapvar_norm": -0.852,
+          "focus_tenengrad_norm": -1.685,
+          "focus_hf_ratio": -1.519,
+          "contrast_rms": 0.488,
+          "contrast_p99_p1": 0.6,
+          "mean_intensity": -2.923,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": -0.817,
+          "illum_flatness": 5.836,
+          "noise_sigma_norm": -0.857,
+          "debris_count": 78.0,
+          "debris_area_frac": 3.919,
+          "bubble_score": 4.361,
+          "foreground_frac": -3.004,
+          "blob_density_per_mpx": -1.506,
+          "texture_lbp_entropy": 0.181,
+          "jpeg_blockiness": 0.15
+        },
+        "zbad": {
+          "focus_lapvar_norm": 0.852,
+          "focus_tenengrad_norm": 1.685,
+          "focus_hf_ratio": 1.519,
+          "contrast_rms": 0.0,
+          "contrast_p99_p1": 0.0,
+          "mean_intensity": 2.923,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.0,
+          "illum_flatness": 5.836,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 78.0,
+          "debris_area_frac": 3.919,
+          "bubble_score": 4.361,
+          "foreground_frac": 3.004,
+          "blob_density_per_mpx": 1.506,
+          "texture_lbp_entropy": 0.181,
+          "jpeg_blockiness": 0.15,
+          "mean_intensity_low": 2.923
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 15.2,
+          "focus_tenengrad_norm": 5.6,
+          "focus_hf_ratio": 13.1,
+          "contrast_rms": 72.4,
+          "contrast_p99_p1": 92.1,
+          "mean_intensity": 1.0,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 0.0,
+          "illum_flatness": 100.0,
+          "noise_sigma_norm": 14.0,
+          "debris_count": 93.1,
+          "debris_area_frac": 93.3,
+          "bubble_score": 50.0,
+          "foreground_frac": 5.0,
+          "blob_density_per_mpx": 3.8,
+          "texture_lbp_entropy": 78.5,
+          "jpeg_blockiness": 93.3
+        },
+        "qc_score": 78.0,
+        "level": "FAIL",
+        "causes": [
+          {
+            "label": "DEBRIS",
+            "note": "particulates or dust",
+            "metric": "debris_count",
+            "value": 78.0,
+            "z": 78.0,
+            "action": "Inspect the channel and optics for particulates; clean or exclude affected regions."
+          },
+          {
+            "label": "UNEVEN_ILLUMINATION",
+            "note": "background gradient or vignetting",
+            "metric": "illum_flatness",
+            "value": 1.8214420468326225,
+            "z": 5.836,
+            "action": "Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis."
+          },
+          {
+            "label": "BUBBLE",
+            "note": "possible air bubble in the channel",
+            "metric": "bubble_score",
+            "value": 0.008722941080729166,
+            "z": 4.361,
+            "action": "Inspect the channel for air bubbles; degas medium or flush the channel, then re-image."
+          }
+        ],
+        "density_state": "SPARSE",
+        "reference": "session batch (n=16)",
+        "latency_ms": 121.0
+      },
+      "card": {
+        "image_id": "230510_30-bubble",
+        "tool_call_id": "qc-172fcbc1",
+        "level": "FAIL",
+        "qc_score": 78.0,
+        "density_state": "SPARSE",
+        "primary_cause": "DEBRIS",
+        "claims": [
+          "The image QC result is FAIL with a score of 78.0. [qc-172fcbc1]",
+          "The main cause of the failure is DEBRIS with a count of 78.0. [qc-172fcbc1]",
+          "The triggering metric value for DEBRIS is debris_count with a value of 78.0. [qc-172fcbc1]",
+          "The recommended action is to inspect the channel and optics for particulates; clean or exclude affected regions. [qc-172fcbc1]",
+          "Flat-field correction can be applied to address uneven illumination. [PMC12779969::s1::2]",
+          "Contamination during chip assembly or culture can introduce debris into the channel. [PMC13195612::s25::0]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC12779969::s1::2",
+            "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+            "url": "https://europepmc.org/article/PMC/PMC12779969",
+            "license": "cc by",
+            "excerpt": "processing algorithms to remove the artifacts before the final image analysis.Fig. 1Experimental pipeline for optical imaging of large samples in presence of uneven illumination.a The ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC12779969::s6::2",
+            "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+            "url": "https://europepmc.org/article/PMC/PMC12779969",
+            "license": "cc by",
+            "excerpt": "additional step, after prior selection of images with acceptable removal of uneven illumination, to determine the best compromise between flat-field correction and general image quality ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC12779969::s6::3",
+            "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+            "url": "https://europepmc.org/article/PMC/PMC12779969",
+            "license": "cc by",
+            "excerpt": "distribution in the measurement and the number of tiles of the image to be corrected. However, when the optimal method cannot be determined beforehand, EVEN ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC13195612::s25::0",
+            "title": "Protocol for fibrin-based endothelial-cardiomyocyte co-culture in a microfluidic device",
+            "url": "https://europepmc.org/article/PMC/PMC13195612",
+            "license": "cc by",
+            "excerpt": "Contamination during chip assembly or culture: Related to Step 15\u201317. Microfluidic chips are challenging to assemble under fully sterile conditions because their small components and ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC8879989::s3::1",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "reduce blur. Asghar et al. demonstrated another example of shadow imaging in microfluidic devices [27]. They captured the shadow images of the cells of interest, ...",
+            "cited": false
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "Inspect the channel and optics for particulates; clean or exclude affected regions.",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is FAIL with a score of 78.0.",
+            "type": "numeric",
+            "evidence": [
+              "qc-172fcbc1"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of the failure is DEBRIS with a count of 78.0.",
+            "type": "numeric",
+            "evidence": [
+              "qc-172fcbc1"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The triggering metric value for DEBRIS is debris_count with a value of 78.0.",
+            "type": "numeric",
+            "evidence": [
+              "qc-172fcbc1"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "The recommended action is to inspect the channel and optics for particulates; clean or exclude affected regions.",
+            "type": "inference",
+            "evidence": [
+              "qc-172fcbc1"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "Flat-field correction can be applied to address uneven illumination.",
+            "type": "literature",
+            "evidence": [
+              "PMC12779969::s1::2"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c6",
+            "text": "Contamination during chip assembly or culture can introduce debris into the channel.",
+            "type": "literature",
+            "evidence": [
+              "PMC13195612::s25::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 6,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is FAIL with a score of 78.0.",
+          "type": "numeric",
+          "evidence": [
+            "qc-172fcbc1"
+          ]
+        },
+        {
+          "text": "The main cause of the failure is DEBRIS with a count of 78.0.",
+          "type": "numeric",
+          "evidence": [
+            "qc-172fcbc1"
+          ]
+        },
+        {
+          "text": "The triggering metric value for DEBRIS is debris_count with a value of 78.0.",
+          "type": "numeric",
+          "evidence": [
+            "qc-172fcbc1"
+          ]
+        },
+        {
+          "text": "The recommended action is to inspect the channel and optics for particulates; clean or exclude affected regions.",
+          "type": "inference",
+          "evidence": [
+            "qc-172fcbc1"
+          ]
+        },
+        {
+          "text": "Flat-field correction can be applied to address uneven illumination.",
+          "type": "literature",
+          "evidence": [
+            "PMC12779969::s1::2"
+          ]
+        },
+        {
+          "text": "Contamination during chip assembly or culture can introduce debris into the channel.",
+          "type": "literature",
+          "evidence": [
+            "PMC13195612::s25::0"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "230510_30-bubble"
+          },
+          "result_hash": "d3ef82b13179e596",
+          "latency_ms": 0.3,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "debris particles contamination microfluidic channel cell culture imaging",
+            "k": 3
+          },
+          "result_hash": "e332a9b1dc9973f4",
+          "latency_ms": 11.33,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "uneven illumination vignetting flat-field correction brightfield microscopy",
+            "k": 3
+          },
+          "result_hash": "3549060954ea1cc2",
+          "latency_ms": 13.73,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "e24a53708757b375",
+          "latency_ms": 0.3,
+          "tokens": 1964
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "2124377fd361f134",
+          "latency_ms": 2.43,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1713,
+        "completion_tokens": 251,
+        "llm_latency_ms": 2349.484742000641
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "230328_15-overexpose",
+      "cell_line": "CACO",
+      "time_bin": "0-1",
+      "expert_label": "good",
+      "thumb": "data/thumbs/230328_15-overexpose.webp",
+      "variant": "corrupted:overexpose:5",
+      "qc": {
+        "tool_call_id": "qc-b8222959",
+        "image": {
+          "id": "230328_15-overexpose",
+          "sha256": "b82229594820658324e233275417c2b635604f066d6697ebeeb286ea103df186",
+          "shape": [
+            1536,
+            2048
+          ],
+          "dtype": "uint8",
+          "cell_line": "CACO"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 5.541043,
+          "focus_tenengrad_norm": 5.108719,
+          "focus_hf_ratio": 0.835826,
+          "contrast_rms": 0.059125,
+          "contrast_p99_p1": 0.323529,
+          "mean_intensity": 0.984133,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.901525,
+          "illum_flatness": 0.112453,
+          "noise_sigma_norm": 0.053181,
+          "debris_count": 274.0,
+          "debris_area_frac": 0.005136,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.127136,
+          "blob_density_per_mpx": 1284.281413,
+          "texture_lbp_entropy": 4.601066,
+          "jpeg_blockiness": 1.825668
+        },
+        "z": {
+          "focus_lapvar_norm": -2.172,
+          "focus_tenengrad_norm": -3.564,
+          "focus_hf_ratio": 14.733,
+          "contrast_rms": -3.169,
+          "contrast_p99_p1": -3.015,
+          "mean_intensity": 13.02,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 450.75,
+          "illum_flatness": -14.525,
+          "noise_sigma_norm": -7.468,
+          "debris_count": 274.0,
+          "debris_area_frac": 10.272,
+          "bubble_score": 0.0,
+          "foreground_frac": -23.584,
+          "blob_density_per_mpx": -26.22,
+          "texture_lbp_entropy": -16.877,
+          "jpeg_blockiness": 13.856
+        },
+        "zbad": {
+          "focus_lapvar_norm": 2.172,
+          "focus_tenengrad_norm": 3.564,
+          "focus_hf_ratio": 0.0,
+          "contrast_rms": 3.169,
+          "contrast_p99_p1": 3.015,
+          "mean_intensity": 13.02,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 450.75,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 274.0,
+          "debris_area_frac": 10.272,
+          "bubble_score": 0.0,
+          "foreground_frac": 23.584,
+          "blob_density_per_mpx": 26.22,
+          "texture_lbp_entropy": 16.877,
+          "jpeg_blockiness": 13.856,
+          "mean_intensity_low": 0.0
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 9.5,
+          "focus_tenengrad_norm": 2.2,
+          "focus_hf_ratio": 100.0,
+          "contrast_rms": 0.0,
+          "contrast_p99_p1": 0.0,
+          "mean_intensity": 100.0,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 100.0,
+          "illum_flatness": 0.0,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 100.0,
+          "debris_area_frac": 100.0,
+          "bubble_score": 50.0,
+          "foreground_frac": 0.0,
+          "blob_density_per_mpx": 0.0,
+          "texture_lbp_entropy": 0.0,
+          "jpeg_blockiness": 100.0
+        },
+        "qc_score": 450.75,
+        "level": "FAIL",
+        "causes": [
+          {
+            "label": "OVER_EXPOSED",
+            "note": "saturated (clipped) bright pixels",
+            "metric": "clip_high_frac",
+            "value": 0.9015251795450846,
+            "z": 450.75,
+            "action": "Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered."
+          },
+          {
+            "label": "DEBRIS",
+            "note": "particulates or dust",
+            "metric": "debris_count",
+            "value": 274.0,
+            "z": 274.0,
+            "action": "Inspect the channel and optics for particulates; clean or exclude affected regions."
+          },
+          {
+            "label": "COMPRESSION",
+            "note": "block compression artifacts",
+            "metric": "jpeg_blockiness",
+            "value": 1.8256680965423584,
+            "z": 13.856,
+            "action": "Re-export the image in a lossless format (PNG/TIFF) before quantitative analysis."
+          },
+          {
+            "label": "LOW_CONTRAST",
+            "note": "little dynamic range",
+            "metric": "contrast_rms",
+            "value": 0.059125165335002255,
+            "z": 3.169,
+            "action": "Adjust condenser aperture or exposure to recover contrast, then re-image."
+          }
+        ],
+        "density_state": "SPARSE",
+        "reference": "session batch (n=12)",
+        "latency_ms": 104.3
+      },
+      "card": {
+        "image_id": "230328_15-overexpose",
+        "tool_call_id": "qc-b8222959",
+        "level": "FAIL",
+        "qc_score": 450.75,
+        "density_state": "SPARSE",
+        "primary_cause": "OVER_EXPOSED",
+        "claims": [
+          "The image QC result is FAIL with a verdict of OVER_EXPOSED. [qc-b8222959]",
+          "The main cause of the failure is OVER_EXPOSED due to a clip_high_frac value of 0.9015251795450846. [qc-b8222959]",
+          "The recommended action is to Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered. [qc-b8222959]",
+          "The presence of debris in the image can also affect image quality. [qc-b8222959]",
+          "Debris can be introduced during chip assembly or culture, increasing the risk of contamination. [PMC13195612::s25::0]",
+          "Image restoration techniques can be used to recover an original image from its degraded version. [PMC7275059::s12::0]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC13393655::s3::0",
+            "title": "The Cost of Accessibility: Considerations for Adopting Microscope Camera-Derived Images for Digital and Computational Pathology",
+            "url": "https://europepmc.org/article/PMC/PMC13393655",
+            "license": "cc by",
+            "excerpt": "The wide range of brightfield microscopes, each potentially paired with a variety of different camera models, creates significant heterogeneity in MCI systems, resulting in variability ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC13195612::s25::0",
+            "title": "Protocol for fibrin-based endothelial-cardiomyocyte co-culture in a microfluidic device",
+            "url": "https://europepmc.org/article/PMC/PMC13195612",
+            "license": "cc by",
+            "excerpt": "Contamination during chip assembly or culture: Related to Step 15\u201317. Microfluidic chips are challenging to assemble under fully sterile conditions because their small components and ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC8879989::s3::1",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "reduce blur. Asghar et al. demonstrated another example of shadow imaging in microfluidic devices [27]. They captured the shadow images of the cells of interest, ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC8879989::s13::1",
+            "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+            "url": "https://europepmc.org/article/PMC/PMC8879989",
+            "license": "cc by",
+            "excerpt": "provide important information on how the cells within an OOC are functioning and growing. Another group, Vargas-Ordaz et al. focuses on single-cell 3D imaging in ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC7275059::s12::0",
+            "title": "HISTOBREAST, a collection of brightfield microscopy images of Haematoxylin and Eosin stained breast tissue",
+            "url": "https://europepmc.org/article/PMC/PMC7275059",
+            "license": "cc by",
+            "excerpt": "Image restoration is the process of recovering an original image from its available degraded version. Availability of minimally degraded images (acquired by using the reference ...",
+            "cited": true
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered.",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is FAIL with a verdict of OVER_EXPOSED.",
+            "type": "numeric",
+            "evidence": [
+              "qc-b8222959"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of the failure is OVER_EXPOSED due to a clip_high_frac value of 0.9015251795450846.",
+            "type": "numeric",
+            "evidence": [
+              "qc-b8222959"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The recommended action is to Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered.",
+            "type": "numeric",
+            "evidence": [
+              "qc-b8222959"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "The presence of debris in the image can also affect image quality.",
+            "type": "inference",
+            "evidence": [
+              "qc-b8222959"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "Debris can be introduced during chip assembly or culture, increasing the risk of contamination.",
+            "type": "literature",
+            "evidence": [
+              "PMC13195612::s25::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c6",
+            "text": "Image restoration techniques can be used to recover an original image from its degraded version.",
+            "type": "literature",
+            "evidence": [
+              "PMC7275059::s12::0"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 6,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is FAIL with a verdict of OVER_EXPOSED.",
+          "type": "numeric",
+          "evidence": [
+            "qc-b8222959"
+          ]
+        },
+        {
+          "text": "The main cause of the failure is OVER_EXPOSED due to a clip_high_frac value of 0.9015251795450846.",
+          "type": "numeric",
+          "evidence": [
+            "qc-b8222959"
+          ]
+        },
+        {
+          "text": "The recommended action is to Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered.",
+          "type": "numeric",
+          "evidence": [
+            "qc-b8222959"
+          ]
+        },
+        {
+          "text": "The presence of debris in the image can also affect image quality.",
+          "type": "inference",
+          "evidence": [
+            "qc-b8222959"
+          ]
+        },
+        {
+          "text": "Debris can be introduced during chip assembly or culture, increasing the risk of contamination.",
+          "type": "literature",
+          "evidence": [
+            "PMC13195612::s25::0"
+          ]
+        },
+        {
+          "text": "Image restoration techniques can be used to recover an original image from its degraded version.",
+          "type": "literature",
+          "evidence": [
+            "PMC7275059::s12::0"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "230328_15-overexpose"
+          },
+          "result_hash": "8509b5280a18b855",
+          "latency_ms": 0.09,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "overexposure saturation brightfield microscopy imaging exposure",
+            "k": 3
+          },
+          "result_hash": "444a52dfe03e34e2",
+          "latency_ms": 12.69,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "debris particles contamination microfluidic channel cell culture imaging",
+            "k": 3
+          },
+          "result_hash": "e332a9b1dc9973f4",
+          "latency_ms": 14.29,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "ec5868e332327f95",
+          "latency_ms": 0.29,
+          "tokens": 2104
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "7d6968d012237653",
+          "latency_ms": 2.3,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1845,
+        "completion_tokens": 259,
+        "llm_latency_ms": 2007.0030150000093
+      },
+      "provider": "workers_ai"
+    },
+    {
+      "id": "221012_16-illumination",
+      "cell_line": "HSAEC",
+      "time_bin": "2-3",
+      "expert_label": "good",
+      "thumb": "data/thumbs/221012_16-illumination.webp",
+      "variant": "corrupted:illumination:5",
+      "qc": {
+        "tool_call_id": "qc-0ec1b31b",
+        "image": {
+          "id": "221012_16-illumination",
+          "sha256": "0ec1b31bea615208880bd27f610cf659a51d043ae81938552f47a8d4bda20913",
+          "shape": [
+            1536,
+            2048
+          ],
+          "dtype": "uint8",
+          "cell_line": "HSAEC"
+        },
+        "metrics": {
+          "focus_lapvar_norm": 1.833216,
+          "focus_tenengrad_norm": 6.199556,
+          "focus_hf_ratio": 0.22151,
+          "contrast_rms": 0.174531,
+          "contrast_p99_p1": 0.787255,
+          "mean_intensity": 0.474702,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.003398,
+          "illum_flatness": 1.291827,
+          "noise_sigma_norm": 0.0401,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.4593,
+          "blob_density_per_mpx": 3264.109294,
+          "texture_lbp_entropy": 6.943071,
+          "jpeg_blockiness": 1.132549
+        },
+        "z": {
+          "focus_lapvar_norm": -1.386,
+          "focus_tenengrad_norm": -1.681,
+          "focus_hf_ratio": -0.892,
+          "contrast_rms": 2.275,
+          "contrast_p99_p1": 1.361,
+          "mean_intensity": -4.516,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.342,
+          "illum_flatness": 10.561,
+          "noise_sigma_norm": -3.451,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": -0.45,
+          "blob_density_per_mpx": -1.047,
+          "texture_lbp_entropy": -0.073,
+          "jpeg_blockiness": 0.371
+        },
+        "zbad": {
+          "focus_lapvar_norm": 1.386,
+          "focus_tenengrad_norm": 1.681,
+          "focus_hf_ratio": 0.892,
+          "contrast_rms": 0.0,
+          "contrast_p99_p1": 0.0,
+          "mean_intensity": 4.516,
+          "clip_low_frac": 0.0,
+          "clip_high_frac": 0.342,
+          "illum_flatness": 10.561,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 0.0,
+          "debris_area_frac": 0.0,
+          "bubble_score": 0.0,
+          "foreground_frac": 0.45,
+          "blob_density_per_mpx": 1.047,
+          "texture_lbp_entropy": 0.073,
+          "jpeg_blockiness": 0.371,
+          "mean_intensity_low": 4.516
+        },
+        "percentiles": {
+          "focus_lapvar_norm": 0.0,
+          "focus_tenengrad_norm": 0.0,
+          "focus_hf_ratio": 12.4,
+          "contrast_rms": 100.0,
+          "contrast_p99_p1": 100.0,
+          "mean_intensity": 6.2,
+          "clip_low_frac": 50.0,
+          "clip_high_frac": 75.4,
+          "illum_flatness": 100.0,
+          "noise_sigma_norm": 0.0,
+          "debris_count": 80.0,
+          "debris_area_frac": 80.0,
+          "bubble_score": 50.0,
+          "foreground_frac": 33.1,
+          "blob_density_per_mpx": 15.7,
+          "texture_lbp_entropy": 20.0,
+          "jpeg_blockiness": 83.2
+        },
+        "qc_score": 10.561,
+        "level": "FAIL",
+        "causes": [
+          {
+            "label": "UNEVEN_ILLUMINATION",
+            "note": "background gradient or vignetting",
+            "metric": "illum_flatness",
+            "value": 1.2918268096292695,
+            "z": 10.561,
+            "action": "Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis."
+          },
+          {
+            "label": "UNDER_EXPOSED",
+            "note": "clipped dark pixels or very low brightness",
+            "metric": "mean_intensity_low",
+            "value": 0.4747021198272705,
+            "z": 4.516,
+            "action": "Increase exposure or lamp intensity and re-image."
+          }
+        ],
+        "density_state": "NORMAL",
+        "reference": "session batch (n=11)",
+        "latency_ms": 108.8
+      },
+      "card": {
+        "image_id": "221012_16-illumination",
+        "tool_call_id": "qc-0ec1b31b",
+        "level": "FAIL",
+        "qc_score": 10.561,
+        "density_state": "NORMAL",
+        "primary_cause": "UNEVEN_ILLUMINATION",
+        "claims": [
+          "The image QC result is FAIL with a qc_score of 10.561. [qc-0ec1b31b]",
+          "The main cause of the failure is UNEVEN_ILLUMINATION, with a triggering metric value of illum_flatness 1.2918. [qc-0ec1b31b]",
+          "The recommended action is to Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis. [qc-0ec1b31b]",
+          "Processing algorithms can remove artifacts before final image analysis. [PMC12779969::s1::2]",
+          "The verdict is based on the claim from [qc-0ec1b31b]. [qc-0ec1b31b]",
+          "Flat-field correction can be applied to remove uneven illumination artifacts. [PMC12779969::s6::2]"
+        ],
+        "blocked_claims": [],
+        "evidence": [
+          {
+            "chunk_id": "PMC12779969::s1::2",
+            "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+            "url": "https://europepmc.org/article/PMC/PMC12779969",
+            "license": "cc by",
+            "excerpt": "processing algorithms to remove the artifacts before the final image analysis.Fig. 1Experimental pipeline for optical imaging of large samples in presence of uneven illumination.a The ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC12779969::s6::2",
+            "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+            "url": "https://europepmc.org/article/PMC/PMC12779969",
+            "license": "cc by",
+            "excerpt": "additional step, after prior selection of images with acceptable removal of uneven illumination, to determine the best compromise between flat-field correction and general image quality ...",
+            "cited": true
+          },
+          {
+            "chunk_id": "PMC12779969::s6::3",
+            "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+            "url": "https://europepmc.org/article/PMC/PMC12779969",
+            "license": "cc by",
+            "excerpt": "distribution in the measurement and the number of tiles of the image to be corrected. However, when the optimal method cannot be determined beforehand, EVEN ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC13450170::s7::1",
+            "title": "An Integrated Micromirror System for High-Throughput Multi-Parametric Cell Imaging",
+            "url": "https://europepmc.org/article/PMC/PMC13450170",
+            "license": "cc by",
+            "excerpt": "of filters, including a 488 nm notch filter (F40\u2010487, AHF, T\u00fcbingen, Germany), a 561 nm notch filter (NF561\u201018, Thorlabs, L\u00fcbeck, Germany), a 488 nm long\u2010pass ...",
+            "cited": false
+          },
+          {
+            "chunk_id": "PMC13393655::s3::0",
+            "title": "The Cost of Accessibility: Considerations for Adopting Microscope Camera-Derived Images for Digital and Computational Pathology",
+            "url": "https://europepmc.org/article/PMC/PMC13393655",
+            "license": "cc by",
+            "excerpt": "The wide range of brightfield microscopes, each potentially paired with a variety of different camera models, creates significant heterogeneity in MCI systems, resulting in variability ...",
+            "cited": false
+          }
+        ],
+        "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims.",
+        "action": "Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis.",
+        "blocked": []
+      },
+      "ledger": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "The image QC result is FAIL with a qc_score of 10.561.",
+            "type": "numeric",
+            "evidence": [
+              "qc-0ec1b31b"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c2",
+            "text": "The main cause of the failure is UNEVEN_ILLUMINATION, with a triggering metric value of illum_flatness 1.2918.",
+            "type": "numeric",
+            "evidence": [
+              "qc-0ec1b31b"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c3",
+            "text": "The recommended action is to Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis.",
+            "type": "numeric",
+            "evidence": [
+              "qc-0ec1b31b"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c4",
+            "text": "Processing algorithms can remove artifacts before final image analysis.",
+            "type": "literature",
+            "evidence": [
+              "PMC12779969::s1::2"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c5",
+            "text": "The verdict is based on the claim from [qc-0ec1b31b].",
+            "type": "inference",
+            "evidence": [
+              "qc-0ec1b31b"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          },
+          {
+            "claim_id": "c6",
+            "text": "Flat-field correction can be applied to remove uneven illumination artifacts.",
+            "type": "literature",
+            "evidence": [
+              "PMC12779969::s6::2"
+            ],
+            "status": "supported",
+            "reason": "ok"
+          }
+        ],
+        "n_supported": 6,
+        "n_unsupported": 0,
+        "grounded_rate": 1.0
+      },
+      "ungated_draft": [
+        {
+          "text": "The image QC result is FAIL with a qc_score of 10.561.",
+          "type": "numeric",
+          "evidence": [
+            "qc-0ec1b31b"
+          ]
+        },
+        {
+          "text": "The main cause of the failure is UNEVEN_ILLUMINATION, with a triggering metric value of illum_flatness 1.2918.",
+          "type": "numeric",
+          "evidence": [
+            "qc-0ec1b31b"
+          ]
+        },
+        {
+          "text": "The recommended action is to Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis.",
+          "type": "numeric",
+          "evidence": [
+            "qc-0ec1b31b"
+          ]
+        },
+        {
+          "text": "Processing algorithms can remove artifacts before final image analysis.",
+          "type": "literature",
+          "evidence": [
+            "PMC12779969::s1::2"
+          ]
+        },
+        {
+          "text": "The verdict is based on the claim from [qc-0ec1b31b].",
+          "type": "inference",
+          "evidence": [
+            "qc-0ec1b31b"
+          ]
+        },
+        {
+          "text": "Flat-field correction can be applied to remove uneven illumination artifacts.",
+          "type": "literature",
+          "evidence": [
+            "PMC12779969::s6::2"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "step": "qc",
+          "tool": "inspect_image",
+          "args": {
+            "image_id": "221012_16-illumination"
+          },
+          "result_hash": "671453539b31a3c0",
+          "latency_ms": 0.08,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "uneven illumination vignetting flat-field correction brightfield microscopy",
+            "k": 3
+          },
+          "result_hash": "3549060954ea1cc2",
+          "latency_ms": 10.27,
+          "tokens": 0
+        },
+        {
+          "step": "retrieve",
+          "tool": "retrieve_evidence",
+          "args": {
+            "query": "underexposure low light brightfield microscopy imaging exposure",
+            "k": 3
+          },
+          "result_hash": "323e22c92e00e149",
+          "latency_ms": 723.16,
+          "tokens": 0
+        },
+        {
+          "step": "explain",
+          "tool": "llm.chat",
+          "args": {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "cached": true
+          },
+          "result_hash": "65aea1c427b8d438",
+          "latency_ms": 0.17,
+          "tokens": 2078
+        },
+        {
+          "step": "gate",
+          "tool": "check_claims",
+          "args": {
+            "n_claims": 6
+          },
+          "result_hash": "183282ad70517a62",
+          "latency_ms": 1.48,
+          "tokens": 0
+        }
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "prompt_tokens": 1807,
+        "completion_tokens": 271,
+        "llm_latency_ms": 1848.5520820013335
+      },
+      "provider": "workers_ai"
+    }
+  ],
+  "results": {
+    "e1": {
+      "n_images": 60,
+      "n_reference_images": 60,
+      "kinds": [
+        "gaussian_blur",
+        "defocus",
+        "motion_blur",
+        "gaussian_noise",
+        "illumination",
+        "contrast",
+        "overexpose",
+        "underexpose",
+        "debris",
+        "bubble",
+        "jpeg"
+      ],
+      "severities": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "reference_note": "pre-registered: median/MAD of clean dev-session images; batch_reference: median/MAD of the clean images in the evaluated batch itself (unsupervised, no labels), added after the pre-registered run revealed cross-session acquisition shift",
+      "overall": {
+        "detection_rate_sev3plus": 0.9707070707070707,
+        "attribution_acc_detected": 0.30950861518825784,
+        "attribution_top2_detected": 0.48978940650925334,
+        "auroc_clean_vs_sev3plus": 0.7776473063973065,
+        "auroc_clean_vs_sev3plus_ci95": [
+          0.7113706402988177,
+          0.8377916765016458
+        ],
+        "auroc_focus_only": 0.6290698653198652,
+        "attribution_random_baseline": 0.1111111111111111
+      },
+      "per_kind": {
+        "gaussian_blur": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "spearman_severity_vs_qc": 0.4517074810961822,
+          "auroc_clean_vs_sev3plus": 0.8742129629629629,
+          "auroc_focus_only": 1.0,
+          "detection_rate_by_severity": {
+            "1": 0.9166666666666666,
+            "2": 0.9666666666666667,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.0,
+          "attribution_top2_detected": 0.0,
+          "n": 300
+        },
+        "defocus": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "spearman_severity_vs_qc": 0.4866175624537204,
+          "auroc_clean_vs_sev3plus": 0.8824074074074074,
+          "auroc_focus_only": 1.0,
+          "detection_rate_by_severity": {
+            "1": 0.9333333333333333,
+            "2": 0.9666666666666667,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.0,
+          "attribution_top2_detected": 0.0,
+          "n": 300
+        },
+        "motion_blur": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "spearman_severity_vs_qc": 0.3643351696630568,
+          "auroc_clean_vs_sev3plus": 0.7944444444444444,
+          "auroc_focus_only": 0.9746296296296295,
+          "detection_rate_by_severity": {
+            "1": 0.9333333333333333,
+            "2": 0.95,
+            "3": 0.9833333333333333,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.0,
+          "attribution_top2_detected": 0.0,
+          "n": 300
+        },
+        "gaussian_noise": {
+          "expected_label": "NOISE",
+          "spearman_severity_vs_qc": 0.39444627252947845,
+          "auroc_clean_vs_sev3plus": 0.6514814814814814,
+          "auroc_focus_only": 0.2933796296296296,
+          "detection_rate_by_severity": {
+            "1": 0.8166666666666667,
+            "2": 0.8833333333333333,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.46099290780141844,
+          "attribution_top2_detected": 0.8687943262411347,
+          "n": 300
+        },
+        "illumination": {
+          "expected_label": "UNEVEN_ILLUMINATION",
+          "spearman_severity_vs_qc": 0.08497776395057507,
+          "auroc_clean_vs_sev3plus": 0.5513888888888889,
+          "auroc_focus_only": 0.6225462962962962,
+          "detection_rate_by_severity": {
+            "1": 0.8,
+            "2": 0.8,
+            "3": 0.8166666666666667,
+            "4": 0.8833333333333333,
+            "5": 0.9
+          },
+          "attribution_acc_detected": 0.015873015873015872,
+          "attribution_top2_detected": 0.19047619047619047,
+          "n": 300
+        },
+        "contrast": {
+          "expected_label": "LOW_CONTRAST",
+          "spearman_severity_vs_qc": 0.6912921610844492,
+          "auroc_clean_vs_sev3plus": 0.8477777777777779,
+          "auroc_focus_only": 0.5002777777777778,
+          "detection_rate_by_severity": {
+            "1": 1.0,
+            "2": 1.0,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.9233333333333333,
+          "attribution_top2_detected": 1.0,
+          "n": 300
+        },
+        "overexpose": {
+          "expected_label": "OVER_EXPOSED",
+          "spearman_severity_vs_qc": 0.5305325932579794,
+          "auroc_clean_vs_sev3plus": 0.9277314814814814,
+          "auroc_focus_only": 0.6269907407407407,
+          "detection_rate_by_severity": {
+            "1": 0.9166666666666666,
+            "2": 1.0,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.010169491525423728,
+          "attribution_top2_detected": 0.5966101694915255,
+          "n": 300
+        },
+        "underexpose": {
+          "expected_label": "UNDER_EXPOSED",
+          "spearman_severity_vs_qc": 0.803260182256137,
+          "auroc_clean_vs_sev3plus": 0.895,
+          "auroc_focus_only": 0.4230555555555554,
+          "detection_rate_by_severity": {
+            "1": 1.0,
+            "2": 1.0,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.3333333333333333,
+          "attribution_top2_detected": 0.39666666666666667,
+          "n": 300
+        },
+        "debris": {
+          "expected_label": "DEBRIS",
+          "spearman_severity_vs_qc": 0.08361088761374853,
+          "auroc_clean_vs_sev3plus": 0.5433333333333332,
+          "auroc_focus_only": 0.4901388888888889,
+          "detection_rate_by_severity": {
+            "1": 0.7666666666666667,
+            "2": 0.7666666666666667,
+            "3": 0.8,
+            "4": 0.8166666666666667,
+            "5": 0.8333333333333334
+          },
+          "attribution_acc_detected": 0.3891213389121339,
+          "attribution_top2_detected": 0.5397489539748954,
+          "n": 300
+        },
+        "bubble": {
+          "expected_label": "BUBBLE",
+          "spearman_severity_vs_qc": 0.4153663344918549,
+          "auroc_clean_vs_sev3plus": 0.6938888888888888,
+          "auroc_focus_only": 0.48574074074074064,
+          "detection_rate_by_severity": {
+            "1": 0.7833333333333333,
+            "2": 1.0,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.3902439024390244,
+          "attribution_top2_detected": 0.7735191637630662,
+          "n": 300
+        },
+        "jpeg": {
+          "expected_label": "COMPRESSION",
+          "spearman_severity_vs_qc": 0.7482227880138005,
+          "auroc_clean_vs_sev3plus": 0.8924537037037037,
+          "auroc_focus_only": 0.5030092592592592,
+          "detection_rate_by_severity": {
+            "1": 1.0,
+            "2": 1.0,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.8366666666666667,
+          "attribution_top2_detected": 0.9866666666666667,
+          "n": 300
+        }
+      },
+      "confusion_sev3plus": {
+        "BUBBLE": {
+          "BUBBLE": 96,
+          "COMPRESSION": 0,
+          "DEBRIS": 45,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 39,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "COMPRESSION": {
+          "BUBBLE": 0,
+          "COMPRESSION": 153,
+          "DEBRIS": 26,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 1,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "DEBRIS": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 69,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 78,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 33
+        },
+        "DEFOCUS_OR_BLUR": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 324,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 215,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 1
+        },
+        "LOW_CONTRAST": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 8,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 172,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "NOISE": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 3,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 7,
+          "NOISE": 123,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 47,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "OVER_EXPOSED": {
+          "BUBBLE": 5,
+          "COMPRESSION": 0,
+          "DEBRIS": 149,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 26,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "UNDER_EXPOSED": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 4,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 76,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 100,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "UNEVEN_ILLUMINATION": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 79,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 73,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 4,
+          "NONE": 24
+        }
+      },
+      "threshold_sweep": {
+        "1.5": {
+          "clean_flag_rate": 0.85,
+          "sev3plus_detection_rate": 0.9858585858585859
+        },
+        "2.0": {
+          "clean_flag_rate": 0.8,
+          "sev3plus_detection_rate": 0.9787878787878788
+        },
+        "2.5": {
+          "clean_flag_rate": 0.7833333333333333,
+          "sev3plus_detection_rate": 0.9777777777777777
+        },
+        "3.0": {
+          "clean_flag_rate": 0.7666666666666667,
+          "sev3plus_detection_rate": 0.9707070707070707
+        },
+        "4.0": {
+          "clean_flag_rate": 0.7666666666666667,
+          "sev3plus_detection_rate": 0.9641414141414142
+        },
+        "5.0": {
+          "clean_flag_rate": 0.75,
+          "sev3plus_detection_rate": 0.9580808080808081
+        },
+        "6.0": {
+          "clean_flag_rate": 0.7166666666666667,
+          "sev3plus_detection_rate": 0.947979797979798
+        }
+      },
+      "clean_flag_rate": 0.7666666666666667,
+      "batch_reference": {
+        "detection_rate_sev3plus": 0.7636363636363637,
+        "attribution_acc_detected": 0.40615647712697733,
+        "attribution_top2_detected": 0.5703292005130398,
+        "auroc_clean_vs_sev3plus": 0.7280471380471379,
+        "auroc_clean_vs_sev3plus_ci95": [
+          0.6579261729280254,
+          0.7970166045582264
+        ],
+        "auroc_focus_only": 0.6198863636363636,
+        "attribution_random_baseline": 0.1111111111111111,
+        "clean_flag_rate": 0.4666666666666667
+      },
+      "per_kind_batch": {
+        "gaussian_blur": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "spearman_severity_vs_qc": 0.32145462668158065,
+          "auroc_clean_vs_sev3plus": 0.7556481481481482,
+          "auroc_focus_only": 1.0,
+          "detection_rate_by_severity": {
+            "1": 0.48333333333333334,
+            "2": 0.65,
+            "3": 0.7833333333333333,
+            "4": 0.8666666666666667,
+            "5": 0.6666666666666666
+          },
+          "attribution_acc_detected": 0.0,
+          "attribution_top2_detected": 0.0,
+          "n": 300
+        },
+        "defocus": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "spearman_severity_vs_qc": 0.35265902295833246,
+          "auroc_clean_vs_sev3plus": 0.7756481481481482,
+          "auroc_focus_only": 1.0,
+          "detection_rate_by_severity": {
+            "1": 0.5333333333333333,
+            "2": 0.65,
+            "3": 0.8,
+            "4": 0.8833333333333333,
+            "5": 0.6833333333333333
+          },
+          "attribution_acc_detected": 0.0,
+          "attribution_top2_detected": 0.0,
+          "n": 300
+        },
+        "motion_blur": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "spearman_severity_vs_qc": 0.19997819727667046,
+          "auroc_clean_vs_sev3plus": 0.6492592592592593,
+          "auroc_focus_only": 0.9746296296296296,
+          "detection_rate_by_severity": {
+            "1": 0.4666666666666667,
+            "2": 0.55,
+            "3": 0.6833333333333333,
+            "4": 0.7,
+            "5": 0.6166666666666667
+          },
+          "attribution_acc_detected": 0.0,
+          "attribution_top2_detected": 0.0,
+          "n": 300
+        },
+        "gaussian_noise": {
+          "expected_label": "NOISE",
+          "spearman_severity_vs_qc": 0.5332087227723654,
+          "auroc_clean_vs_sev3plus": 0.7594444444444445,
+          "auroc_focus_only": 0.25527777777777777,
+          "detection_rate_by_severity": {
+            "1": 0.9333333333333333,
+            "2": 1.0,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.6722972972972973,
+          "attribution_top2_detected": 0.793918918918919,
+          "n": 300
+        },
+        "illumination": {
+          "expected_label": "UNEVEN_ILLUMINATION",
+          "spearman_severity_vs_qc": 0.24206868101900827,
+          "auroc_clean_vs_sev3plus": 0.6415740740740741,
+          "auroc_focus_only": 0.6184259259259259,
+          "detection_rate_by_severity": {
+            "1": 0.48333333333333334,
+            "2": 0.55,
+            "3": 0.6333333333333333,
+            "4": 0.6,
+            "5": 0.75
+          },
+          "attribution_acc_detected": 0.0055248618784530384,
+          "attribution_top2_detected": 0.14917127071823205,
+          "n": 300
+        },
+        "contrast": {
+          "expected_label": "LOW_CONTRAST",
+          "spearman_severity_vs_qc": 0.17708439737630818,
+          "auroc_clean_vs_sev3plus": 0.4622685185185185,
+          "auroc_focus_only": 0.5003703703703704,
+          "detection_rate_by_severity": {
+            "1": 0.2833333333333333,
+            "2": 0.23333333333333334,
+            "3": 0.2,
+            "4": 0.13333333333333333,
+            "5": 0.1
+          },
+          "attribution_acc_detected": 0.0,
+          "attribution_top2_detected": 0.0,
+          "n": 300
+        },
+        "overexpose": {
+          "expected_label": "OVER_EXPOSED",
+          "spearman_severity_vs_qc": 0.6177092459199179,
+          "auroc_clean_vs_sev3plus": 0.9821296296296297,
+          "auroc_focus_only": 0.6179629629629629,
+          "detection_rate_by_severity": {
+            "1": 0.9666666666666667,
+            "2": 1.0,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.40268456375838924,
+          "attribution_top2_detected": 0.9832214765100671,
+          "n": 300
+        },
+        "underexpose": {
+          "expected_label": "UNDER_EXPOSED",
+          "spearman_severity_vs_qc": 0.5940061341623284,
+          "auroc_clean_vs_sev3plus": 0.7448148148148148,
+          "auroc_focus_only": 0.4056944444444444,
+          "detection_rate_by_severity": {
+            "1": 0.26666666666666666,
+            "2": 0.2,
+            "3": 0.48333333333333334,
+            "4": 0.6333333333333333,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.7741935483870968,
+          "attribution_top2_detected": 0.9161290322580645,
+          "n": 300
+        },
+        "debris": {
+          "expected_label": "DEBRIS",
+          "spearman_severity_vs_qc": 0.1667946317774496,
+          "auroc_clean_vs_sev3plus": 0.6025462962962962,
+          "auroc_focus_only": 0.47351851851851856,
+          "detection_rate_by_severity": {
+            "1": 0.5,
+            "2": 0.5666666666666667,
+            "3": 0.6166666666666667,
+            "4": 0.6666666666666666,
+            "5": 0.7
+          },
+          "attribution_acc_detected": 0.6612021857923497,
+          "attribution_top2_detected": 0.7049180327868853,
+          "n": 300
+        },
+        "bubble": {
+          "expected_label": "BUBBLE",
+          "spearman_severity_vs_qc": 0.49413949484100067,
+          "auroc_clean_vs_sev3plus": 0.7554166666666666,
+          "auroc_focus_only": 0.4790740740740741,
+          "detection_rate_by_severity": {
+            "1": 0.4666666666666667,
+            "2": 1.0,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.5970149253731343,
+          "attribution_top2_detected": 0.8097014925373134,
+          "n": 300
+        },
+        "jpeg": {
+          "expected_label": "COMPRESSION",
+          "spearman_severity_vs_qc": 0.7319147985995357,
+          "auroc_clean_vs_sev3plus": 0.8797685185185186,
+          "auroc_focus_only": 0.4937962962962963,
+          "detection_rate_by_severity": {
+            "1": 1.0,
+            "2": 1.0,
+            "3": 1.0,
+            "4": 1.0,
+            "5": 1.0
+          },
+          "attribution_acc_detected": 0.7633333333333333,
+          "attribution_top2_detected": 0.97,
+          "n": 300
+        }
+      },
+      "confusion_sev3plus_batch": {
+        "BUBBLE": {
+          "BUBBLE": 122,
+          "COMPRESSION": 0,
+          "DEBRIS": 41,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 17,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "COMPRESSION": {
+          "BUBBLE": 0,
+          "COMPRESSION": 143,
+          "DEBRIS": 26,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 10,
+          "UNDER_EXPOSED": 1,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "DEBRIS": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 84,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 9,
+          "OVER_EXPOSED": 26,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 61
+        },
+        "DEFOCUS_OR_BLUR": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 401,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 139
+        },
+        "LOW_CONTRAST": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 14,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 12,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 154
+        },
+        "NOISE": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 2,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 129,
+          "OVER_EXPOSED": 37,
+          "UNDER_EXPOSED": 12,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "OVER_EXPOSED": {
+          "BUBBLE": 1,
+          "COMPRESSION": 0,
+          "DEBRIS": 127,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 52,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "UNDER_EXPOSED": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 5,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 4,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 171,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "UNEVEN_ILLUMINATION": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 79,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 5,
+          "OVER_EXPOSED": 34,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 1,
+          "NONE": 61
+        }
+      },
+      "threshold_sweep_batch": {
+        "1.5": {
+          "clean_flag_rate": 0.65,
+          "sev3plus_detection_rate": 0.9434343434343434
+        },
+        "2.0": {
+          "clean_flag_rate": 0.55,
+          "sev3plus_detection_rate": 0.8459595959595959
+        },
+        "2.5": {
+          "clean_flag_rate": 0.48333333333333334,
+          "sev3plus_detection_rate": 0.7823232323232323
+        },
+        "3.0": {
+          "clean_flag_rate": 0.4666666666666667,
+          "sev3plus_detection_rate": 0.7636363636363637
+        },
+        "4.0": {
+          "clean_flag_rate": 0.45,
+          "sev3plus_detection_rate": 0.7474747474747475
+        },
+        "5.0": {
+          "clean_flag_rate": 0.38333333333333336,
+          "sev3plus_detection_rate": 0.7237373737373738
+        },
+        "6.0": {
+          "clean_flag_rate": 0.36666666666666664,
+          "sev3plus_detection_rate": 0.7116161616161616
+        }
+      },
+      "provenance": {
+        "git_sha": "d2b906b8daee35b180320ed359c03381c17d7edd",
+        "timestamp_utc": "2026-10-10T15:04:34+00:00",
+        "config_hash": "4d7368f2592c8582",
+        "python": "3.12.3",
+        "seed": 1337,
+        "data_manifest_sha256": "b89d5a58724a62503246308b756b1838a4e1cb7a84074a2185c8d42bb158aab0"
+      }
+    },
+    "e2": {
+      "n_test": 301,
+      "n_dev": 179,
+      "n_test_bad": 137,
+      "split": "session-grouped (image-id date prefix); no session in both splits",
+      "label": "expert decision good/bad from the dataset",
+      "detectors": {
+        "zelos_qc_score": {
+          "auroc": 0.39324817518248173,
+          "auroc_ci95": [
+            0.33222471739845366,
+            0.45935563231062077
+          ]
+        },
+        "zelos_qc_score_session_reference": {
+          "auroc": 0.4766111803453801,
+          "auroc_ci95": [
+            0.4125746624184,
+            0.5413987118687842
+          ]
+        },
+        "focus_only": {
+          "auroc": 0.5244347516467865,
+          "auroc_ci95": [
+            0.46018712897449,
+            0.5869196059841605
+          ]
+        },
+        "random": {
+          "auroc": 0.5181591596937868,
+          "auroc_ci95": [
+            0.45412512033764285,
+            0.5826908896115431
+          ]
+        },
+        "knn_handcrafted_k15": {
+          "auroc": 0.7099207762150613,
+          "auroc_ci95": [
+            0.6530383160369492,
+            0.7672398665308541
+          ]
+        }
+      },
+      "zelos_at_review_threshold": {
+        "threshold_z": 3.0,
+        "balanced_accuracy": 0.380429944810397,
+        "f1_bad": 0.4398826979472141,
+        "cohen_kappa": -0.22988554925660498,
+        "flag_rate": 0.6777408637873754,
+        "majority_baseline_balanced_accuracy": 0.5
+      },
+      "per_cell_line": {
+        "A549": {
+          "n": 51,
+          "auroc_zelos": 0.7150621118012422,
+          "auroc_knn_handcrafted": 0.6645962732919255
+        },
+        "CACO": {
+          "n": 48,
+          "auroc_zelos": 0.14109347442680775,
+          "auroc_knn_handcrafted": 0.7804232804232804
+        },
+        "HPMEC": {
+          "n": 64,
+          "auroc_zelos": 0.4402834008097166,
+          "auroc_knn_handcrafted": 0.8279352226720648
+        },
+        "HSAEC": {
+          "n": 74,
+          "auroc_zelos": 0.5155210643015521,
+          "auroc_knn_handcrafted": 0.5835181079083518
+        },
+        "HUVEC": {
+          "n": 28,
+          "auroc_zelos": 0.06770833333333334,
+          "auroc_knn_handcrafted": 1.0
+        },
+        "NHBE": {
+          "n": 36,
+          "auroc_zelos": 0.22993827160493827,
+          "auroc_knn_handcrafted": 0.5262345679012346
+        }
+      },
+      "per_metric_auroc": {
+        "focus_lapvar_norm": 0.5220313334520206,
+        "focus_tenengrad_norm": 0.5020473562399858,
+        "focus_hf_ratio": 0.5749510414812177,
+        "contrast_rms": 0.6392647320633791,
+        "contrast_p99_p1": 0.6440270607085633,
+        "mean_intensity": 0.5682748798290903,
+        "clip_low_frac": 0.5047178209008367,
+        "clip_high_frac": 0.6607619725832294,
+        "illum_flatness": 0.5032935730817163,
+        "noise_sigma_norm": 0.5942228947836923,
+        "debris_count": 0.5185374755207406,
+        "debris_area_frac": 0.514999109845113,
+        "bubble_score": 0.5042949973295353,
+        "foreground_frac": 0.5145985401459854,
+        "blob_density_per_mpx": 0.5788454691116254,
+        "texture_lbp_entropy": 0.5845202065159338,
+        "jpeg_blockiness": 0.7280576820366744
+      },
+      "provenance": {
+        "git_sha": "ef8f96b3891b0962f393743a75951caadc1c523e",
+        "timestamp_utc": "2026-10-10T14:58:49+00:00",
+        "config_hash": "4d7368f2592c8582",
+        "python": "3.12.3",
+        "seed": 1337,
+        "data_manifest_sha256": "b89d5a58724a62503246308b756b1838a4e1cb7a84074a2185c8d42bb158aab0"
+      }
+    },
+    "e4": {
+      "modes": {
+        "bm25": {
+          "paper_level": {
+            "n": 61,
+            "hit@1": 0.9180327868852459,
+            "hit@1_ci95": [
+              0.822051145758621,
+              0.9644809570889337
+            ],
+            "hit@3": 0.9672131147540983,
+            "hit@3_ci95": [
+              0.888102992233543,
+              0.9909622991843121
+            ],
+            "hit@5": 0.9836065573770492,
+            "hit@5_ci95": [
+              0.9128093437223194,
+              0.997100343885636
+            ],
+            "mrr": 0.9439890710382512,
+            "ndcg@5": 0.9539760010691198
+          },
+          "chunk_level": {
+            "n": 61,
+            "hit@1": 0.639344262295082,
+            "hit@1_ci95": [
+              0.5139167326739971,
+              0.7482606349418546
+            ],
+            "hit@3": 0.8524590163934426,
+            "hit@3_ci95": [
+              0.7427653049810489,
+              0.920389213106105
+            ],
+            "hit@5": 0.9016393442622951,
+            "hit@5_ci95": [
+              0.8015516580247642,
+              0.9541360486326903
+            ],
+            "mrr": 0.742896174863388,
+            "ndcg@5": 0.7828167246084284
+          },
+          "paper_hit@5_by_type": {
+            "answerable": {
+              "n": 47,
+              "hit@5": 1.0
+            },
+            "reworded": {
+              "n": 14,
+              "hit@5": 0.9285714285714286
+            }
+          },
+          "latency_ms_p50": 5.228295998676913
+        },
+        "dense": {
+          "paper_level": {
+            "n": 61,
+            "hit@1": 0.4426229508196721,
+            "hit@1_ci95": [
+              0.32507608033920443,
+              0.5669685329954449
+            ],
+            "hit@3": 0.7049180327868853,
+            "hit@3_ci95": [
+              0.5811036064161055,
+              0.8044513459601468
+            ],
+            "hit@5": 0.7377049180327869,
+            "hit@5_ci95": [
+              0.6156301967155846,
+              0.8316135480408682
+            ],
+            "mrr": 0.5824551131928181,
+            "ndcg@5": 0.6347223259147464
+          },
+          "chunk_level": {
+            "n": 61,
+            "hit@1": 0.29508196721311475,
+            "hit@1_ci95": [
+              0.19554865403985322,
+              0.4188963935838945
+            ],
+            "hit@3": 0.4426229508196721,
+            "hit@3_ci95": [
+              0.32507608033920443,
+              0.5669685329954449
+            ],
+            "hit@5": 0.47540983606557374,
+            "hit@5_ci95": [
+              0.3553028228679598,
+              0.5984305828468899
+            ],
+            "mrr": 0.37565703877179285,
+            "ndcg@5": 0.39298652677320034
+          },
+          "paper_hit@5_by_type": {
+            "answerable": {
+              "n": 47,
+              "hit@5": 0.8085106382978723
+            },
+            "reworded": {
+              "n": 14,
+              "hit@5": 0.5
+            }
+          },
+          "latency_ms_p50": 21.747778000644757
+        },
+        "hybrid": {
+          "paper_level": {
+            "n": 61,
+            "hit@1": 0.7704918032786885,
+            "hit@1_ci95": [
+              0.6508635609254849,
+              0.858068976211168
+            ],
+            "hit@3": 0.9016393442622951,
+            "hit@3_ci95": [
+              0.8015516580247642,
+              0.9541360486326903
+            ],
+            "hit@5": 0.9672131147540983,
+            "hit@5_ci95": [
+              0.888102992233543,
+              0.9909622991843121
+            ],
+            "mrr": 0.8499089253187614,
+            "ndcg@5": 0.8908109459474073
+          },
+          "chunk_level": {
+            "n": 61,
+            "hit@1": 0.4426229508196721,
+            "hit@1_ci95": [
+              0.32507608033920443,
+              0.5669685329954449
+            ],
+            "hit@3": 0.7704918032786885,
+            "hit@3_ci95": [
+              0.6508635609254849,
+              0.858068976211168
+            ],
+            "hit@5": 0.819672131147541,
+            "hit@5_ci95": [
+              0.7052560663212193,
+              0.8962096593857343
+            ],
+            "mrr": 0.6010473588342441,
+            "ndcg@5": 0.6499116305217788
+          },
+          "paper_hit@5_by_type": {
+            "answerable": {
+              "n": 47,
+              "hit@5": 0.9787234042553191
+            },
+            "reworded": {
+              "n": 14,
+              "hit@5": 0.9285714285714286
+            }
+          },
+          "latency_ms_p50": 60.7633050003642
+        },
+        "hybrid_rerank": {
+          "paper_level": {
+            "n": 61,
+            "hit@1": 0.7704918032786885,
+            "hit@1_ci95": [
+              0.6508635609254849,
+              0.858068976211168
+            ],
+            "hit@3": 0.9016393442622951,
+            "hit@3_ci95": [
+              0.8015516580247642,
+              0.9541360486326903
+            ],
+            "hit@5": 0.9672131147540983,
+            "hit@5_ci95": [
+              0.888102992233543,
+              0.9909622991843121
+            ],
+            "mrr": 0.8499089253187614,
+            "ndcg@5": 0.8908109459474073
+          },
+          "chunk_level": {
+            "n": 61,
+            "hit@1": 0.4426229508196721,
+            "hit@1_ci95": [
+              0.32507608033920443,
+              0.5669685329954449
+            ],
+            "hit@3": 0.7704918032786885,
+            "hit@3_ci95": [
+              0.6508635609254849,
+              0.858068976211168
+            ],
+            "hit@5": 0.819672131147541,
+            "hit@5_ci95": [
+              0.7052560663212193,
+              0.8962096593857343
+            ],
+            "mrr": 0.6010473588342441,
+            "ndcg@5": 0.6499116305217788
+          },
+          "paper_hit@5_by_type": {
+            "answerable": {
+              "n": 47,
+              "hit@5": 0.9787234042553191
+            },
+            "reworded": {
+              "n": 14,
+              "hit@5": 0.9285714285714286
+            }
+          },
+          "latency_ms_p50": 63.92804900133342
+        }
+      },
+      "abstention": {
+        "bm25": {
+          "accuracy_on_unanswerable": 0.0,
+          "n_unanswerable": 12,
+          "accuracy_on_unanswerable_ci95": [
+            0.0,
+            0.2425007574992425
+          ],
+          "false_abstention_rate_on_answerable": 0.0,
+          "n_answerable": 61,
+          "false_abstention_rate_ci95": [
+            0.0,
+            0.05924591620194442
+          ],
+          "top_score_median_unanswerable": 9.512714982552815,
+          "top_score_median_answerable": 29.032427597413363,
+          "top_score_kind": "max(bm25_top, dense_top) raw"
+        },
+        "dense": {
+          "accuracy_on_unanswerable": 0.4166666666666667,
+          "n_unanswerable": 12,
+          "accuracy_on_unanswerable_ci95": [
+            0.19325746190524656,
+            0.6804926643446272
+          ],
+          "false_abstention_rate_on_answerable": 0.32786885245901637,
+          "n_answerable": 61,
+          "false_abstention_rate_ci95": [
+            0.2233495518172607,
+            0.45278428818668737
+          ],
+          "top_score_median_unanswerable": 9.512714982552815,
+          "top_score_median_answerable": 29.032427597413363,
+          "top_score_kind": "max(bm25_top, dense_top) raw"
+        },
+        "hybrid": {
+          "accuracy_on_unanswerable": 0.0,
+          "n_unanswerable": 12,
+          "accuracy_on_unanswerable_ci95": [
+            0.0,
+            0.2425007574992425
+          ],
+          "false_abstention_rate_on_answerable": 0.0,
+          "n_answerable": 61,
+          "false_abstention_rate_ci95": [
+            0.0,
+            0.05924591620194442
+          ],
+          "top_score_median_unanswerable": 9.512714982552815,
+          "top_score_median_answerable": 29.032427597413363,
+          "top_score_kind": "max(bm25_top, dense_top) raw"
+        },
+        "hybrid_rerank": {
+          "accuracy_on_unanswerable": 0.0,
+          "n_unanswerable": 12,
+          "accuracy_on_unanswerable_ci95": [
+            0.0,
+            0.2425007574992425
+          ],
+          "false_abstention_rate_on_answerable": 0.0,
+          "n_answerable": 61,
+          "false_abstention_rate_ci95": [
+            0.0,
+            0.05924591620194442
+          ],
+          "top_score_median_unanswerable": 9.512714982552815,
+          "top_score_median_answerable": 29.032427597413363,
+          "top_score_kind": "max(bm25_top, dense_top) raw"
+        }
+      },
+      "config": {
+        "k_depth": 10,
+        "embedding_provider": "hash",
+        "embedding_model": "hashing-word12-1024",
+        "rerank_model": "rerank-v3.5",
+        "rerank_available": false,
+        "thresholds": {
+          "min_rerank": 0.1,
+          "min_bm25": 3.0,
+          "min_dense": 0.3,
+          "candidates": 30,
+          "rrf_k": 60,
+          "rerank_pool": 20
+        },
+        "offline_flag": true
+      },
+      "corpus": {
+        "n_papers": 48,
+        "n_chunks": 2379,
+        "chunks_sha256": "f5426580481abb5c061c7b19a5ee32e7553d4b969eba48988f77f4ca8a5ce82f"
+      },
+      "gold": {
+        "path": "eval/retrieval_gold.jsonl",
+        "sha256": "493c9ef1d76658f5877d0b4ab31d8f1d0251b9e0f12abb73c2a15e1e1dc8c852",
+        "n_answerable": 47,
+        "n_reworded": 14,
+        "n_unanswerable": 12
+      },
+      "cohere_calls": {
+        "this_run": {
+          "embed": 0,
+          "rerank": 0
+        },
+        "cumulative_recorded_in_ledger": {
+          "embed": 51
+        }
+      },
+      "runtime_s": 38.43744230270386,
+      "provenance": {
+        "git_sha": "fe73ab8e41a02f52393ec40665855a01fe9d2dc4",
+        "timestamp_utc": "2026-10-10T14:58:29+00:00",
+        "config_hash": "4d7368f2592c8582",
+        "python": "3.12.3",
+        "seed": 1337,
+        "corpus_sha256": "f5426580481abb5c061c7b19a5ee32e7553d4b969eba48988f77f4ca8a5ce82f"
+      }
+    },
+    "e5": {
+      "experiment": "E5 grounding",
+      "provenance": {
+        "git_sha": "fe73ab8e41a02f52393ec40665855a01fe9d2dc4",
+        "timestamp_utc": "2026-10-10T14:58:37+00:00",
+        "config_hash": "4d7368f2592c8582",
+        "python": "3.12.3",
+        "seed": 1337,
+        "llm_model": "@cf/meta/llama-3.1-8b-instruct-fast",
+        "gate_vectors": "0",
+        "qc_source": "results/qc_samples.json",
+        "n_qc_distinct": 30,
+        "evidence_source": "bm25 over corpus/chunks.jsonl (replayed from eval/llm_cache/retrieval_cache.json)",
+        "llm_mode": "replay",
+        "thresholds": {
+          "num_rel_tol": 0.001,
+          "theta_lex": 0.3,
+          "theta_vec": 0.35,
+          "repair_rounds": 1
+        }
+      },
+      "n": {
+        "explain": 20,
+        "ask": 18,
+        "adversarial": 14,
+        "unanswerable": 8
+      },
+      "conditions": {
+        "template": {
+          "n_cases": 38,
+          "n_claims_displayed": 114,
+          "supported_claims_per_case": 3.0,
+          "grounded_claim_rate": {
+            "k": 114,
+            "n": 114,
+            "rate": 1.0,
+            "ci95": [
+              0.9674,
+              1.0
+            ]
+          },
+          "unsupported_claim_rate_in_output": {
+            "k": 0,
+            "n": 114,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0326
+            ]
+          },
+          "numeric_hallucination_rate": {
+            "k": 0,
+            "n": 72,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0507
+            ]
+          },
+          "citation_exists_rate": {
+            "k": 36,
+            "n": 36,
+            "rate": 1.0,
+            "ci95": [
+              0.9036,
+              1.0
+            ]
+          },
+          "citation_valid_rate": {
+            "k": 36,
+            "n": 36,
+            "rate": 1.0,
+            "ci95": [
+              0.9036,
+              1.0
+            ]
+          },
+          "tokens_per_answer": 0.0,
+          "llm_calls_per_answer": 0.0,
+          "latency_ms_p50": 2.07,
+          "adversarial": {
+            "refusal_correctness": {
+              "k": 14,
+              "n": 14,
+              "rate": 1.0,
+              "ci95": [
+                0.7847,
+                1.0
+              ]
+            },
+            "explicit_refusal_or_abstain": {
+              "k": 11,
+              "n": 14,
+              "rate": 0.7857142857142857,
+              "ci95": [
+                0.5241,
+                0.9243
+              ]
+            },
+            "unsafe_output_rate": {
+              "k": 0,
+              "n": 14,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.2153
+              ]
+            }
+          },
+          "abstention": {
+            "precision": {
+              "k": 8,
+              "n": 10,
+              "rate": 0.8,
+              "ci95": [
+                0.4902,
+                0.9433
+              ]
+            },
+            "recall": {
+              "k": 8,
+              "n": 8,
+              "rate": 1.0,
+              "ci95": [
+                0.6756,
+                1.0
+              ]
+            },
+            "n_unanswerable": 8,
+            "n_answerable": 10
+          }
+        },
+        "llm_ungated": {
+          "n_cases": 38,
+          "n_claims_displayed": 179,
+          "supported_claims_per_case": 4.394736842105263,
+          "grounded_claim_rate": {
+            "k": 167,
+            "n": 179,
+            "rate": 0.9329608938547486,
+            "ci95": [
+              0.8865,
+              0.9612
+            ]
+          },
+          "unsupported_claim_rate_in_output": {
+            "k": 12,
+            "n": 179,
+            "rate": 0.0670391061452514,
+            "ci95": [
+              0.0388,
+              0.1135
+            ]
+          },
+          "numeric_hallucination_rate": {
+            "k": 0,
+            "n": 45,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0787
+            ]
+          },
+          "citation_exists_rate": {
+            "k": 86,
+            "n": 86,
+            "rate": 1.0,
+            "ci95": [
+              0.9572,
+              1.0
+            ]
+          },
+          "citation_valid_rate": {
+            "k": 77,
+            "n": 86,
+            "rate": 0.8953488372093024,
+            "ci95": [
+              0.8129,
+              0.944
+            ]
+          },
+          "tokens_per_answer": 275.5263157894737,
+          "llm_calls_per_answer": 0.47368421052631576,
+          "latency_ms_p50": 1269.1692939997665,
+          "adversarial": {
+            "refusal_correctness": {
+              "k": 11,
+              "n": 14,
+              "rate": 0.7857142857142857,
+              "ci95": [
+                0.5241,
+                0.9243
+              ]
+            },
+            "explicit_refusal_or_abstain": {
+              "k": 0,
+              "n": 14,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.2153
+              ]
+            },
+            "unsafe_output_rate": {
+              "k": 3,
+              "n": 14,
+              "rate": 0.21428571428571427,
+              "ci95": [
+                0.0757,
+                0.4759
+              ]
+            }
+          },
+          "abstention": {
+            "precision": {
+              "k": 5,
+              "n": 5,
+              "rate": 1.0,
+              "ci95": [
+                0.5655,
+                1.0
+              ]
+            },
+            "recall": {
+              "k": 5,
+              "n": 8,
+              "rate": 0.625,
+              "ci95": [
+                0.3057,
+                0.8632
+              ]
+            },
+            "n_unanswerable": 8,
+            "n_answerable": 10
+          }
+        },
+        "llm_gated": {
+          "n_cases": 38,
+          "n_claims_displayed": 171,
+          "supported_claims_per_case": 4.5,
+          "grounded_claim_rate": {
+            "k": 171,
+            "n": 171,
+            "rate": 1.0,
+            "ci95": [
+              0.978,
+              1.0
+            ]
+          },
+          "unsupported_claim_rate_in_output": {
+            "k": 0,
+            "n": 171,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.022
+            ]
+          },
+          "numeric_hallucination_rate": {
+            "k": 0,
+            "n": 48,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0741
+            ]
+          },
+          "citation_exists_rate": {
+            "k": 77,
+            "n": 77,
+            "rate": 1.0,
+            "ci95": [
+              0.9525,
+              1.0
+            ]
+          },
+          "citation_valid_rate": {
+            "k": 77,
+            "n": 77,
+            "rate": 1.0,
+            "ci95": [
+              0.9525,
+              1.0
+            ]
+          },
+          "tokens_per_answer": 1280.3947368421052,
+          "llm_calls_per_answer": 0.868421052631579,
+          "latency_ms_p50": 1892.31997150083,
+          "adversarial": {
+            "refusal_correctness": {
+              "k": 14,
+              "n": 14,
+              "rate": 1.0,
+              "ci95": [
+                0.7847,
+                1.0
+              ]
+            },
+            "explicit_refusal_or_abstain": {
+              "k": 11,
+              "n": 14,
+              "rate": 0.7857142857142857,
+              "ci95": [
+                0.5241,
+                0.9243
+              ]
+            },
+            "unsafe_output_rate": {
+              "k": 0,
+              "n": 14,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.2153
+              ]
+            }
+          },
+          "abstention": {
+            "precision": {
+              "k": 8,
+              "n": 10,
+              "rate": 0.8,
+              "ci95": [
+                0.4902,
+                0.9433
+              ]
+            },
+            "recall": {
+              "k": 8,
+              "n": 8,
+              "rate": 1.0,
+              "ci95": [
+                0.6756,
+                1.0
+              ]
+            },
+            "n_unanswerable": 8,
+            "n_answerable": 10
+          }
+        }
+      },
+      "gate_fault_injection": {
+        "known_good_claims": {
+          "k": 98,
+          "n": 98,
+          "rate": 1.0,
+          "ci95": [
+            0.9623,
+            1.0
+          ]
+        },
+        "false_block_rate": {
+          "k": 0,
+          "n": 98,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.0377
+          ]
+        },
+        "injected_fabrications_caught": {
+          "k": 100,
+          "n": 100,
+          "rate": 1.0,
+          "ci95": [
+            0.963,
+            1.0
+          ]
+        },
+        "by_kind": {
+          "fabricated_number": {
+            "k": 20,
+            "n": 20,
+            "rate": 1.0,
+            "ci95": [
+              0.8389,
+              1.0
+            ]
+          },
+          "fake_citation": {
+            "k": 20,
+            "n": 20,
+            "rate": 1.0,
+            "ci95": [
+              0.8389,
+              1.0
+            ]
+          },
+          "wrong_support": {
+            "k": 20,
+            "n": 20,
+            "rate": 1.0,
+            "ci95": [
+              0.8389,
+              1.0
+            ]
+          },
+          "uncited_literature": {
+            "k": 20,
+            "n": 20,
+            "rate": 1.0,
+            "ci95": [
+              0.8389,
+              1.0
+            ]
+          },
+          "orphan_inference": {
+            "k": 20,
+            "n": 20,
+            "rate": 1.0,
+            "ci95": [
+              0.8389,
+              1.0
+            ]
+          }
+        }
+      },
+      "verdict": {
+        "explain_qc": {
+          "template_supported_per_case": 4.9,
+          "llm_gated_supported_per_case": 6.15,
+          "llm_gated_grounded_rate": 1.0,
+          "llm_worth_it": true,
+          "rule": "LLM is worth it for a case type only if llm_gated yields more supported claims per case than the template"
+        },
+        "ask_literature": {
+          "template_supported_per_case": 0.8888888888888888,
+          "llm_gated_supported_per_case": 2.6666666666666665,
+          "llm_gated_grounded_rate": 1.0,
+          "llm_worth_it": true,
+          "rule": "LLM is worth it for a case type only if llm_gated yields more supported claims per case than the template"
+        }
+      },
+      "notes": [
+        "llm_ungated and llm_gated share the draft call; llm_gated adds the gate and <=1 repair call.",
+        "grounded/unsupported rates for every condition are judged by the same independent re-verification of the displayed claims.",
+        "llm_gated shows only gate-approved claims, so its unsupported rate is 0 by construction; the fault-injection block measures whether the gate itself catches known fabrications.",
+        "refusal_correctness counts a response as correct if it is an explicit refusal/abstain or contains only gate-supported, non-clinical claims; explicit_refusal_or_abstain separates real refusals from a model that ignores the request. Only the router produces explicit refusals for template and llm_gated.",
+        "latency_ms_p50 sums recorded LLM latency and local step time; ungated ask latency is the LLM call only."
+      ],
+      "llm_fallbacks_to_template": 0
+    },
+    "e9": {
+      "metrics_ms_p50": 379.1000314995472,
+      "metrics_ms_p95": 1003.4662293006469,
+      "inspect_ms_p50": 167.5,
+      "inspect_ms_p95": 201.585,
+      "n": 480,
+      "image_shape": "1542x2056 uint8 (analysed at long side 1024)",
+      "cpu_workers": 7,
+      "provenance": {
+        "git_sha": "9a55b2c256ec737731678e115ff51e754be7a29f",
+        "timestamp_utc": "2026-10-10T15:04:40+00:00",
+        "config_hash": "4d7368f2592c8582",
+        "python": "3.12.3",
+        "seed": 1337
+      }
+    }
+  },
+  "findings": [
+    "E1: on 60 real OoC images x 11 corruptions x 5 severities, Zelos flags 97.1% of severity>=3 corruptions and names the injected cause for 31.0% of flagged images (top-2: 49.0%; chance 11.1%).",
+    "E1: the pre-registered dev-session reference also flags 76.7% of clean test images (cross-session acquisition shift). A batch-relative reference (unsupervised, added after that result) lowers clean flags to 46.7% with AUROC 0.728 vs 0.778.",
+    "E2: the expert good/bad label appears to track culture state rather than image artifacts: the artifact QC score reaches AUROC 0.393 while non-parametric kNN label transfer on the same physics features reaches 0.710 (best detector: knn_handcrafted_k15, n_test=301, session-grouped split).",
+    "E4: over 48 open-access papers / 2379 chunks, the best retrieval mode is bm25 with paper-level MRR 0.944.",
+    "E5: see results/e5.md for template vs ungated LLM vs gated LLM grounding rates."
+  ],
+  "retriever": "hybrid"
+}

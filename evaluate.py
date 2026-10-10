@@ -61,7 +61,7 @@ def findings(e1: dict, e2: dict, e4: dict, e5: dict) -> list[str]:
     if e2:
         d = e2["detectors"]
         best = max(d, key=lambda k: d[k]["auroc"])
-        out.append(f"E2: the expert good/bad label measures culture quality, not image artifacts: the artifact QC score "
+        out.append(f"E2: the expert good/bad label appears to track culture state rather than image artifacts: the artifact QC score "
                    f"reaches AUROC {f3(d['zelos_qc_score']['auroc'])} while non-parametric kNN label transfer on the same "
                    f"physics features reaches {f3(d['knn_handcrafted_k15']['auroc'])} (best detector: {best}, "
                    f"n_test={e2['n_test']}, session-grouped split).")

@@ -37,19 +37,54 @@ def thumb(img: np.ndarray, path: Path) -> None:
     cv2.imwrite(str(path), small, [cv2.IMWRITE_WEBP_QUALITY, 82])
 
 
+def site_card(card: dict) -> dict:
+    """Map the agent card onto the web console contract (strings for cause/action/claims)."""
+    pc = card.get("primary_cause") or {}
+    def txt(c):
+        if not isinstance(c, dict):
+            return str(c)
+        ev = " ".join(f"[{e}]" for e in c.get("evidence", []))
+        return f"{c.get('text', '')} {ev}".strip()
+    return {**card, "primary_cause": pc.get("label") if isinstance(pc, dict) else pc,
+            "action": pc.get("action", "") if isinstance(pc, dict) else card.get("action", ""),
+            "claims": [txt(c) for c in card.get("claims", [])],
+            "blocked": [txt(c) for c in card.get("blocked_claims", card.get("blocked", []))]}
+
+
+def get_retriever(timeout_s: float = 20.0):
+    """Hybrid retriever if it loads within timeout_s, else the offline BM25 retriever used by E5."""
+    import sys
+    import threading
+
+    box: dict = {}
+
+    def _load() -> None:
+        try:
+            from zelos.rag.retriever import HybridRetriever
+
+            box["r"] = HybridRetriever.load()
+        except Exception as e:  # noqa: BLE001
+            box["e"] = e
+
+    t = threading.Thread(target=_load, daemon=True)
+    t.start()
+    t.join(timeout_s)
+    if "r" in box:
+        return box["r"], "hybrid"
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from eval_grounding import Bm25Retriever
+
+    return Bm25Retriever(ROOT / "corpus" / "chunks.jsonl"), "bm25 (offline fallback)"
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--provider", default="workers_ai")
     a = ap.parse_args()
     cfg = load_config()
     real = pd.read_csv(ROOT / "results" / "metrics_real.csv")
-    try:
-        from zelos.rag.retriever import HybridRetriever
-
-        retriever = HybridRetriever.load()
-    except Exception as e:  # retrieval optional; gate then blocks literature claims
-        print("retriever unavailable:", e)
-        retriever = None
+    retriever, rmode = get_retriever()
+    print("retriever:", rmode)
 
     rng = np.random.default_rng(cfg["seed"])
     picks: list[tuple[pd.Series, str | None]] = []
@@ -82,7 +117,8 @@ def main() -> None:
         thumb(img, OUT / "thumbs" / f"{sid}.webp")
         samples.append({"id": sid, "cell_line": row.cell_line, "time_bin": str(row.time_bin),
                         "expert_label": row.label, "thumb": f"data/thumbs/{sid}.webp", "variant": variant,
-                        "qc": qc, **{k: res.get(k) for k in ("card", "ledger", "ungated_draft", "trace", "usage", "provider")}})
+                        "qc": qc, "card": site_card(res.get("card") or {}),
+                        **{k: res.get(k) for k in ("ledger", "ungated_draft", "trace", "usage", "provider")}})
         print(sid, variant, qc["level"], qc["qc_score"], (res.get("usage") or {}).get("llm_calls"))
 
     results = json.loads((ROOT / "results" / "results.json").read_text())
@@ -94,6 +130,7 @@ def main() -> None:
         "samples": samples,
         "results": {k: results.get(k, {}) for k in ("e1", "e2", "e4", "e5", "e9")},
         "findings": results.get("findings", []),
+        "retriever": rmode,
     }
     write_json(OUT / "site.json", site)
     print("wrote", OUT / "site.json", len(samples), "samples")
