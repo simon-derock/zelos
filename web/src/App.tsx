@@ -52,7 +52,7 @@ export default function App() {
       <a className="skip" href="#console">Skip to the console</a>
       <Nav sample={sample} />
       <main>
-        <Hero sample={sample} />
+        <Hero />
         <Problem />
         <Pipeline />
         {data ? (

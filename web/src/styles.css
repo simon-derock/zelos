@@ -99,9 +99,9 @@ kbd { font-family: var(--font); font-size: 0.82em; background: var(--surface); b
 .sec-head.on-dark .lede { color: #a1a1a6; }
 
 /* ---------- hero ---------- */
-.hero { padding: clamp(56px, 9vw, 120px) 0 0; text-align: center; overflow: hidden; }
+.hero { padding: clamp(36px, 5.5vw, 76px) 0 0; text-align: center; overflow: hidden; }
 .hero-inner { width: min(900px, calc(100% - 48px)); margin-inline: auto; display: flex; flex-direction: column; align-items: center; }
-.hero-title { font-size: clamp(88px, 17vw, 232px); line-height: 0.92; font-weight: 700; letter-spacing: -0.06em; margin: 14px 0 0 -0.03em; }
+.hero-title { font-size: clamp(88px, 15vw, 208px); line-height: 0.92; font-weight: 700; letter-spacing: -0.06em; margin: 14px 0 0 -0.03em; }
 .hero-sub { font-size: clamp(24px, 4vw, 48px); line-height: 1.1; font-weight: 600; letter-spacing: -0.03em; margin-top: 22px; }
 .hero-copy { max-width: 640px; margin-top: 22px; font-size: clamp(17px, 1.7vw, 21px); line-height: 1.4; color: var(--ink-2); letter-spacing: -0.014em; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 36px; }
@@ -112,7 +112,7 @@ kbd { font-family: var(--font); font-size: 0.82em; background: var(--surface); b
 .btn-ghost { background: transparent; color: var(--blue); box-shadow: inset 0 0 0 1.5px rgba(0, 102, 204, 0.5); }
 .btn-ghost:hover { background: rgba(0, 102, 204, 0.06); }
 
-.field { position: relative; width: min(1240px, calc(100% - 48px)); margin: clamp(48px, 7vw, 88px) auto 0; aspect-ratio: 1200 / 520; border-radius: var(--r-lg) var(--r-lg) 0 0; overflow: hidden; box-shadow: var(--shadow-2); background: #cfcfd4; }
+.field { position: relative; width: min(1240px, calc(100% - 48px)); margin: clamp(40px, 5vw, 64px) auto 0; aspect-ratio: 1200 / 520; border-radius: var(--r-lg) var(--r-lg) 0 0; overflow: hidden; box-shadow: var(--shadow-2); background: #cfcfd4; }
 .field-cells { position: absolute; inset: -4%; width: 108%; height: 108%; max-width: none; filter: blur(0); animation: resolve 3.4s var(--ease) 0.5s both; }
 .field-reticle { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; animation: lock 0.9s var(--ease) 3.1s forwards; }
 .field-stamp { position: absolute; left: 50%; bottom: 7%; transform: translate(-50%, 10px); display: inline-flex; align-items: center; gap: 9px; padding: 10px 20px 10px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.82); -webkit-backdrop-filter: saturate(180%) blur(18px); backdrop-filter: saturate(180%) blur(18px); font-weight: 600; font-size: 17px; letter-spacing: -0.015em; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18); opacity: 0; animation: stamp 0.8s var(--ease) 3.5s forwards; }
@@ -416,7 +416,6 @@ a.chip:hover { text-decoration: none; filter: brightness(0.95); }
   .panel-head, .mbars, .trace { padding-left: 20px; padding-right: 20px; }
   .term-title { display: none; }
   .term-note { display: none; }
-  .nav-end .pill { display: none; }
 }
 
 @media (min-width: 1700px) {

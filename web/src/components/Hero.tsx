@@ -27,12 +27,11 @@ export function cellField(seed: number, count: number, w: number, h: number) {
   return out
 }
 
-export function Hero({ sample }: { sample: boolean }) {
+export function Hero() {
   const cells = useMemo(() => cellField(7, 46, 1200, 520), [])
   return (
     <header className="hero" id="top">
       <div className="hero-inner">
-        {sample && <span className="pill pill-sample">Sample data</span>}
         <h1 className="hero-title">Zelos.</h1>
         <p className="hero-sub">Every organ-on-a-chip image, certified.</p>
         <p className="hero-copy">
