@@ -12,7 +12,7 @@
 https://github.com/simon-derock/zelos (tag `v1.0-submission`)
 
 ## Project Summary
-Organ-on-a-chip (OoC) labs image their cultures every day, and those images become the data behind tissue-model decisions, drug-response readouts and, increasingly, OoC digital twins. A defocused, saturated, vignetted or bubble-filled image silently corrupts that data. An LLM assistant asked to explain it may invent numbers or citations.
+Organ-on-a-chip (OoC) systems are in vitro human tissue models (lung, gut, vessel) grown in microfluidic channels for drug development. OoC labs image these cultures every day, and those images become the data behind tissue-model decisions, drug-response readouts and, increasingly, OoC digital twins. A defocused, saturated, vignetted or bubble-filled image silently corrupts that data. An LLM assistant asked to explain it may invent numbers or citations.
 
 **Zelos** is an end-to-end, training-free agent that turns each brightfield image into a **certificate**. The certificate holds:
 - a verdict (PASS, REVIEW or FAIL);

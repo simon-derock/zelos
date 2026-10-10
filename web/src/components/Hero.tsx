@@ -32,11 +32,12 @@ export function Hero() {
   return (
     <header className="hero" id="top">
       <div className="hero-inner">
+        <p className="eyebrow">AI for Life Science · Organ-on-a-Chip</p>
         <h1 className="hero-title">Zelos.</h1>
         <p className="hero-sub">Every organ-on-a-chip image, certified.</p>
         <p className="hero-copy">
-          Zelos checks brightfield microscopy images with physics-based QC, names the likely cause, cites open literature
-          for the fix, and blocks any statement the evidence does not support.
+          Zelos inspects brightfield images of organ-on-a-chip cultures, names the imaging fault and the lab fix, cites
+          open organ-on-a-chip research, and blocks every claim the evidence cannot support.
         </p>
         <div className="hero-cta">
           <a className="btn btn-primary" href="#console">

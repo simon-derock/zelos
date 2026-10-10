@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSiteData } from './data'
 import { Hero } from './components/Hero'
-import { Problem, Pipeline, Reproduce, Footer } from './components/Sections'
+import { Problem, Pipeline, Reproduce, Footer, Proof, Domain } from './components/Sections'
 import { Console } from './components/Console'
 import { Benchmarks } from './components/Benchmarks'
 
@@ -62,7 +62,9 @@ export default function App() {
       <Nav sample={sample} />
       <main>
         <Hero />
+        <Proof data={data} />
         <Problem />
+        <Domain />
         <Pipeline />
         {data ? (
           <>

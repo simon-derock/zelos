@@ -3,7 +3,7 @@
 # Zelos
 
 **Every organ-on-a-chip image, certified.**
-An evidence-gated QC agent that tells an OoC lab *whether* a brightfield image can be trusted, *why* not, *what to do*, and which open-access paper says so, and that refuses to state anything its tools or sources cannot support.
+AI for in vitro life systems: an evidence-gated QC agent that tells an organ-on-a-chip lab *whether* a brightfield image can be trusted, *why* not, *what to do*, and which open-access paper says so, and that refuses to state anything its tools or sources cannot support.
 
 [![CI](https://github.com/simon-derock/zelos/actions/workflows/ci.yml/badge.svg)](https://github.com/simon-derock/zelos/actions)
 ![License](https://img.shields.io/badge/license-MIT-green) ![Training](https://img.shields.io/badge/gradient%20updates-0-blue) ![Offline](https://img.shields.io/badge/runs-offline%20%7C%20CPU-black)
@@ -84,7 +84,7 @@ CI (GitHub Actions) runs lint, types, security, tests on Python <!--np-->3.12<!-
 | Cloudflare Workers AI `@cf/meta/llama-3.1-8b-instruct-fast` | explainer | Workers AI terms (free daily allocation); deterministic template fallback |
 | Qdrant (`qdrant-client`, local mode), rank-bm25, OpenCV, NumPy, SciPy, scikit-learn, FastAPI, FastMCP | engine | Apache-2.0 / BSD / MIT |
 
-No personal, clinical or restricted data is used. No model is trained or fine-tuned; reference statistics are medians/MADs and kNN is non-parametric.
+The data are in vitro cell-culture images of established cell lines grown on chips (lung, intestinal, endothelial); no patient, personal, clinical or restricted data is used. No model is trained or fine-tuned; reference statistics are medians/MADs and kNN is non-parametric.
 
 ## License
 
