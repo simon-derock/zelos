@@ -10,6 +10,7 @@ import json
 import os
 import random
 import subprocess
+from datetime import UTC
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -74,18 +75,18 @@ def git_sha() -> str:
 
 
 def config_hash() -> str:
-    blob = b"".join((p.read_bytes() for p in sorted(CONFIGS.glob("*.yaml"))))
+    blob = b"".join(p.read_bytes() for p in sorted(CONFIGS.glob("*.yaml")))
     return sha256_bytes(blob)[:16]
 
 
 def provenance(extra: dict[str, Any] | None = None) -> dict[str, Any]:
     """Provenance block written into every results file."""
     import platform
-    from datetime import datetime, timezone
+    from datetime import datetime
 
     out = {
         "git_sha": git_sha(),
-        "timestamp_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "timestamp_utc": datetime.now(UTC).isoformat(timespec="seconds"),
         "config_hash": config_hash(),
         "python": platform.python_version(),
         "seed": load_config()["seed"],
