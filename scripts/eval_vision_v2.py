@@ -257,6 +257,14 @@ def main() -> None:
     tau_lr = float(np.quantile(p_cal, 0.90))
     emb = np.hstack([np.stack(Rt["cls"].to_numpy()), np.stack(Rt["mean"].to_numpy())])
     Rt["p_lr"] = lr.predict_proba(sc_lr.transform(emb))[:, 1]
+    # path-consistency check: the same CLEAN images embedded via the E1 path (downscale 1024 -> 448x588) versus the
+    # extraction path (full resolution -> 448x588). A large gap would bias the head-to-head against the baseline.
+    base_fid = {pth: pth2meta[pth][0] for pth in tgood.path}
+    Fi = F.set_index("file_id")
+    cl = Rt[Rt.kind == "clean"]
+    p_ext = lr.predict_proba(sc_lr.transform(Fi.loc[[base_fid[p] for p in cl.path], CLS + MEAN].to_numpy(np.float32)))[:, 1]
+    path_shift = float(np.mean(np.abs(p_ext - cl.p_lr.to_numpy())))
+    tau_lr_ext = float(np.quantile(p_cal, 0.90))
 
     e1 = {"n_base_images": int(len(tgood)), "n_signature_images": int(len(dgood)), "kinds": KINDS, "severities": SEV_TEST,
           "operating_point": "threshold = 90th percentile of QC score on expert-good images of calibration sessions (<=10% false flags)",
@@ -326,6 +334,7 @@ def main() -> None:
         "threshold": tau_lr, "clean_flag_rate": float((clean.p_lr > tau_lr).mean()),
         "detection_rate_sev3plus": float((sev3.p_lr > tau_lr).mean()), "auroc_clean_vs_sev3plus": auroc(ycs, cs.p_lr),
         "detection_by_kind_sev3plus": {k: float((sev3[sev3.kind == k].p_lr > tau_lr).mean()) for k in KINDS},
+        "clean_flag_rate_extraction_path": float((p_ext > tau_lr_ext).mean()), "mean_abs_prob_diff_between_paths": path_shift,
         "can_name_the_cause": False, "n_to_be_read_as": "approach family used by entries that learn the expert label from frozen embeddings; not any entry's exact model"}}
     e1["head_to_head"] = h2h
     e1["provenance"] = provenance({"n_features": int(len(F))})

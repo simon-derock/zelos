@@ -47,6 +47,12 @@ def _calibration() -> dict[str, Any] | None:
 
 
 @lru_cache
+def _rule_basis() -> dict[str, Any]:
+    f = ROOT / "results" / "rule_citations.json"
+    return json.loads(f.read_text())["rules"] if f.exists() else {}
+
+
+@lru_cache
 def _routes() -> dict[str, str]:
     return yaml.safe_load((CONFIGS / "routes.yaml").read_text())
 
@@ -103,8 +109,12 @@ def inspect(src: str | Path | np.ndarray | bytes, cell_line: str | None = None, 
         if not causes:
             causes, attribution = attribute(m, s["zbad"]), "rule-table"
     routes = _routes()
+    basis = _rule_basis()
     for c in causes:
         c["route"] = routes.get(c["label"], "REVIEW")
+        b = basis.get(c["label"])
+        c["basis"] = ({k: b[k] for k in ("chunk_id", "title", "url", "license", "excerpt")} if b and b["status"] == "supported"
+                      else None)
     route = "USE" if s["level"] == "PASS" else (causes[0]["route"] if causes else "REVIEW")
     out = {
         "tool_call_id": f"qc-{digest[:8]}",

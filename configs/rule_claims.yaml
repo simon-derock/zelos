@@ -1,0 +1,32 @@
+# A-priori statements behind each cause -> action rule, written BEFORE retrieval so the citation search
+# cannot tailor them to a passage. `require` lists term groups: a supporting SENTENCE must contain at least one
+# term (prefix match, case-insensitive) from EVERY group, in addition to passing the gate's overlap test.
+# scripts/build_rule_citations.py scans every sentence of the open corpus; rules without such a sentence are
+# reported as unsupported.
+DEFOCUS_OR_BLUR:
+  claim: Out-of-focus images reduce microscopy image quality and impair quantitative analysis.
+  require: [[focus, blur, defocus], [image, imaging, microscop]]
+NOISE:
+  claim: Image noise degrades microscopy image quality and affects quantitative analysis.
+  require: [[noise, noisy], [image, imaging, microscop]]
+UNEVEN_ILLUMINATION:
+  claim: Uneven illumination in microscopy images can be corrected with flat-field correction.
+  require: [[illumination, flat-field, flat field, shading, vignett], [correct, uneven, non-uniform, inhomogene]]
+OVER_EXPOSED:
+  claim: Saturated pixels from overexposure lose information in microscopy images.
+  require: [[saturat, overexpos, over-expos], [pixel, image, signal, intensit]]
+UNDER_EXPOSED:
+  claim: Insufficient exposure produces weak signal and poor quality in microscopy images.
+  require: [[underexpos, under-expos, low light, low-light, insufficient exposure, short exposure], [image, signal, intensit]]
+LOW_CONTRAST:
+  claim: Transparent cells show low contrast in brightfield microscopy.
+  require: [[contrast], [brightfield, bright-field, transparent, phase]]
+BUBBLE:
+  claim: Air bubbles in microfluidic channels disrupt cell culture and imaging.
+  require: [[bubble], [channel, microfluidic, chip, device, culture]]
+DEBRIS:
+  claim: Debris and particles in microfluidic devices interfere with cell culture and imaging.
+  require: [[debris, particulate, dust, contaminat, impurit], [channel, microfluidic, chip, device, image, imaging, culture]]
+COMPRESSION:
+  claim: Lossy image compression introduces artifacts that affect quantitative image analysis.
+  require: [[compress, jpeg, lossy], [image, imaging, microscop]]
