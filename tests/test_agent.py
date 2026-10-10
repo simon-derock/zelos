@@ -118,3 +118,12 @@ def test_mcp_tools_listed():
     from zelos.mcp_server import tool_names
 
     assert set(tool_names()) >= {"inspect_image", "explain_image", "retrieve_evidence", "check_claims", "triage_folder"}
+
+
+def test_template_all_supported_on_real_samples():
+    p = Path(__file__).resolve().parents[1] / "results" / "qc_samples.json"
+    if not p.exists():
+        pytest.skip("no qc_samples.json")
+    for q in json.loads(p.read_text()):
+        r = loop.run_inspect(q, None, provider="template")
+        assert r["ledger"]["n_unsupported"] == 0, [e for e in r["ledger"]["claims"] if e["status"] != "supported"]

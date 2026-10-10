@@ -17,7 +17,10 @@ def fmt(v: float) -> str:
     v = float(v)
     if abs(v) >= 100:
         return f"{v:.1f}"
-    return f"{v:.3g}"
+    out = f"{v:.3g}"
+    if "." not in out and "e" not in out and v != int(v):
+        out = f"{v:.1f}"  # keep a decimal so the rounding interval (not exact equality) applies
+    return out
 
 
 def best_excerpt(text: str, query: str = "", n: int = MAX_EXCERPT_WORDS) -> str:
