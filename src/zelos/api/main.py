@@ -435,38 +435,39 @@ def create_app(env: dict[str, str] | None = None) -> FastAPI:
 
 
 def batch_qc(items: list[tuple[str, bytes]]) -> list[dict]:
-    """QC every image against a reference made of the batch itself (median/MAD of its own metrics)."""
+    """QC every image against a reference made of the batch itself (median/MAD of its own metrics).
+
+    Pass 1 keeps only each image's metrics (one decoded image in memory at a time); pass 2 scores each image
+    with the same pipeline entry point as /api/inspect, in batch mode, so verdicts, thresholds, causes and
+    routes follow whatever the single-image path does.
+    """
     import cv2
     import numpy as np
     import pandas as pd
 
-    from zelos.common.config import load_config, sha256_bytes
-    from zelos.vision.attribution import attribute
+    from zelos.common.config import load_config
     from zelos.vision.metrics import compute_metrics
-    from zelos.vision.scoring import fit_reference, score_image
+    from zelos.vision.pipeline import inspect
+    from zelos.vision.scoring import fit_reference
 
-    cfg = load_config()
+    max_side = load_config()["vision"]["max_side"]
     rows: list[dict] = []
-    for iid, data in items:  # decode one at a time; only the metrics are kept
-        t0 = time.perf_counter()
+    for iid, data in items:
         img = cv2.imdecode(np.frombuffer(data, np.uint8), cv2.IMREAD_UNCHANGED)
         if img is None:
             raise HTTPException(400, f"{iid}: could not decode the image")
         try:
-            m = compute_metrics(img, cfg["vision"]["max_side"])
+            rows.append(compute_metrics(img, max_side))
         except Exception as e:  # noqa: BLE001
             raise HTTPException(400, f"{iid}: could not analyse the image") from e
-        rows.append({"id": iid, "digest": sha256_bytes(data), "m": m, "shape": list(img.shape[:2]),
-                     "ms": (time.perf_counter() - t0) * 1000})
         del img
-    ref = fit_reference(pd.DataFrame([r["m"] for r in rows]))
+    ref = fit_reference(pd.DataFrame(rows))
     out = []
-    for r in rows:
-        s = score_image(r["m"], ref, None, cfg["qc"]["review_z"], cfg["qc"]["fail_z"])
-        causes = attribute(r["m"], s["zbad"]) if s["level"] != "PASS" else []
-        out.append({"id": r["id"], "level": s["level"], "qc_score": round(s["qc_score"], 3), "causes": causes,
-                    "density_state": s["density_state"], "tool_call_id": f"qc-{r['digest'][:8]}",
-                    "reference": f"batch:n={len(rows)}", "shape": r["shape"]})
+    for iid, data in items:
+        q = inspect(data, image_id=iid, reference=ref, mode="batch")
+        out.append({"id": iid, "level": q["level"], "qc_score": q["qc_score"], "causes": q["causes"],
+                    "density_state": q["density_state"], "tool_call_id": q["tool_call_id"],
+                    "route": q.get("route"), "reference": f"batch:n={len(items)}", "shape": q["image"]["shape"]})
     return out
 
 

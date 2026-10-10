@@ -27,6 +27,8 @@ interface ApiQC {
   tool_call_id: string
   qc_score: number
   level: string
+  route?: string
+  reference?: string
   density_state?: string
   metrics?: Record<string, number>
   zbad?: Record<string, number>
@@ -78,6 +80,7 @@ interface TriageRow {
   causes: ApiCause[]
   density_state?: string
   tool_call_id: string
+  route?: string
   reference?: string
 }
 interface Certificate {
@@ -219,6 +222,15 @@ function causeOf(c: Certificate): { label?: string; note?: string; action?: stri
   return { label: first?.label, note: first?.note, action: first?.action }
 }
 
+const ROUTES: Record<string, string> = {
+  USE: 'Use',
+  REVIEW: 'Review',
+  'RE-IMAGE': 'Re-image',
+  'INSPECT-CHIP': 'Inspect the chip',
+  'RE-EXPORT': 'Re-export the file',
+}
+const routeLabel = (r: string): string => ROUTES[r.toUpperCase()] ?? sentence(r.replace(/-/g, ' '))
+
 function CertificateCard({ c }: { c: Certificate }) {
   const card = c.res.card
   const { label, note, action } = causeOf(c)
@@ -337,6 +349,7 @@ function MetricPanel({ qc }: { qc: ApiQC }) {
   const keys = Object.keys(z).length ? Object.keys(z) : Object.keys(m)
   const rows = keys
     .map((k) => ({ k, z: num(z[k]), p: num(p[k]), v: num(m[k]) }))
+    .filter((r) => r.v !== undefined || r.p !== undefined)
     .sort((a, b) => (b.z ?? -99) - (a.z ?? -99))
   return (
     <div className="panel">
@@ -870,6 +883,12 @@ function SingleResult({
                   <dd>{sentence(c.qc.density_state)}</dd>
                 </div>
               )}
+              {c.qc.route && (
+                <div>
+                  <dt>Route</dt>
+                  <dd>{routeLabel(c.qc.route)}</dd>
+                </div>
+              )}
               <div>
                 <dt>Reference</dt>
                 <dd>Dataset reference set</dd>
@@ -951,7 +970,7 @@ function SessionResult({
                   QC score
                 </th>
                 <th scope="col">Primary cause</th>
-                <th scope="col">Density</th>
+                <th scope="col" className="try-route">Route</th>
                 <th scope="col">
                   <span className="sr">Certificate</span>
                 </th>
@@ -982,7 +1001,7 @@ function SessionResult({
                         <span className="muted">No issue found</span>
                       )}
                     </td>
-                    <td>{r.density_state ? sentence(r.density_state) : '—'}</td>
+                    <td className="try-route">{r.route ? routeLabel(r.route) : '—'}</td>
                     <td className="r">
                       {f && (
                         <button type="button" className="try-link" disabled={busy} onClick={() => onCertificate(f)}>
