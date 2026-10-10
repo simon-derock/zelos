@@ -121,25 +121,25 @@ def _hash_embed(texts: list[str]) -> np.ndarray:
     return _l2(hv.transform(texts).toarray())
 
 
-def _cohere_embed(texts: list[str], input_type: str) -> np.ndarray:
+def _cohere_embed(texts: list[str], input_type: str, timeout: float = 60.0, attempts: int = 12) -> np.ndarray:
     import cohere
 
     key = secret("COHERE")
     if not key:
         raise EmbeddingUnavailable("COHERE key not set")
-    co = cohere.ClientV2(api_key=key, timeout=60)
+    co = cohere.ClientV2(api_key=key, timeout=timeout)
     model = _model("cohere")
     batch = int(load_config("rag").get("cohere_embed_batch", 96))
     out: list[np.ndarray] = []
     for i in range(0, len(texts), batch):
         part = texts[i : i + batch]
-        for attempt in range(12):
+        for attempt in range(attempts):
             try:
                 r = co.embed(texts=part, model=model, input_type=input_type, embedding_types=["float"],
                              output_dimension=DIM)
                 break
             except Exception as e:  # trial keys are limited to 100k tokens/min: wait for the window to reset
-                if attempt == 11:
+                if attempt == attempts - 1:
                     raise
                 time.sleep(12 if ("429" in str(e) or "rate" in str(e).lower() or "TooMany" in type(e).__name__)
                            else 3)
@@ -153,6 +153,11 @@ def _all_cached(texts: list[str], input_type: str, provider: str) -> bool:
     return all(cache_key(provider, input_type, t) in c for t in texts)
 
 
+def all_cached(texts: list[str], input_type: str, provider: str = "cohere") -> bool:
+    """True if every text already has a cached vector for this provider (no network access)."""
+    return _all_cached(texts, input_type, provider)
+
+
 def active_provider(texts: list[str] | None = None, input_type: str = "search_document") -> str:
     """'cohere' if a key is present or all given texts are cached under cohere, else 'hash'."""
     if secret("COHERE") and load_config()["embeddings"]["provider"] == "cohere":
@@ -162,8 +167,11 @@ def active_provider(texts: list[str] | None = None, input_type: str = "search_do
     return "hash"
 
 
-def embed_texts(texts: list[str], input_type: str, provider: str | None = None) -> np.ndarray:
-    """Embed texts -> float32 (n, 1024), L2-normalised rows. See module docstring for caching."""
+def embed_texts(texts: list[str], input_type: str, provider: str | None = None, *, timeout: float = 60.0,
+                attempts: int = 12) -> np.ndarray:
+    """Embed texts -> float32 (n, 1024), L2-normalised rows. See module docstring for caching.
+
+    timeout/attempts only matter for live Cohere calls; the retriever uses (10 s, 1 attempt) at query time."""
     global _DIRTY
     if input_type not in ("search_document", "search_query"):
         raise ValueError("input_type must be search_document or search_query")
@@ -187,7 +195,7 @@ def embed_texts(texts: list[str], input_type: str, provider: str | None = None) 
         items = list(uniq.items())
         for i in range(0, len(items), batch):
             part = items[i : i + batch]
-            vecs = _l2(_cohere_embed([t for _, t in part], input_type)).astype(np.float16)
+            vecs = _l2(_cohere_embed([t for _, t in part], input_type, timeout, attempts)).astype(np.float16)
             with _LOCK:
                 for (k, _), v in zip(part, vecs, strict=True):
                     cache[k] = v

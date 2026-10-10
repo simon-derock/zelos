@@ -64,7 +64,7 @@ def level_metrics(rank_lists: list[list[int]], n_ideal: list[int],
 def warm_templates() -> int:
     from zelos.rag.query_builder import GENERIC, _templates
 
-    r = HybridRetriever.load({"rerank_min_interval_s": 6.2})
+    r = HybridRetriever.load({"rerank_min_interval_s": 6.2, "rerank_retries": 5, "rerank_timeout_s": 60})
     qs = list(dict.fromkeys([*_templates().values(), GENERIC]))
     emb.embed_texts(qs, "search_query", provider=r.provider)
     for q in qs:
@@ -88,7 +88,7 @@ def main() -> int:
     ret_q = [g for g in gold if g["type"] in ("answerable", "reworded")]
     un_q = [g for g in gold if g["type"] == "unanswerable"]
     t_start = time.time()
-    r = HybridRetriever.load({"rerank_min_interval_s": 6.2})  # pacing for the 10 calls/min trial limit
+    r = HybridRetriever.load({"rerank_min_interval_s": 6.2, "rerank_retries": 5, "rerank_timeout_s": 60})  # pacing for the 10 calls/min trial limit
     # one batched Cohere call for every query vector (replayed from cache afterwards)
     emb.embed_texts([g["question"] for g in gold], "search_query", provider=r.provider)
     paper_ids = {c["pmcid"] for c in r.chunks}

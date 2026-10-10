@@ -54,14 +54,17 @@ class HybridRetriever:
         self._rr_cache: dict[str, list] | None = None
         self.rerank_calls = 0
         self._last_rerank = 0.0
+        self._hash_vecs: np.ndarray | None = None
 
         from rank_bm25 import BM25Okapi
 
         self._bm25 = BM25Okapi([tokenize(c["text"]) for c in chunks])
 
         texts = [c["text"] for c in chunks]
-        self.provider = provider or emb.active_provider(texts, "search_document")
-        self._vecs = emb.embed_texts(texts, "search_document", provider=self.provider)
+        # load() never touches the network: Cohere document vectors are used only if every chunk is cached,
+        # otherwise the whole index falls back to the hash provider.
+        self.provider = provider or ("cohere" if emb.all_cached(texts, "search_document", "cohere") else "hash")
+        self._vecs = emb.embed_texts(texts, "search_document", provider=self.provider, timeout=10, attempts=1)
         self._qdrant = None
         try:
             from qdrant_client import QdrantClient
@@ -91,17 +94,31 @@ class HybridRetriever:
         order = np.argsort(-s, kind="stable")[:n]
         return [(self.ids[i], float(s[i])) for i in order if s[i] > 0]
 
-    def _dense_rank(self, query: str, n: int) -> list[tuple[str, float]] | None:
-        try:
-            q = emb.embed_texts([query], "search_query", provider=self.provider)[0]
-        except emb.EmbeddingUnavailable:
-            return None
-        if self._qdrant is not None:
-            pts = self._qdrant.query_points("zelos_chunks", query=q.tolist(), limit=n).points
-            return [(self.ids[int(p.id)], float(p.score)) for p in pts]
-        sims = self._vecs @ q
+    def _hash_dense(self, query: str, n: int) -> list[tuple[str, float]]:
+        """Offline fallback when the query vector is not cached and no key is set (separate hash vector space)."""
+        with self._lock:
+            if self._hash_vecs is None:
+                self._hash_vecs = emb.embed_texts([c["text"] for c in self.chunks], "search_document",
+                                                  provider="hash")
+        q = emb.embed_texts([query], "search_query", provider="hash")[0]
+        sims = self._hash_vecs @ q
         order = np.argsort(-sims, kind="stable")[:n]
         return [(self.ids[i], float(sims[i])) for i in order]
+
+    def _dense_rank(self, query: str, n: int) -> tuple[list[tuple[str, float]], bool]:
+        """Dense ranking and a flag telling whether the hash fallback was used."""
+        try:
+            q = emb.embed_texts([query], "search_query", provider=self.provider, timeout=10, attempts=1)[0]
+        except Exception:  # no key, not cached, timeout, 429: silently use the offline hash channel
+            if self.provider == "hash":
+                raise
+            return self._hash_dense(query, n), True
+        if self._qdrant is not None:
+            pts = self._qdrant.query_points("zelos_chunks", query=q.tolist(), limit=n).points
+            return [(self.ids[int(p.id)], float(p.score)) for p in pts], False
+        sims = self._vecs @ q
+        order = np.argsort(-sims, kind="stable")[:n]
+        return [(self.ids[i], float(sims[i])) for i in order], False
 
     # ---------------------------------------------------------------- rerank
     def _load_rr(self) -> dict[str, list]:
@@ -125,7 +142,7 @@ class HybridRetriever:
             return None
         import cohere
 
-        co = cohere.ClientV2(api_key=api, timeout=60)
+        co = cohere.ClientV2(api_key=api, timeout=float(self.cfg.get("rerank_timeout_s", 10)))
         gap = float(self.cfg.get("rerank_min_interval_s", 0))
         if gap > 0:  # optional client-side pacing for rate-limited (trial) keys
             with self._lock:
@@ -134,16 +151,18 @@ class HybridRetriever:
                     time.sleep(wait)
                 self._last_rerank = time.monotonic()
         r = None
-        for attempt in range(6):
+        attempts = 1 + int(self.cfg.get("rerank_retries", 0))
+        for attempt in range(attempts):
             try:
                 r = co.rerank(model=self.rerank_model, query=query,
                               documents=[self.by_id[c]["text"] for c in cand], top_n=len(cand))
                 break
             except Exception as e:
-                if attempt == 5:
-                    return None
+                if attempt == attempts - 1:
+                    return None  # any error: fall back to RRF order
                 time.sleep(15 if ("429" in str(e) or "rate" in str(e).lower()) else 2)
-        assert r is not None
+        if r is None:
+            return None
         emb.log_cohere_call("rerank", len(cand))
         self.rerank_calls += 1
         scored = [(cand[x.index], float(x.relevance_score)) for x in r.results]
@@ -164,10 +183,11 @@ class HybridRetriever:
         n = int(self.cfg["candidates"])
         info: dict[str, Any] = {"bm25_top": 0.0, "dense_top": 0.0, "rerank_top": None, "degraded": ""}
         bm = self._bm25_rank(query, n)
-        de = self._dense_rank(query, n) if mode != "bm25" else []
-        if de is None:
-            de = []
-            info["degraded"] = "dense_unavailable"
+        de: list[tuple[str, float]] = []
+        if mode != "bm25":
+            de, fell_back = self._dense_rank(query, n)
+            if fell_back:
+                info["degraded"] = "dense_hash_fallback"
         info["bm25_top"] = bm[0][1] if bm else 0.0
         info["dense_top"] = de[0][1] if de else 0.0
         if mode == "bm25" or (mode == "dense" and not de):
@@ -207,8 +227,6 @@ class HybridRetriever:
             low_b, low_d = info["bm25_top"] < tb, info["dense_top"] < td
             # each mode only consults the channel(s) it actually uses; hybrid needs both to be weak
             ab = {"bm25": low_b, "dense": low_d}.get(mode, low_b and low_d)
-            if mode == "dense" and info["degraded"]:
-                ab = low_b
             reason = (f"bm25 top {info['bm25_top']:.2f} (min {tb}), dense top {info['dense_top']:.3f} (min {td}): "
                       + ("below thresholds" if ab else "supported"))
         if not hits:
