@@ -1,0 +1,748 @@
+{
+ "__meta__": {
+  "retriever": "bm25 over corpus/chunks.jsonl"
+ },
+ "search|How can image analysis be used to quantify cells in organ-on-a-chip or microphysiological systems?|5": [
+  {
+   "chunk_id": "FIXTURE2::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 2,
+   "score": 0.3333333333333333,
+   "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+   "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE1::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 1,
+   "score": 0.16666666666666666,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+   "title": "Test fixture passage on focus (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE3::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 3,
+   "score": 0.16666666666666666,
+   "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+   "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|How do I configure a Kubernetes ingress controller?|5": [],
+ "search|How does flat-field correction work in optical microscopy?|5": [
+  {
+   "chunk_id": "FIXTURE3::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 3,
+   "score": 0.4,
+   "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+   "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE1::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 1,
+   "score": 0.2,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+   "title": "Test fixture passage on focus (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|How does uneven illumination or vignetting affect brightfield images and how is it corrected?|5": [
+  {
+   "chunk_id": "FIXTURE3::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 3,
+   "score": 0.6666666666666666,
+   "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+   "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE1::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 1,
+   "score": 0.16666666666666666,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+   "title": "Test fixture passage on focus (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|How is label-free brightfield imaging combined with deep learning to study cells?|5": [
+  {
+   "chunk_id": "FIXTURE1::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 1,
+   "score": 0.42857142857142855,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+   "title": "Test fixture passage on focus (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE3::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 3,
+   "score": 0.2857142857142857,
+   "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+   "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE2::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 2,
+   "score": 0.14285714285714285,
+   "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+   "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|What are typical failure modes of microfluidic organ-on-a-chip devices such as air bubbles?|5": [
+  {
+   "chunk_id": "FIXTURE2::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 2,
+   "score": 0.625,
+   "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+   "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE1::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 1,
+   "score": 0.125,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+   "title": "Test fixture passage on focus (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|What cell types and seeding parameters are used in liver-on-a-chip models?|5": [
+  {
+   "chunk_id": "FIXTURE1::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 1,
+   "score": 0.16666666666666666,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+   "title": "Test fixture passage on focus (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE2::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 2,
+   "score": 0.16666666666666666,
+   "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+   "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|What is deconvolution used for in brightfield microscopy of noisy images?|5": [
+  {
+   "chunk_id": "FIXTURE1::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 1,
+   "score": 0.5,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+   "title": "Test fixture passage on focus (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE3::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 3,
+   "score": 0.25,
+   "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+   "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|What is the boiling point of liquid nitrogen at sea level in kelvin?|5": [],
+ "search|What is the capital city of Australia?|5": [],
+ "search|What is the plot of the novel Moby Dick?|5": [],
+ "search|What is the recommended daily dose of metformin for a type 2 diabetes patient?|5": [],
+ "search|What methods exist for automatic focusing in microscopy of cell cultures?|5": [
+  {
+   "chunk_id": "FIXTURE1::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 1,
+   "score": 0.42857142857142855,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+   "title": "Test fixture passage on focus (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE2::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 2,
+   "score": 0.14285714285714285,
+   "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+   "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|What roles do imaging and sensing play in microfluidic platform design?|5": [
+  {
+   "chunk_id": "FIXTURE1::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 1,
+   "score": 0.2857142857142857,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+   "title": "Test fixture passage on focus (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE2::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 2,
+   "score": 0.14285714285714285,
+   "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+   "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE3::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 3,
+   "score": 0.14285714285714285,
+   "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+   "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|What was the closing stock price of a large technology company last Friday?|5": [],
+ "search|Which smartphone has the best camera for mobile photography?|5": [],
+ "search|Who won the 2018 football world cup?|5": [],
+ "search|Why does camera quality matter when images are used for computational analysis?|5": [
+  {
+   "chunk_id": "FIXTURE3::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 3,
+   "score": 0.2,
+   "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+   "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|brightfield microscopy image quality control organ-on-a-chip cell culture|3": [
+  {
+   "chunk_id": "PMC7275059::s0::0",
+   "license": "cc by",
+   "pmcid": "PMC7275059",
+   "rank": 1,
+   "score": 16.33481418946069,
+   "section": "Abstract",
+   "text": "Modern histopathology workflows rely on the digitization of histology slides. The quality of the resulting digital representations, in the form of histology slide image mosaics, depends on various specific acquisition conditions and on the image processing steps that underlie the generation of the final mosaic, e.g. registration and blending of the contained image tiles. We introduce HISTOBREAST, an extensive collection of brightfield microscopy images that we collected in a principled manner under different acquisition conditions on Haematoxylin - Eosin (H&E) stained breast tissue. HISTOBREAST is comprised of neighbour image tiles and ensemble of mosaics composed from different combinations of the available image tiles, exhibiting progressively degraded quality levels. HISTOBREAST can be used to benchmark image processing and computer vision techniques with respect to their robustness to image modifications specific to brightfield microscopy of H&E stained tissues. Furthermore, HISTOBREAST can serve in the development of new image processing methods, with the purpose of ensuring robustness to typical image artefacts that raise interpretation problems for expert histopathologists and affect the results of computerized image analysis. Subject terms: Image processing, Data acquisition, Microscopy,",
+   "title": "HISTOBREAST, a collection of brightfield microscopy images of Haematoxylin and Eosin stained breast tissue",
+   "url": "https://europepmc.org/article/PMC/PMC7275059"
+  },
+  {
+   "chunk_id": "PMC7275059::s1::4",
+   "license": "cc by",
+   "pmcid": "PMC7275059",
+   "rank": 2,
+   "score": 13.458226799042981,
+   "section": "Introduction",
+   "text": "HSIM quality, and hence evaluate and consolidate the robustness of their methods with respect to such issues. To respond to these needs, we introduce here HISTOBREAST31, an extensive collection of brightfield microscopy (BM) images collected on a Haematoxylin - Eosin (H&E) stained breast tissue sample. HISTOBREAST is comprised of NITs collected at different acquisition settings and at two different magnifications, and also includes an ensemble of HSIMs composed from different combinations of the available NITs, exhibiting progressively degraded quality levels, according to a hierarchy that we previously introduced32. We envision that HISTOBREAST can be useful in the development and benchmarking of a variety of image processing and analysis algorithms/methods relevant for digital histopathology, such as image quality assessment, restoration, registration or mosaicking. In the following we present the structure of HISTOBREAST, the NITs acquisition and HSIM generation protocols, together with the interpretation of the imaged scenes, and discuss potential utility scenarios.",
+   "title": "HISTOBREAST, a collection of brightfield microscopy images of Haematoxylin and Eosin stained breast tissue",
+   "url": "https://europepmc.org/article/PMC/PMC7275059"
+  },
+  {
+   "chunk_id": "PMC8879989::s11::0",
+   "license": "cc by",
+   "pmcid": "PMC8879989",
+   "rank": 3,
+   "score": 13.15084265737934,
+   "section": "3.2. Confocal Fluorescence Microscopy with OOC Platforms",
+   "text": "When confocal microscopy is used with fluorescence imaging, cellular and subcellular details can be imaged over different depths of microfluidic channels, which is beneficial for OOC platforms [71]. This imaging technique can image various sized samples from single molecules to millimeter-sized samples [23]. Such single-molecule imaging is essential for OOCs, since the target molecules (subcellular details) are micron-sized. In this method, the microscopes can either be integrated onto the chip or as an external component to capture the fluorescence images [23]. Some examples of this imaging method were demonstrated in an OOC platform discussed earlier in this review. As discussed earlier, van der Meer et al. began with taking brightfield images of their OOC device to find that this form of imaging was incapable of imaging the cell-to-cell interactions [32]. In order to overcome this, confocal microscopy images of the fluorescently labeled cells were taken and found to produce a higher resolution than the brightfield images, as seen in Figure 6B [32]. Peel et al. followed a similar path in using confocal fluorescence microscopy after using brightfield imaging. As discussed",
+   "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+   "url": "https://europepmc.org/article/PMC/PMC8879989"
+  }
+ ],
+ "search|debris particles contamination microfluidic channel cell culture imaging|3": [
+  {
+   "chunk_id": "PMC13465586::s2::1",
+   "license": "cc by",
+   "pmcid": "PMC13465586",
+   "rank": 1,
+   "score": 12.201986912548366,
+   "section": "Chip Geometry and Structural Design",
+   "text": "culture chamber and adjacent regions were designed with widths smaller than 100 \u03bcm. This configuration prevented embryo displacement while still permitting medium perfusion and removal of cellular debris and metabolic by-products. The chip was fabricated using a photolithographic molding process with a photoresist spin-coating speed of 1000 rpm, resulting in an average channel height of approximately 220 \u03bcm. The culture chamber had an average surface area of 201.06 mm2 and an average volume of 44.23 \u03bcL, while the total chip volume was approximately 74.13 \u03bcL.",
+   "title": "Microfluidic Fibroblast Cell Culture Chip for Embryo Co-Culture: Analysis of Preimplantation Embryo Viability and Development Potential",
+   "url": "https://europepmc.org/article/PMC/PMC13465586"
+  },
+  {
+   "chunk_id": "PMC13588180::s1::1",
+   "license": "cc by",
+   "pmcid": "PMC13588180",
+   "rank": 2,
+   "score": 11.994663132713635,
+   "section": "INTRODUCTION",
+   "text": "later refined by San-Miguel et al. (2), introduced worms from a reservoir into a single imaging channel, immobilized them using hydraulic valves and cooling, and optionally sorted them based on phenotype. This setup enables imaging of several hundred animals per hour and the recovery of specific individuals. However, its complex hardware requirements and single-channel design make it prone to clogging and contamination. Mondal et al. (3) instead trapped thousands of worms in a 96-well microfluidic array, each with 40 tapered trap channels, enabling imaging of up to 5000 animals per hour at low magnification. However, the need for constant pressure during imaging results in variable worm positioning in the channels, restricting it to low-magnification optics (\u226410\u00d7) and requiring a custom hardware setup. Overall, both systems substantially increase throughput compared to agar-pad imaging but remain technically demanding, limiting their widespread adoption. To overcome the limitations of the existing methods, we integrated the simple-to-use microfluidic imaging devices described in Spiri et al. (4) into a fully automated, high-speed image-acquisition system, combined with neural network\u2013based image classification. This system is well-suited for large-scale",
+   "title": "An automated high-resolution screening platform identifies regulators of anchor cell invasion in &lt;i&gt;C. elegans&lt;/i&gt;",
+   "url": "https://europepmc.org/article/PMC/PMC13588180"
+  },
+  {
+   "chunk_id": "PMC13208755::s11::0",
+   "license": "cc by",
+   "pmcid": "PMC13208755",
+   "rank": 3,
+   "score": 10.792983322989624,
+   "section": "3.5. Plasma Extraction",
+   "text": "Figure 5A illustrates the three-dimensional focusing performance of the acoustic vortex chip as observed using confocal microscopy. Fluorescently labeled polystyrene (PS) microspheres, which emit green fluorescence under laser excitation, clearly delineate the particle focusing trajectory. The channel architecture is visualized using Rhodamine B, which emits red fluorescence when excited by a 560 nm laser, thereby outlining the microfluidic conduit. The left panel shows the overall 3D focusing effect; the middle panel displays the focused particle stream in the XY plane, with white dashed lines indicating the channel width and the central focusing trajectory; and the right panel presents the XZ plane, where white dashed lines mark the channel height, revealing that the focused particles are primarily confined to the upper region. Due to the limited height of the lateral channel, the particles are focused at the top of the channel rather than in the middle. It should be noted that lateral (XY) focusing has been quantitatively characterized via focusing width measurements under varying conditions (Figure 2C and Figure 3C,D). The confocal images presented here serve as a qualitative visualization of",
+   "title": "Acoustic Streaming-Based 3D Cell Focusing and Plasma Separation",
+   "url": "https://europepmc.org/article/PMC/PMC13208755"
+  }
+ ],
+ "search|lossy image compression artifacts microscopy quantitative analysis|3": [
+  {
+   "chunk_id": "PMC12779969::s1::2",
+   "license": "cc by",
+   "pmcid": "PMC12779969",
+   "rank": 1,
+   "score": 16.621634985964867,
+   "section": "Introduction",
+   "text": "processing algorithms to remove the artifacts before the final image analysis.Fig. 1Experimental pipeline for optical imaging of large samples in presence of uneven illumination.a The experimental pipeline for optical microscopy is composed of image reconstruction, processing, and analysis steps to extract quantitative information from the measured sample and address the questions raised by the research study. When uneven illumination affects the measured images, the pipeline must be adapted to remove this artifact and enable an accurate image analysis. In the case of measurements of large samples, multiple tiles of the tissue are stitched into a composite image and flat-field correction is applied. Finally, the enhanced image can be analysed to retrieve the information of interest. b Image quality assessment should be always integrated in the experimental pipeline for a quantitative evaluation of the raw and corrected images. It can be utilized for automatic detection of uneven illumination, fine-tuning of the hyperparameters of different correction methods and the selection of the optimized correction before image analysis. EVEN can be used as a reliable and automatic tool for these tasks. Regarding the",
+   "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+   "url": "https://europepmc.org/article/PMC/PMC12779969"
+  },
+  {
+   "chunk_id": "PMC12779969::s1::0",
+   "license": "cc by",
+   "pmcid": "PMC12779969",
+   "rank": 2,
+   "score": 16.57336057108831,
+   "section": "Introduction",
+   "text": "Optical microscopy plays a crucial role in biological and biomedical research, from the investigation of fundamental biological processes to the integration of microscopy techniques in clinical scenarios1\u20134. In these applications, the presence of experimental artifacts significantly impacts the quality of the measurement and the extraction of quantitative information for a correct understanding of the sample. Among the possible causes of image degradation, such as noise, blurring, and photobleaching, uneven illumination affects all images acquired by optical microscopes. It is a non-uniform illumination of the field of view (FOV), typically arising as a decrease of intensity from the optical axis to the edges of the measured image, resulting in a vignetting effect in single fields of view. In addition, when neighbouring tiles of a large sample are stitched, the resulting composite image is affected by a mosaic effect. Uneven illumination not only generates strong artifacts that impede the correct visual interpretation of the images, but it might limit the performance of image analysis methods5\u20138. Uneven illumination is particularly strong in certain experimental conditions. For instance, nonlinear processes transmit any non-uniformity of",
+   "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+   "url": "https://europepmc.org/article/PMC/PMC12779969"
+  },
+  {
+   "chunk_id": "PMC12779969::s1::1",
+   "license": "cc by",
+   "pmcid": "PMC12779969",
+   "rank": 3,
+   "score": 13.659421134673687,
+   "section": "Introduction",
+   "text": "of the images, but it might limit the performance of image analysis methods5\u20138. Uneven illumination is particularly strong in certain experimental conditions. For instance, nonlinear processes transmit any non-uniformity of the illumination signal to the generated and detected signal in a nonlinear way, whereas multimodal and multicolour measurements might show a variable illumination in the different channels due to the occurrence of different physical processes, chromatic aberrations, and the presence of different targeted tissue components. Multimodal measurements encode important morpho-chemical information, that is degraded and lost if the images are analysed without proper correction of uneven illumination artifacts9. In this regard, the removal of uneven illumination becomes essential for spectral histopathology studies. Fig. 1a shows a standard experimental pipeline for microscopic images affected by uneven illumination. The pipeline is implemented to retrieve quantitative information from the measured sample sections, including reconstruction steps for the generation of the raw image and processing algorithms to remove the artifacts before the final image analysis.Fig. 1Experimental pipeline for optical imaging of large samples in presence of uneven illumination.a The experimental pipeline for optical microscopy",
+   "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+   "url": "https://europepmc.org/article/PMC/PMC12779969"
+  }
+ ],
+ "search|low contrast transparent cells brightfield phase contrast imaging|3": [
+  {
+   "chunk_id": "PMC8879989::s21::0",
+   "license": "cc by",
+   "pmcid": "PMC8879989",
+   "rank": 1,
+   "score": 26.06192503484877,
+   "section": "5. Conclusions",
+   "text": "Table 1 summarizes the strengths and weaknesses of a variety of imaging methods discussed in this review. Transillumination methods, including brightfield, phase-contrast, and holographic optofluidic imaging, suffer from low resolution, which is not suitable for imaging the cells and subcellular structures within OOCs. Despite this setback, brightfield and phase-contrast imaging have been demonstrated for OOCs, presumably due to their simple operation principles. Phase-contrast imaging may deserve further investigation due to its ability to measure phase and morphological changes of mammalian cells, if its resolution can be increased substantially. Holographic optofluidic imaging also deserve further investigation due to its portability and phase imaging capability; however, its operation should be simplified and resolution should further be improved for OOC applications. Fluorescence imaging, including confocal fluorescence and LSFM, has suffered from photobleaching and phototoxicity to the mammalian cells. Despite these disadvantages, they have nonetheless been used for OOC platforms. LSFM deserves more investigation, as it has high acquisition rate leading to reduced photobleaching and phototoxicity. Smartphone-based imaging, including microscope attachment-based, quantitative phase microscopy, and lens-free microscopy, is the most promising method since they",
+   "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+   "url": "https://europepmc.org/article/PMC/PMC8879989"
+  },
+  {
+   "chunk_id": "PMC8879989::s2::1",
+   "license": "cc by",
+   "pmcid": "PMC8879989",
+   "rank": 2,
+   "score": 20.757497165759517,
+   "section": "2. Transillumination Imaging",
+   "text": "not require labeling the sample\u2014e.g., fixing and staining for fluorescence imaging\u2014cells can be imaged in situ within the microfluidic channels. Such a no-labeling feature is one of the advantages that transillumination offers, which saves time and adds to the ease of the method. Transillumination forms that are commonly used with microfluidic devices include brightfield imaging, phase-contrast imaging, and holographic optofluidic microscopy.",
+   "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+   "url": "https://europepmc.org/article/PMC/PMC8879989"
+  },
+  {
+   "chunk_id": "PMC8879989::s6::1",
+   "license": "cc by",
+   "pmcid": "PMC8879989",
+   "rank": 3,
+   "score": 19.714661010246147,
+   "section": "2.4. Phase-Contrast Imaging with OOC Platforms",
+   "text": "detail than with other imaging methods. This method also demonstrates the ability of phase-contrast imaging for other OOC platforms since the device discussed above was intended to closely mimic the in vivo growth of NMuMG cells and capture the 3D level details of the cells in the gelatin microchannel. One of the current directions of the OOC platform is in vitro drug tests that closely model an in vivo organ [41]. The developed OOC needs to model the disease of interest to test drugs effectively [41]. Huh et al. developed a lung on a chip platform to model pulmonary edema and imaged their platform through phase-contrast imaging [41]. These phase-contrast images exposed a space that was previously filled with air and later filled with a clear liquid as it leaked across the endothelial lining of the microvascular channel [41]. This depicts how phase-contrast imaging can be used to image OOC platforms towards one of the current trends of OOC applications.",
+   "title": "Microscopic Imaging Methods for Organ-on-a-Chip Platforms",
+   "url": "https://europepmc.org/article/PMC/PMC8879989"
+  }
+ ],
+ "search|out-of-focus blurred brightfield microscopy image quality autofocus organ-on-a-chip|3": [
+  {
+   "chunk_id": "FIXTURE1::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 1,
+   "score": 0.5714285714285714,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+   "title": "Test fixture passage on focus (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE2::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 2,
+   "score": 0.14285714285714285,
+   "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+   "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+   "url": ""
+  },
+  {
+   "chunk_id": "FIXTURE3::s1::0",
+   "license": "test-fixture",
+   "pmcid": "",
+   "rank": 3,
+   "score": 0.14285714285714285,
+   "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+   "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+   "url": ""
+  }
+ ],
+ "search|uneven illumination vignetting flat-field correction brightfield microscopy|3": [
+  {
+   "chunk_id": "PMC12779969::s1::2",
+   "license": "cc by",
+   "pmcid": "PMC12779969",
+   "rank": 1,
+   "score": 28.570395295680335,
+   "section": "Introduction",
+   "text": "processing algorithms to remove the artifacts before the final image analysis.Fig. 1Experimental pipeline for optical imaging of large samples in presence of uneven illumination.a The experimental pipeline for optical microscopy is composed of image reconstruction, processing, and analysis steps to extract quantitative information from the measured sample and address the questions raised by the research study. When uneven illumination affects the measured images, the pipeline must be adapted to remove this artifact and enable an accurate image analysis. In the case of measurements of large samples, multiple tiles of the tissue are stitched into a composite image and flat-field correction is applied. Finally, the enhanced image can be analysed to retrieve the information of interest. b Image quality assessment should be always integrated in the experimental pipeline for a quantitative evaluation of the raw and corrected images. It can be utilized for automatic detection of uneven illumination, fine-tuning of the hyperparameters of different correction methods and the selection of the optimized correction before image analysis. EVEN can be used as a reliable and automatic tool for these tasks. Regarding the",
+   "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+   "url": "https://europepmc.org/article/PMC/PMC12779969"
+  },
+  {
+   "chunk_id": "PMC13165845::s1::4",
+   "license": "cc by",
+   "pmcid": "PMC13165845",
+   "rank": 2,
+   "score": 24.56549658641248,
+   "section": "1. Introduction",
+   "text": "a flat-field image If smoothed with a 2D low-pass Gaussian filter [8,40,41,42,43]. The results of this approach critically depend on the filter parameters, which, in discrete space, are the standard deviation \u03c3 and the kernel size a of the discrete filter G. The individual weights within the kernel matrix are determined as follows: where h,l\u2208Z, and \u2212a\u221212\u2264h,l\u2264a\u221212, and a is an odd integer. Although parameter selection is crucial, the existing literature related to vignetting correction addresses it only briefly, generally emphasising the need for a trade-off between reproducing the vignetting profile and avoiding overfitting to noise [8]. Although methods for the automated selection of Gaussian filter parameters are extensively discussed in signal and digital image processing research, such solutions are not typically applied to flat-field-based vignetting correction. This discrepancy arises from the fact that the filtration objectives and signal properties considered in general processing tasks differ from those of flat-field images encountered in vignetting correction. As a result, methods from other domains often produce estimates that lack sufficient generalisation. Such filters fail to capture the actual vignetting profile accurately. To",
+   "title": "Automatic Tuning of Gaussian Filter for Image Vignetting Correction",
+   "url": "https://europepmc.org/article/PMC/PMC13165845"
+  },
+  {
+   "chunk_id": "PMC12779969::s1::0",
+   "license": "cc by",
+   "pmcid": "PMC12779969",
+   "rank": 3,
+   "score": 24.031532589934105,
+   "section": "Introduction",
+   "text": "Optical microscopy plays a crucial role in biological and biomedical research, from the investigation of fundamental biological processes to the integration of microscopy techniques in clinical scenarios1\u20134. In these applications, the presence of experimental artifacts significantly impacts the quality of the measurement and the extraction of quantitative information for a correct understanding of the sample. Among the possible causes of image degradation, such as noise, blurring, and photobleaching, uneven illumination affects all images acquired by optical microscopes. It is a non-uniform illumination of the field of view (FOV), typically arising as a decrease of intensity from the optical axis to the edges of the measured image, resulting in a vignetting effect in single fields of view. In addition, when neighbouring tiles of a large sample are stitched, the resulting composite image is affected by a mosaic effect. Uneven illumination not only generates strong artifacts that impede the correct visual interpretation of the images, but it might limit the performance of image analysis methods5\u20138. Uneven illumination is particularly strong in certain experimental conditions. For instance, nonlinear processes transmit any non-uniformity of",
+   "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+   "url": "https://europepmc.org/article/PMC/PMC12779969"
+  }
+ ],
+ "swa|How can image analysis be used to quantify cells in organ-on-a-chip or microphysiological systems?|5": {
+  "abstained": false,
+  "hits": [
+   {
+    "chunk_id": "FIXTURE2::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 2,
+    "score": 0.3333333333333333,
+    "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+    "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE1::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 1,
+    "score": 0.16666666666666666,
+    "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+    "title": "Test fixture passage on focus (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE3::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 3,
+    "score": 0.16666666666666666,
+    "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+    "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+    "url": ""
+   }
+  ],
+  "reason": ""
+ },
+ "swa|How do I configure a Kubernetes ingress controller?|5": {
+  "abstained": true,
+  "hits": [],
+  "reason": "below lexical threshold"
+ },
+ "swa|How does flat-field correction work in optical microscopy?|5": {
+  "abstained": false,
+  "hits": [
+   {
+    "chunk_id": "FIXTURE3::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 3,
+    "score": 0.4,
+    "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+    "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE1::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 1,
+    "score": 0.2,
+    "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+    "title": "Test fixture passage on focus (synthetic, not a real paper)",
+    "url": ""
+   }
+  ],
+  "reason": ""
+ },
+ "swa|How does uneven illumination or vignetting affect brightfield images and how is it corrected?|5": {
+  "abstained": false,
+  "hits": [
+   {
+    "chunk_id": "FIXTURE3::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 3,
+    "score": 0.6666666666666666,
+    "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+    "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE1::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 1,
+    "score": 0.16666666666666666,
+    "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+    "title": "Test fixture passage on focus (synthetic, not a real paper)",
+    "url": ""
+   }
+  ],
+  "reason": ""
+ },
+ "swa|How is label-free brightfield imaging combined with deep learning to study cells?|5": {
+  "abstained": false,
+  "hits": [
+   {
+    "chunk_id": "FIXTURE1::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 1,
+    "score": 0.42857142857142855,
+    "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+    "title": "Test fixture passage on focus (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE3::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 3,
+    "score": 0.2857142857142857,
+    "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+    "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE2::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 2,
+    "score": 0.14285714285714285,
+    "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+    "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+    "url": ""
+   }
+  ],
+  "reason": ""
+ },
+ "swa|What are typical failure modes of microfluidic organ-on-a-chip devices such as air bubbles?|5": {
+  "abstained": false,
+  "hits": [
+   {
+    "chunk_id": "FIXTURE2::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 2,
+    "score": 0.625,
+    "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+    "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE1::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 1,
+    "score": 0.125,
+    "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+    "title": "Test fixture passage on focus (synthetic, not a real paper)",
+    "url": ""
+   }
+  ],
+  "reason": ""
+ },
+ "swa|What cell types and seeding parameters are used in liver-on-a-chip models?|5": {
+  "abstained": true,
+  "hits": [],
+  "reason": "below lexical threshold"
+ },
+ "swa|What is deconvolution used for in brightfield microscopy of noisy images?|5": {
+  "abstained": false,
+  "hits": [
+   {
+    "chunk_id": "FIXTURE1::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 1,
+    "score": 0.5,
+    "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+    "title": "Test fixture passage on focus (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE3::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 3,
+    "score": 0.25,
+    "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+    "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+    "url": ""
+   }
+  ],
+  "reason": ""
+ },
+ "swa|What is the boiling point of liquid nitrogen at sea level in kelvin?|5": {
+  "abstained": true,
+  "hits": [],
+  "reason": "below lexical threshold"
+ },
+ "swa|What is the capital city of Australia?|5": {
+  "abstained": true,
+  "hits": [],
+  "reason": "below lexical threshold"
+ },
+ "swa|What is the plot of the novel Moby Dick?|5": {
+  "abstained": true,
+  "hits": [],
+  "reason": "below lexical threshold"
+ },
+ "swa|What is the recommended daily dose of metformin for a type 2 diabetes patient?|5": {
+  "abstained": true,
+  "hits": [],
+  "reason": "below lexical threshold"
+ },
+ "swa|What methods exist for automatic focusing in microscopy of cell cultures?|5": {
+  "abstained": false,
+  "hits": [
+   {
+    "chunk_id": "FIXTURE1::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 1,
+    "score": 0.42857142857142855,
+    "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+    "title": "Test fixture passage on focus (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE2::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 2,
+    "score": 0.14285714285714285,
+    "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+    "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+    "url": ""
+   }
+  ],
+  "reason": ""
+ },
+ "swa|What roles do imaging and sensing play in microfluidic platform design?|5": {
+  "abstained": false,
+  "hits": [
+   {
+    "chunk_id": "FIXTURE1::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 1,
+    "score": 0.2857142857142857,
+    "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging.",
+    "title": "Test fixture passage on focus (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE2::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 2,
+    "score": 0.14285714285714285,
+    "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation.",
+    "title": "Test fixture passage on bubbles (synthetic, not a real paper)",
+    "url": ""
+   },
+   {
+    "chunk_id": "FIXTURE3::s1::0",
+    "license": "test-fixture",
+    "pmcid": "",
+    "rank": 3,
+    "score": 0.14285714285714285,
+    "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis.",
+    "title": "Test fixture passage on illumination (synthetic, not a real paper)",
+    "url": ""
+   }
+  ],
+  "reason": ""
+ },
+ "swa|What was the closing stock price of a large technology company last Friday?|5": {
+  "abstained": true,
+  "hits": [],
+  "reason": "below lexical threshold"
+ },
+ "swa|Which smartphone has the best camera for mobile photography?|5": {
+  "abstained": true,
+  "hits": [],
+  "reason": "below lexical threshold"
+ },
+ "swa|Who won the 2018 football world cup?|5": {
+  "abstained": true,
+  "hits": [],
+  "reason": "below lexical threshold"
+ },
+ "swa|Why does camera quality matter when images are used for computational analysis?|5": {
+  "abstained": true,
+  "hits": [],
+  "reason": "below lexical threshold"
+ }
+}

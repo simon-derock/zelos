@@ -32,7 +32,7 @@ def result_hash(obj) -> str:
 class _Run:
     def __init__(self) -> None:
         self.trace: list[dict] = []
-        self.usage = {"llm_calls": 0, "prompt_tokens": 0, "completion_tokens": 0}
+        self.usage = {"llm_calls": 0, "prompt_tokens": 0, "completion_tokens": 0, "llm_latency_ms": 0.0}
         self.notes: list[str] = []
 
     def step(self, step: str, tool: str, args: dict, result, t0: float, tokens: int = 0) -> None:
@@ -47,6 +47,7 @@ class _Run:
         self.usage["llm_calls"] += 1
         self.usage["prompt_tokens"] += u["prompt_tokens"]
         self.usage["completion_tokens"] += u["completion_tokens"]
+        self.usage["llm_latency_ms"] += float(res.get("latency_ms", 0.0))
         self.step(step, "llm.chat", {"model": res["model"], "cached": res["cached"]}, res["text"], t0,
                   u["prompt_tokens"] + u["completion_tokens"])
         return res
@@ -158,7 +159,8 @@ def _finish(mode: str, card: dict, g: dict, run: _Run, evidence: list[dict]) -> 
     if g["abstained"]:
         card["abstain"] = {"abstained": True, "reason": g["reason"]}
     return {"mode": mode, "provider": g["provider"], "card": card, "ledger": g["ledger"],
-            "ungated_draft": g["draft"], "trace": run.trace, "usage": dict(run.usage), "notes": run.notes}
+            "ungated_draft": g["draft"], "trace": run.trace, "usage": dict(run.usage), "notes": run.notes,
+            "evidence": evidence}
 
 
 def run_inspect(qc: dict, retriever=None, provider: str = "workers_ai") -> dict:

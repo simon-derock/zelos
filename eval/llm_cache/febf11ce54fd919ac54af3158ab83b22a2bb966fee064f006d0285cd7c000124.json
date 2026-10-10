@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [\n  {\"text\": \"The verdict is REVIEW.\", \"type\": \"numeric\", \"evidence\": [\"qc-1a2b3c4d\"]},\n  {\"text\": \"The main cause is DEFOCUS_OR_BLUR.\", \"type\": \"numeric\", \"evidence\": [\"qc-1a2b3c4d\"]},\n  {\"text\": \"The triggering metric values are focus_lapvar_norm = 0.41 and z = 4.2.\", \"type\": \"numeric\", \"evidence\": [\"qc-1a2b3c4d\"]},\n  {\"text\": \"The recommended action is Re-run autofocus and re-image this position; check the chip is seated flat on the stage.\", \"type\": \"numeric\", \"evidence\": [\"qc-1a2b3c4d\"]},\n  {\"text\": \"Rapid cooling of the culture medium can cause severe thermal drift and irreversible focus loss.\", \"type\": \"literature\", \"evidence\": [\"PMC13336770::s1::2\"]}\n]}",
+ "usage": {
+  "prompt_tokens": 1123,
+  "completion_tokens": 224
+ },
+ "latency_ms": 1690.4492890007532,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

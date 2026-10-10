@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [\n{\"text\": \"The image QC result is FAIL with a verdict of debris and uneven illumination.\", \"type\": \"numeric\", \"evidence\": [\"qc-a7ebe5af\"]},\n{\"text\": \"The main cause of the failure is debris with a count of 251.0.\", \"type\": \"numeric\", \"evidence\": [\"qc-a7ebe5af\"]},\n{\"text\": \"The second main cause is uneven illumination with a flatness of 3.1846.\", \"type\": \"numeric\", \"evidence\": [\"qc-a7ebe5af\"]},\n{\"text\": \"The recommended action is to inspect the channel and optics for particulates, clean or exclude affected regions.\", \"type\": \"numeric\", \"evidence\": [\"qc-a7ebe5af\"]},\n{\"text\": \"Additionally, apply flat-field correction or re-align the condenser (Koehler illumination) before analysis.\", \"type\": \"numeric\", \"evidence\": [\"qc-a7ebe5af\"]},\n{\"text\": \"Processing algorithms can remove artifacts before final image analysis.\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::2\"]}\n]}",
+ "usage": {
+  "prompt_tokens": 1782,
+  "completion_tokens": 248
+ },
+ "latency_ms": 1881.652751000729,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

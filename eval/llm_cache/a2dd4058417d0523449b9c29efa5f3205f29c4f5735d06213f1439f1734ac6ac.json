@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [\n{\"text\": \"Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]},\n{\"text\": \"Flat-field correction using a blank reference image removes vignetting before quantitative analysis.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]},\n{\"text\": \"Vignetting is corrected by flat-field correction.\", \"type\": \"inference\", \"evidence\": [\"qc-\"]},\n{\"text\": \"Flat-field correction uses a blank reference image.\", \"type\": \"inference\", \"evidence\": [\"qc-\"]},\n{\"text\": \"Vignetting biases intensity-based measurements.\", \"type\": \"inference\", \"evidence\": [\"qc-\"]},\n{\"text\": \"Flat-field correction removes vignetting before quantitative analysis.\", \"type\": \"inference\", \"evidence\": [\"qc-\"]}]}",
+ "usage": {
+  "prompt_tokens": 476,
+  "completion_tokens": 205
+ },
+ "latency_ms": 1627.0679609988292,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

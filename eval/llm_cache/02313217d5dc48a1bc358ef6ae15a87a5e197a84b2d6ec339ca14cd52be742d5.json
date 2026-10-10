@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The focus metric value for this image is 2.118\", \"type\": \"numeric\", \"evidence\": [\"qc-cceb0ba2\"]}, \n{\"text\": \"Uneven illumination affects all images acquired by optical microscopes\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::0\"]}, \n{\"text\": \"Uneven illumination is particularly strong in certain experimental conditions\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::1\"]}, \n{\"text\": \"The removal of uneven illumination becomes essential for spectral culture chamber analysis\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::1\"]}, \n{\"text\": \"The chip was fabricated using a photolithographic molding process\", \"type\": \"literature\", \"evidence\": [\"PMC13465586::s2::1\"]}, \n{\"text\": \"This claim follows from [qc-cceb0ba2]\", \"type\": \"inference\", \"evidence\": [\"qc-cceb0ba2\"]}]}",
+ "usage": {
+  "prompt_tokens": 1741,
+  "completion_tokens": 237
+ },
+ "latency_ms": 3586.4855099989654,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

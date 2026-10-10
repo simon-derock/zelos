@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [\n{\"text\": \"The image QC result is FAIL with a qc_score of 990.0.\", \"type\": \"numeric\", \"evidence\": [\"qc-e2569e5e\"]},\n{\"text\": \"The main cause of failure is DEBRIS with a debris_count of 990.0.\", \"type\": \"numeric\", \"evidence\": [\"qc-e2569e5e\"]},\n{\"text\": \"The main cause of failure is also UNEVEN_ILLUMINATION with an illum_flatness of 1.4341.\", \"type\": \"numeric\", \"evidence\": [\"qc-e2569e5e\"]},\n{\"text\": \"Recommended action is to inspect the channel and optics for particulates; clean or exclude affected regions.\", \"type\": \"inference\", \"evidence\": [\"qc-e2569e5e\"]},\n{\"text\": \"Recommended action is also to apply flat-field correction or re-align the condenser (Koehler illumination) before analysis.\", \"type\": \"inference\", \"evidence\": [\"qc-e2569e5e\"]},\n{\"text\": \"Uneven illumination can affect all images acquired by optical microscopes, leading to image degradation.\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::0\"]}\n]}",
+ "usage": {
+  "prompt_tokens": 1729,
+  "completion_tokens": 276
+ },
+ "latency_ms": 2478.9327750004304,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

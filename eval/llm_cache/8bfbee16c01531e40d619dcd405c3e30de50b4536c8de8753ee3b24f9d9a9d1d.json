@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [\n{\"text\": \"The image QC result is PASS.\", \"type\": \"numeric\", \"evidence\": [\"qc-1d08d28b\"]},\n{\"text\": \"The main cause of the PASS result is not explicitly stated in the tool output.\", \"type\": \"inference\", \"evidence\": [\"qc-1d08d28b\"]},\n{\"text\": \"The recommended action is to review the image quality and consider re-acquiring the image if necessary.\", \"type\": \"inference\", \"evidence\": [\"qc-1d08d28b\"]},\n{\"text\": \"The image quality is robust to issues such as registration and blending of image tiles.\", \"type\": \"literature\", \"evidence\": [\"PMC7275059::s0::0\"]},\n{\"text\": \"The image has a low clip high fraction of 0.0795.\", \"type\": \"numeric\", \"evidence\": [\"qc-1d08d28b\"]},\n{\"text\": \"The image has a high blob density of 3966.0136 blobs per mp.\", \"type\": \"numeric\", \"evidence\": [\"qc-1d08d28b\"]}\n]}",
+ "usage": {
+  "prompt_tokens": 1375,
+  "completion_tokens": 250
+ },
+ "latency_ms": 1537.7929799997219,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

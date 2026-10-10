@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The QC score is 8.0\", \"type\": \"numeric\", \"evidence\": [\"qc-cceb0ba2\"]}, \n{\"text\": \"The image has a debris count of 8.0\", \"type\": \"numeric\", \"evidence\": [\"qc-cceb0ba2\"]}, \n{\"text\": \"Uneven illumination affects all images acquired by optical microscopes\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::0\"]}, \n{\"text\": \"The image has a JPEG blockiness of 1.151\", \"type\": \"numeric\", \"evidence\": [\"qc-cceb0ba2\"]}, \n{\"text\": \"The image has a contrast p99 p1 of 0.7569\", \"type\": \"numeric\", \"evidence\": [\"qc-cceb0ba2\"]}, \n{\"text\": \"This claim follows from the tool call qc-cceb0ba2\", \"type\": \"inference\", \"evidence\": [\"qc-cceb0ba2\"]}]}",
+ "usage": {
+  "prompt_tokens": 1743,
+  "completion_tokens": 228
+ },
+ "latency_ms": 2266.339887999493,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

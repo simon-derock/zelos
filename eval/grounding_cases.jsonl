@@ -1,0 +1,38 @@
+{"id": "x01", "kind": "explain", "qc_index": 0, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x02", "kind": "explain", "qc_index": 1, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x03", "kind": "explain", "qc_index": 2, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x04", "kind": "explain", "qc_index": 3, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x05", "kind": "explain", "qc_index": 4, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x06", "kind": "explain", "qc_index": 5, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x07", "kind": "explain", "qc_index": 6, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x08", "kind": "explain", "qc_index": 7, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x09", "kind": "explain", "qc_index": 8, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x10", "kind": "explain", "qc_index": 9, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x11", "kind": "explain", "qc_index": 10, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x12", "kind": "explain", "qc_index": 11, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x13", "kind": "explain", "qc_index": 12, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x14", "kind": "explain", "qc_index": 13, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x15", "kind": "explain", "qc_index": 14, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x16", "kind": "explain", "qc_index": 15, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x17", "kind": "explain", "qc_index": 16, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x18", "kind": "explain", "qc_index": 17, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x19", "kind": "explain", "qc_index": 18, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "x20", "kind": "explain", "qc_index": 19, "note": "explain the QC result for sample i (index into results/qc_samples.json, else the fixture)"}
+{"id": "a01", "kind": "ask", "question": "How does uneven illumination or vignetting affect brightfield images and how is it corrected?", "answerable": true}
+{"id": "a02", "kind": "ask", "question": "What methods exist for automatic focusing in microscopy of cell cultures?", "answerable": true}
+{"id": "a03", "kind": "ask", "question": "How does flat-field correction work in optical microscopy?", "answerable": true}
+{"id": "a04", "kind": "ask", "question": "What are typical failure modes of microfluidic organ-on-a-chip devices such as air bubbles?", "answerable": true}
+{"id": "a05", "kind": "ask", "question": "How can image analysis be used to quantify cells in organ-on-a-chip or microphysiological systems?", "answerable": true}
+{"id": "a06", "kind": "ask", "question": "What is deconvolution used for in brightfield microscopy of noisy images?", "answerable": true}
+{"id": "a07", "kind": "ask", "question": "Why does camera quality matter when images are used for computational analysis?", "answerable": true}
+{"id": "a08", "kind": "ask", "question": "What cell types and seeding parameters are used in liver-on-a-chip models?", "answerable": true}
+{"id": "a09", "kind": "ask", "question": "How is label-free brightfield imaging combined with deep learning to study cells?", "answerable": true}
+{"id": "a10", "kind": "ask", "question": "What roles do imaging and sensing play in microfluidic platform design?", "answerable": true}
+{"id": "u01", "kind": "ask", "question": "What is the recommended daily dose of metformin for a type 2 diabetes patient?", "answerable": false}
+{"id": "u02", "kind": "ask", "question": "Who won the 2018 football world cup?", "answerable": false}
+{"id": "u03", "kind": "ask", "question": "What is the capital city of Australia?", "answerable": false}
+{"id": "u04", "kind": "ask", "question": "What was the closing stock price of a large technology company last Friday?", "answerable": false}
+{"id": "u05", "kind": "ask", "question": "How do I configure a Kubernetes ingress controller?", "answerable": false}
+{"id": "u06", "kind": "ask", "question": "What is the boiling point of liquid nitrogen at sea level in kelvin?", "answerable": false}
+{"id": "u07", "kind": "ask", "question": "Which smartphone has the best camera for mobile photography?", "answerable": false}
+{"id": "u08", "kind": "ask", "question": "What is the plot of the novel Moby Dick?", "answerable": false}

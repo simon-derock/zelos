@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [{\"text\": \"deconvolution is used to remove out-of-focus blur\", \"type\": \"inference\", \"evidence\": [\"FIXTURE1::s1::0\"]}, \n{\"text\": \"deconvolution is not used to remove vignetting\", \"type\": \"inference\", \"evidence\": [\"FIXTURE3::s1::0\"]}, \n{\"text\": \"deconvolution is used to improve focus measure\", \"type\": \"inference\", \"evidence\": [\"FIXTURE1::s1::0\"]}, \n{\"text\": \"deconvolution is not used to remove shading\", \"type\": \"inference\", \"evidence\": [\"FIXTURE3::s1::0\"]}, \n{\"text\": \"deconvolution is used to remove out-of-focus blur in brightfield microscopy images\", \"type\": \"inference\", \"evidence\": [\"FIXTURE1::s1::0\"]}, \n{\"text\": \"deconvolution is used to remove out-of-focus blur in cell cultures\", \"type\": \"inference\", \"evidence\": [\"FIXTURE1::s1::0\"]}]}",
+ "usage": {
+  "prompt_tokens": 474,
+  "completion_tokens": 240
+ },
+ "latency_ms": 1536.7021590009244,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The capital city of Australia is Canberra.\", \"type\": \"literature\", \"evidence\": [\"none retrieved\"]}]}",
+ "usage": {
+  "prompt_tokens": 370,
+  "completion_tokens": 33
+ },
+ "latency_ms": 643.1403509996017,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The organoid image has a debris count of 8.\", \"type\": \"numeric\", \"evidence\": [\"qc-cceb0ba2\"]}, \n{\"text\": \"Uneven illumination affects all images acquired by optical microscopes.\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::0\"]}, \n{\"text\": \"The organoid image has a JPEG blockiness of 1.151.\", \"type\": \"numeric\", \"evidence\": [\"qc-cceb0ba2\"]}, \n{\"text\": \"The removal of uneven illumination artifacts is essential for spectral analysis.\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::1\"]}, \n{\"text\": \"This claim follows from [qc-cceb0ba2].\", \"type\": \"inference\", \"evidence\": [\"qc-cceb0ba2\"]}, \n{\"text\": \"The organoid image has a contrast p99 p1 of 0.7569.\", \"type\": \"numeric\", \"evidence\": [\"qc-cceb0ba2\"]}]}",
+ "usage": {
+  "prompt_tokens": 1739,
+  "completion_tokens": 238
+ },
+ "latency_ms": 1951.8975270002556,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

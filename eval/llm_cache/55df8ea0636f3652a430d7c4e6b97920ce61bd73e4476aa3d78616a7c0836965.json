@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": []}",
+ "usage": {
+  "prompt_tokens": 373,
+  "completion_tokens": 6
+ },
+ "latency_ms": 452.2212480005692,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

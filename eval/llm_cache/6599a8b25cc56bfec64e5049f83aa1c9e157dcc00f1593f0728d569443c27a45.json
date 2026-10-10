@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [{\"text\": \"Flat-field correction removes vignetting that biases intensity-based measurements.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]}, \n{\"text\": \"Flat-field correction uses a blank reference image.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]}, \n{\"text\": \"Flat-field correction is used before quantitative analysis.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]}, \n{\"text\": \"Autofocus routines maximise the focus measure of the Laplacian.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE1::s1::0\"]}, \n{\"text\": \"Out-of-focus blur reduces the local variance of the Laplacian.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE1::s1::0\"]}, \n{\"text\": \"Autofocus routines are used to keep microfluidic chips in the focal plane during time-lapse imaging.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE1::s1::0\"]}]}",
+ "usage": {
+  "prompt_tokens": 469,
+  "completion_tokens": 246
+ },
+ "latency_ms": 1709.8662120006338,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

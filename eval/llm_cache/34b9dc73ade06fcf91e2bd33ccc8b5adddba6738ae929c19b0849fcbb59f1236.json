@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [{\"text\": \"Label-free brightfield imaging is used to study cells.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE1::s1::0\"]}, \n{\"text\": \"Deep learning is not mentioned in the provided evidence.\", \"type\": \"inference\", \"evidence\": [\"FIXTURE1::s1::0\"]}, \n{\"text\": \"Flat-field correction is used to remove vignetting in brightfield imaging.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]}, \n{\"text\": \"Autofocus routines are used to keep microfluidic chips in the focal plane.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE1::s1::0\"]}, \n{\"text\": \"Degassing the medium and priming the channel reduce bubble formation.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE2::s1::0\"]}, \n{\"text\": \"Air bubbles trapped in microfluidic channels disturb flow and shear stress.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE2::s1::0\"]}]}",
+ "usage": {
+  "prompt_tokens": 524,
+  "completion_tokens": 244
+ },
+ "latency_ms": 1814.3286899994564,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

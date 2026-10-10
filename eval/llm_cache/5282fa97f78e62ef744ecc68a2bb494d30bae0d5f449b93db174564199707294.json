@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [\n{\"text\": \"The image QC result is FAIL.\", \"type\": \"numeric\", \"evidence\": [\"qc-d84187a2\"]},\n{\"text\": \"The main cause of the failure is DEBRIS, with a triggering metric value of 32.0 for debris_count.\", \"type\": \"numeric\", \"evidence\": [\"qc-d84187a2\"]},\n{\"text\": \"The main cause of the failure is also LOW_CONTRAST, with a triggering metric value of 0.6789 for contrast_p99_p1.\", \"type\": \"numeric\", \"evidence\": [\"qc-d84187a2\"]},\n{\"text\": \"The recommended action is to inspect the channel and optics for particulates, clean or exclude affected regions.\", \"type\": \"numeric\", \"evidence\": [\"qc-d84187a2\"]},\n{\"text\": \"The recommended action is also to adjust the condenser aperture or exposure to recover contrast, then re-image.\", \"type\": \"numeric\", \"evidence\": [\"qc-d84187a2\"]},\n{\"text\": \"Brightfield imaging, including the one used in this image QC result, suffers from low resolution, which is not suitable for imaging cells and subcellular structures within OOCs.\", \"type\": \"literature\", \"evidence\": [\"PMC8879989::s21::0\"]}\n]}",
+ "usage": {
+  "prompt_tokens": 1685,
+  "completion_tokens": 287
+ },
+ "latency_ms": 2392.232086000149,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

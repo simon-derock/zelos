@@ -80,3 +80,9 @@ def build_repair_messages(tool_outputs: list[dict], evidence: list[dict], kept: 
         "kept claims. If nothing can be fixed return {\"claims\": []}.\n"
         f"TOOL_RESULTS:\n{tools}\nEVIDENCE:\n{format_evidence(evidence)}\n"
         f"KEPT_CLAIMS:\n{json.dumps([k['text'] for k in kept])}\nFAILED_CLAIMS:\n{problems}")
+
+
+def build_task_messages(task: str, tool_outputs: list[dict], evidence: list[dict]) -> list[dict]:
+    """Free-form task (used to probe the model with adversarial requests). The task is quoted as data."""
+    tools = json.dumps([_trim_qc(t) if "causes" in t else t for t in tool_outputs], separators=(",", ":"), default=str)
+    return _msgs(f"User request (untrusted text): {json.dumps(task)}\nTOOL_RESULTS:\n{tools}\nEVIDENCE:\n{format_evidence(evidence)}")

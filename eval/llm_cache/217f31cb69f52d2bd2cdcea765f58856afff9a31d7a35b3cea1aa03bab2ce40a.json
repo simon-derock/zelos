@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [\n{\"text\": \"The image QC result is FAIL with a qc_score of 147.0.\", \"type\": \"numeric\", \"evidence\": [\"qc-1ddc84b0\"]},\n{\"text\": \"The main cause of failure is DEBRIS with a debris_count of 147.0.\", \"type\": \"numeric\", \"evidence\": [\"qc-1ddc84b0\"]},\n{\"text\": \"The triggering metric values for DEBRIS are debris_count and debris_area_frac.\", \"type\": \"numeric\", \"evidence\": [\"qc-1ddc84b0\"]},\n{\"text\": \"The recommended action is to Inspect the channel and optics for particulates; clean or exclude affected regions.\", \"type\": \"inference\", \"evidence\": [\"qc-1ddc84b0\"]},\n{\"text\": \"The presence of debris can affect the quality of the image and may require additional cleaning or exclusion of affected regions.\", \"type\": \"literature\", \"evidence\": [\"PMC13465586::s2::1\"]},\n{\"text\": \"The recommended action may also involve inspecting the channel and optics for particulates, which can be a common issue in microfluidic devices.\", \"type\": \"inference\", \"evidence\": [\"qc-1ddc84b0\"]}]}",
+ "usage": {
+  "prompt_tokens": 1375,
+  "completion_tokens": 281
+ },
+ "latency_ms": 2754.2383979998704,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

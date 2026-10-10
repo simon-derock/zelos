@@ -1,0 +1,441 @@
+{
+  "experiment": "E5 grounding",
+  "provenance": {
+    "git_sha": "645ee48acd9a34c0f3265852213defba42c3a067",
+    "timestamp_utc": "2026-10-10T14:56:52+00:00",
+    "config_hash": "4d7368f2592c8582",
+    "python": "3.12.3",
+    "seed": 1337,
+    "llm_model": "@cf/meta/llama-3.1-8b-instruct-fast",
+    "gate_vectors": "0",
+    "qc_source": "results/qc_samples.json",
+    "n_qc_distinct": 30,
+    "evidence_source": "bm25 over corpus/chunks.jsonl (replayed from eval/llm_cache/retrieval_cache.json)",
+    "llm_mode": "replay",
+    "thresholds": {
+      "num_rel_tol": 0.001,
+      "theta_lex": 0.3,
+      "theta_vec": 0.35,
+      "repair_rounds": 1
+    }
+  },
+  "n": {
+    "explain": 20,
+    "ask": 18,
+    "adversarial": 14,
+    "unanswerable": 8
+  },
+  "conditions": {
+    "template": {
+      "n_cases": 38,
+      "n_claims_displayed": 114,
+      "supported_claims_per_case": 3.0,
+      "grounded_claim_rate": {
+        "k": 114,
+        "n": 114,
+        "rate": 1.0,
+        "ci95": [
+          0.9674,
+          1.0
+        ]
+      },
+      "unsupported_claim_rate_in_output": {
+        "k": 0,
+        "n": 114,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0326
+        ]
+      },
+      "numeric_hallucination_rate": {
+        "k": 0,
+        "n": 72,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0507
+        ]
+      },
+      "citation_exists_rate": {
+        "k": 36,
+        "n": 36,
+        "rate": 1.0,
+        "ci95": [
+          0.9036,
+          1.0
+        ]
+      },
+      "citation_valid_rate": {
+        "k": 36,
+        "n": 36,
+        "rate": 1.0,
+        "ci95": [
+          0.9036,
+          1.0
+        ]
+      },
+      "tokens_per_answer": 0.0,
+      "llm_calls_per_answer": 0.0,
+      "latency_ms_p50": 0.825,
+      "adversarial": {
+        "refusal_correctness": {
+          "k": 14,
+          "n": 14,
+          "rate": 1.0,
+          "ci95": [
+            0.7847,
+            1.0
+          ]
+        },
+        "explicit_refusal_or_abstain": {
+          "k": 10,
+          "n": 14,
+          "rate": 0.7142857142857143,
+          "ci95": [
+            0.4535,
+            0.8828
+          ]
+        },
+        "unsafe_output_rate": {
+          "k": 0,
+          "n": 14,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2153
+          ]
+        }
+      },
+      "abstention": {
+        "precision": {
+          "k": 8,
+          "n": 10,
+          "rate": 0.8,
+          "ci95": [
+            0.4902,
+            0.9433
+          ]
+        },
+        "recall": {
+          "k": 8,
+          "n": 8,
+          "rate": 1.0,
+          "ci95": [
+            0.6756,
+            1.0
+          ]
+        },
+        "n_unanswerable": 8,
+        "n_answerable": 10
+      }
+    },
+    "llm_ungated": {
+      "n_cases": 38,
+      "n_claims_displayed": 179,
+      "supported_claims_per_case": 4.394736842105263,
+      "grounded_claim_rate": {
+        "k": 167,
+        "n": 179,
+        "rate": 0.9329608938547486,
+        "ci95": [
+          0.8865,
+          0.9612
+        ]
+      },
+      "unsupported_claim_rate_in_output": {
+        "k": 12,
+        "n": 179,
+        "rate": 0.0670391061452514,
+        "ci95": [
+          0.0388,
+          0.1135
+        ]
+      },
+      "numeric_hallucination_rate": {
+        "k": 0,
+        "n": 45,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0787
+        ]
+      },
+      "citation_exists_rate": {
+        "k": 86,
+        "n": 86,
+        "rate": 1.0,
+        "ci95": [
+          0.9572,
+          1.0
+        ]
+      },
+      "citation_valid_rate": {
+        "k": 77,
+        "n": 86,
+        "rate": 0.8953488372093024,
+        "ci95": [
+          0.8129,
+          0.944
+        ]
+      },
+      "tokens_per_answer": 275.5263157894737,
+      "llm_calls_per_answer": 0.47368421052631576,
+      "latency_ms_p50": 1269.1692939997665,
+      "adversarial": {
+        "refusal_correctness": {
+          "k": 14,
+          "n": 14,
+          "rate": 1.0,
+          "ci95": [
+            0.7847,
+            1.0
+          ]
+        },
+        "explicit_refusal_or_abstain": {
+          "k": 0,
+          "n": 14,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2153
+          ]
+        },
+        "unsafe_output_rate": {
+          "k": 0,
+          "n": 14,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2153
+          ]
+        }
+      },
+      "abstention": {
+        "precision": {
+          "k": 5,
+          "n": 5,
+          "rate": 1.0,
+          "ci95": [
+            0.5655,
+            1.0
+          ]
+        },
+        "recall": {
+          "k": 5,
+          "n": 8,
+          "rate": 0.625,
+          "ci95": [
+            0.3057,
+            0.8632
+          ]
+        },
+        "n_unanswerable": 8,
+        "n_answerable": 10
+      }
+    },
+    "llm_gated": {
+      "n_cases": 38,
+      "n_claims_displayed": 171,
+      "supported_claims_per_case": 4.5,
+      "grounded_claim_rate": {
+        "k": 171,
+        "n": 171,
+        "rate": 1.0,
+        "ci95": [
+          0.978,
+          1.0
+        ]
+      },
+      "unsupported_claim_rate_in_output": {
+        "k": 0,
+        "n": 171,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.022
+        ]
+      },
+      "numeric_hallucination_rate": {
+        "k": 0,
+        "n": 48,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0741
+        ]
+      },
+      "citation_exists_rate": {
+        "k": 77,
+        "n": 77,
+        "rate": 1.0,
+        "ci95": [
+          0.9525,
+          1.0
+        ]
+      },
+      "citation_valid_rate": {
+        "k": 77,
+        "n": 77,
+        "rate": 1.0,
+        "ci95": [
+          0.9525,
+          1.0
+        ]
+      },
+      "tokens_per_answer": 1280.3947368421052,
+      "llm_calls_per_answer": 0.868421052631579,
+      "latency_ms_p50": 1883.0774935002441,
+      "adversarial": {
+        "refusal_correctness": {
+          "k": 14,
+          "n": 14,
+          "rate": 1.0,
+          "ci95": [
+            0.7847,
+            1.0
+          ]
+        },
+        "explicit_refusal_or_abstain": {
+          "k": 10,
+          "n": 14,
+          "rate": 0.7142857142857143,
+          "ci95": [
+            0.4535,
+            0.8828
+          ]
+        },
+        "unsafe_output_rate": {
+          "k": 0,
+          "n": 14,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.2153
+          ]
+        }
+      },
+      "abstention": {
+        "precision": {
+          "k": 8,
+          "n": 10,
+          "rate": 0.8,
+          "ci95": [
+            0.4902,
+            0.9433
+          ]
+        },
+        "recall": {
+          "k": 8,
+          "n": 8,
+          "rate": 1.0,
+          "ci95": [
+            0.6756,
+            1.0
+          ]
+        },
+        "n_unanswerable": 8,
+        "n_answerable": 10
+      }
+    }
+  },
+  "gate_fault_injection": {
+    "known_good_claims": {
+      "k": 98,
+      "n": 98,
+      "rate": 1.0,
+      "ci95": [
+        0.9623,
+        1.0
+      ]
+    },
+    "false_block_rate": {
+      "k": 0,
+      "n": 98,
+      "rate": 0.0,
+      "ci95": [
+        0.0,
+        0.0377
+      ]
+    },
+    "injected_fabrications_caught": {
+      "k": 100,
+      "n": 100,
+      "rate": 1.0,
+      "ci95": [
+        0.963,
+        1.0
+      ]
+    },
+    "by_kind": {
+      "fabricated_number": {
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ]
+      },
+      "fake_citation": {
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ]
+      },
+      "wrong_support": {
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ]
+      },
+      "uncited_literature": {
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ]
+      },
+      "orphan_inference": {
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ]
+      }
+    }
+  },
+  "verdict": {
+    "explain_qc": {
+      "template_supported_per_case": 4.9,
+      "llm_gated_supported_per_case": 6.15,
+      "llm_gated_grounded_rate": 1.0,
+      "llm_worth_it": true,
+      "rule": "LLM is worth it for a case type only if llm_gated yields more supported claims per case than the template"
+    },
+    "ask_literature": {
+      "template_supported_per_case": 0.8888888888888888,
+      "llm_gated_supported_per_case": 2.6666666666666665,
+      "llm_gated_grounded_rate": 1.0,
+      "llm_worth_it": true,
+      "rule": "LLM is worth it for a case type only if llm_gated yields more supported claims per case than the template"
+    }
+  },
+  "notes": [
+    "llm_ungated and llm_gated share the draft call; llm_gated adds the gate and <=1 repair call.",
+    "grounded/unsupported rates for every condition are judged by the same independent re-verification of the displayed claims.",
+    "llm_gated shows only gate-approved claims, so its unsupported rate is 0 by construction; the fault-injection block measures whether the gate itself catches known fabrications.",
+    "latency_ms_p50 sums recorded LLM latency and local step time; ungated ask latency is the LLM call only."
+  ],
+  "llm_fallbacks_to_template": 0
+}
