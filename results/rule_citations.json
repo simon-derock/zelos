@@ -216,8 +216,8 @@
   "method": "sentence-level: all require-groups present AND lexical overlap >= theta over every corpus sentence",
   "disclosure": "theta raised from the gate default 0.30 to 0.50 after reading the matches (post hoc)",
   "provenance": {
-    "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-    "timestamp_utc": "2026-10-10T18:24:52+00:00",
+    "git_sha": "bbe14a0e5763b275b43345d920427edb076c5f58",
+    "timestamp_utc": "2026-10-10T18:29:57+00:00",
     "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337

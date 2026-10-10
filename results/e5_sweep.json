@@ -1,8 +1,8 @@
 {
   "experiment": "E5 model sweep",
   "provenance": {
-    "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-    "timestamp_utc": "2026-10-10T18:25:06+00:00",
+    "git_sha": "bbe14a0e5763b275b43345d920427edb076c5f58",
+    "timestamp_utc": "2026-10-10T18:30:31+00:00",
     "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337,
@@ -171,8 +171,8 @@
           "cases_answered_by_template_fallback": 0,
           "cases_reaching_llm": 20,
           "latency_ms": {
-            "p50": 2117.323611498702,
-            "p95": 3184.3069568497885
+            "p50": 2117.5136114987017,
+            "p95": 3187.9554568497883
           },
           "cost": {
             "usd_per_100_answers": 0.018245565,
@@ -350,8 +350,8 @@
           "cases_answered_by_template_fallback": 0,
           "cases_reaching_llm": 20,
           "latency_ms": {
-            "p50": 6541.318935001146,
-            "p95": 8126.290526201167
+            "p50": 6542.013935001147,
+            "p95": 8127.307026201167
           },
           "cost": {
             "usd_per_100_answers": 0.025715500000000002,
@@ -527,8 +527,8 @@
           "cases_answered_by_template_fallback": 0,
           "cases_reaching_llm": 20,
           "latency_ms": {
-            "p50": 5119.175831497938,
-            "p95": 12862.364181350706
+            "p50": 5116.9508314979375,
+            "p95": 12863.081681350706
           },
           "cost": {
             "usd_per_100_answers": 0.09622549999999999,
@@ -706,8 +706,8 @@
           "cases_answered_by_template_fallback": 0,
           "cases_reaching_llm": 20,
           "latency_ms": {
-            "p50": 10111.241160998408,
-            "p95": 44697.724303452356
+            "p50": 10111.256160998408,
+            "p95": 44697.95430345236
           },
           "cost": {
             "usd_per_100_answers": 0.20689925,
@@ -851,7 +851,7 @@
     },
     "workers_ai_neurons_billed_this_run": 0.0,
     "cohere_call_cap": 120,
-    "wall_seconds": 1.0,
+    "wall_seconds": 1.1,
     "note": "ledger covers this process only; manual probes made before the sweep are not included",
     "prior_invocations": []
   },

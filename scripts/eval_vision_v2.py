@@ -178,7 +178,6 @@ def main() -> None:
     for name, fn in ref_fns.items():
         scores[name], zbads[name] = score_rows(F, fn)
         F[f"qc::{name}"] = scores[name]
-    cal = pd.Series(dev_mask & good_mask, index=F.index)
     zmax = {k: v.copy() for k, v in scores.items()}          # raw max one-sided z (v1 score)
     from zelos.vision.attribution import SIG_KEYS
 
@@ -258,7 +257,7 @@ def main() -> None:
         "knn_dinov2_cls_k15": knn_score(fit_dev[CLS].to_numpy(np.float32), yd, F.loc[test, CLS].to_numpy(np.float32)),
     }
     # session-mean-centred DINOv2 (removes the imaging-day offset, unsupervised)
-    for part_name, cols in (("cls", CLS),):
+    for cols in (CLS,):
         E = F[cols].to_numpy(np.float32)
         E_c = E - F.groupby("session")[cols].transform("mean").to_numpy(np.float32)
         det["knn_dinov2_session_centred_k15"] = knn_score(E_c[F.part.isin(["fit", "cal"]).to_numpy()], yd, E_c[test.to_numpy()])
@@ -341,7 +340,6 @@ def main() -> None:
         else:
             hi_t = mid_t
     tau_lr = hi_t
-    p_cal = p_oof[gd]
     if "cls" in Rt.columns:
         emb = np.hstack([np.stack(Rt["cls"].to_numpy()), np.stack(Rt["mean"].to_numpy())])
         Rt["p_lr"] = lr.predict_proba(sc_lr.transform(emb))[:, 1]

@@ -51,7 +51,7 @@
           "hit@5": 0.9285714285714286
         }
       },
-      "latency_ms_p50": 3.9929410013428424
+      "latency_ms_p50": 4.283018999558408
     },
     "dense": {
       "paper_level": {
@@ -104,7 +104,7 @@
           "hit@5": 1.0
         }
       },
-      "latency_ms_p50": 16.050272999564186
+      "latency_ms_p50": 18.932388000393985
     },
     "hybrid": {
       "paper_level": {
@@ -157,7 +157,7 @@
           "hit@5": 0.9285714285714286
         }
       },
-      "latency_ms_p50": 16.26141499946243
+      "latency_ms_p50": 20.918053000059444
     },
     "hybrid_rerank": {
       "paper_level": {
@@ -210,7 +210,7 @@
           "hit@5": 1.0
         }
       },
-      "latency_ms_p50": 16.257700997812208
+      "latency_ms_p50": 19.999746000394225
     }
   },
   "abstention": {
@@ -321,10 +321,10 @@
       "rerank": 93
     }
   },
-  "runtime_s": 13.604382276535034,
+  "runtime_s": 17.301355600357056,
   "provenance": {
-    "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-    "timestamp_utc": "2026-10-10T18:20:44+00:00",
+    "git_sha": "bbe14a0e5763b275b43345d920427edb076c5f58",
+    "timestamp_utc": "2026-10-10T18:30:28+00:00",
     "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337,

@@ -219,8 +219,8 @@ def main() -> None:
         run("scripts/eval_vision_v2.py")
     if (RES / "calibration.json").exists():
         run("scripts/build_rule_citations.py")
-        if (ROOT / "eval" / "vlm_cache").exists():
-            run("scripts/eval_vlm_baseline.py", "--phase", "score")
+        if (ROOT / "eval" / "vlm_cache").exists() and (ROOT / "data" / "raw" / "zip_index.pkl").exists():
+            run("scripts/eval_vlm_baseline.py", "--phase", "score")  # needs the images on disk; otherwise reuse committed results
     if not a.skip_retrieval and (ROOT / "scripts/eval_retrieval.py").exists():
         run("scripts/eval_retrieval.py", "--offline")
     if not a.skip_grounding and (ROOT / "scripts/eval_grounding.py").exists():

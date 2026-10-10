@@ -88,8 +88,8 @@
   "score": "max over metrics of one-sided z / per-metric calibrated cutoff; flagged when > 1",
   "rule": "cutoffs = (1-alpha) quantile of expert-good dev-session z (out-of-fold); alpha = largest value whose LEAVE-ONE-SESSION-OUT mean false-flag rate is <=10%; floor 1.0 z; fail = 99th percentile of the score",
   "provenance": {
-    "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-    "timestamp_utc": "2026-10-10T18:23:36+00:00",
+    "git_sha": "bbe14a0e5763b275b43345d920427edb076c5f58",
+    "timestamp_utc": "2026-10-10T18:28:36+00:00",
     "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337
