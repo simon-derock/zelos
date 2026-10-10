@@ -254,8 +254,10 @@ def collect(R: dict[str, Any], v1: dict[str, Any]) -> dict[str, str]:  # noqa: C
     misses = [k for k, p in pk.items() if p["detection_by_severity"]["3"] <= MISS_DETECTION_AT_SEV3]
     misses.sort(key=lambda k: pk[k]["detection_by_severity"]["3"])
     V["n_miss"] = str(len(misses))
-    V["miss_list"] = ", ".join(KIND_NAME[k].lower() for k in misses)
-    V["miss_list_detail"] = "; ".join(f"{KIND_NAME[k].lower()} {pct(pk[k]['detection_by_severity']['3'])} at severity 3"
+    vals = [f"{_lower(KIND_NAME[k])} {pct(pk[k]['detection_by_severity']['3'])}" for k in misses]
+    V["miss_list_values"] = ", ".join(vals[:-1]) + " and " + vals[-1] if len(vals) > 1 else vals[0]
+    V["miss_list"] = ", ".join(_lower(KIND_NAME[k]) for k in misses)
+    V["miss_list_detail"] = "; ".join(f"{_lower(KIND_NAME[k])} {pct(pk[k]['detection_by_severity']['3'])} at severity {V['sev.mid']}"
                                       for k in misses)
     best_k = max(pk, key=lambda k: pk[k]["detection_by_severity"]["3"])
     V["best_kinds"] = ", ".join(KIND_NAME[k].lower() for k, p in pk.items()
@@ -272,10 +274,11 @@ def collect(R: dict[str, Any], v1: dict[str, Any]) -> dict[str, str]:  # noqa: C
     for k, x in hk.items():
         V[f"h2h.kind.{k}"] = pct(x)
     best_h = max(hk, key=hk.get)  # type: ignore[arg-type]
-    V["h2h.best_kind"] = KIND_NAME[best_h].lower()
+    V["h2h.best_kind"] = _lower(KIND_NAME[best_h])
     V["h2h.best_kind_det"] = pct(hk[best_h])
     worst_h = sorted(hk, key=hk.get)[:3]  # type: ignore[arg-type]
-    V["h2h.worst_kinds"] = ", ".join(f"{KIND_NAME[k].lower()} {pct(hk[k])}" for k in worst_h)
+    names_w = [f"{_lower(KIND_NAME[k])} ({pct(hk[k])})" for k in worst_h]
+    V["h2h.worst_kinds"] = ", ".join(names_w[:-1]) + " and " + names_w[-1]
 
     # --- E2 detectors
     for key, name in DET.items():
@@ -480,6 +483,10 @@ def collect(R: dict[str, Any], v1: dict[str, Any]) -> dict[str, str]:  # noqa: C
     # --- findings text straight from results.json
     V["findings.head_to_head"] = sourced(next((f for f in R["results"]["findings"] if f.startswith("Head-to-head")), ""))
     return V
+
+
+def _lower(name: str) -> str:
+    return name if name.startswith("JPEG") else name.lower()
 
 
 def _count_metrics() -> str:
