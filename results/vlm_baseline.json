@@ -1,0 +1,58 @@
+{
+  "n_cases": 80,
+  "models": {
+    "@cf/mistralai/mistral-small-3.1-24b-instruct": {
+      "false_flag_on_expert_good": 0.45,
+      "flag_rate_on_expert_bad": 0.7,
+      "balanced_accuracy_vs_expert": 0.625,
+      "false_flag_on_clean": 0.4,
+      "detected_sev5_faults": 0.9,
+      "unparsed": 0,
+      "cases_without_reply": 0,
+      "tokens_per_image_mean": 693.75,
+      "latency_p50_s": 2.3449999999999998
+    },
+    "@cf/meta/llama-4-scout-17b-16e-instruct": {
+      "false_flag_on_expert_good": 0.65,
+      "flag_rate_on_expert_bad": 0.95,
+      "balanced_accuracy_vs_expert": 0.6499999999999999,
+      "false_flag_on_clean": 0.65,
+      "detected_sev5_faults": 1.0,
+      "unparsed": 0,
+      "cases_without_reply": 0,
+      "tokens_per_image_mean": 1098.9375,
+      "latency_p50_s": 1.625
+    },
+    "@cf/google/gemma-4-26b-a4b-it": {
+      "false_flag_on_expert_good": null,
+      "flag_rate_on_expert_bad": null,
+      "balanced_accuracy_vs_expert": null,
+      "false_flag_on_clean": null,
+      "detected_sev5_faults": null,
+      "unparsed": 80,
+      "cases_without_reply": 80,
+      "tokens_per_image_mean": null,
+      "latency_p50_s": null
+    }
+  },
+  "provenance": {
+    "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
+    "timestamp_utc": "2026-10-10T18:25:05+00:00",
+    "config_hash": "0c18777ab72c936c",
+    "python": "3.12.3",
+    "seed": 1337,
+    "prompt": "This is a brightfield microscopy image of an organ-on-a-chip cell culture. Is the image technically acceptable for analysis (in focus, evenly lit, not saturated, no bubbles or debris)? Reply with JSON only: {\"verdict\":\"good\" or \"bad\",\"reason\":\"short\"}"
+  },
+  "design": {
+    "A": "20 expert-good + 20 expert-bad test-session images",
+    "B": "20 clean + the same 20 with a severity-5 injected fault"
+  },
+  "zelos_stored_reference_calibrated": {
+    "false_flag_on_expert_good": 0.05,
+    "flag_rate_on_expert_bad": 0.0,
+    "balanced_accuracy_vs_expert": 0.475,
+    "false_flag_on_clean": 0.0,
+    "detected_sev5_faults": 0.8,
+    "unparsed": 0
+  }
+}

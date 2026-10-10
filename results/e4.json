@@ -51,7 +51,7 @@
           "hit@5": 0.9285714285714286
         }
       },
-      "latency_ms_p50": 7.4208679998264415
+      "latency_ms_p50": 3.9929410013428424
     },
     "dense": {
       "paper_level": {
@@ -104,7 +104,7 @@
           "hit@5": 1.0
         }
       },
-      "latency_ms_p50": 20.925958000589162
+      "latency_ms_p50": 16.050272999564186
     },
     "hybrid": {
       "paper_level": {
@@ -157,7 +157,7 @@
           "hit@5": 0.9285714285714286
         }
       },
-      "latency_ms_p50": 16.763237001214293
+      "latency_ms_p50": 16.26141499946243
     },
     "hybrid_rerank": {
       "paper_level": {
@@ -210,7 +210,7 @@
           "hit@5": 1.0
         }
       },
-      "latency_ms_p50": 973.9858930006449
+      "latency_ms_p50": 16.257700997812208
     }
   },
   "abstention": {
@@ -297,7 +297,7 @@
       "rrf_k": 60,
       "rerank_pool": 20
     },
-    "offline_flag": false
+    "offline_flag": true
   },
   "corpus": {
     "n_papers": 48,
@@ -314,18 +314,18 @@
   "cohere_calls": {
     "this_run": {
       "embed": 0,
-      "rerank": 58
+      "rerank": 0
     },
     "cumulative_recorded_in_ledger": {
-      "embed": 92,
-      "rerank": 87
+      "embed": 93,
+      "rerank": 93
     }
   },
-  "runtime_s": 109.9448790550232,
+  "runtime_s": 13.604382276535034,
   "provenance": {
-    "git_sha": "c074db331ccaee1b088d00122cc0d0655827cf18",
-    "timestamp_utc": "2026-10-10T15:10:41+00:00",
-    "config_hash": "1441574f18b2c7b0",
+    "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
+    "timestamp_utc": "2026-10-10T18:20:44+00:00",
+    "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337,
     "corpus_sha256": "f5426580481abb5c061c7b19a5ee32e7553d4b969eba48988f77f4ca8a5ce82f"

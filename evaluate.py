@@ -62,7 +62,7 @@ def findings(r: dict) -> list[str]:
         lt = next((v for k, v in d.items() if k.startswith("LABEL-TRAINED")), {})
         out.append(f"E2 on {e2['n_test']} images from {e2['n_test_sessions']} held-out imaging sessions (of {e2['n_images']} images, "
                    f"{e2['n_sessions']} sessions): the artifact QC score reaches AUROC {f3(z.get('auroc'))} against the expert label, "
-                   f"training-free DINOv2 kNN reaches {f3(cs.get('auroc'))}, a label-trained linear head {f3(lt.get('auroc'))}.")
+                   f"DINOv2 kNN (expert-labelled neighbours, no model trained) reaches {f3(cs.get('auroc'))}, a label-trained linear head {f3(lt.get('auroc'))}.")
         ws = cs.get("within_session", {}).get("weighted")
         if ws is not None:
             out.append(f"E2 within the same imaging day (no date shortcut): DINOv2 kNN AUROC {f3(ws)} "
@@ -78,9 +78,12 @@ def findings(r: dict) -> list[str]:
                    f"(chance {pct(v.get('chance_attribution'))}).")
         h = e1.get("head_to_head", {}).get("label_trained_dinov2_linear_head")
         if h:
-            out.append(f"Head-to-head on the same injected faults: label-trained DINOv2 head flags {pct(h['clean_flag_rate'])} of clean and "
-                       f"detects {pct(h['detection_rate_sev3plus'])} of severity>=3 faults (AUROC {f3(h['auroc_clean_vs_sev3plus'])}) and cannot name a cause; "
-                       f"Zelos detects {pct(v.get('detection_rate_sev3plus'))} (AUROC {f3(v.get('auroc_clean_vs_sev3plus'))}) and names it.")
+            sv = e1["variants"].get("between_session (v1.1)", {})
+            out.append(f"Head-to-head on the same injected faults, each at its own <=10% session-averaged false-alarm calibration: the label-trained "
+                       f"DINOv2 head flags {pct(h['clean_flag_rate'])} of clean and detects {pct(h['detection_rate_sev3plus'])} of severity>=3 faults "
+                       f"(AUROC {f3(h['auroc_clean_vs_sev3plus'])}) and cannot name a cause; Zelos on a single image detects "
+                       f"{pct(sv.get('detection_rate_sev3plus'))} (AUROC {f3(sv.get('auroc_clean_vs_sev3plus'))}), with a session reference "
+                       f"{pct(v.get('detection_rate_sev3plus'))} (AUROC {f3(v.get('auroc_clean_vs_sev3plus'))}), and names the cause.")
     if rc:
         out.append(f"Rule basis: {rc['n_supported']} of {rc['n_rules']} cause-action rules have a verified sentence in the open corpus "
                    f"(threshold {rc['theta_lex']}, post hoc); the rest are reported unsupported.")
@@ -93,7 +96,12 @@ def findings(r: dict) -> list[str]:
             out.append("Vision-LLM baseline (n=20 per group): " + "; ".join(parts) + f"; Zelos detects {pct(z.get('detected_sev5_faults'))}, "
                        f"false flags {pct(z.get('false_flag_on_clean'))}.")
     if sweep and sweep.get("verdict"):
-        out.append("LLM sweep behind the gate: " + str(sweep["verdict"] if isinstance(sweep["verdict"], str) else sweep["verdict"].get("text", "")))
+        v = sweep["verdict"]
+        if isinstance(v, list):
+            v = " ".join(str(x.get("text", "")) if isinstance(x, dict) else str(x) for x in v)
+        elif isinstance(v, dict):
+            v = str(v.get("text", ""))
+        out.append("LLM sweep behind the gate: " + v)
     if e4 and "modes" in e4:
         m = e4["modes"]
         b = max(m, key=lambda k: m[k]["paper_level"].get("mrr", 0))
@@ -137,11 +145,25 @@ def md(r: dict, prov: dict, fx: list[str]) -> str:
         if h:
             L += ["", "### Head-to-head: label-trained DINOv2 head vs Zelos on the same faults", "",
                   "| System | clean flagged | faults detected (sev>=3) | AUROC | names the cause |", "|---|---:|---:|---:|---|",
-                  f"| Zelos ({n}) | {pct(v['clean_flag_rate'])} | {pct(v['detection_rate_sev3plus'])} | {f3(v['auroc_clean_vs_sev3plus'])} | yes ({pct(v['attribution_v2_signatures'])}) |",
+                  f"| Zelos, session-relative ({n}) | {pct(v['clean_flag_rate'])} | {pct(v['detection_rate_sev3plus'])} | {f3(v['auroc_clean_vs_sev3plus'])} | yes ({pct(v['attribution_v2_signatures'])}) |",
+                  *([f"| Zelos, single image (between_session) | {pct(sv['clean_flag_rate'])} | {pct(sv['detection_rate_sev3plus'])} | {f3(sv['auroc_clean_vs_sev3plus'])} | yes ({pct(sv['attribution_v2_signatures'])}) |"]
+                    if (sv := e1["variants"].get("between_session (v1.1)")) else []),
                   f"| label-trained DINOv2 linear head | {pct(h['clean_flag_rate'])} | {pct(h['detection_rate_sev3plus'])} | {f3(h['auroc_clean_vs_sev3plus'])} | no |",
                   "", f"Embedding-path check: mean |dP| between the two preprocessing paths on clean images = {f3(h.get('mean_abs_prob_diff_between_paths'))}; "
                   f"clean flag rate on the extraction path = {pct(h.get('clean_flag_rate_extraction_path'))}.",
                   "The head is the approach family of entries that learn the expert label from frozen embeddings; it is not any entry's exact model."]
+        L.append("")
+    cal = load("calibration")
+    if cal:
+        L += ["## Calibration: do false-alarm rates transfer to unseen imaging sessions?", "",
+              "Cutoffs are chosen so the mean per-session false-flag rate on expert-good development images, leave-one-session-out, is at most 10%. "
+              "A target the leave-one-session-out rate cannot reach (alpha at its lower bound) is reported as it is.", "",
+              "| Reference | alpha | leave-one-session-out mean | per-session median / 80th pct | false flags on test (expert-good) |", "|---|---:|---:|---|---:|"]
+        ops = (e2 or {}).get("operating_points", {})
+        for k, v in cal["variants"].items():
+            a, b = v["loso_session_rates_p50_p80"]
+            L.append(f"| {k} | {v['alpha']:.5f} | {pct(v['loso_mean_false_flag_rate'])} | {pct(a)} / {pct(b)} | "
+                     f"{pct(ops.get(k, {}).get('false_flag_rate_test_good'))} |")
         L.append("")
     if rc:
         L += ["## Literature basis for the lab actions", "", "| Cause | status | support | source |", "|---|---|---:|---|"]

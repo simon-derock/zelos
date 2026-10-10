@@ -1,6 +1,6 @@
 {
-  "n_images": 60,
-  "n_reference_images": 60,
+  "n_base_images": 60,
+  "n_signature_images": 48,
   "kinds": [
     "gaussian_blur",
     "defocus",
@@ -16,680 +16,923 @@
   ],
   "severities": [
     1,
-    2,
     3,
-    4,
     5
   ],
-  "reference_note": "pre-registered: median/MAD of clean dev-session images; batch_reference: median/MAD of the clean images in the evaluated batch itself (unsupervised, no labels), added after the pre-registered run revealed cross-session acquisition shift",
-  "overall": {
-    "detection_rate_sev3plus": 0.9707070707070707,
-    "attribution_acc_detected": 0.30950861518825784,
-    "attribution_top2_detected": 0.48978940650925334,
-    "auroc_clean_vs_sev3plus": 0.7776473063973065,
-    "auroc_clean_vs_sev3plus_ci95": [
-      0.7113706402988177,
-      0.8377916765016458
-    ],
-    "auroc_focus_only": 0.6290698653198652,
-    "attribution_random_baseline": 0.1111111111111111
-  },
-  "per_kind": {
-    "gaussian_blur": {
-      "expected_label": "DEFOCUS_OR_BLUR",
-      "spearman_severity_vs_qc": 0.4517074810961822,
-      "auroc_clean_vs_sev3plus": 0.8742129629629629,
-      "auroc_focus_only": 1.0,
-      "detection_rate_by_severity": {
-        "1": 0.9166666666666666,
-        "2": 0.9666666666666667,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
+  "operating_point": "per-metric cutoffs calibrated so the mean per-session false-flag rate on expert-good development images is <=10% leave-one-session-out; flagged when score > 1",
+  "variants": {
+    "pooled_dev (v1)": {
+      "threshold": 1.0,
+      "score": "max_m zbad_m / calibrated cutoff_m",
+      "clean_flag_rate": 0.03333333333333333,
+      "detection_rate_sev3plus": 0.5909090909090909,
+      "detection_rate_sev1": 0.09393939393939393,
+      "auroc_clean_vs_sev3plus": 0.8622222222222221,
+      "attribution_v1_rules": 0.40736342042755347,
+      "attribution_v2_signatures": 0.666270783847981,
+      "attribution_v2_top2": 0.7137767220902613,
+      "chance_attribution": 0.1111111111111111,
+      "per_kind": {
+        "gaussian_blur": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.03333333333333333,
+            "3": 1.0,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.0,
+          "attribution_v2_signatures": 0.5491803278688525,
+          "attribution_v2_top2": 0.5901639344262295,
+          "spearman_severity_vs_score": 0.8989164794959764
+        },
+        "defocus": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.08333333333333333,
+            "3": 0.8666666666666667,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.0,
+          "attribution_v2_signatures": 0.6239316239316239,
+          "attribution_v2_top2": 0.6581196581196581,
+          "spearman_severity_vs_score": 0.8853071282116439
+        },
+        "motion_blur": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.016666666666666666,
+            "3": 0.2,
+            "5": 0.4
+          },
+          "attribution_v1_rules": 0.0,
+          "attribution_v2_signatures": 0.9459459459459459,
+          "attribution_v2_top2": 0.9459459459459459,
+          "spearman_severity_vs_score": 0.6175310385143804
+        },
+        "gaussian_noise": {
+          "expected_label": "NOISE",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.5666666666666667,
+            "3": 1.0,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.6688311688311688,
+          "attribution_v2_signatures": 0.5909090909090909,
+          "attribution_v2_top2": 0.6363636363636364,
+          "spearman_severity_vs_score": 0.9080611028886109
+        },
+        "illumination": {
+          "expected_label": "UNEVEN_ILLUMINATION",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.016666666666666666,
+            "3": 0.0,
+            "5": 0.0
+          },
+          "attribution_v1_rules": 0.0,
+          "attribution_v2_signatures": 0.0,
+          "attribution_v2_top2": 0.0,
+          "spearman_severity_vs_score": -0.06788538071473414
+        },
+        "contrast": {
+          "expected_label": "LOW_CONTRAST",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.03333333333333333,
+            "3": 0.03333333333333333,
+            "5": 0.03333333333333333
+          },
+          "attribution_v1_rules": 1.0,
+          "attribution_v2_signatures": 1.0,
+          "attribution_v2_top2": 1.0,
+          "spearman_severity_vs_score": 0.6825125452086127
+        },
+        "overexpose": {
+          "expected_label": "OVER_EXPOSED",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.1,
+            "3": 0.4166666666666667,
+            "5": 0.26666666666666666
+          },
+          "attribution_v1_rules": 0.0,
+          "attribution_v2_signatures": 0.5106382978723404,
+          "attribution_v2_top2": 0.7446808510638298,
+          "spearman_severity_vs_score": 0.4934869117884081
+        },
+        "underexpose": {
+          "expected_label": "UNDER_EXPOSED",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.03333333333333333,
+            "3": 0.9166666666666666,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.6239316239316239,
+          "attribution_v2_signatures": 0.6581196581196581,
+          "attribution_v2_top2": 0.6581196581196581,
+          "spearman_severity_vs_score": 0.9187118995459148
+        },
+        "debris": {
+          "expected_label": "DEBRIS",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.03333333333333333,
+            "3": 0.03333333333333333,
+            "5": 0.11666666666666667
+          },
+          "attribution_v1_rules": 0.6363636363636364,
+          "attribution_v2_signatures": 0.36363636363636365,
+          "attribution_v2_top2": 0.6363636363636364,
+          "spearman_severity_vs_score": 0.01820856288338476
+        },
+        "bubble": {
+          "expected_label": "BUBBLE",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.016666666666666666,
+            "3": 1.0,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.6033057851239669,
+          "attribution_v2_signatures": 0.6363636363636364,
+          "attribution_v2_top2": 0.7024793388429752,
+          "spearman_severity_vs_score": 0.8845552451353026
+        },
+        "jpeg": {
+          "expected_label": "COMPRESSION",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.1,
+            "3": 0.7166666666666667,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.7431192660550459,
+          "attribution_v2_signatures": 0.981651376146789,
+          "attribution_v2_top2": 1.0,
+          "spearman_severity_vs_score": 0.8560443333552132
+        }
       },
-      "attribution_acc_detected": 0.0,
-      "attribution_top2_detected": 0.0,
-      "n": 300
+      "confusion_v2_sev3plus": {
+        "BUBBLE": {
+          "BUBBLE": 77,
+          "COMPRESSION": 0,
+          "DEBRIS": 1,
+          "DEFOCUS_OR_BLUR": 17,
+          "LOW_CONTRAST": 25,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "COMPRESSION": {
+          "BUBBLE": 0,
+          "COMPRESSION": 101,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 2,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "DEBRIS": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 4,
+          "DEFOCUS_OR_BLUR": 3,
+          "LOW_CONTRAST": 2,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "DEFOCUS_OR_BLUR": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 167,
+          "LOW_CONTRAST": 101,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "LOW_CONTRAST": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 4,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "NOISE": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 1,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 29,
+          "NOISE": 89,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 1,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "OVER_EXPOSED": {
+          "BUBBLE": 7,
+          "COMPRESSION": 0,
+          "DEBRIS": 10,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 3,
+          "NOISE": 0,
+          "OVER_EXPOSED": 21,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "UNDER_EXPOSED": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 1,
+          "LOW_CONTRAST": 37,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 77,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "UNEVEN_ILLUMINATION": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        }
+      },
+      "threshold_sweep": {
+        "0.5": {
+          "clean_flag_rate": 0.6166666666666667,
+          "sev3plus_detection": 0.9083333333333333
+        },
+        "0.75": {
+          "clean_flag_rate": 0.18333333333333332,
+          "sev3plus_detection": 0.7780303030303031
+        },
+        "1.0": {
+          "clean_flag_rate": 0.03333333333333333,
+          "sev3plus_detection": 0.5909090909090909
+        },
+        "1.5": {
+          "clean_flag_rate": 0.0,
+          "sev3plus_detection": 0.2765151515151515
+        },
+        "2.0": {
+          "clean_flag_rate": 0.0,
+          "sev3plus_detection": 0.25833333333333336
+        },
+        "3.0": {
+          "clean_flag_rate": 0.0,
+          "sev3plus_detection": 0.1803030303030303
+        }
+      }
     },
-    "defocus": {
-      "expected_label": "DEFOCUS_OR_BLUR",
-      "spearman_severity_vs_qc": 0.4866175624537204,
-      "auroc_clean_vs_sev3plus": 0.8824074074074074,
-      "auroc_focus_only": 1.0,
-      "detection_rate_by_severity": {
-        "1": 0.9333333333333333,
-        "2": 0.9666666666666667,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
+    "between_session (v1.1)": {
+      "threshold": 1.0,
+      "score": "max_m zbad_m / calibrated cutoff_m",
+      "clean_flag_rate": 0.016666666666666666,
+      "detection_rate_sev3plus": 0.6636363636363637,
+      "detection_rate_sev1": 0.08333333333333333,
+      "auroc_clean_vs_sev3plus": 0.8822979797979797,
+      "attribution_v1_rules": 0.523093447905478,
+      "attribution_v2_signatures": 0.8120300751879699,
+      "attribution_v2_top2": 0.8453276047261009,
+      "chance_attribution": 0.1111111111111111,
+      "per_kind": {
+        "gaussian_blur": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.016666666666666666,
+            "3": 1.0,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.0,
+          "attribution_v2_signatures": 0.6859504132231405,
+          "attribution_v2_top2": 0.7355371900826446,
+          "spearman_severity_vs_score": 0.923176627437613
+        },
+        "defocus": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.03333333333333333,
+            "3": 0.7166666666666667,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.0,
+          "attribution_v2_signatures": 0.7714285714285715,
+          "attribution_v2_top2": 0.8285714285714286,
+          "spearman_severity_vs_score": 0.9009067798814323
+        },
+        "motion_blur": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.016666666666666666,
+            "3": 0.16666666666666666,
+            "5": 0.35
+          },
+          "attribution_v1_rules": 0.0,
+          "attribution_v2_signatures": 0.96875,
+          "attribution_v2_top2": 0.96875,
+          "spearman_severity_vs_score": 0.6434049435253052
+        },
+        "gaussian_noise": {
+          "expected_label": "NOISE",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.5166666666666667,
+            "3": 1.0,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.7615894039735099,
+          "attribution_v2_signatures": 0.9536423841059603,
+          "attribution_v2_top2": 0.9536423841059603,
+          "spearman_severity_vs_score": 0.9078997271816821
+        },
+        "illumination": {
+          "expected_label": "UNEVEN_ILLUMINATION",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.016666666666666666,
+            "3": 0.0,
+            "5": 0.0
+          },
+          "attribution_v1_rules": 0.0,
+          "attribution_v2_signatures": 0.0,
+          "attribution_v2_top2": 0.0,
+          "spearman_severity_vs_score": 0.008714288174157633
+        },
+        "contrast": {
+          "expected_label": "LOW_CONTRAST",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.016666666666666666,
+            "3": 0.31666666666666665,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.9625,
+          "attribution_v2_signatures": 0.9875,
+          "attribution_v2_top2": 0.9875,
+          "spearman_severity_vs_score": 0.8337219604243876
+        },
+        "overexpose": {
+          "expected_label": "OVER_EXPOSED",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.08333333333333333,
+            "3": 0.38333333333333336,
+            "5": 0.7333333333333333
+          },
+          "attribution_v1_rules": 0.06944444444444445,
+          "attribution_v2_signatures": 0.8611111111111112,
+          "attribution_v2_top2": 0.8888888888888888,
+          "spearman_severity_vs_score": 0.6475469200031455
+        },
+        "underexpose": {
+          "expected_label": "UNDER_EXPOSED",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.03333333333333333,
+            "3": 1.0,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.8852459016393442,
+          "attribution_v2_signatures": 0.6311475409836066,
+          "attribution_v2_top2": 0.6311475409836066,
+          "spearman_severity_vs_score": 0.9297394412892825
+        },
+        "debris": {
+          "expected_label": "DEBRIS",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.016666666666666666,
+            "3": 0.016666666666666666,
+            "5": 0.11666666666666667
+          },
+          "attribution_v1_rules": 0.7777777777777778,
+          "attribution_v2_signatures": 0.4444444444444444,
+          "attribution_v2_top2": 0.8888888888888888,
+          "spearman_severity_vs_score": 0.023776062099487905
+        },
+        "bubble": {
+          "expected_label": "BUBBLE",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.016666666666666666,
+            "3": 1.0,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.7603305785123967,
+          "attribution_v2_signatures": 0.8677685950413223,
+          "attribution_v2_top2": 0.8925619834710744,
+          "spearman_severity_vs_score": 0.890297256671023
+        },
+        "jpeg": {
+          "expected_label": "COMPRESSION",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.15,
+            "3": 0.8,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.7094017094017094,
+          "attribution_v2_signatures": 0.7692307692307693,
+          "attribution_v2_top2": 0.8547008547008547,
+          "spearman_severity_vs_score": 0.8508803107334902
+        }
       },
-      "attribution_acc_detected": 0.0,
-      "attribution_top2_detected": 0.0,
-      "n": 300
+      "confusion_v2_sev3plus": {
+        "BUBBLE": {
+          "BUBBLE": 105,
+          "COMPRESSION": 0,
+          "DEBRIS": 3,
+          "DEFOCUS_OR_BLUR": 12,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "COMPRESSION": {
+          "BUBBLE": 0,
+          "COMPRESSION": 84,
+          "DEBRIS": 2,
+          "DEFOCUS_OR_BLUR": 21,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 1,
+          "NONE": 0
+        },
+        "DEBRIS": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 4,
+          "DEFOCUS_OR_BLUR": 4,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "DEFOCUS_OR_BLUR": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 191,
+          "LOW_CONTRAST": 61,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 2,
+          "NONE": 0
+        },
+        "LOW_CONTRAST": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 1,
+          "LOW_CONTRAST": 78,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "NOISE": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 1,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 119,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "OVER_EXPOSED": {
+          "BUBBLE": 7,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 1,
+          "OVER_EXPOSED": 59,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "UNDER_EXPOSED": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 2,
+          "LOW_CONTRAST": 39,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 77,
+          "UNEVEN_ILLUMINATION": 2,
+          "NONE": 0
+        },
+        "UNEVEN_ILLUMINATION": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        }
+      },
+      "threshold_sweep": {
+        "0.5": {
+          "clean_flag_rate": 0.45,
+          "sev3plus_detection": 0.8833333333333333
+        },
+        "0.75": {
+          "clean_flag_rate": 0.16666666666666666,
+          "sev3plus_detection": 0.8045454545454546
+        },
+        "1.0": {
+          "clean_flag_rate": 0.016666666666666666,
+          "sev3plus_detection": 0.6636363636363637
+        },
+        "1.5": {
+          "clean_flag_rate": 0.0,
+          "sev3plus_detection": 0.278030303030303
+        },
+        "2.0": {
+          "clean_flag_rate": 0.0,
+          "sev3plus_detection": 0.26212121212121214
+        },
+        "3.0": {
+          "clean_flag_rate": 0.0,
+          "sev3plus_detection": 0.19090909090909092
+        }
+      }
     },
-    "motion_blur": {
-      "expected_label": "DEFOCUS_OR_BLUR",
-      "spearman_severity_vs_qc": 0.3643351696630568,
-      "auroc_clean_vs_sev3plus": 0.7944444444444444,
-      "auroc_focus_only": 0.9746296296296295,
-      "detection_rate_by_severity": {
-        "1": 0.9333333333333333,
-        "2": 0.95,
-        "3": 0.9833333333333333,
-        "4": 1.0,
-        "5": 1.0
+    "batch_session": {
+      "threshold": 1.0,
+      "score": "max_m zbad_m / calibrated cutoff_m",
+      "clean_flag_rate": 0.03333333333333333,
+      "detection_rate_sev3plus": 0.6333333333333333,
+      "detection_rate_sev1": 0.296969696969697,
+      "auroc_clean_vs_sev3plus": 0.9128977272727273,
+      "attribution_v1_rules": 0.7257751937984496,
+      "attribution_v2_signatures": 0.8536821705426356,
+      "attribution_v2_top2": 0.9060077519379846,
+      "chance_attribution": 0.1111111111111111,
+      "per_kind": {
+        "gaussian_blur": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.11666666666666667,
+            "3": 0.48333333333333334,
+            "5": 0.6333333333333333
+          },
+          "attribution_v1_rules": 0.3783783783783784,
+          "attribution_v2_signatures": 0.7567567567567568,
+          "attribution_v2_top2": 0.7972972972972973,
+          "spearman_severity_vs_score": 0.7502356615122006
+        },
+        "defocus": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.11666666666666667,
+            "3": 0.48333333333333334,
+            "5": 0.5666666666666667
+          },
+          "attribution_v1_rules": 0.38571428571428573,
+          "attribution_v2_signatures": 0.7714285714285715,
+          "attribution_v2_top2": 0.8285714285714286,
+          "spearman_severity_vs_score": 0.7417903328495911
+        },
+        "motion_blur": {
+          "expected_label": "DEFOCUS_OR_BLUR",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.11666666666666667,
+            "3": 0.23333333333333334,
+            "5": 0.3333333333333333
+          },
+          "attribution_v1_rules": 0.4634146341463415,
+          "attribution_v2_signatures": 0.6829268292682927,
+          "attribution_v2_top2": 0.7317073170731707,
+          "spearman_severity_vs_score": 0.6353899500811726
+        },
+        "gaussian_noise": {
+          "expected_label": "NOISE",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.65,
+            "3": 1.0,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.8553459119496856,
+          "attribution_v2_signatures": 0.9559748427672956,
+          "attribution_v2_top2": 0.9622641509433962,
+          "spearman_severity_vs_score": 0.9174746857927937
+        },
+        "illumination": {
+          "expected_label": "UNEVEN_ILLUMINATION",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.05,
+            "3": 0.08333333333333333,
+            "5": 0.23333333333333334
+          },
+          "attribution_v1_rules": 0.2727272727272727,
+          "attribution_v2_signatures": 0.5454545454545454,
+          "attribution_v2_top2": 0.6363636363636364,
+          "spearman_severity_vs_score": 0.4420618531804162
+        },
+        "contrast": {
+          "expected_label": "LOW_CONTRAST",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.3,
+            "3": 0.36666666666666664,
+            "5": 0.4166666666666667
+          },
+          "attribution_v1_rules": 0.9538461538461539,
+          "attribution_v2_signatures": 0.9846153846153847,
+          "attribution_v2_top2": 1.0,
+          "spearman_severity_vs_score": 0.6009910719604719
+        },
+        "overexpose": {
+          "expected_label": "OVER_EXPOSED",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.7,
+            "3": 0.9666666666666667,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.575,
+          "attribution_v2_signatures": 0.91875,
+          "attribution_v2_top2": 0.94375,
+          "spearman_severity_vs_score": 0.842112230657023
+        },
+        "underexpose": {
+          "expected_label": "UNDER_EXPOSED",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.48333333333333334,
+            "3": 0.9833333333333333,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.7702702702702703,
+          "attribution_v2_signatures": 0.6418918918918919,
+          "attribution_v2_top2": 0.8445945945945946,
+          "spearman_severity_vs_score": 0.9040805021176995
+        },
+        "debris": {
+          "expected_label": "DEBRIS",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.03333333333333333,
+            "3": 0.03333333333333333,
+            "5": 0.11666666666666667
+          },
+          "attribution_v1_rules": 0.45454545454545453,
+          "attribution_v2_signatures": 0.45454545454545453,
+          "attribution_v2_top2": 0.45454545454545453,
+          "spearman_severity_vs_score": 0.07151673765203669
+        },
+        "bubble": {
+          "expected_label": "BUBBLE",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.06666666666666667,
+            "3": 1.0,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.9032258064516129,
+          "attribution_v2_signatures": 0.9435483870967742,
+          "attribution_v2_top2": 0.9758064516129032,
+          "spearman_severity_vs_score": 0.9368872961728681
+        },
+        "jpeg": {
+          "expected_label": "COMPRESSION",
+          "n": 180,
+          "detection_by_severity": {
+            "1": 0.6333333333333333,
+            "3": 1.0,
+            "5": 1.0
+          },
+          "attribution_v1_rules": 0.9367088607594937,
+          "attribution_v2_signatures": 0.9556962025316456,
+          "attribution_v2_top2": 0.9746835443037974,
+          "spearman_severity_vs_score": 0.9396369495443551
+        }
       },
-      "attribution_acc_detected": 0.0,
-      "attribution_top2_detected": 0.0,
-      "n": 300
-    },
-    "gaussian_noise": {
-      "expected_label": "NOISE",
-      "spearman_severity_vs_qc": 0.39444627252947845,
-      "auroc_clean_vs_sev3plus": 0.6514814814814814,
-      "auroc_focus_only": 0.2933796296296296,
-      "detection_rate_by_severity": {
-        "1": 0.8166666666666667,
-        "2": 0.8833333333333333,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
+      "confusion_v2_sev3plus": {
+        "BUBBLE": {
+          "BUBBLE": 115,
+          "COMPRESSION": 0,
+          "DEBRIS": 4,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 1,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "COMPRESSION": {
+          "BUBBLE": 0,
+          "COMPRESSION": 115,
+          "DEBRIS": 4,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 1,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "DEBRIS": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 5,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 2,
+          "NOISE": 2,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "DEFOCUS_OR_BLUR": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 126,
+          "LOW_CONTRAST": 36,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 2,
+          "NONE": 0
+        },
+        "LOW_CONTRAST": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 47,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "NOISE": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 1,
+          "NOISE": 119,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "OVER_EXPOSED": {
+          "BUBBLE": 7,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 0,
+          "NOISE": 1,
+          "OVER_EXPOSED": 110,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "UNDER_EXPOSED": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 0,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 30,
+          "NOISE": 0,
+          "OVER_EXPOSED": 0,
+          "UNDER_EXPOSED": 89,
+          "UNEVEN_ILLUMINATION": 0,
+          "NONE": 0
+        },
+        "UNEVEN_ILLUMINATION": {
+          "BUBBLE": 0,
+          "COMPRESSION": 0,
+          "DEBRIS": 1,
+          "DEFOCUS_OR_BLUR": 0,
+          "LOW_CONTRAST": 1,
+          "NOISE": 0,
+          "OVER_EXPOSED": 5,
+          "UNDER_EXPOSED": 0,
+          "UNEVEN_ILLUMINATION": 12,
+          "NONE": 0
+        }
       },
-      "attribution_acc_detected": 0.46099290780141844,
-      "attribution_top2_detected": 0.8687943262411347,
-      "n": 300
-    },
-    "illumination": {
-      "expected_label": "UNEVEN_ILLUMINATION",
-      "spearman_severity_vs_qc": 0.08497776395057507,
-      "auroc_clean_vs_sev3plus": 0.5513888888888889,
-      "auroc_focus_only": 0.6225462962962962,
-      "detection_rate_by_severity": {
-        "1": 0.8,
-        "2": 0.8,
-        "3": 0.8166666666666667,
-        "4": 0.8833333333333333,
-        "5": 0.9
-      },
-      "attribution_acc_detected": 0.015873015873015872,
-      "attribution_top2_detected": 0.19047619047619047,
-      "n": 300
-    },
-    "contrast": {
-      "expected_label": "LOW_CONTRAST",
-      "spearman_severity_vs_qc": 0.6912921610844492,
-      "auroc_clean_vs_sev3plus": 0.8477777777777779,
-      "auroc_focus_only": 0.5002777777777778,
-      "detection_rate_by_severity": {
-        "1": 1.0,
-        "2": 1.0,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
-      },
-      "attribution_acc_detected": 0.9233333333333333,
-      "attribution_top2_detected": 1.0,
-      "n": 300
-    },
-    "overexpose": {
-      "expected_label": "OVER_EXPOSED",
-      "spearman_severity_vs_qc": 0.5305325932579794,
-      "auroc_clean_vs_sev3plus": 0.9277314814814814,
-      "auroc_focus_only": 0.6269907407407407,
-      "detection_rate_by_severity": {
-        "1": 0.9166666666666666,
-        "2": 1.0,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
-      },
-      "attribution_acc_detected": 0.010169491525423728,
-      "attribution_top2_detected": 0.5966101694915255,
-      "n": 300
-    },
-    "underexpose": {
-      "expected_label": "UNDER_EXPOSED",
-      "spearman_severity_vs_qc": 0.803260182256137,
-      "auroc_clean_vs_sev3plus": 0.895,
-      "auroc_focus_only": 0.4230555555555554,
-      "detection_rate_by_severity": {
-        "1": 1.0,
-        "2": 1.0,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
-      },
-      "attribution_acc_detected": 0.3333333333333333,
-      "attribution_top2_detected": 0.39666666666666667,
-      "n": 300
-    },
-    "debris": {
-      "expected_label": "DEBRIS",
-      "spearman_severity_vs_qc": 0.08361088761374853,
-      "auroc_clean_vs_sev3plus": 0.5433333333333332,
-      "auroc_focus_only": 0.4901388888888889,
-      "detection_rate_by_severity": {
-        "1": 0.7666666666666667,
-        "2": 0.7666666666666667,
-        "3": 0.8,
-        "4": 0.8166666666666667,
-        "5": 0.8333333333333334
-      },
-      "attribution_acc_detected": 0.3891213389121339,
-      "attribution_top2_detected": 0.5397489539748954,
-      "n": 300
-    },
-    "bubble": {
-      "expected_label": "BUBBLE",
-      "spearman_severity_vs_qc": 0.4153663344918549,
-      "auroc_clean_vs_sev3plus": 0.6938888888888888,
-      "auroc_focus_only": 0.48574074074074064,
-      "detection_rate_by_severity": {
-        "1": 0.7833333333333333,
-        "2": 1.0,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
-      },
-      "attribution_acc_detected": 0.3902439024390244,
-      "attribution_top2_detected": 0.7735191637630662,
-      "n": 300
-    },
-    "jpeg": {
-      "expected_label": "COMPRESSION",
-      "spearman_severity_vs_qc": 0.7482227880138005,
-      "auroc_clean_vs_sev3plus": 0.8924537037037037,
-      "auroc_focus_only": 0.5030092592592592,
-      "detection_rate_by_severity": {
-        "1": 1.0,
-        "2": 1.0,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
-      },
-      "attribution_acc_detected": 0.8366666666666667,
-      "attribution_top2_detected": 0.9866666666666667,
-      "n": 300
+      "threshold_sweep": {
+        "0.5": {
+          "clean_flag_rate": 0.2,
+          "sev3plus_detection": 0.8810606060606061
+        },
+        "0.75": {
+          "clean_flag_rate": 0.1,
+          "sev3plus_detection": 0.7606060606060606
+        },
+        "1.0": {
+          "clean_flag_rate": 0.03333333333333333,
+          "sev3plus_detection": 0.6333333333333333
+        },
+        "1.5": {
+          "clean_flag_rate": 0.0,
+          "sev3plus_detection": 0.44696969696969696
+        },
+        "2.0": {
+          "clean_flag_rate": 0.0,
+          "sev3plus_detection": 0.41893939393939394
+        },
+        "3.0": {
+          "clean_flag_rate": 0.0,
+          "sev3plus_detection": 0.3795454545454545
+        }
+      }
     }
   },
-  "confusion_sev3plus": {
-    "BUBBLE": {
-      "BUBBLE": 96,
-      "COMPRESSION": 0,
-      "DEBRIS": 45,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 39,
-      "NOISE": 0,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "COMPRESSION": {
-      "BUBBLE": 0,
-      "COMPRESSION": 153,
-      "DEBRIS": 26,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 0,
-      "NOISE": 0,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 1,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "DEBRIS": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 69,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 78,
-      "NOISE": 0,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 33
-    },
-    "DEFOCUS_OR_BLUR": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 324,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 215,
-      "NOISE": 0,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 1
-    },
-    "LOW_CONTRAST": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 8,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 172,
-      "NOISE": 0,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "NOISE": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 3,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 7,
-      "NOISE": 123,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 47,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "OVER_EXPOSED": {
-      "BUBBLE": 5,
-      "COMPRESSION": 0,
-      "DEBRIS": 149,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 26,
-      "NOISE": 0,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "UNDER_EXPOSED": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 4,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 76,
-      "NOISE": 0,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 100,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "UNEVEN_ILLUMINATION": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 79,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 73,
-      "NOISE": 0,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 4,
-      "NONE": 24
-    }
-  },
-  "threshold_sweep": {
-    "1.5": {
-      "clean_flag_rate": 0.85,
-      "sev3plus_detection_rate": 0.9858585858585859
-    },
-    "2.0": {
-      "clean_flag_rate": 0.8,
-      "sev3plus_detection_rate": 0.9787878787878788
-    },
-    "2.5": {
-      "clean_flag_rate": 0.7833333333333333,
-      "sev3plus_detection_rate": 0.9777777777777777
-    },
-    "3.0": {
-      "clean_flag_rate": 0.7666666666666667,
-      "sev3plus_detection_rate": 0.9707070707070707
-    },
-    "4.0": {
-      "clean_flag_rate": 0.7666666666666667,
-      "sev3plus_detection_rate": 0.9641414141414142
-    },
-    "5.0": {
-      "clean_flag_rate": 0.75,
-      "sev3plus_detection_rate": 0.9580808080808081
-    },
-    "6.0": {
-      "clean_flag_rate": 0.7166666666666667,
-      "sev3plus_detection_rate": 0.947979797979798
-    }
-  },
-  "clean_flag_rate": 0.7666666666666667,
-  "batch_reference": {
-    "detection_rate_sev3plus": 0.7636363636363637,
-    "attribution_acc_detected": 0.40615647712697733,
-    "attribution_top2_detected": 0.5703292005130398,
-    "auroc_clean_vs_sev3plus": 0.7280471380471379,
-    "auroc_clean_vs_sev3plus_ci95": [
-      0.6579261729280254,
-      0.7970166045582264
-    ],
-    "auroc_focus_only": 0.6198863636363636,
-    "attribution_random_baseline": 0.1111111111111111,
-    "clean_flag_rate": 0.4666666666666667
-  },
-  "per_kind_batch": {
-    "gaussian_blur": {
-      "expected_label": "DEFOCUS_OR_BLUR",
-      "spearman_severity_vs_qc": 0.32145462668158065,
-      "auroc_clean_vs_sev3plus": 0.7556481481481482,
-      "auroc_focus_only": 1.0,
-      "detection_rate_by_severity": {
-        "1": 0.48333333333333334,
-        "2": 0.65,
-        "3": 0.7833333333333333,
-        "4": 0.8666666666666667,
-        "5": 0.6666666666666666
+  "head_to_head": {
+    "label_trained_dinov2_linear_head": {
+      "threshold": 0.9246783256530762,
+      "clean_flag_rate": 0.05,
+      "detection_rate_sev3plus": 0.2545454545454545,
+      "auroc_clean_vs_sev3plus": 0.7098484848484848,
+      "detection_by_kind_sev3plus": {
+        "gaussian_blur": 0.25,
+        "defocus": 0.3333333333333333,
+        "motion_blur": 0.6083333333333333,
+        "gaussian_noise": 0.06666666666666667,
+        "illumination": 0.13333333333333333,
+        "contrast": 0.20833333333333334,
+        "overexpose": 0.4,
+        "underexpose": 0.425,
+        "debris": 0.016666666666666666,
+        "bubble": 0.25,
+        "jpeg": 0.10833333333333334
       },
-      "attribution_acc_detected": 0.0,
-      "attribution_top2_detected": 0.0,
-      "n": 300
-    },
-    "defocus": {
-      "expected_label": "DEFOCUS_OR_BLUR",
-      "spearman_severity_vs_qc": 0.35265902295833246,
-      "auroc_clean_vs_sev3plus": 0.7756481481481482,
-      "auroc_focus_only": 1.0,
-      "detection_rate_by_severity": {
-        "1": 0.5333333333333333,
-        "2": 0.65,
-        "3": 0.8,
-        "4": 0.8833333333333333,
-        "5": 0.6833333333333333
-      },
-      "attribution_acc_detected": 0.0,
-      "attribution_top2_detected": 0.0,
-      "n": 300
-    },
-    "motion_blur": {
-      "expected_label": "DEFOCUS_OR_BLUR",
-      "spearman_severity_vs_qc": 0.19997819727667046,
-      "auroc_clean_vs_sev3plus": 0.6492592592592593,
-      "auroc_focus_only": 0.9746296296296296,
-      "detection_rate_by_severity": {
-        "1": 0.4666666666666667,
-        "2": 0.55,
-        "3": 0.6833333333333333,
-        "4": 0.7,
-        "5": 0.6166666666666667
-      },
-      "attribution_acc_detected": 0.0,
-      "attribution_top2_detected": 0.0,
-      "n": 300
-    },
-    "gaussian_noise": {
-      "expected_label": "NOISE",
-      "spearman_severity_vs_qc": 0.5332087227723654,
-      "auroc_clean_vs_sev3plus": 0.7594444444444445,
-      "auroc_focus_only": 0.25527777777777777,
-      "detection_rate_by_severity": {
-        "1": 0.9333333333333333,
-        "2": 1.0,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
-      },
-      "attribution_acc_detected": 0.6722972972972973,
-      "attribution_top2_detected": 0.793918918918919,
-      "n": 300
-    },
-    "illumination": {
-      "expected_label": "UNEVEN_ILLUMINATION",
-      "spearman_severity_vs_qc": 0.24206868101900827,
-      "auroc_clean_vs_sev3plus": 0.6415740740740741,
-      "auroc_focus_only": 0.6184259259259259,
-      "detection_rate_by_severity": {
-        "1": 0.48333333333333334,
-        "2": 0.55,
-        "3": 0.6333333333333333,
-        "4": 0.6,
-        "5": 0.75
-      },
-      "attribution_acc_detected": 0.0055248618784530384,
-      "attribution_top2_detected": 0.14917127071823205,
-      "n": 300
-    },
-    "contrast": {
-      "expected_label": "LOW_CONTRAST",
-      "spearman_severity_vs_qc": 0.17708439737630818,
-      "auroc_clean_vs_sev3plus": 0.4622685185185185,
-      "auroc_focus_only": 0.5003703703703704,
-      "detection_rate_by_severity": {
-        "1": 0.2833333333333333,
-        "2": 0.23333333333333334,
-        "3": 0.2,
-        "4": 0.13333333333333333,
-        "5": 0.1
-      },
-      "attribution_acc_detected": 0.0,
-      "attribution_top2_detected": 0.0,
-      "n": 300
-    },
-    "overexpose": {
-      "expected_label": "OVER_EXPOSED",
-      "spearman_severity_vs_qc": 0.6177092459199179,
-      "auroc_clean_vs_sev3plus": 0.9821296296296297,
-      "auroc_focus_only": 0.6179629629629629,
-      "detection_rate_by_severity": {
-        "1": 0.9666666666666667,
-        "2": 1.0,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
-      },
-      "attribution_acc_detected": 0.40268456375838924,
-      "attribution_top2_detected": 0.9832214765100671,
-      "n": 300
-    },
-    "underexpose": {
-      "expected_label": "UNDER_EXPOSED",
-      "spearman_severity_vs_qc": 0.5940061341623284,
-      "auroc_clean_vs_sev3plus": 0.7448148148148148,
-      "auroc_focus_only": 0.4056944444444444,
-      "detection_rate_by_severity": {
-        "1": 0.26666666666666666,
-        "2": 0.2,
-        "3": 0.48333333333333334,
-        "4": 0.6333333333333333,
-        "5": 1.0
-      },
-      "attribution_acc_detected": 0.7741935483870968,
-      "attribution_top2_detected": 0.9161290322580645,
-      "n": 300
-    },
-    "debris": {
-      "expected_label": "DEBRIS",
-      "spearman_severity_vs_qc": 0.1667946317774496,
-      "auroc_clean_vs_sev3plus": 0.6025462962962962,
-      "auroc_focus_only": 0.47351851851851856,
-      "detection_rate_by_severity": {
-        "1": 0.5,
-        "2": 0.5666666666666667,
-        "3": 0.6166666666666667,
-        "4": 0.6666666666666666,
-        "5": 0.7
-      },
-      "attribution_acc_detected": 0.6612021857923497,
-      "attribution_top2_detected": 0.7049180327868853,
-      "n": 300
-    },
-    "bubble": {
-      "expected_label": "BUBBLE",
-      "spearman_severity_vs_qc": 0.49413949484100067,
-      "auroc_clean_vs_sev3plus": 0.7554166666666666,
-      "auroc_focus_only": 0.4790740740740741,
-      "detection_rate_by_severity": {
-        "1": 0.4666666666666667,
-        "2": 1.0,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
-      },
-      "attribution_acc_detected": 0.5970149253731343,
-      "attribution_top2_detected": 0.8097014925373134,
-      "n": 300
-    },
-    "jpeg": {
-      "expected_label": "COMPRESSION",
-      "spearman_severity_vs_qc": 0.7319147985995357,
-      "auroc_clean_vs_sev3plus": 0.8797685185185186,
-      "auroc_focus_only": 0.4937962962962963,
-      "detection_rate_by_severity": {
-        "1": 1.0,
-        "2": 1.0,
-        "3": 1.0,
-        "4": 1.0,
-        "5": 1.0
-      },
-      "attribution_acc_detected": 0.7633333333333333,
-      "attribution_top2_detected": 0.97,
-      "n": 300
-    }
-  },
-  "confusion_sev3plus_batch": {
-    "BUBBLE": {
-      "BUBBLE": 122,
-      "COMPRESSION": 0,
-      "DEBRIS": 41,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 0,
-      "NOISE": 0,
-      "OVER_EXPOSED": 17,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "COMPRESSION": {
-      "BUBBLE": 0,
-      "COMPRESSION": 143,
-      "DEBRIS": 26,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 0,
-      "NOISE": 0,
-      "OVER_EXPOSED": 10,
-      "UNDER_EXPOSED": 1,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "DEBRIS": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 84,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 0,
-      "NOISE": 9,
-      "OVER_EXPOSED": 26,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 61
-    },
-    "DEFOCUS_OR_BLUR": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 401,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 0,
-      "NOISE": 0,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 139
-    },
-    "LOW_CONTRAST": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 14,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 0,
-      "NOISE": 12,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 154
-    },
-    "NOISE": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 2,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 0,
-      "NOISE": 129,
-      "OVER_EXPOSED": 37,
-      "UNDER_EXPOSED": 12,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "OVER_EXPOSED": {
-      "BUBBLE": 1,
-      "COMPRESSION": 0,
-      "DEBRIS": 127,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 0,
-      "NOISE": 0,
-      "OVER_EXPOSED": 52,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "UNDER_EXPOSED": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 5,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 0,
-      "NOISE": 4,
-      "OVER_EXPOSED": 0,
-      "UNDER_EXPOSED": 171,
-      "UNEVEN_ILLUMINATION": 0,
-      "NONE": 0
-    },
-    "UNEVEN_ILLUMINATION": {
-      "BUBBLE": 0,
-      "COMPRESSION": 0,
-      "DEBRIS": 79,
-      "DEFOCUS_OR_BLUR": 0,
-      "LOW_CONTRAST": 0,
-      "NOISE": 5,
-      "OVER_EXPOSED": 34,
-      "UNDER_EXPOSED": 0,
-      "UNEVEN_ILLUMINATION": 1,
-      "NONE": 61
-    }
-  },
-  "threshold_sweep_batch": {
-    "1.5": {
-      "clean_flag_rate": 0.65,
-      "sev3plus_detection_rate": 0.9434343434343434
-    },
-    "2.0": {
-      "clean_flag_rate": 0.55,
-      "sev3plus_detection_rate": 0.8459595959595959
-    },
-    "2.5": {
-      "clean_flag_rate": 0.48333333333333334,
-      "sev3plus_detection_rate": 0.7823232323232323
-    },
-    "3.0": {
-      "clean_flag_rate": 0.4666666666666667,
-      "sev3plus_detection_rate": 0.7636363636363637
-    },
-    "4.0": {
-      "clean_flag_rate": 0.45,
-      "sev3plus_detection_rate": 0.7474747474747475
-    },
-    "5.0": {
-      "clean_flag_rate": 0.38333333333333336,
-      "sev3plus_detection_rate": 0.7237373737373738
-    },
-    "6.0": {
-      "clean_flag_rate": 0.36666666666666664,
-      "sev3plus_detection_rate": 0.7116161616161616
+      "operating_point": "smallest threshold whose mean per-session false-flag rate on expert-good out-of-fold dev images is <=10%",
+      "clean_flag_rate_extraction_path": 0.05,
+      "mean_abs_prob_diff_between_paths": 0.00960706826299429,
+      "can_name_the_cause": false,
+      "n_to_be_read_as": "approach family used by entries that learn the expert label from frozen embeddings; not any entry's exact model"
     }
   },
   "provenance": {
-    "git_sha": "d2b906b8daee35b180320ed359c03381c17d7edd",
-    "timestamp_utc": "2026-10-10T15:04:34+00:00",
-    "config_hash": "4d7368f2592c8582",
+    "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
+    "timestamp_utc": "2026-10-10T18:24:51+00:00",
+    "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337,
-    "data_manifest_sha256": "b89d5a58724a62503246308b756b1838a4e1cb7a84074a2185c8d42bb158aab0"
+    "n_features": 3072
   }
 }

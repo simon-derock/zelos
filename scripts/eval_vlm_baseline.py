@@ -183,7 +183,7 @@ def phase_score() -> None:
 
     def f(x):
         return "n/a" if x is None else f"{x:.2f}"
-    for name, t in [("Zelos v1.1 (training-free)", out["zelos_stored_reference_calibrated"])] + list(out["models"].items()):
+    for name, t in [("Zelos v1.1 (no model trained)", out["zelos_stored_reference_calibrated"])] + list(out["models"].items()):
         rows.append(f"| {name} | {f(t['false_flag_on_expert_good'])} | {f(t['flag_rate_on_expert_bad'])} | {f(t['false_flag_on_clean'])} | {f(t['detected_sev5_faults'])} | {t['unparsed']} |")
     (ROOT / "results/vlm_baseline.md").write_text("# Vision-LLM baseline vs Zelos\n\nn = 20 per group, same images for every system.\n\n" + "\n".join(rows) + "\n")
     print("\n".join(rows))

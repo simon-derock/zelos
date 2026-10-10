@@ -93,13 +93,23 @@ def inspect(src: str | Path | np.ndarray | bytes, cell_line: str | None = None, 
     mode = mode or ("batch" if reference is not None else "stored")
     cal = _calibration()
     key = {"batch": "batch_session", "stored": "between_session (v1.1)"}.get(mode)
+    cutoffs = None
     if cal and key in cal["variants"]:
-        review_z, fail_z, th_src = cal["variants"][key]["review"], cal["variants"][key]["fail"], "calibrated"
+        v = cal["variants"][key]
+        review_z, fail_z, th_src = v["review"], v["fail"], "calibrated"
+        cutoffs = v.get("cutoffs")
     else:
         review_z, fail_z, th_src = cfg["qc"]["review_z"], cfg["qc"]["fail_z"], "pre-registered"
     m = compute_metrics(img, cfg["vision"]["max_side"])
     ref = reference or load_reference()
-    s = score_image(m, ref, cell_line, review_z, fail_z)
+    if cutoffs:
+        s = score_image(m, ref, cell_line, 1e9, 1e9)  # z values only; level from the calibrated ratio below
+        zb = s["zbad"]
+        ratio = max(zb.get(k, 0.0) / c for k, c in cutoffs.items())
+        s["qc_zmax"], s["qc_score"] = s["qc_score"], ratio
+        s["level"] = "FAIL" if ratio > fail_z else "REVIEW" if ratio > review_z else "PASS"
+    else:
+        s = score_image(m, ref, cell_line, review_z, fail_z)
     causes: list[dict[str, Any]] = []
     attribution = "none"
     if s["level"] != "PASS":
@@ -125,6 +135,7 @@ def inspect(src: str | Path | np.ndarray | bytes, cell_line: str | None = None, 
         "zbad": {k: round(v, 3) for k, v in s["zbad"].items()},
         "percentiles": {k: round(v, 1) for k, v in s["percentiles"].items()},
         "qc_score": round(s["qc_score"], 3),
+        "qc_zmax": round(s.get("qc_zmax", s["qc_score"]), 3),
         "level": s["level"],
         "route": route,
         "causes": causes,

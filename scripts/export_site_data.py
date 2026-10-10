@@ -20,7 +20,7 @@ import pandas as pd
 from zelos.agent.loop import run_inspect
 from zelos.common.config import ROOT, load_config, provenance, write_json
 from zelos.vision.corrupt import corrupt
-from zelos.vision.metrics import BAD_DIRECTION, to_gray01
+from zelos.vision.metrics import BAD_DIRECTION, downscale, to_gray01
 from zelos.vision.pipeline import inspect
 from zelos.vision.scoring import fit_reference
 
@@ -112,6 +112,7 @@ def main() -> None:
         variant = "original"
         if kind:
             g, _ = to_gray01(img)
+            g = downscale(g, cfg["vision"]["max_side"])   # same scale as the E1 benchmark
             img = (corrupt(g, kind, 5, rng) * 255).astype(np.uint8)
             sid = f"{row.file_id}-{kind}"
             variant = f"corrupted:{kind}:5"

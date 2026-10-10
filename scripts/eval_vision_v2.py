@@ -3,7 +3,7 @@
 Questions answered (all numbers computed here, nothing typed by hand):
   E2  How well do Zelos signals agree with the expert good/bad label on held-out SESSIONS (n ~ 2k)?
       - pre-registered pooled reference (v1), between-session-aware reference (v1.1), batch reference
-      - culture-state signal: frozen DINOv2 kNN (training-free), plus a label-trained linear head as a baseline
+      - culture-state signal: frozen DINOv2 kNN (a lookup against expert-labelled neighbours, no model trained), plus a label-trained linear head as a baseline
       - within-session AUROC (removes the imaging-day shortcut), session-cluster bootstrap CIs
   E1  Injected faults with known ground truth on real test-session images:
       - detection at a calibrated operating point (<=10% false alarms on calibration sessions)
@@ -153,6 +153,7 @@ def main() -> None:
     ap.add_argument("--n-e1", type=int, default=48)
     ap.add_argument("--n-sig", type=int, default=40)
     ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--reuse-e1", action="store_true", help="reuse cached E1 corrupted-image metrics/embedding scores")
     ap.add_argument("--features", default=str(ROOT / "cache" / "features_all.pkl"))
     a = ap.parse_args()
     t0 = time.time()
@@ -162,7 +163,10 @@ def main() -> None:
     D1, D2, TS = split_sessions(F, SEED)
     F["part"] = np.where(F.session.isin(D1), "fit", np.where(F.session.isin(D2), "cal", "test"))
     print({p: int((F.part == p).sum()) for p in ("fit", "cal", "test")}, "n sessions", F.session.nunique(), flush=True)
-    fit_good = F[(F.part == "fit") & (F.bad == 0)]
+    # development = fit + cal sessions together; thresholds are calibrated leave-one-session-out (below)
+    dev_mask = F.part.isin(["fit", "cal"]).to_numpy()
+    good_mask = (F.bad == 0).to_numpy()
+    fit_good = F[dev_mask & good_mask]
     ref_a = fit_reference(fit_good[M])
     ref_b = fit_reference_sessions(fit_good, "session")
     sess_ref = {}
@@ -174,12 +178,64 @@ def main() -> None:
     for name, fn in ref_fns.items():
         scores[name], zbads[name] = score_rows(F, fn)
         F[f"qc::{name}"] = scores[name]
-    cal = (F.part == "cal") & (F.bad == 0)
-    tau = {name: float(np.quantile(scores[name][cal.to_numpy()], 0.90)) for name in ref_fns}
-    tau99 = {name: float(np.quantile(scores[name][cal.to_numpy()], 0.99)) for name in ref_fns}
-    write_json(RES / "calibration.json", {"variants": {k: {"review": tau[k], "fail": tau99[k]} for k in ref_fns},
-                                          "rule": "review = 90th, fail = 99th percentile of QC score on expert-good images of calibration sessions",
-                                          "provenance": provenance()})
+    cal = pd.Series(dev_mask & good_mask, index=F.index)
+    zmax = {k: v.copy() for k, v in scores.items()}          # raw max one-sided z (v1 score)
+    from zelos.vision.attribution import SIG_KEYS
+
+    def zmat(zb):
+        return np.array([[z.get(k, 0.0) for k in SIG_KEYS] for z in zb])
+    # out-of-fold z for development images: the reference of a dev session never sees that session
+    dev_sessions = sorted(F[dev_mask].session.unique())
+    oof_refs = {}
+    for ses in dev_sessions:
+        g = fit_good[fit_good.session != ses]
+        oof_refs[ses] = (fit_reference(g[M]), fit_reference_sessions(g, "session"))
+    names = list(ref_fns)
+    Z = {n: zmat(zbads[n]) for n in names}                     # all rows, final references
+    for k_idx, n in enumerate(names[:2]):                      # pooled / between: replace dev rows by OOF z
+        for i in np.where(dev_mask)[0]:
+            r = F.iloc[i]
+            Z[n][i] = zmat([score_image(r[M].to_dict(), oof_refs[r.session][k_idx], None, 3.0, 5.0)["zbad"]])[0]
+    sess_arr = F.session.astype(str).to_numpy()
+
+    def loso_rate(alpha, Zn):
+        rates = []
+        for ses in dev_sessions:
+            tr = dev_mask & good_mask & (sess_arr != ses)
+            te = dev_mask & good_mask & (sess_arr == ses)
+            if te.sum() < 5:
+                continue
+            c = np.maximum(np.quantile(Zn[tr], 1 - alpha, axis=0), 1.0)
+            rates.append(float((np.max(Zn[te] / c, axis=1) > 1).mean()))
+        return float(np.mean(rates)), rates
+    cut, s_fail, alpha_star, loso = {}, {}, {}, {}
+    for name in names:
+        lo, hi = 1e-5, 0.5
+        for _ in range(40):
+            mid = (lo + hi) / 2
+            if loso_rate(mid, Z[name])[0] > 0.10:
+                hi = mid
+            else:
+                lo = mid
+        alpha_star[name] = lo
+        loso[name] = loso_rate(lo, Z[name])
+        c = np.maximum(np.quantile(Z[name][dev_mask & good_mask], 1 - lo, axis=0), 1.0)
+        cut[name] = c
+        ratio = np.max(Z[name] / c, axis=1)
+        scores[name] = ratio
+        F[f"qc::{name}"] = ratio
+        s_fail[name] = float(np.quantile(ratio[dev_mask & good_mask], 0.99))
+    tau = {name: float(np.quantile(zmax[name][dev_mask & good_mask], 0.90)) for name in names}
+    tau99 = {name: float(np.quantile(zmax[name][dev_mask & good_mask], 0.99)) for name in names}
+    write_json(RES / "calibration.json", {
+        "variants": {k: {"review": 1.0, "fail": s_fail[k], "cutoffs": dict(zip(SIG_KEYS, map(float, cut[k]), strict=True)),
+                         "alpha": alpha_star[k], "loso_mean_false_flag_rate": loso[k][0],
+                         "loso_session_rates_p50_p80": [float(np.percentile(loso[k][1], 50)), float(np.percentile(loso[k][1], 80))],
+                         "zmax_review": tau[k], "zmax_fail": tau99[k]} for k in names},
+        "score": "max over metrics of one-sided z / per-metric calibrated cutoff; flagged when > 1",
+        "rule": "cutoffs = (1-alpha) quantile of expert-good dev-session z (out-of-fold); alpha = largest value whose "
+                "LEAVE-ONE-SESSION-OUT mean false-flag rate is <=10%; floor 1.0 z; fail = 99th percentile of the score",
+        "provenance": provenance()})
     ref_b_out = dict(ref_b)
     ref_b_out["fit_on"] = {"parts": "fit sessions", "label": "good", "n": int(len(fit_good))}
     write_json(RES / "reference_v11.json", ref_b_out)
@@ -195,6 +251,7 @@ def main() -> None:
     yd = fit_dev.bad.to_numpy()
     det = {
         **{f"zelos_qc[{k}]": scores[k][test.to_numpy()] for k in ref_fns},
+        "zelos_qc_rawmaxz[pooled_dev (v1)]": zmax["pooled_dev (v1)"][test.to_numpy()],
         "focus_only[batch_session]": np.array([z["focus_lapvar_norm"] for z in np.array(zbads["batch_session"], dtype=object)[test.to_numpy()]]),
         "random": np.random.default_rng(SEED).random(int(test.sum())),
         "knn_physics_k15": knn_score(Xp_d, yd, Xp_t),
@@ -216,9 +273,10 @@ def main() -> None:
     ops = {}
     tb = F.loc[test, "bad"].to_numpy()
     for k in ref_fns:
-        flag = scores[k][test.to_numpy()] > tau[k]
-        ops[k] = {"threshold": tau[k], "false_flag_rate_test_good": float(flag[tb == 0].mean()),
-                  "recall_expert_bad": float(flag[tb == 1].mean()), "preregistered_z3_false_flag": float((scores[k][test.to_numpy()][tb == 0] > 3).mean())}
+        flag = scores[k][test.to_numpy()] > 1.0
+        ops[k] = {"threshold": 1.0, "false_flag_rate_test_good": float(flag[tb == 0].mean()),
+                  "recall_expert_bad": float(flag[tb == 1].mean()),
+                  "preregistered_z3_false_flag": float((zmax[k][test.to_numpy()][tb == 0] > 3).mean())}
     e2["operating_points"] = ops
     e2["provenance"] = provenance({"features": Path(a.features).name, "n_rows": int(len(F))})
     write_json(RES / "e2.json", e2)
@@ -236,7 +294,12 @@ def main() -> None:
     tgood = man[(man.part == "test") & (man.bad == 0)].sample(n=min(a.n_e1, int(((man.part == "test") & (man.bad == 0)).sum())), random_state=SEED)
     dgood = man[(man.part.isin(["fit", "cal"])) & (man.bad == 0)].sample(n=min(a.n_sig, int(((man.part != "test") & (man.bad == 0)).sum())), random_state=SEED)
     print("E1 base images: test", len(tgood), "dev(sig)", len(dgood), flush=True)
-    Rt = run_e1_jobs(tgood.path.tolist(), [SEED + i for i in range(len(tgood))], KINDS, SEV_TEST, True, a.workers)
+    rt_cache = ROOT / "cache" / "e1_rows_v2.pkl"
+    if a.reuse_e1 and rt_cache.exists():
+        Rt = pd.read_pickle(rt_cache)
+        Rt = Rt[[c for c in Rt.columns if not c.startswith(("s::", "p1::", "p2::", "t2::", "f::"))]]
+    else:
+        Rt = run_e1_jobs(tgood.path.tolist(), [SEED + i for i in range(len(tgood))], KINDS, SEV_TEST, True, a.workers)
     Rs = run_e1_jobs(dgood.path.tolist(), [SEED + 1000 + i for i in range(len(dgood))], KINDS, SEV_SIG, False, a.workers)
     pth2meta = {p: (fid, ss) for p, fid, ss in zip(man.path, man.file_id, man.session, strict=True)}
     for R in (Rt, Rs):
@@ -252,11 +315,36 @@ def main() -> None:
     write_json(RES / "signatures.json", sigs)
 
     # head-to-head threshold for the label-trained head: 10% flags on cal-session good images
-    cal_idx = cal.to_numpy()
-    p_cal = lr.predict_proba(sc_lr.transform(F.loc[cal_idx, CLS + MEAN].to_numpy(np.float32)))[:, 1]
-    tau_lr = float(np.quantile(p_cal, 0.90))
-    emb = np.hstack([np.stack(Rt["cls"].to_numpy()), np.stack(Rt["mean"].to_numpy())])
-    Rt["p_lr"] = lr.predict_proba(sc_lr.transform(emb))[:, 1]
+    # Out-of-fold probabilities for dev images (grouped by session) so the threshold is not set on in-sample
+    # predictions; same criterion as Zelos: smallest t whose mean per-session false-flag rate on expert-good dev
+    # images is <= 10%.
+    from sklearn.model_selection import GroupKFold
+
+    X_dev = F.loc[dev_mask, CLS + MEAN].to_numpy(np.float32)
+    y_dev = F.loc[dev_mask, "bad"].to_numpy()
+    g_dev = F.loc[dev_mask, "session"].astype(str).to_numpy()
+    p_oof = np.zeros(len(y_dev))
+    for tr, te in GroupKFold(n_splits=min(6, len(set(g_dev)))).split(X_dev, y_dev, g_dev):
+        sc_f = StandardScaler().fit(X_dev[tr])
+        lr_f = LogisticRegression(C=0.1, max_iter=2000).fit(sc_f.transform(X_dev[tr]), y_dev[tr])
+        p_oof[te] = lr_f.predict_proba(sc_f.transform(X_dev[te]))[:, 1]
+    gd = y_dev == 0
+
+    def head_rate(t):
+        r = [float((p_oof[gd & (g_dev == s_)] > t).mean()) for s_ in np.unique(g_dev) if (gd & (g_dev == s_)).sum() >= 5]
+        return float(np.mean(r))
+    lo_t, hi_t = 0.0, 1.0
+    for _ in range(40):
+        mid_t = (lo_t + hi_t) / 2
+        if head_rate(mid_t) > 0.10:
+            lo_t = mid_t
+        else:
+            hi_t = mid_t
+    tau_lr = hi_t
+    p_cal = p_oof[gd]
+    if "cls" in Rt.columns:
+        emb = np.hstack([np.stack(Rt["cls"].to_numpy()), np.stack(Rt["mean"].to_numpy())])
+        Rt["p_lr"] = lr.predict_proba(sc_lr.transform(emb))[:, 1]
     # path-consistency check: the same CLEAN images embedded via the E1 path (downscale 1024 -> 448x588) versus the
     # extraction path (full resolution -> 448x588). A large gap would bias the head-to-head against the baseline.
     base_fid = {pth: pth2meta[pth][0] for pth in tgood.path}
@@ -264,10 +352,10 @@ def main() -> None:
     cl = Rt[Rt.kind == "clean"]
     p_ext = lr.predict_proba(sc_lr.transform(Fi.loc[[base_fid[p] for p in cl.path], CLS + MEAN].to_numpy(np.float32)))[:, 1]
     path_shift = float(np.mean(np.abs(p_ext - cl.p_lr.to_numpy())))
-    tau_lr_ext = float(np.quantile(p_cal, 0.90))
+    tau_lr_ext = tau_lr
 
     e1 = {"n_base_images": int(len(tgood)), "n_signature_images": int(len(dgood)), "kinds": KINDS, "severities": SEV_TEST,
-          "operating_point": "threshold = 90th percentile of QC score on expert-good images of calibration sessions (<=10% false flags)",
+          "operating_point": "per-metric cutoffs calibrated so the mean per-session false-flag rate on expert-good development images is <=10% leave-one-session-out; flagged when score > 1",
           "variants": {}, "head_to_head": {}}
     for name in ref_fns:
         if name == "pooled_dev (v1)":
@@ -279,11 +367,12 @@ def main() -> None:
         scs, zs = [], []
         for _, r in Rt.iterrows():
             s = score_image(r[M].to_dict(), refv(r), None, 3.0, 5.0)
-            scs.append(s["qc_score"])
+            zb = np.array([s["zbad"].get(k, 0.0) for k in SIG_KEYS])
+            scs.append(float(np.max(zb / cut[name])))
             zs.append(s["zbad"])
         Rt[f"s::{name}"] = scs
         sig = sigs["batch" if name == "batch_session" else "stored"]
-        flagged = np.array(scs) > tau[name]
+        flagged = np.array(scs) > 1.0
         prim_v1, prim_v2, top2_v2 = [], [], []
         for (_, r), z in zip(Rt.iterrows(), zs, strict=True):
             c1 = attribute(r[M].to_dict(), z)
@@ -314,7 +403,7 @@ def main() -> None:
             if r[f"f::{name}"]:
                 conf[KIND_TO_LABEL[r.kind]][r[f"p2::{name}"]] += 1
         e1["variants"][name] = {
-            "threshold": tau[name],
+            "threshold": 1.0, "score": "max_m zbad_m / calibrated cutoff_m",
             "clean_flag_rate": float(clean[f"f::{name}"].mean()),
             "detection_rate_sev3plus": float(sev3[f"f::{name}"].mean()),
             "detection_rate_sev1": float(Rt[(Rt.kind != "clean") & (Rt.severity == 1)][f"f::{name}"].mean()),
@@ -324,7 +413,7 @@ def main() -> None:
             "attribution_v2_top2": float(np.mean([e in t for e, t in zip(expl, det_all[f"t2::{name}"], strict=True)])),
             "chance_attribution": 1.0 / len(set(KIND_TO_LABEL.values())), "per_kind": per, "confusion_v2_sev3plus": conf,
             "threshold_sweep": {str(t): {"clean_flag_rate": float((clean[f"s::{name}"] > t).mean()),
-                                         "sev3plus_detection": float((sev3[f"s::{name}"] > t).mean())} for t in CFG["qc"]["sweep_z"]}}
+                                         "sev3plus_detection": float((sev3[f"s::{name}"] > t).mean())} for t in [0.5, 0.75, 1.0, 1.5, 2.0, 3.0]}}
     # head-to-head on the same images
     clean = Rt[Rt.kind == "clean"]
     sev3 = Rt[(Rt.kind != "clean") & (Rt.severity >= 3)]
@@ -334,6 +423,7 @@ def main() -> None:
         "threshold": tau_lr, "clean_flag_rate": float((clean.p_lr > tau_lr).mean()),
         "detection_rate_sev3plus": float((sev3.p_lr > tau_lr).mean()), "auroc_clean_vs_sev3plus": auroc(ycs, cs.p_lr),
         "detection_by_kind_sev3plus": {k: float((sev3[sev3.kind == k].p_lr > tau_lr).mean()) for k in KINDS},
+        "operating_point": "smallest threshold whose mean per-session false-flag rate on expert-good out-of-fold dev images is <=10%",
         "clean_flag_rate_extraction_path": float((p_ext > tau_lr_ext).mean()), "mean_abs_prob_diff_between_paths": path_shift,
         "can_name_the_cause": False, "n_to_be_read_as": "approach family used by entries that learn the expert label from frozen embeddings; not any entry's exact model"}}
     e1["head_to_head"] = h2h
@@ -341,7 +431,7 @@ def main() -> None:
     np.savez_compressed(RES / "culture_bank.npz", cls=F[CLS].to_numpy(np.float16), bad=F.bad.to_numpy(np.int8),
                         session=F.session.astype(str).to_numpy())
     write_json(RES / "e1.json", e1)
-    Rt.drop(columns=["cls", "mean"]).to_pickle(ROOT / "cache" / "e1_rows_v2.pkl")
+    Rt.drop(columns=[c for c in ("cls", "mean") if c in Rt.columns]).to_pickle(rt_cache)
     print("E1 done", round(time.time() - t0), "s", flush=True)
     for name, v in e1["variants"].items():
         print(f"{name:26s} clean_flag={v['clean_flag_rate']:.3f} det_sev3+={v['detection_rate_sev3plus']:.3f} attr_v1={v['attribution_v1_rules']:.3f} "

@@ -1,0 +1,97 @@
+{
+  "variants": {
+    "pooled_dev (v1)": {
+      "review": 1.0,
+      "fail": 1.0005277344847194,
+      "cutoffs": {
+        "focus_lapvar_norm": 1.524965038336893,
+        "focus_tenengrad_norm": 1.355472917773981,
+        "focus_hf_ratio": 1.8938824886347956,
+        "contrast_rms": 4.012096858063523,
+        "contrast_p99_p1": 23.62155613453429,
+        "clip_low_frac": 1.0378283420895151,
+        "clip_high_frac": 29.7099593678693,
+        "illum_flatness": 12.855036448858304,
+        "noise_sigma_norm": 4.345794611774485,
+        "debris_count": 1268.6918400000177,
+        "debris_area_frac": 84.07767110188924,
+        "bubble_score": 7.0539600118002515,
+        "jpeg_blockiness": 27.781565495688316,
+        "mean_intensity_low": 3.0659873667125077
+      },
+      "alpha": 1e-05,
+      "loso_mean_false_flag_rate": 0.21303432879519837,
+      "loso_session_rates_p50_p80": [
+        0.0,
+        0.31111111111111156
+      ],
+      "zmax_review": 33.200000000000045,
+      "zmax_fail": 882.6799999999993
+    },
+    "between_session (v1.1)": {
+      "review": 1.0,
+      "fail": 1.000606299939031,
+      "cutoffs": {
+        "focus_lapvar_norm": 1.3531683173889555,
+        "focus_tenengrad_norm": 1.3013813976048834,
+        "focus_hf_ratio": 2.062459287100388,
+        "contrast_rms": 2.492767006390732,
+        "contrast_p99_p1": 3.732086671197175,
+        "clip_low_frac": 1.0378283420895151,
+        "clip_high_frac": 45.0497512555978,
+        "illum_flatness": 12.956126062093924,
+        "noise_sigma_norm": 3.892341328959106,
+        "debris_count": 1268.6918400000177,
+        "debris_area_frac": 84.07767110188924,
+        "bubble_score": 7.0539600118002515,
+        "jpeg_blockiness": 6.745280287727511,
+        "mean_intensity_low": 3.5536031458064965
+      },
+      "alpha": 1e-05,
+      "loso_mean_false_flag_rate": 0.1756393646611038,
+      "loso_session_rates_p50_p80": [
+        0.0,
+        0.2844444444444448
+      ],
+      "zmax_review": 33.200000000000045,
+      "zmax_fail": 882.6799999999993
+    },
+    "batch_session": {
+      "review": 1.0,
+      "fail": 1.173681751910011,
+      "cutoffs": {
+        "focus_lapvar_norm": 2.8634633924036534,
+        "focus_tenengrad_norm": 2.248432187144744,
+        "focus_hf_ratio": 3.286220286616104,
+        "contrast_rms": 4.956324821569778,
+        "contrast_p99_p1": 8.128262005107826,
+        "clip_low_frac": 1.0,
+        "clip_high_frac": 4.50570940561099,
+        "illum_flatness": 9.125864903701025,
+        "noise_sigma_norm": 4.356643210687115,
+        "debris_count": 373.3317156637055,
+        "debris_area_frac": 29.54876065630758,
+        "bubble_score": 5.7434788294393515,
+        "jpeg_blockiness": 7.820739640814151,
+        "mean_intensity_low": 3.971631115474924
+      },
+      "alpha": 0.0014739016624807115,
+      "loso_mean_false_flag_rate": 0.09730244530463607,
+      "loso_session_rates_p50_p80": [
+        0.037037037037037035,
+        0.1333333333333334
+      ],
+      "zmax_review": 7.876534518793321,
+      "zmax_fail": 135.5999999999989
+    }
+  },
+  "score": "max over metrics of one-sided z / per-metric calibrated cutoff; flagged when > 1",
+  "rule": "cutoffs = (1-alpha) quantile of expert-good dev-session z (out-of-fold); alpha = largest value whose LEAVE-ONE-SESSION-OUT mean false-flag rate is <=10%; floor 1.0 z; fail = 99th percentile of the score",
+  "provenance": {
+    "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
+    "timestamp_utc": "2026-10-10T18:23:36+00:00",
+    "config_hash": "0c18777ab72c936c",
+    "python": "3.12.3",
+    "seed": 1337
+  }
+}
