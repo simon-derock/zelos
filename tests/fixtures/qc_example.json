@@ -1,0 +1,12 @@
+{
+  "tool_call_id": "qc-1a2b3c4d",
+  "image": {"id": "220429_01", "sha256": "0b2f5d6a8c1e4f7390a1b2c3d4e5f60718293a4b5c6d7e8f9012a3b4c5d6e7f8", "shape": [1542, 2056], "dtype": "uint8", "cell_line": "HPMEC"},
+  "metrics": {"focus_lapvar_norm": 0.41, "noise_sigma_norm": 0.08, "illum_flatness": 0.12, "contrast_rms": 0.09, "clip_high_frac": 0.002, "confluence_frac": 0.63},
+  "z": {"focus_lapvar_norm": 4.2, "noise_sigma_norm": 0.7, "illum_flatness": 1.1, "contrast_rms": -0.4, "clip_high_frac": 0.1, "confluence_frac": 0.2},
+  "percentiles": {"focus_lapvar_norm": 0.6, "noise_sigma_norm": 55.0, "illum_flatness": 70.0, "contrast_rms": 40.0, "clip_high_frac": 50.0, "confluence_frac": 58.0},
+  "qc_score": 4.2,
+  "level": "REVIEW",
+  "causes": [{"label": "DEFOCUS_OR_BLUR", "note": "image appears out of focus or blurred", "metric": "focus_lapvar_norm", "value": 0.41, "z": 4.2, "action": "Re-run autofocus and re-image this position; check the chip is seated flat on the stage."}],
+  "density_state": "NORMAL",
+  "latency_ms": 85.0
+}

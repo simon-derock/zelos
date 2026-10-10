@@ -1,0 +1,8 @@
+[
+  {"chunk_id": "FIXTURE1::s1::0", "title": "Test fixture passage on focus (synthetic, not a real paper)", "url": "", "license": "test-fixture", "pmcid": "", "score": 0.9, "rank": 1,
+   "text": "Out-of-focus blur reduces the local variance of the Laplacian in brightfield microscopy images of cell cultures. Autofocus routines that maximise this focus measure are widely used to keep microfluidic chips in the focal plane during time-lapse imaging."},
+  {"chunk_id": "FIXTURE2::s1::0", "title": "Test fixture passage on bubbles (synthetic, not a real paper)", "url": "", "license": "test-fixture", "pmcid": "", "score": 0.7, "rank": 2,
+   "text": "Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer. Degassing the medium and priming the channel reduce bubble formation."},
+  {"chunk_id": "FIXTURE3::s1::0", "title": "Test fixture passage on illumination (synthetic, not a real paper)", "url": "", "license": "test-fixture", "pmcid": "", "score": 0.5, "rank": 3,
+   "text": "Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements. Flat-field correction using a blank reference image removes this shading before quantitative analysis."}
+]
