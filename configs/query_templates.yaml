@@ -1,0 +1,11 @@
+# QC cause label -> literature query (used by the evidence retriever). Owned by the RAG module.
+DEFOCUS_OR_BLUR: out-of-focus blurred brightfield microscopy image quality autofocus organ-on-a-chip
+NOISE: image noise sensor exposure brightfield microscopy cell culture imaging quality
+UNEVEN_ILLUMINATION: uneven illumination vignetting flat-field correction brightfield microscopy
+OVER_EXPOSED: overexposure saturation brightfield microscopy imaging exposure
+UNDER_EXPOSED: underexposure low light brightfield microscopy imaging exposure
+LOW_CONTRAST: low contrast transparent cells brightfield phase contrast imaging
+DEBRIS: debris particles contamination microfluidic channel cell culture imaging
+BUBBLE: air bubbles microfluidic organ-on-a-chip channel cell culture failure
+COMPRESSION: lossy image compression artifacts microscopy quantitative analysis
+ABNORMAL_DENSITY: cell seeding density confluence monitoring organ-on-a-chip culture

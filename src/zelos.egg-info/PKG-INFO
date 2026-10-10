@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: zelos
+Version: 1.0.0
+Summary: Zelos: evidence-gated QC agent that certifies organ-on-a-chip images as trustworthy data assets
+Author: Philip Simon Derock
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file

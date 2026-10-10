@@ -1,0 +1,31 @@
+# Fixed, human-readable attribution table. z = one-sided robust z-score in the "bad" direction
+# (see src/zelos/vision/scoring.py). A label fires when ANY of its triggers exceeds its z threshold.
+# The primary cause is the fired label with the largest triggering z.
+labels:
+  DEFOCUS_OR_BLUR:
+    note: image appears out of focus or blurred
+    triggers: [{metric: focus_lapvar_norm, z: 3.0}, {metric: focus_hf_ratio, z: 3.0}]
+  NOISE:
+    note: elevated sensor or shot noise
+    triggers: [{metric: noise_sigma_norm, z: 3.0}]
+  UNEVEN_ILLUMINATION:
+    note: background gradient or vignetting
+    triggers: [{metric: illum_flatness, z: 3.0}]
+  OVER_EXPOSED:
+    note: saturated (clipped) bright pixels
+    triggers: [{metric: clip_high_frac, z: 3.0}]
+  UNDER_EXPOSED:
+    note: clipped dark pixels or very low brightness
+    triggers: [{metric: clip_low_frac, z: 3.0}, {metric: mean_intensity_low, z: 3.0}]
+  LOW_CONTRAST:
+    note: little dynamic range
+    triggers: [{metric: contrast_rms, z: 3.0}, {metric: contrast_p99_p1, z: 3.0}]
+  DEBRIS:
+    note: particulates or dust
+    triggers: [{metric: debris_count, z: 3.0}]
+  BUBBLE:
+    note: possible air bubble in the channel
+    triggers: [{metric: bubble_score, z: 3.0}]
+  COMPRESSION:
+    note: block compression artifacts
+    triggers: [{metric: jpeg_blockiness, z: 3.0}]

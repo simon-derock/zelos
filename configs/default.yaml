@@ -1,0 +1,28 @@
+# All thresholds are a-priori defaults fixed before evaluation; nothing here is fit to test data.
+seed: 1337
+data:
+  manifest: data/raw/manifest.csv
+  root: data/raw
+split: {dev: 0.30, group_by: session}
+vision:
+  max_side: 1024
+qc:
+  review_z: 3.0
+  fail_z: 5.0
+  sweep_z: [1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0]
+  min_group_for_per_line_ref: 30
+corruptions: {severities: [1, 2, 3, 4, 5], n_images: 96}
+retrieval: {k: 5, rrf_k: 60, chunk_words: 180, overlap_words: 30, candidates: 30, min_rerank: 0.10, min_hybrid: 0.0}
+grounding: {num_rel_tol: 0.001, theta_lex: 0.30, theta_vec: 0.35, repair_rounds: 1}
+agent: {max_llm_calls: 2, temperature: 0}
+llm:
+  provider: workers_ai
+  model: "@cf/meta/llama-3.1-8b-instruct-fast"
+embeddings:
+  provider: cohere
+  model: embed-v4.0
+  dim: 1024
+rerank:
+  provider: cohere
+  model: rerank-v3.5
+bootstrap: {n: 1000, alpha: 0.05}

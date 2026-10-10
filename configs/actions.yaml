@@ -1,0 +1,10 @@
+# Cause -> recommended lab action. Written a priori; research-use guidance, not a protocol.
+DEFOCUS_OR_BLUR: Re-run autofocus and re-image this position; check the chip is seated flat on the stage.
+NOISE: Re-image with longer exposure or higher illumination and lower gain; check camera temperature.
+UNEVEN_ILLUMINATION: Apply flat-field correction or re-align the condenser (Koehler illumination) before analysis.
+OVER_EXPOSED: Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered.
+UNDER_EXPOSED: Increase exposure or lamp intensity and re-image.
+LOW_CONTRAST: Adjust condenser aperture or exposure to recover contrast, then re-image.
+DEBRIS: Inspect the channel and optics for particulates; clean or exclude affected regions.
+BUBBLE: Inspect the channel for air bubbles; degas medium or flush the channel, then re-image.
+COMPRESSION: Re-export the image in a lossless format (PNG/TIFF) before quantitative analysis.
