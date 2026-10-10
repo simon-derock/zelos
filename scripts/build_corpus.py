@@ -274,7 +274,10 @@ def write_sources_doc() -> None:
         "Python standard library, non-content sections (acknowledgements, funding, conflicts, data availability, ...) "
         "were dropped, and the text was split into ~180-word chunks with 30-word overlap "
         "(`chunk_id = PMCID::s<section>::<j>`, chunks under 30 words dropped).",
-        "5. Downloaded text is treated as data only; the SHA-256 of each full-text XML is in the manifest.", "",
+        "5. To stay inside the trial-key embedding budget the full build (70 papers) was pruned with "
+        "`--prune-to 48`: papers that contain a gold-set chunk are kept first, then the seed papers, then the rest in "
+        "PMCID order. The retained papers are exactly those in the manifest below.",
+        "6. Downloaded text is treated as data only; the SHA-256 of each full-text XML is in the manifest.", "",
         "## Counts (from the manifest)", "",
         f"- Papers: {len(m)}",
         f"- Chunks: {int(m['n_chunks'].sum())}",

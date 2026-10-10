@@ -26,6 +26,11 @@ Counts per type are printed in `results/e4.json` (`gold`), computed from this fi
   sensitive to this; chunk-level metrics are secondary.
 - The unanswerable questions are far outside the domain, so abstention is easy. Hard near-domain unanswerable
   questions are not covered, and the reported abstention accuracy must not be read as robustness to adversarial queries.
+- The corpus was pruned to 48 papers (from a 70-paper build) to fit the trial-key embedding budget, keeping every
+  paper that holds a gold chunk first. Most papers (35 of 48) therefore contain a gold chunk, which makes paper-level
+  retrieval easier than on an unpruned corpus; absolute Hit@k values are optimistic.
+- Hybrid+rerank latency in `results/e4.json` mixes live Cohere calls with cache replays, so it is not a clean
+  latency measurement.
 - Sample sizes are small (see the `n` fields); the Wilson 95% intervals in `results/e4.json` are wide and differences
   between modes can be within noise.
 - Abstention thresholds (`configs/rag.yaml`) were fixed before evaluation and not tuned on this set.

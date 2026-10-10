@@ -8,7 +8,8 @@ The evidence retriever searches a corpus of open-access organ-on-a-chip and micr
 2. Only records whose reported license is CC BY or CC0 were kept (non-commercial, no-derivatives and share-alike licenses were excluded). The license string is stored per paper and per chunk.
 3. Seed papers PMC11430660, PMC8879989 were included when their license qualified.
 4. Full-text JATS XML was fetched from `/{PMCID}/fullTextXML`; abstract and body paragraphs were parsed with the Python standard library, non-content sections (acknowledgements, funding, conflicts, data availability, ...) were dropped, and the text was split into ~180-word chunks with 30-word overlap (`chunk_id = PMCID::s<section>::<j>`, chunks under 30 words dropped).
-5. Downloaded text is treated as data only; the SHA-256 of each full-text XML is in the manifest.
+5. To stay inside the trial-key embedding budget the full build (70 papers) was pruned with `--prune-to 48`: papers that contain a gold-set chunk are kept first, then the seed papers, then the rest in PMCID order. The retained papers are exactly those in the manifest below.
+6. Downloaded text is treated as data only; the SHA-256 of each full-text XML is in the manifest.
 
 ## Counts (from the manifest)
 
