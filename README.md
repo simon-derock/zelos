@@ -70,7 +70,7 @@ Live Cohere and Cloudflare Workers AI calls are optional (`.env.example`). Every
 
 | Resource | Use | License |
 |---|---|---|
-| Organ-on-a-Chip (OOC) Image Dataset, Movčana et al., *Data* 2024, Zenodo <!--np-->10.5281/zenodo.10203721<!--/np--> | evaluation on all 3,072 in vitro images (lung, intestinal, endothelial cell lines on chip), expert good/bad labels | CC BY 4.0 (the article lists CC BY-SA; derived thumbnails shared under CC BY-SA). Images are streamed and discarded; only features are kept. |
+| Organ-on-a-Chip (OOC) Image Dataset, Movčana et al., *Data* 2024, Zenodo <!--np-->10.5281/zenodo.10203721<!--/np--> | evaluation on all 3,072 in vitro images (lung, intestinal, endothelial cell lines on chip), expert good/bad labels | CC BY <!--np-->4.0<!--/np--> (the article lists CC BY-SA; derived thumbnails shared under CC BY-SA). Images are streamed and discarded; only features are kept. |
 | 48 Europe PMC open-access papers | retrieval corpus and rule citations (`corpus/manifest.csv`) | CC BY |
 | DINOv2-small (Meta AI) | frozen feature extractor | Apache-2.0 |
 | Cohere `embed-v4.0`, `rerank-v3.5` · Workers AI `llama-3.1-8b-instruct-fast` | embeddings, reranking, explanations | provider terms; offline fallbacks included |
