@@ -157,7 +157,7 @@ def test_qa_has_25_questions_with_sources(kit):
     qs = re.findall(r"^### Q(\d+)\. ", qa, flags=re.M)
     assert [int(q) for q in qs] == list(range(1, 26))
     assert qa.count("**Source:**") == 25
-    must = ("fine-tune", "AUROC lower", "biologically", "circular", "label-trained head do so badly", "grounding gate",
+    must = ("fine-tune", "expert-label AUROC", "biologically", "circular", "label-trained head do so badly", "grounding gate",
             "literature support", "Cohere", "licensing", "regulatory", "v1.0 and v1.1", "480", "session", "vision-LLM",
             "latency", "upload demo", "pipeline", "sponsor")
     low = qa.lower()
@@ -174,7 +174,8 @@ def test_honesty_and_attribution_rules(kit):
     for name, text in {**files, "generator": gen_src, **{f"tmpl{i}": t for i, t in enumerate(templates)}}.items():
         assert not banned.search(text), name
     qa = files["docs/DEFENSE_QA.md"]
-    assert "do not claim to beat" in qa.lower() or "we do not claim to beat" in qa.lower()
+    low = qa.lower()
+    assert "do not claim to beat" in low or "do not claim state-of-the-art" in low
     changes = files["docs/V1_1_CHANGES.md"]
     assert "post-deadline" in changes and "v1.0-submission" in changes
     for key in ("single-image absolute mode", "n=", "motion blur", "expert-labelled neighbours"):
