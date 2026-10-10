@@ -1,0 +1,13 @@
+# Retrieval thresholds. A-priori defaults fixed before evaluation; nothing here is fit to the gold set.
+# Cohere rerank-v3.5 relevance_score is in [0, 1]; scores below ~0.1 are what the API documentation
+# treats as weakly relevant. A query whose best reranked passage scores below `min_rerank` is abstained.
+min_rerank: 0.10
+# Non-rerank modes: abstain only if BOTH raw channel scores are below their thresholds.
+# BM25Okapi scores are unbounded (corpus dependent): 3.0 is a conservative "at least one rare term matches" floor.
+# Cosine similarity floor for dense retrieval: 0.30 (embed-v4 vectors); hash vectors are typically lower.
+min_bm25: 3.0
+min_dense: 0.30
+candidates: 30
+rrf_k: 60
+rerank_pool: 20   # fused candidates sent to the reranker (one call per search)
+cohere_embed_batch: 96
