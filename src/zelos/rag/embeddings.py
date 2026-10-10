@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import threading
 import time
 from datetime import UTC, datetime
@@ -50,22 +51,28 @@ def _load_cache() -> dict[str, np.ndarray]:
     global _CACHE
     if _CACHE is None:
         _CACHE = {}
-        if CACHE_PATH.exists():
-            with np.load(CACHE_PATH, allow_pickle=False) as z:
-                keys, vecs = z["keys"], z["vecs"]
-                _CACHE = {str(k): vecs[i] for i, k in enumerate(keys)}
+        _CACHE = _read_cache_file()
     return _CACHE
+
+
+def _read_cache_file() -> dict[str, np.ndarray]:
+    if not CACHE_PATH.exists():
+        return {}
+    try:
+        with np.load(CACHE_PATH, allow_pickle=False) as z:
+            keys, vecs = z["keys"], z["vecs"]
+            return {str(k): vecs[i] for i, k in enumerate(keys)}
+    except Exception:  # truncated / concurrently written file: treat as empty, it is rebuilt on demand
+        return {}
 
 
 def _refresh_from_disk() -> None:
     """Merge entries written to the cache file by other processes (never drops in-memory entries)."""
-    if CACHE_PATH.exists():
-        with np.load(CACHE_PATH, allow_pickle=False) as z:
-            keys, vecs = z["keys"], z["vecs"]
-            with _LOCK:
-                c = _load_cache()
-                for i, k in enumerate(keys):
-                    c.setdefault(str(k), vecs[i])
+    disk = _read_cache_file()
+    with _LOCK:
+        c = _load_cache()
+        for k, v in disk.items():
+            c.setdefault(k, v)
 
 
 def flush_cache() -> None:
@@ -75,9 +82,9 @@ def flush_cache() -> None:
         if not _DIRTY or _CACHE is None:
             return
         keys = sorted(_CACHE)
-        np.savez_compressed(CACHE_PATH.with_suffix(".tmp.npz"), keys=np.array(keys),
-                            vecs=np.stack([_CACHE[k] for k in keys]).astype(np.float16))
-        CACHE_PATH.with_suffix(".tmp.npz").replace(CACHE_PATH)
+        tmp = CACHE_PATH.with_name(f"embed_cache.{os.getpid()}.tmp.npz")
+        np.savez_compressed(tmp, keys=np.array(keys), vecs=np.stack([_CACHE[k] for k in keys]).astype(np.float16))
+        tmp.replace(CACHE_PATH)
         _DIRTY = False
 
 

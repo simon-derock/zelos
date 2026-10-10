@@ -71,7 +71,7 @@ def main() -> int:
     ret_q = [g for g in gold if g["type"] in ("answerable", "reworded")]
     un_q = [g for g in gold if g["type"] == "unanswerable"]
     t_start = time.time()
-    r = HybridRetriever.load({"rerank_min_interval_s": 6.5})  # pacing for the 10 calls/min trial limit
+    r = HybridRetriever.load({"rerank_min_interval_s": 6.2})  # pacing for the 10 calls/min trial limit
     # one batched Cohere call for every query vector (replayed from cache afterwards)
     emb.embed_texts([g["question"] for g in gold], "search_query", provider=r.provider)
     paper_ids = {c["pmcid"] for c in r.chunks}
