@@ -82,18 +82,22 @@ def main() -> None:
     ap.add_argument("--provider", default="workers_ai")
     a = ap.parse_args()
     cfg = load_config()
-    real = pd.read_csv(ROOT / "results" / "metrics_real.csv")
+    real = pd.read_pickle(ROOT / "cache" / "features_all.pkl")
+    disk = pd.read_csv(ROOT / "data" / "raw" / "manifest.csv")
+    on_disk = {r.file_id: r.local_path for r in disk.itertuples()}
     retriever, rmode = get_retriever()
     print("retriever:", rmode)
 
     rng = np.random.default_rng(cfg["seed"])
+    real = real.assign(local_path=real.file_id.map(on_disk))
+    avail = real[real.local_path.notna()]
     picks: list[tuple[pd.Series, str | None]] = []
     for lab in ("good", "bad"):
-        sub = real[real.label == lab]
+        sub = avail[avail.label == lab]
         for cl in sorted(sub.cell_line.unique())[:4]:
             row = sub[sub.cell_line == cl].sample(1, random_state=cfg["seed"]).iloc[0]
             picks.append((row, None))
-    base = real[real.label == "good"].sample(4, random_state=cfg["seed"] + 1)
+    base = avail[avail.label == "good"].sample(4, random_state=cfg["seed"] + 1)
     for (_, row), kind in zip(base.iterrows(), ["defocus", "bubble", "overexpose", "illumination"], strict=True):
         picks.append((row, kind))
 
@@ -111,8 +115,8 @@ def main() -> None:
             img = (corrupt(g, kind, 5, rng) * 255).astype(np.uint8)
             sid = f"{row.file_id}-{kind}"
             variant = f"corrupted:{kind}:5"
-        qc = inspect(img, cell_line=row.cell_line, image_id=sid, reference=ref)
-        qc["reference"] = f"session batch (n={len(sess)})"
+        qc = inspect(img, cell_line=row.cell_line, image_id=sid, reference=ref, mode="batch", culture=True)
+        qc["reference"] = f"batch: imaging session {row.session} (n={len(sess)}, label-agnostic)"
         res = run_inspect(qc, retriever=retriever, provider=a.provider)
         thumb(img, OUT / "thumbs" / f"{sid}.webp")
         samples.append({"id": sid, "cell_line": row.cell_line, "time_bin": str(row.time_bin),
@@ -121,14 +125,22 @@ def main() -> None:
                         **{k: res.get(k) for k in ("ledger", "ungated_draft", "trace", "usage", "provider")}})
         print(sid, variant, qc["level"], qc["qc_score"], (res.get("usage") or {}).get("llm_calls"))
 
-    results = json.loads((ROOT / "results" / "results.json").read_text())
+    def jload(name):
+        f = ROOT / "results" / name
+        return json.loads(f.read_text()) if f.exists() else None
+
+    results = jload("results.json") or {}
     site = {
         "generated": provenance(),
         "dataset": {"name": "Organ-on-a-Chip (OOC) Image Dataset", "citation": "Movčana et al., Data 9(2):28, 2024",
                     "doi": "10.5281/zenodo.10203721", "license": "CC BY 4.0 (Zenodo) / CC BY-SA (article page)",
                     "n_images_used": int(len(real)), "cell_lines": sorted(real.cell_line.unique().tolist())},
         "samples": samples,
-        "results": {k: results.get(k, {}) for k in ("e1", "e2", "e4", "e5", "e9")},
+        "results": {k: (jload(f"{k}.json") or results.get(k, {})) for k in ("e1", "e2", "e4", "e5", "e9")},
+        "vlm_baseline": jload("vlm_baseline.json"),
+        "llm_sweep": jload("e5_sweep.json"),
+        "rule_citations": jload("rule_citations.json"),
+        "meta": {"version": "1.1", "branch": "next", "submitted_version": "v1.0-submission"},
         "findings": results.get("findings", []),
         "retriever": rmode,
     }
