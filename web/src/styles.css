@@ -461,3 +461,5 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;b
 .hero-copy,.hero-cta{animation:rise .9s cubic-bezier(.2,.9,.2,1) .16s both}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.grain{animation:none}.field-pop,.hero-title,.hero-sub,.hero-copy,.hero-cta{animation:none}html{scroll-behavior:auto}}
+
+.hero-copy{background:linear-gradient(90deg,#0b5cad,#0e7490);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:500}
