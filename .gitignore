@@ -16,3 +16,5 @@ node_modules/
 web/dist/
 *.part
 src/*.egg-info/
+*.mp4
+zelos-site.zip
