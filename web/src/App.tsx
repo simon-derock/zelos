@@ -47,6 +47,15 @@ function Nav({ sample }: { sample: boolean }) {
 
 export default function App() {
   const { data, sample, error } = useSiteData()
+  useEffect(() => {
+    if (!data || !window.location.hash) return
+    try {
+      const el = document.querySelector(window.location.hash)
+      if (el) requestAnimationFrame(() => el.scrollIntoView())
+    } catch {
+      /* invalid hash */
+    }
+  }, [data])
   return (
     <>
       <a className="skip" href="#console">Skip to the console</a>
