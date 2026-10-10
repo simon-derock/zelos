@@ -15,3 +15,4 @@ htmlcov/
 node_modules/
 web/dist/
 *.part
+src/*.egg-info/

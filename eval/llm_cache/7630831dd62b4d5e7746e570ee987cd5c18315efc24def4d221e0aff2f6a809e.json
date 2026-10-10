@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [\n{\"text\": \"The image QC result is FAIL with a verdict of OVER_EXPOSED.\", \"type\": \"numeric\", \"evidence\": [\"qc-b8222959\"]},\n{\"text\": \"The main cause of the failure is OVER_EXPOSED due to a clip_high_frac value of 0.9015251795450846.\", \"type\": \"numeric\", \"evidence\": [\"qc-b8222959\"]},\n{\"text\": \"The recommended action is to Reduce exposure time or lamp intensity and re-image; saturated pixels cannot be recovered.\", \"type\": \"numeric\", \"evidence\": [\"qc-b8222959\"]},\n{\"text\": \"The presence of debris in the image can also affect image quality.\", \"type\": \"inference\", \"evidence\": [\"qc-b8222959\"]},\n{\"text\": \"Debris can be introduced during chip assembly or culture, increasing the risk of contamination.\", \"type\": \"literature\", \"evidence\": [\"PMC13195612::s25::0\"]},\n{\"text\": \"Image restoration techniques can be used to recover an original image from its degraded version.\", \"type\": \"literature\", \"evidence\": [\"PMC7275059::s12::0\"]}]}",
+ "usage": {
+  "prompt_tokens": 1845,
+  "completion_tokens": 259
+ },
+ "latency_ms": 2007.0030150000093,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [\n{\"text\": \"The image QC result is FAIL with a score of 78.0.\", \"type\": \"numeric\", \"evidence\": [\"qc-172fcbc1\"]},\n{\"text\": \"The main cause of the failure is DEBRIS with a count of 78.0.\", \"type\": \"numeric\", \"evidence\": [\"qc-172fcbc1\"]},\n{\"text\": \"The triggering metric value for DEBRIS is debris_count with a value of 78.0.\", \"type\": \"numeric\", \"evidence\": [\"qc-172fcbc1\"]},\n{\"text\": \"The recommended action is to inspect the channel and optics for particulates; clean or exclude affected regions.\", \"type\": \"inference\", \"evidence\": [\"qc-172fcbc1\"]},\n{\"text\": \"Flat-field correction can be applied to address uneven illumination.\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::2\"]},\n{\"text\": \"Contamination during chip assembly or culture can introduce debris into the channel.\", \"type\": \"literature\", \"evidence\": [\"PMC13195612::s25::0\"]}\n]}",
+ "usage": {
+  "prompt_tokens": 1713,
+  "completion_tokens": 251
+ },
+ "latency_ms": 2349.484742000641,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}

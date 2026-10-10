@@ -127,6 +127,7 @@ def check_provenance() -> int:
     allowed = numbers_in((RES / "results.md").read_text()) | numbers_in(json.dumps(load("results")))
     # numbers that are not results (versions, dataset facts) are whitelisted explicitly in README via <!--np-->
     readme = re.sub(r"<!--np-->.*?<!--/np-->", "", readme, flags=re.S)
+    readme = re.sub(r"https?://\S+|\]\([^)]*\)", "", readme)
     missing = sorted(n for n in numbers_in(readme) if n not in allowed)
     if missing:
         print("PROVENANCE FAIL — numbers in README not found in results:", missing)

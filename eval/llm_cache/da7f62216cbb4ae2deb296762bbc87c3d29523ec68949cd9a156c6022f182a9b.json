@@ -1,0 +1,15 @@
+{
+ "text": "{\"claims\": [\n{\"text\": \"The image QC result is REVIEW with a score of 3.929.\", \"type\": \"numeric\", \"evidence\": [\"qc-b86f314b\"]},\n{\"text\": \"The main cause of the issue is NOISE, with a triggering metric value of 0.13612300211680597 for noise_sigma_norm.\", \"type\": \"numeric\", \"evidence\": [\"qc-b86f314b\"]},\n{\"text\": \"The recommended action is to re-image with longer exposure or higher illumination and lower gain; check camera temperature.\", \"type\": \"inference\", \"evidence\": [\"qc-b86f314b\"]},\n{\"text\": \"The image was acquired with a normal density state.\", \"type\": \"numeric\", \"evidence\": [\"qc-b86f314b\"]},\n{\"text\": \"The use of standardized illumination and focus settings can improve image quality.\", \"type\": \"literature\", \"evidence\": [\"PMC13388963::s10::0\"]},\n{\"text\": \"The variability in image quality, resolution, and color fidelity can be significant due to the heterogeneity of brightfield microscopes and camera models.\", \"type\": \"literature\", \"evidence\": [\"PMC13393655::s3::0\"]}\n]}",
+ "usage": {
+  "prompt_tokens": 1511,
+  "completion_tokens": 269
+ },
+ "latency_ms": 2038.1410989994038,
+ "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2
+ }
+}
