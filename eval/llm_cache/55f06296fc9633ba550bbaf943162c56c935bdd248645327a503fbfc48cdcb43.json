@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL with a total QC score of 12.548.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-ff23f215\"]\n    },\n    {\n      \"text\": \"The primary cause is LOW_CONTRAST, indicated by a contrast_p99_p1 value of 0.4637 (z‑score 12.548).\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-ff23f215\"]\n    },\n    {\n      \"text\": \"Recommended action: adjust the condenser aperture or exposure to increase contrast, then re‑image.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-ff23f215\"]\n    },\n    {\n      \"text\": \"Brightfield (a transillumination method) is widely used for organ‑on‑a‑chip imaging because it requires no labeling, saving time and simplifying workflow.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC8879989::s2::1\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1729,
+  "completion_tokens": 313
+ },
+ "latency_ms": 5903.085877998819,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 76.3542251586914
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

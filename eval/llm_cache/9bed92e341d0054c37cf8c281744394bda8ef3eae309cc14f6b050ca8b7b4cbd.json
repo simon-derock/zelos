@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The image quality control result for image 230424_23 is FAIL [qc-d84187a2].\", \"type\": \"numeric\", \"evidence\": [\"qc-d84187a2\"]}, {\"text\": \"The main causes for failure are DEBRIS with a debris_count of 32.0 and LOW_CONTRAST with a contrast_p99_p1 of 0.6789008378982544 [qc-d84187a2].\", \"type\": \"numeric\", \"evidence\": [\"qc-d84187a2\"]}, {\"text\": \"To address debris, inspect the channel and optics for particulates and clean or exclude affected regions, and to address low contrast, adjust condenser aperture or exposure to recover contrast before re-imaging [qc-d84187a2].\", \"type\": \"inference\", \"evidence\": [\"qc-d84187a2\"]}, {\"text\": \"Transillumination methods like brightfield imaging offer the advantage of not requiring sample labeling, such as fixing and staining for fluorescence [PMC8879989::s2::1].\", \"type\": \"literature\", \"evidence\": [\"PMC8879989::s2::1\"]}]}",
+ "usage": {
+  "prompt_tokens": 1887,
+  "completion_tokens": 298
+ },
+ "latency_ms": 6512.8413470010855,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 23.8272705078125
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

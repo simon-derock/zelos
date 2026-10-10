@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is PASS.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-e8097b07\"]\n    },\n    {\n      \"text\": \"No specific cause triggered the QC decision; the causes list is empty.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-e8097b07\"]\n    },\n    {\n      \"text\": \"Key metric values are within normal ranges, e.g., focus_lapvar_norm 2.0068 (percentile 17.5), contrast_rms 0.3025 (percentile 89.5), and illumination flatness 1.386 (percentile 95.5).\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-e8097b07\"]\n    },\n    {\n      \"text\": \"Recommended action: no corrective steps are needed; the image can be used for downstream analysis.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-e8097b07\"]\n    },\n    {\n      \"text\": \"Brightfield microscopy images, like the one evaluated, are commonly used in organ‑on‑a‑chip studies for visualizing cellular morphology.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC8879989::s11::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1401,
+  "completion_tokens": 349
+ },
+ "latency_ms": 2487.9585670023516,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 68.37246704101562
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

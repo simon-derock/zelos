@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The image quality control result for image 230425_81 is a FAIL with a qc_score of 412.0 [qc-7375ed42].\", \"type\": \"numeric\", \"evidence\": [\"qc-7375ed42\"]}, {\"text\": \"The main cause of failure is DEBRIS, identified by a debris_count of 412.0 [qc-7375ed42].\", \"type\": \"numeric\", \"evidence\": [\"qc-7375ed42\"]}, {\"text\": \"Another identified cause is UNEVEN_ILLUMINATION with an illum_flatness value of 2.474788469830989 [qc-7375ed42].\", \"type\": \"numeric\", \"evidence\": [\"qc-7375ed42\"]}, {\"text\": \"To address debris, it is recommended to inspect the channel and optics for particulates and clean or exclude affected regions [qc-7375ed42].\", \"type\": \"inference\", \"evidence\": [\"qc-7375ed42\"]}, {\"text\": \"To address uneven illumination, it is recommended to apply flat-field correction or re-align the condenser (Koehler illumination) before analysis [qc-7375ed42].\", \"type\": \"inference\", \"evidence\": [\"qc-7375ed42\"]}, {\"text\": \"When uneven illumination affects measured images, the processing pipeline must be adapted to remove this artifact to enable accurate image analysis [PMC12779969::s1::2].\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::2\"]}]}",
+ "usage": {
+  "prompt_tokens": 1948,
+  "completion_tokens": 393
+ },
+ "latency_ms": 8437.363526001718,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 28.42727279663086
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

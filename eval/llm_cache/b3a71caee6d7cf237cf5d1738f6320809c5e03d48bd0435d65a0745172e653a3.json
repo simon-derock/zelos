@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The image QC result for image 230525_41 is a PASS [qc-34af7567].\", \"type\": \"numeric\", \"evidence\": [\"qc-34af7567\"]}, {\"text\": \"The density state for this A549 cell line image is NORMAL [qc-34af7567].\", \"type\": \"numeric\", \"evidence\": [\"qc-34af7567\"]}, {\"text\": \"No causes were identified for this image [qc-34af7567].\", \"type\": \"inference\", \"evidence\": [\"qc-34af7567\"]}]}",
+ "usage": {
+  "prompt_tokens": 1521,
+  "completion_tokens": 153
+ },
+ "latency_ms": 4286.757236000994,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 16.545452117919922
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

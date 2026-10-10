@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The image quality control verdict for image 230317_42 is PASS [qc-ad50ea22].\", \"type\": \"numeric\", \"evidence\": [\"qc-ad50ea22\"]}, {\"text\": \"The image has a qc_score of 1.9 and a density_state of NORMAL [qc-ad50ea22].\", \"type\": \"numeric\", \"evidence\": [\"qc-ad50ea22\"]}, {\"text\": \"No specific causes for the result were identified [qc-ad50ea22].\", \"type\": \"inference\", \"evidence\": [\"qc-ad50ea22\"]}, {\"text\": \"Confocal microscopy can be used to image cellular and subcellular details over different depths of microfluidic channels in OOC platforms [PMC8879989::s11::0].\", \"type\": \"literature\", \"evidence\": [\"PMC8879989::s11::0\"]}]}",
+ "usage": {
+  "prompt_tokens": 1507,
+  "completion_tokens": 223
+ },
+ "latency_ms": 5285.52347400182,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 19.781818389892578
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

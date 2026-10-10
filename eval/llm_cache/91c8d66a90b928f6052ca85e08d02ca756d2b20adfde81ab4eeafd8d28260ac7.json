@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is PASS.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-b8f9cbfe\"]\n    },\n    {\n      \"text\": \"No specific cause triggered the QC score, as the causes list is empty.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-b8f9cbfe\"]\n    },\n    {\n      \"text\": \"The overall QC score is 1.648, indicating acceptable image quality.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-b8f9cbfe\"]\n    },\n    {\n      \"text\": \"Recommended action: no corrective steps are required; the image can be used for downstream analysis.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-b8f9cbfe\"]\n    },\n    {\n      \"text\": \"Brightfield microscopy is a common imaging modality for organ‑on‑a‑chip platforms, enabling visualization of cellular and subcellular details.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC8879989::s11::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1401,
+  "completion_tokens": 332
+ },
+ "latency_ms": 4371.198588996776,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 67.21337127685547
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL with a qc_score of 12.548.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-ff23f215\"\n      ]\n    },\n    {\n      \"text\": \"The primary cause of failure is LOW_CONTRAST, triggered by a contrast_p99_p1 value of 0.4637255370616913.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-ff23f215\"\n      ]\n    },\n    {\n      \"text\": \"A secondary cause is COMPRESSION, indicated by a jpeg_blockiness value of 1.2086784839630127.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-ff23f215\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action for the low contrast issue is to adjust the condenser aperture or exposure to recover contrast and then re-image.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-ff23f215\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action for the compression issue is to re-export the image in a lossless format such as PNG or TIFF before quantitative analysis.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-ff23f215\"\n      ]\n    },\n    {\n      \"text\": \"Brightfield imaging is commonly used in organ-on-a-chip platforms due to its simple operation principles and ability to image cells without labeling.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC8879989::s21::0\",\n        \"PMC8879989::s2::1\"\n      ]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1822,
+  "completion_tokens": 471
+ },
+ "latency_ms": 30177.456691999396,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 211.55453491210938
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

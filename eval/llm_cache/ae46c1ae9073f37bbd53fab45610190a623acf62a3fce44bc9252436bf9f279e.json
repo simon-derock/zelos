@@ -1,0 +1,25 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is PASS with a qc_score of 1.089.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-34af7567\"\n      ]\n    },\n    {\n      \"text\": \"The density_state is reported as NORMAL with a blob_density_per_mpx of 3693.8985.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-34af7567\"\n      ]\n    },\n    {\n      \"text\": \"The causes list is empty, indicating no specific failure triggers were identified for this PASS result.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-34af7567\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action is to accept the image for downstream analysis as no corrective measures are required for a PASS verdict.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-34af7567\"\n      ]\n    },\n    {\n      \"text\": \"Brightfield microscopy image quality in histopathology and related workflows depends on specific acquisition conditions and processing steps.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC7275059::s0::0\"\n      ]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1461,
+  "completion_tokens": 340
+ },
+ "latency_ms": 7260.107264999533,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 158.67727661132812
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

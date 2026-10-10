@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The image quality control verdict for image 230510_72 is PASS [qc-29041a36].\", \"type\": \"numeric\", \"evidence\": [\"qc-29041a36\"]}, {\"text\": \"The density state for this A549 cell line image is NORMAL [qc-29041a36].\", \"type\": \"numeric\", \"evidence\": [\"qc-29041a36\"]}, {\"text\": \"The qc_score is 1.141 [qc-29041a36].\", \"type\": \"numeric\", \"evidence\": [\"qc-29041a36\"]}, {\"text\": \"No causes were identified for this image [qc-29041a36].\", \"type\": \"inference\", \"evidence\": [\"qc-29041a36\"]}]}",
+ "usage": {
+  "prompt_tokens": 1525,
+  "completion_tokens": 208
+ },
+ "latency_ms": 4774.642354997923,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 19.53636360168457
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-7375ed42\"]\n    },\n    {\n      \"text\": \"The primary cause is DEBRIS, with a debris count of 412.0 particles.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-7375ed42\"]\n    },\n    {\n      \"text\": \"A secondary issue is UNEVEN ILLUMINATION, indicated by an illumination flatness metric of 2.4748.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-7375ed42\"]\n    },\n    {\n      \"text\": \"Recommended action: inspect the channel and optics for particulates and clean or exclude the affected regions.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-7375ed42\"]\n    },\n    {\n      \"text\": \"To correct uneven illumination, apply flat‑field correction or re‑align the condenser (Köhler illumination) before analysis.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-7375ed42\"]\n    },\n    {\n      \"text\": \"Flat‑field correction is a standard method for removing illumination gradients in microscopy images.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC12779969::s1::2\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1778,
+  "completion_tokens": 526
+ },
+ "latency_ms": 12579.059854000661,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 92.43602752685547
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

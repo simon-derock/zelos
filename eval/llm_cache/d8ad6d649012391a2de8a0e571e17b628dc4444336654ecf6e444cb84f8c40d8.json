@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": []}",
+ "usage": {
+  "prompt_tokens": 481,
+  "completion_tokens": 6
+ },
+ "latency_ms": 767.5830289990699,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 4.536363124847412
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

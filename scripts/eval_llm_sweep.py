@@ -99,7 +99,8 @@ class Recorder:
         return list(getattr(self.tl, "calls", []))
 
     def _chat(self, messages, **kw):
-        rec = {"cached": None, "format": None, "empty": False, "truncated": False, "error": None, "neurons": None}
+        rec = {"cached": None, "format": None, "empty": False, "truncated": False, "error": None, "neurons": None,
+               "abstain": False, "n_claims": 0}
         try:
             res = self.orig(messages, **kw)
         except llm.LLMQuotaExceeded as e:
@@ -114,6 +115,7 @@ class Recorder:
         meta = res.get("meta") or {}
         p = parse_response(text)
         rec.update(cached=bool(res.get("cached")), format=p["format"], empty=not text.strip(),
+                   abstain=bool(p["abstain"]), n_claims=len(p["claims"]),
                    truncated=meta.get("finish_reason") == "length", neurons=meta.get("neurons"),
                    prompt_tokens=res["usage"]["prompt_tokens"], completion_tokens=res["usage"]["completion_tokens"])
         self.tl.calls.append(rec)
@@ -129,9 +131,14 @@ class StopModel(Exception):
     pass
 
 
-def run_cases(rec: Recorder, prof: dict, cases: list[dict], kind: str, qcs, retr, workers: int) -> tuple[list[dict], dict]:
-    """Run cases (explain|ask) for one model profile. Returns (per-case results, run info)."""
-    info = {"quota_exhausted": False, "unavailable": 0, "stopped_at": None}
+def run_cases(rec: Recorder, prof: dict, cases: list[dict], kind: str, qcs, retr, workers: int,
+              replay_only: bool = False) -> tuple[list[dict], dict]:
+    """Run cases (explain|ask) for one model profile. Returns (per-case results, run info). With replay_only the
+    cache is the only source (a miss drops the case into info['missing'] instead of spending quota)."""
+    info = {"quota_exhausted": False, "unavailable": 0, "stopped_at": None, "missing": []}
+    old_mode = os.environ.get("ZELOS_LLM_MODE")
+    if replay_only:
+        os.environ["ZELOS_LLM_MODE"] = "replay"
     done: list[dict] = []
 
     def one(case):
@@ -140,19 +147,57 @@ def run_cases(rec: Recorder, prof: dict, cases: list[dict], kind: str, qcs, retr
         r["calls"] = rec.calls()
         return r
 
-    with llm.use(prof["provider"], prof["model"], prof["max_tokens"], prof["extra"]):
-        with ThreadPoolExecutor(workers) as pool:
-            for r in pool.map(one, cases):
-                errs = {c["error"] for c in r["calls"] if c["error"]}
-                if "quota_exhausted" in errs:
-                    info["quota_exhausted"] = True
-                    info["stopped_at"] = r["case"]["id"]
-                    continue  # discard: the answer fell back to the template, it is not a model result
-                if errs:
-                    info["unavailable"] += 1
-                    continue
-                done.append(r)
+    try:
+        with llm.use(prof["provider"], prof["model"], prof["max_tokens"], prof["extra"]):
+            with ThreadPoolExecutor(workers) as pool:
+                for r in pool.map(one, cases):
+                    errs = {c["error"] for c in r["calls"] if c["error"]}
+                    if "quota_exhausted" in errs:
+                        info["quota_exhausted"] = True
+                        info["stopped_at"] = r["case"]["id"]
+                        continue  # discard: the answer fell back to the template, it is not a model result
+                    if errs:
+                        info["unavailable"] += 1
+                        info["missing"].append(r["case"])
+                        continue
+                    done.append(r)
+    finally:
+        if replay_only:
+            if old_mode is None:
+                os.environ.pop("ZELOS_LLM_MODE", None)
+            else:
+                os.environ["ZELOS_LLM_MODE"] = old_mode
     return done, info
+
+
+def case_neurons(r: dict, price: dict | None) -> float:
+    """Neurons for one answer: recorded provider usage when present (live or cached), else tokens x price."""
+    tot = 0.0
+    for c in r["calls"]:
+        if c.get("neurons") is not None:
+            tot += float(c["neurons"])
+        elif price and price.get("neurons_in") is not None and c.get("prompt_tokens") is not None:
+            tot += (c["prompt_tokens"] * price["neurons_in"] + c["completion_tokens"] * price["neurons_out"]) / 1e6
+    return tot
+
+
+def cache_ledger() -> dict:
+    """Per (provider, model): responses and provider-reported neurons stored in eval/llm_cache (replayable record)."""
+    out: dict[str, dict] = {}
+    for f in llm.cache_dir().glob("*.json"):
+        try:
+            d = json.loads(f.read_text())
+        except Exception:  # noqa: BLE001
+            continue
+        if not isinstance(d, dict) or "text" not in d:
+            continue
+        k = f"{d.get('provider', 'workers_ai')}|{d.get('model')}"
+        e = out.setdefault(k, {"responses": 0, "neurons": 0.0, "prompt_tokens": 0, "completion_tokens": 0})
+        e["responses"] += 1
+        e["neurons"] += float((d.get("meta") or {}).get("neurons") or 0.0)
+        e["prompt_tokens"] += int((d.get("usage") or {}).get("prompt_tokens", 0))
+        e["completion_tokens"] += int((d.get("usage") or {}).get("completion_tokens", 0))
+    return out
 
 
 def summarize(rs: list[dict], price: dict | None, kind: str) -> dict:
@@ -160,14 +205,17 @@ def summarize(rs: list[dict], price: dict | None, kind: str) -> dict:
     n = len(rs)
     if n == 0:
         return {"n_cases": 0}
+    per_case_sup = [eg.judge(r["disp"]["llm_gated"], r["tools"], r["evidence"])["sup"] for r in rs]
     draft = eg.pooled(rs, "llm_ungated")
     gated = eg.pooled(rs, "llm_gated")
     calls = [c for r in rs for c in r["calls"]]
     n_calls = len(calls)
     fmt_bad = sum(1 for c in calls if c["format"] not in ("json", "abstain"))
+    n_abstain = sum(1 for c in calls if c["abstain"])
+    n_empty = sum(1 for c in calls if not c["abstain"] and c["format"] == "json" and c["n_claims"] == 0)
     toks_in = [r["usage"]["llm_gated"]["prompt_tokens"] for r in rs]
     toks_out = [r["usage"]["llm_gated"]["completion_tokens"] for r in rs]
-    lat = [r["lat"]["llm_gated"] for r in rs]
+    lat = [r["lat"]["llm_gated"] for r in rs if r["usage"]["llm_gated"]["llm_calls"] > 0]  # answers that called the LLM
     calls_per = [r["usage"]["llm_gated"]["llm_calls"] for r in rs]
     out = {
         "n_cases": n,
@@ -184,11 +232,13 @@ def summarize(rs: list[dict], price: dict | None, kind: str) -> dict:
             "valid_citation_rate": eg.rate(gated["cit_sup"], gated["cit_total"]),
             "numeric_hallucination_rate": eg.rate(gated["num_bad"], gated["num_total"]),
             "supported_claims_per_case": gated["sup"] / n,
-            "supported_claims_per_case_sd": (sum((x - gated["sup"] / n) ** 2 for x in
-                                                 [eg.judge(r["disp"]["llm_gated"], r["tools"], r["evidence"])["sup"] for r in rs]) / n) ** 0.5,
+            "supported_claims_per_case_sd": (sum((x - gated["sup"] / n) ** 2 for x in per_case_sup) / n) ** 0.5,
+            "supported_by_case": dict(zip([r["case"]["id"] for r in rs], per_case_sup, strict=True)),
             "blocked_claims_per_case": (draft["n"] - draft["sup"]) / n,
         },
         "json_format_failure_rate": eg.rate(fmt_bad, n_calls),
+        "explicit_abstain_rate": eg.rate(n_abstain, n_calls),
+        "empty_claims_rate": eg.rate(n_empty, n_calls),
         "truncated_responses": sum(c["truncated"] for c in calls),
         "empty_responses": sum(c["empty"] for c in calls),
         "llm_calls_recorded": n_calls,
@@ -216,14 +266,27 @@ def verdict(models: dict, group: str, n_full: int) -> dict:
         if not s or s.get("n_cases", 0) < n_full:
             continue
         g = s["gated"]
-        cands.append({"id": mid, "per_case": g["supported_claims_per_case"],
+        cands.append({"id": mid, "per_case": g["supported_claims_per_case"], "by_case": g["supported_by_case"],
                       "unsupported_k": g["unsupported_claim_rate"]["k"], "usd": s["cost"]["usd_per_100_answers"],
                       "n": s["n_cases"]})
     zero = [c for c in cands if c["unsupported_k"] == 0]
     if not zero:
+        for c in cands:
+            c.pop("by_case")
         return {"group": group, "n_full": n_full, "best": None, "cheapest_within_5pct": None, "candidates": cands,
                 "text": f"{group}: no model with zero unsupported claims after the gate on all {n_full} cases"}
     best = max(zero, key=lambda c: (c["per_case"], -(c["usd"] if c["usd"] is not None else 1e9)))
+    import random
+
+    rng = random.Random(1337)
+    for c in cands:  # paired difference to the best model over the same cases, 95% percentile bootstrap
+        ids = sorted(set(c["by_case"]) & set(best["by_case"]))
+        d = [c["by_case"][i] - best["by_case"][i] for i in ids]
+        if not d:
+            c["diff_vs_best"] = None
+            continue
+        boots = sorted(sum(rng.choice(d) for _ in d) / len(d) for _ in range(2000))
+        c["diff_vs_best"] = {"mean": sum(d) / len(d), "ci95": [boots[49], boots[1949]], "n_paired": len(d)}
     near = [c for c in zero if c["per_case"] >= 0.95 * best["per_case"]]
     priced = [c for c in near if c["usd"] is not None]
     cheap = min(priced, key=lambda c: c["usd"]) if priced else None
@@ -234,6 +297,8 @@ def verdict(models: dict, group: str, n_full: int) -> dict:
                  f"${cheap['usd']:.4f} per 100 answers).")
     else:
         text += " No priced model within 5% of best."
+    for c in cands:
+        c.pop("by_case")
     return {"group": group, "n_full": n_full, "best": best["id"], "cheapest_within_5pct": cheap["id"] if cheap else None,
             "candidates": cands, "text": text}
 
@@ -287,6 +352,10 @@ def main() -> int:
     ap.add_argument("--probe-n", type=int, default=3)
     ap.add_argument("--neuron-budget", type=float, default=8500.0,
                     help="max Workers AI neurons this run may spend (free allowance is ~10,000/day)")
+    ap.add_argument("--already-used", type=float, default=0.0,
+                    help="neurons already spent today outside this run (counted against --neuron-budget)")
+    ap.add_argument("--prior-run", action="append", default=[],
+                    help="results json of an earlier live invocation; its call ledger is embedded for the record")
     ap.add_argument("--cohere-calls", type=int, default=120)
     ap.add_argument("--ask", action="store_true", help="also run the ask-literature cases when the budget allows")
     ap.add_argument("--workers", type=int, default=3)
@@ -314,10 +383,11 @@ def main() -> int:
         if entry["status"] != "ok":
             return
         first, rest = gcases[: a.probe_n], gcases[a.probe_n:]
-        n0 = rec.live_neurons
         done, info = run_cases(rec, prof, first, kind, qcs, retr, a.workers)
-        probe_neu = rec.live_neurons - n0
+        per_case_neu = [case_neurons(r, prof["price"]) for r in done]
+        probe_neu = sum(per_case_neu)
         probe_live = [r for r in done if any(not c["cached"] for c in r["calls"])]
+        first_done = list(done)
         if info["quota_exhausted"]:
             entry["status"] = "quota_exhausted"
             entry["notes"].append(f"{gname}: provider quota error at case {info['stopped_at']}; "
@@ -329,29 +399,34 @@ def main() -> int:
             entry["status"] = "no_cached_responses" if a.replay else "unavailable"
             entry["notes"].append(f"{gname}: no usable responses ({info['unavailable']} case(s) unavailable)")
             return
-        # extrapolate the remaining cases from the probe (ask cases: 1.5x, they also make one ungated call)
-        per_case = probe_neu / len(probe_live) if probe_live else 0.0
-        projected = per_case * len(rest) * (1.0 if kind == "explain" else 1.5)
-        remaining = a.neuron_budget - rec.live_neurons
+        # cached answers are free: take every remaining case that replays from the cache first
+        cached_rest, info_c = run_cases(rec, prof, rest, kind, qcs, retr, a.workers, replay_only=True)
+        done += cached_rest
+        todo = info_c["missing"]
+        # extrapolate the cases that still need live calls from the probe's mean neurons per answer
+        per_case = probe_neu / len(first_done) if first_done else 0.0
+        projected = per_case * len(todo)
+        remaining = a.neuron_budget - a.already_used - rec.live_neurons
         entry.setdefault("probe", {})[gname] = {
             "cases": len(first), "live_cases": len(probe_live), "neurons_probe": probe_neu,
-            "neurons_per_live_case": per_case, "projected_neurons_rest": projected,
-            "neuron_budget_remaining_before_rest": remaining}
-        if prof["provider"] == "workers_ai" and projected > remaining:
+            "neurons_per_case": per_case, "cases_replayed_from_cache": len(cached_rest),
+            "cases_needing_live_calls": len(todo), "projected_neurons_live": projected,
+            "neuron_budget_remaining": remaining}
+        if todo and prof["provider"] == "workers_ai" and projected > remaining:
             entry["status"] = "probe_only"
-            entry["notes"].append(f"{gname}: projected {projected:.0f} neurons for the remaining {len(rest)} cases "
-                                  f"exceeds the {remaining:.0f} left in the budget; only the {len(done)} probe cases ran")
+            entry["notes"].append(f"{gname}: projected {projected:.0f} neurons for the {len(todo)} cases without a cached "
+                                  f"response exceeds the {remaining:.0f} left in the budget; {len(done)} cases ran")
             entry["groups"][gname] = summarize(done, prof["price"], kind)
             return
-        more, info2 = run_cases(rec, prof, rest, kind, qcs, retr, a.workers)
-        done += more
-        if info2["quota_exhausted"]:
-            entry["status"] = "quota_exhausted"
-            entry["notes"].append(f"{gname}: provider quota error at case {info2['stopped_at']}; "
-                                  f"{len(done)} case(s) completed before it")
-        dropped = info["unavailable"] + info2["unavailable"]
-        if dropped:
-            entry["notes"].append(f"{gname}: {dropped} case(s) dropped (LLM unavailable / cache miss)")
+        if todo:
+            more, info2 = run_cases(rec, prof, todo, kind, qcs, retr, a.workers)
+            done += more
+            if info2["quota_exhausted"]:
+                entry["status"] = "quota_exhausted"
+                entry["notes"].append(f"{gname}: provider quota error at case {info2['stopped_at']}; "
+                                      f"{len(done)} case(s) completed before it")
+            if info2["unavailable"]:
+                entry["notes"].append(f"{gname}: {info2['unavailable']} case(s) dropped (LLM unavailable)")
         entry["groups"][gname] = summarize(done, prof["price"], kind)
 
     profiles = [p for p in MODELS if not want or p["id"] in want]
@@ -372,7 +447,10 @@ def main() -> int:
         rec.uninstall()
     for prof in profiles:
         http = [r for r in llm.LEDGER if r["provider"] == prof["provider"] and r["model"] == prof["model"]]
+        cl = cache_ledger().get(f"{prof['provider']}|{prof['model']}", {})
         out_models[prof["id"]]["ledger"].update({
+            "responses_recorded_in_cache": cl.get("responses", 0),
+            "neurons_recorded_in_cache": cl.get("neurons", 0.0),
             "http_attempts": len(http),
             "http_status": {str(s): sum(1 for r in http if r["status"] == s)
                             for s in sorted({r["status"] for r in http if r["status"] is not None})}})
@@ -386,7 +464,8 @@ def main() -> int:
         "provenance": provenance({"gate_vectors": os.environ.get("ZELOS_GATE_VECTORS"), "llm_mode": llm.mode(),
                                   "retriever": "Bm25Retriever over corpus/chunks.jsonl, cached queries replayed",
                                   "thresholds": load_config()["grounding"], "agent": load_config()["agent"],
-                                  "neuron_budget": a.neuron_budget, "probe_n": a.probe_n}),
+                                  "neuron_budget": a.neuron_budget, "already_used": a.already_used,
+                                  "probe_n": a.probe_n}),
         "n": {"explain_qc": n_ex, "ask_literature": len(ask_cases) if a.ask else None},
         "models": out_models,
         "verdict": verdicts,
@@ -399,6 +478,13 @@ def main() -> int:
             "cohere_call_cap": a.cohere_calls,
             "wall_seconds": round(time.time() - t_start, 1),
             "note": "ledger covers this process only; manual probes made before the sweep are not included",
+            "prior_invocations": [
+                {"file": Path(f).name, "call_ledger": json.loads(Path(f).read_text()).get("call_ledger"),
+                 "per_model": {k: {"live_responses": v["ledger"].get("live_responses"),
+                                   "neurons_billed_live": v["ledger"].get("neurons_billed_live"),
+                                   "http_status": v["ledger"].get("http_status"), "status": v["status"]}
+                               for k, v in json.loads(Path(f).read_text())["models"].items()}}
+                for f in a.prior_run],
         },
         "notes": [
             "Same cases, prompts, retriever and gate for every model; only the model (and, for reasoning models, "
@@ -433,14 +519,14 @@ def render_md(o: dict) -> str:
          f"git {o['provenance']['git_sha'][:8]} | LLM mode {o['provenance']['llm_mode']} | "
          f"explain-QC n={o['n']['explain_qc']}" + (f", ask-literature n={o['n']['ask_literature']}" if o["n"]["ask_literature"] else ""),
          ""]
-    L += ["## Models and run status", "", "| Model | Provider | Profile | Status | Cases | Live responses | Neurons billed (live) |",
+    L += ["## Models and run status", "", "| Model | Provider | Profile | Status | Cases | Responses in cache | Neurons recorded in cache |",
           "|---|---|---|---|---|---|---|"]
     for m in o["models"].values():
         p = m["profile"]
         prof = f"max_tokens={p['max_tokens'] or 'production (700)'}" + (f", extra={json.dumps(p['extra'])}" if p["extra"] else "")
         cases = ", ".join(f"{g}={s['n_cases']}" for g, s in m["groups"].items()) or "0"
         L.append(f"| `{p['model']}` | {p['provider']} | {prof} | {m['status']} | {cases} | "
-                 f"{m['ledger']['live_responses']} | {m['ledger']['neurons_billed_live']:.0f} |")
+                 f"{m['ledger']['responses_recorded_in_cache']} | {m['ledger']['neurons_recorded_in_cache']:.0f} |")
     for gname, title in (("explain_qc", "Explain-QC cases"), ("ask_literature", "Ask-literature cases")):
         ms = [(mid, m) for mid, m in o["models"].items() if gname in m["groups"] and m["groups"][gname]["n_cases"]]
         if not ms:
@@ -459,12 +545,14 @@ def render_md(o: dict) -> str:
              lambda s: f"{f2(s['gated']['supported_claims_per_case'])} ({f2(s['gated']['supported_claims_per_case_sd'])})"),
             ("Claims blocked per case", lambda s: f2(s["gated"]["blocked_claims_per_case"])),
             ("JSON-format failure rate (per LLM call)", lambda s: fr(s["json_format_failure_rate"])),
-            ("Truncated / empty responses", lambda s: f"{s['truncated_responses']} / {s['empty_responses']}"),
+            ("Explicit ABSTAIN rate (per LLM call)", lambda s: fr(s["explicit_abstain_rate"])),
+            ("Empty-claims reply rate (per LLM call)", lambda s: fr(s["empty_claims_rate"])),
+            ("Truncated / empty-text responses", lambda s: f"{s['truncated_responses']} / {s['empty_responses']}"),
             ("Tokens per answer (prompt + completion)",
              lambda s: f"{s['tokens_per_answer']['total']:.0f} ({s['tokens_per_answer']['prompt']:.0f} + {s['tokens_per_answer']['completion']:.0f})"),
             ("LLM calls per answer", lambda s: f2(s["llm_calls_per_answer"])),
             ("Answers that reached the LLM", lambda s: f"{s['cases_reaching_llm']}/{s['n_cases']}"),
-            ("Latency p50 / p95 (ms)",
+            ("Latency p50 / p95 (ms), answers that called the LLM",
              lambda s: "n/a" if s["latency_ms"]["p50"] is None else f"{s['latency_ms']['p50']:.0f} / {s['latency_ms']['p95']:.0f}"),
             ("Cost per 100 answers (USD)",
              lambda s: "trial key" if s["cost"]["usd_per_100_answers"] is None else f"${s['cost']['usd_per_100_answers']:.4f}"),
@@ -473,7 +561,14 @@ def render_md(o: dict) -> str:
         ]
         for name, f in rows:
             L.append(f"| {name} | " + " | ".join(f(m["groups"][gname]) for _, m in ms) + " |")
-    L += ["", "## Verdict (computed)", ""] + [f"- {v['text']}" for v in o["verdict"]]
+    L += ["", "## Verdict (computed)", ""]
+    for v in o["verdict"]:
+        L.append(f"- {v['text']}")
+        for c in v["candidates"]:
+            d = c.get("diff_vs_best")
+            if d and c["id"] != v["best"]:
+                L.append(f"  - {c['id']} minus best: {d['mean']:+.2f} supported claims/case "
+                         f"[{d['ci95'][0]:+.2f}, {d['ci95'][1]:+.2f}] (paired bootstrap, n={d['n_paired']})")
     L += ["", "## Prices and call ledger", ""]
     for mid, m in o["models"].items():
         pr = m["price"]
@@ -482,7 +577,14 @@ def render_md(o: dict) -> str:
     pc = o["price_check"]
     L.append(f"- Catalog price check: {json.dumps(pc.get('result') or pc.get('reason'))}")
     cl = o["call_ledger"]
-    L.append(f"- Live responses this run: {cl['live_responses_this_run']}; HTTP attempts by provider: "
+    for pr in cl.get("prior_invocations", []):
+        pc2 = pr["call_ledger"] or {}
+        L.append(f"- Earlier live invocation ({pr['file']}): {pc2.get('live_responses_this_run')} live responses, "
+                 f"{pc2.get('workers_ai_neurons_billed_this_run', 0):.0f} Workers AI neurons billed, "
+                 f"HTTP attempts {json.dumps(pc2.get('http_attempts_by_provider'))}; per model: "
+                 + "; ".join(f"{k}: {v['live_responses']} responses, {v['neurons_billed_live']:.0f} neurons, "
+                             f"HTTP {json.dumps(v['http_status'])}, {v['status']}" for k, v in pr["per_model"].items()))
+    L.append(f"- Live responses in this invocation: {cl['live_responses_this_run']}; HTTP attempts by provider: "
              f"{json.dumps(cl['http_attempts_by_provider'])}; Workers AI neurons billed this run: "
              f"{cl['workers_ai_neurons_billed_this_run']:.0f}; Cohere cap: {cl['cohere_call_cap']}.")
     for mid, m in o["models"].items():

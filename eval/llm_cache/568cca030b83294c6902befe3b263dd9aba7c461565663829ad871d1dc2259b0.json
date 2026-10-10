@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"Autofocus routines that maximize the local variance of the Laplacian keep organ-on-a-chip cultures in focus during time‑lapse brightfield imaging, facilitating reliable cell quantification.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE1::s1::0\"]\n    },\n    {\n      \"text\": \"Flat‑field correction using a blank reference image removes vignetting from brightfield images, allowing accurate intensity‑based cell measurements in microphysiological systems.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE3::s1::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 559,
+  "completion_tokens": 239
+ },
+ "latency_ms": 6096.847561002505,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 34.08171081542969
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

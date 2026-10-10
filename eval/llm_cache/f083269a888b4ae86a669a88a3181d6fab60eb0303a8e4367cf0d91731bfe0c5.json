@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"Autofocus methods that maximize the local variance of the Laplacian are commonly used for automatic focusing in brightfield microscopy of cell cultures.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE1::s1::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 508,
+  "completion_tokens": 164
+ },
+ "latency_ms": 3861.491413001204,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 27.345359802246094
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

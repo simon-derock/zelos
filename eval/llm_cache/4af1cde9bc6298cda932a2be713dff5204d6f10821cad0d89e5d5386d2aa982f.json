@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"Autofocus routines that maximize the local variance of the Laplacian are used to maintain microfluidic chips in the focal plane during time-lapse imaging [FIXTURE1::s1::0].\", \"type\": \"literature\", \"evidence\": [\"FIXTURE1::s1::0\"]}], \"inference\": []}",
+ "usage": {
+  "prompt_tokens": 522,
+  "completion_tokens": 75
+ },
+ "latency_ms": 2180.127392999566,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 5.336361885070801
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

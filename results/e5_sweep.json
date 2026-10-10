@@ -1,0 +1,1544 @@
+{
+  "experiment": "E5 model sweep",
+  "provenance": {
+    "git_sha": "f0f13a3eaa964349ba93e1e93497f8cd2f8ff33e",
+    "timestamp_utc": "2026-10-10T17:33:08+00:00",
+    "config_hash": "0c18777ab72c936c",
+    "python": "3.12.3",
+    "seed": 1337,
+    "gate_vectors": "0",
+    "llm_mode": "auto",
+    "retriever": "Bm25Retriever over corpus/chunks.jsonl, cached queries replayed",
+    "thresholds": {
+      "num_rel_tol": 0.001,
+      "theta_lex": 0.3,
+      "theta_vec": 0.35,
+      "repair_rounds": 1
+    },
+    "agent": {
+      "max_llm_calls": 2,
+      "temperature": 0
+    },
+    "neuron_budget": 8500.0,
+    "already_used": 7900.0,
+    "probe_n": 3
+  },
+  "n": {
+    "explain_qc": 20,
+    "ask_literature": 18
+  },
+  "models": {
+    "llama-3.1-8b-fast": {
+      "profile": {
+        "provider": "workers_ai",
+        "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+        "max_tokens": null,
+        "extra": null
+      },
+      "price": {
+        "in": 0.045,
+        "out": 0.384,
+        "neurons_in": 4119,
+        "neurons_out": 34868,
+        "source": "Workers AI pricing page, row @cf/meta/llama-3.1-8b-instruct-fp8-fast (the -fast id is not returned by the models search catalog; same price assumed)"
+      },
+      "status": "ok",
+      "groups": {
+        "explain_qc": {
+          "n_cases": 20,
+          "draft": {
+            "n_claims": 119,
+            "unsupported_claim_rate": {
+              "k": 1,
+              "n": 119,
+              "rate": 0.008403361344537815,
+              "ci95": [
+                0.0015,
+                0.0461
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 28,
+              "n": 29,
+              "rate": 0.9655172413793104,
+              "ci95": [
+                0.8282,
+                0.9939
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 45,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0787
+              ]
+            },
+            "supported_claims_per_case": 5.9
+          },
+          "gated": {
+            "n_claims": 123,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 123,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0303
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 29,
+              "n": 29,
+              "rate": 1.0,
+              "ci95": [
+                0.883,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 48,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0741
+              ]
+            },
+            "supported_claims_per_case": 6.15,
+            "supported_claims_per_case_sd": 0.9096702699330126,
+            "supported_by_case": {
+              "x01": 6,
+              "x02": 10,
+              "x03": 5,
+              "x04": 6,
+              "x05": 6,
+              "x06": 6,
+              "x07": 6,
+              "x08": 6,
+              "x09": 6,
+              "x10": 6,
+              "x11": 6,
+              "x12": 6,
+              "x13": 6,
+              "x14": 6,
+              "x15": 6,
+              "x16": 6,
+              "x17": 6,
+              "x18": 6,
+              "x19": 6,
+              "x20": 6
+            },
+            "blocked_claims_per_case": 0.05
+          },
+          "json_format_failure_rate": {
+            "k": 0,
+            "n": 21,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1546
+            ]
+          },
+          "explicit_abstain_rate": {
+            "k": 0,
+            "n": 21,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1546
+            ]
+          },
+          "empty_claims_rate": {
+            "k": 0,
+            "n": 21,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1546
+            ]
+          },
+          "truncated_responses": 0,
+          "empty_responses": 0,
+          "llm_calls_recorded": 21,
+          "tokens_per_answer": {
+            "prompt": 1643.05,
+            "completion": 282.6,
+            "total": 1925.65
+          },
+          "llm_calls_per_answer": 1.05,
+          "cases_answered_by_template_fallback": 0,
+          "cases_reaching_llm": 20,
+          "latency_ms": {
+            "p50": 2137.1686114987015,
+            "p95": 3210.407956849788
+          },
+          "cost": {
+            "usd_per_100_answers": 0.018245565,
+            "neurons_per_100_answers": 1662.141975,
+            "basis": "mean prompt/completion tokens per answer x catalog per-M-token price"
+          }
+        },
+        "ask_literature": {
+          "n_cases": 18,
+          "draft": {
+            "n_claims": 60,
+            "unsupported_claim_rate": {
+              "k": 11,
+              "n": 60,
+              "rate": 0.18333333333333332,
+              "ci95": [
+                0.1056,
+                0.2992
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 49,
+              "n": 57,
+              "rate": 0.8596491228070176,
+              "ci95": [
+                0.7468,
+                0.9271
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 0,
+              "rate": null,
+              "ci95": [
+                null,
+                null
+              ]
+            },
+            "supported_claims_per_case": 2.7222222222222223
+          },
+          "gated": {
+            "n_claims": 48,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 48,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0741
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 48,
+              "n": 48,
+              "rate": 1.0,
+              "ci95": [
+                0.9259,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 0,
+              "rate": null,
+              "ci95": [
+                null,
+                null
+              ]
+            },
+            "supported_claims_per_case": 2.6666666666666665,
+            "supported_claims_per_case_sd": 3.214550253664319,
+            "supported_by_case": {
+              "a01": 2,
+              "a02": 7,
+              "a03": 6,
+              "a04": 6,
+              "a05": 9,
+              "a06": 6,
+              "a07": 0,
+              "a08": 0,
+              "a09": 6,
+              "a10": 6,
+              "u01": 0,
+              "u02": 0,
+              "u03": 0,
+              "u04": 0,
+              "u05": 0,
+              "u06": 0,
+              "u07": 0,
+              "u08": 0
+            },
+            "blocked_claims_per_case": 0.6111111111111112
+          },
+          "json_format_failure_rate": {
+            "k": 1,
+            "n": 30,
+            "rate": 0.03333333333333333,
+            "ci95": [
+              0.0059,
+              0.1667
+            ]
+          },
+          "explicit_abstain_rate": {
+            "k": 0,
+            "n": 30,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1135
+            ]
+          },
+          "empty_claims_rate": {
+            "k": 5,
+            "n": 30,
+            "rate": 0.16666666666666666,
+            "ci95": [
+              0.0734,
+              0.3356
+            ]
+          },
+          "truncated_responses": 0,
+          "empty_responses": 0,
+          "llm_calls_recorded": 30,
+          "tokens_per_answer": {
+            "prompt": 368.8888888888889,
+            "completion": 194.55555555555554,
+            "total": 563.4444444444445
+          },
+          "llm_calls_per_answer": 0.6666666666666666,
+          "cases_answered_by_template_fallback": null,
+          "cases_reaching_llm": 8,
+          "latency_ms": {
+            "p50": 2598.7291964994024,
+            "p95": 5684.435672099403
+          },
+          "cost": {
+            "usd_per_100_answers": 0.009130933333333334,
+            "neurons_per_100_answers": 830.3216444444445,
+            "basis": "mean prompt/completion tokens per answer x catalog per-M-token price"
+          }
+        }
+      },
+      "notes": [],
+      "probe": {
+        "explain_qc": {
+          "cases": 3,
+          "live_cases": 0,
+          "neurons_probe": 64.65432799999999,
+          "neurons_per_case": 21.551442666666663,
+          "cases_replayed_from_cache": 17,
+          "cases_needing_live_calls": 0,
+          "projected_neurons_live": 0.0,
+          "neuron_budget_remaining": 600.0
+        },
+        "ask_literature": {
+          "cases": 3,
+          "live_cases": 0,
+          "neurons_probe": 100.289185,
+          "neurons_per_case": 33.42972833333334,
+          "cases_replayed_from_cache": 15,
+          "cases_needing_live_calls": 0,
+          "projected_neurons_live": 0.0,
+          "neuron_budget_remaining": 600.0
+        }
+      },
+      "ledger": {
+        "live_responses": 0,
+        "neurons_billed_live": 0.0,
+        "responses_recorded_in_cache": 79,
+        "neurons_recorded_in_cache": 0.0,
+        "http_attempts": 0,
+        "http_status": {}
+      }
+    },
+    "gemma-4-26b-a4b": {
+      "profile": {
+        "provider": "workers_ai",
+        "model": "@cf/google/gemma-4-26b-a4b-it",
+        "max_tokens": null,
+        "extra": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "price": {
+        "in": 0.1,
+        "out": 0.3,
+        "neurons_in": 9091,
+        "neurons_out": 27273,
+        "source": "Workers AI models catalog"
+      },
+      "status": "ok",
+      "groups": {
+        "explain_qc": {
+          "n_cases": 20,
+          "draft": {
+            "n_claims": 89,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 89,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0414
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 17,
+              "n": 17,
+              "rate": 1.0,
+              "ci95": [
+                0.8157,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 26,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.1287
+              ]
+            },
+            "supported_claims_per_case": 4.45
+          },
+          "gated": {
+            "n_claims": 89,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 89,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0414
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 17,
+              "n": 17,
+              "rate": 1.0,
+              "ci95": [
+                0.8157,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 26,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.1287
+              ]
+            },
+            "supported_claims_per_case": 4.45,
+            "supported_claims_per_case_sd": 0.8046738469715541,
+            "supported_by_case": {
+              "x01": 4,
+              "x02": 4,
+              "x03": 6,
+              "x04": 4,
+              "x05": 6,
+              "x06": 6,
+              "x07": 4,
+              "x08": 5,
+              "x09": 4,
+              "x10": 4,
+              "x11": 4,
+              "x12": 5,
+              "x13": 4,
+              "x14": 4,
+              "x15": 4,
+              "x16": 4,
+              "x17": 3,
+              "x18": 5,
+              "x19": 5,
+              "x20": 4
+            },
+            "blocked_claims_per_case": 0.0
+          },
+          "json_format_failure_rate": {
+            "k": 0,
+            "n": 20,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1611
+            ]
+          },
+          "explicit_abstain_rate": {
+            "k": 0,
+            "n": 20,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1611
+            ]
+          },
+          "empty_claims_rate": {
+            "k": 0,
+            "n": 20,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1611
+            ]
+          },
+          "truncated_responses": 0,
+          "empty_responses": 0,
+          "llm_calls_recorded": 20,
+          "tokens_per_answer": {
+            "prompt": 1753.45,
+            "completion": 272.7,
+            "total": 2026.15
+          },
+          "llm_calls_per_answer": 1.0,
+          "cases_answered_by_template_fallback": 0,
+          "cases_reaching_llm": 20,
+          "latency_ms": {
+            "p50": 6544.653935001146,
+            "p95": 8129.0015262011675
+          },
+          "cost": {
+            "usd_per_100_answers": 0.025715500000000002,
+            "neurons_per_100_answers": 2337.796105,
+            "basis": "mean prompt/completion tokens per answer x catalog per-M-token price"
+          }
+        },
+        "ask_literature": {
+          "n_cases": 18,
+          "draft": {
+            "n_claims": 10,
+            "unsupported_claim_rate": {
+              "k": 1,
+              "n": 10,
+              "rate": 0.1,
+              "ci95": [
+                0.0179,
+                0.4042
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 9,
+              "n": 9,
+              "rate": 1.0,
+              "ci95": [
+                0.7008,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 0,
+              "rate": null,
+              "ci95": [
+                null,
+                null
+              ]
+            },
+            "supported_claims_per_case": 0.5
+          },
+          "gated": {
+            "n_claims": 6,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 6,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 6,
+              "n": 6,
+              "rate": 1.0,
+              "ci95": [
+                0.6097,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 0,
+              "rate": null,
+              "ci95": [
+                null,
+                null
+              ]
+            },
+            "supported_claims_per_case": 0.3333333333333333,
+            "supported_claims_per_case_sd": 0.5773502691896258,
+            "supported_by_case": {
+              "a01": 2,
+              "a02": 1,
+              "a03": 1,
+              "a04": 1,
+              "a05": 0,
+              "a06": 0,
+              "a07": 0,
+              "a08": 0,
+              "a09": 0,
+              "a10": 1,
+              "u01": 0,
+              "u02": 0,
+              "u03": 0,
+              "u04": 0,
+              "u05": 0,
+              "u06": 0,
+              "u07": 0,
+              "u08": 0
+            },
+            "blocked_claims_per_case": 0.05555555555555555
+          },
+          "json_format_failure_rate": {
+            "k": 0,
+            "n": 26,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1287
+            ]
+          },
+          "explicit_abstain_rate": {
+            "k": 0,
+            "n": 26,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1287
+            ]
+          },
+          "empty_claims_rate": {
+            "k": 14,
+            "n": 26,
+            "rate": 0.5384615384615384,
+            "ci95": [
+              0.3546,
+              0.7124
+            ]
+          },
+          "truncated_responses": 0,
+          "empty_responses": 0,
+          "llm_calls_recorded": 26,
+          "tokens_per_answer": {
+            "prompt": 219.05555555555554,
+            "completion": 21.833333333333332,
+            "total": 240.88888888888889
+          },
+          "llm_calls_per_answer": 0.4444444444444444,
+          "cases_answered_by_template_fallback": null,
+          "cases_reaching_llm": 8,
+          "latency_ms": {
+            "p50": 1817.3333684995737,
+            "p95": 2380.331236400329
+          },
+          "cost": {
+            "usd_per_100_answers": 0.002845555555555555,
+            "neurons_per_100_answers": 258.6894555555555,
+            "basis": "mean prompt/completion tokens per answer x catalog per-M-token price"
+          }
+        }
+      },
+      "notes": [],
+      "probe": {
+        "explain_qc": {
+          "cases": 3,
+          "live_cases": 0,
+          "neurons_probe": 73.59999656677246,
+          "neurons_per_case": 24.533332188924152,
+          "cases_replayed_from_cache": 17,
+          "cases_needing_live_calls": 0,
+          "projected_neurons_live": 0.0,
+          "neuron_budget_remaining": 600.0
+        },
+        "ask_literature": {
+          "cases": 3,
+          "live_cases": 0,
+          "neurons_probe": 38.572726249694824,
+          "neurons_per_case": 12.857575416564941,
+          "cases_replayed_from_cache": 15,
+          "cases_needing_live_calls": 0,
+          "projected_neurons_live": 0.0,
+          "neuron_budget_remaining": 600.0
+        }
+      },
+      "ledger": {
+        "live_responses": 0,
+        "neurons_billed_live": 0.0,
+        "responses_recorded_in_cache": 46,
+        "neurons_recorded_in_cache": 582.0635988712311,
+        "http_attempts": 0,
+        "http_status": {}
+      }
+    },
+    "gpt-oss-120b": {
+      "profile": {
+        "provider": "workers_ai",
+        "model": "@cf/openai/gpt-oss-120b",
+        "max_tokens": 1500,
+        "extra": {
+          "reasoning_effort": "low"
+        }
+      },
+      "price": {
+        "in": 0.35,
+        "out": 0.75,
+        "neurons_in": 31818,
+        "neurons_out": 68182,
+        "source": "Workers AI models catalog"
+      },
+      "status": "ok",
+      "groups": {
+        "explain_qc": {
+          "n_cases": 20,
+          "draft": {
+            "n_claims": 102,
+            "unsupported_claim_rate": {
+              "k": 3,
+              "n": 102,
+              "rate": 0.029411764705882353,
+              "ci95": [
+                0.0101,
+                0.0829
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 20,
+              "n": 22,
+              "rate": 0.9090909090909091,
+              "ci95": [
+                0.7218,
+                0.9747
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 63,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0575
+              ]
+            },
+            "supported_claims_per_case": 4.95
+          },
+          "gated": {
+            "n_claims": 106,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 106,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.035
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 20,
+              "n": 20,
+              "rate": 1.0,
+              "ci95": [
+                0.8389,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 61,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0592
+              ]
+            },
+            "supported_claims_per_case": 5.3,
+            "supported_claims_per_case_sd": 1.0535653752852738,
+            "supported_by_case": {
+              "x01": 5,
+              "x02": 4,
+              "x03": 4,
+              "x04": 6,
+              "x05": 6,
+              "x06": 5,
+              "x07": 7,
+              "x08": 8,
+              "x09": 5,
+              "x10": 5,
+              "x11": 5,
+              "x12": 6,
+              "x13": 6,
+              "x14": 5,
+              "x15": 5,
+              "x16": 6,
+              "x17": 4,
+              "x18": 4,
+              "x19": 6,
+              "x20": 4
+            },
+            "blocked_claims_per_case": 0.15
+          },
+          "json_format_failure_rate": {
+            "k": 0,
+            "n": 22,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1487
+            ]
+          },
+          "explicit_abstain_rate": {
+            "k": 0,
+            "n": 22,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1487
+            ]
+          },
+          "empty_claims_rate": {
+            "k": 0,
+            "n": 22,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1487
+            ]
+          },
+          "truncated_responses": 0,
+          "empty_responses": 0,
+          "llm_calls_recorded": 22,
+          "tokens_per_answer": {
+            "prompt": 1784.05,
+            "completion": 450.45,
+            "total": 2234.5
+          },
+          "llm_calls_per_answer": 1.1,
+          "cases_answered_by_template_fallback": 0,
+          "cases_reaching_llm": 20,
+          "latency_ms": {
+            "p50": 5118.540831497938,
+            "p95": 12884.285181350706
+          },
+          "cost": {
+            "usd_per_100_answers": 0.09622549999999999,
+            "neurons_per_100_answers": 8747.74848,
+            "basis": "mean prompt/completion tokens per answer x catalog per-M-token price"
+          }
+        },
+        "ask_literature": {
+          "n_cases": 18,
+          "draft": {
+            "n_claims": 12,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 12,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.2425
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 12,
+              "n": 12,
+              "rate": 1.0,
+              "ci95": [
+                0.7575,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 0,
+              "rate": null,
+              "ci95": [
+                null,
+                null
+              ]
+            },
+            "supported_claims_per_case": 0.6666666666666666
+          },
+          "gated": {
+            "n_claims": 12,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 12,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.2425
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 12,
+              "n": 12,
+              "rate": 1.0,
+              "ci95": [
+                0.7575,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 0,
+              "rate": null,
+              "ci95": [
+                null,
+                null
+              ]
+            },
+            "supported_claims_per_case": 0.6666666666666666,
+            "supported_claims_per_case_sd": 1.0540925533894598,
+            "supported_by_case": {
+              "a01": 2,
+              "a02": 1,
+              "a03": 1,
+              "a04": 2,
+              "a05": 3,
+              "a06": 0,
+              "a07": 0,
+              "a08": 0,
+              "a09": 0,
+              "a10": 3,
+              "u01": 0,
+              "u02": 0,
+              "u03": 0,
+              "u04": 0,
+              "u05": 0,
+              "u06": 0,
+              "u07": 0,
+              "u08": 0
+            },
+            "blocked_claims_per_case": 0.0
+          },
+          "json_format_failure_rate": {
+            "k": 0,
+            "n": 26,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1287
+            ]
+          },
+          "explicit_abstain_rate": {
+            "k": 0,
+            "n": 26,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1287
+            ]
+          },
+          "empty_claims_rate": {
+            "k": 13,
+            "n": 26,
+            "rate": 0.5,
+            "ci95": [
+              0.3206,
+              0.6794
+            ]
+          },
+          "truncated_responses": 0,
+          "empty_responses": 0,
+          "llm_calls_recorded": 26,
+          "tokens_per_answer": {
+            "prompt": 233.16666666666666,
+            "completion": 68.33333333333333,
+            "total": 301.5
+          },
+          "llm_calls_per_answer": 0.4444444444444444,
+          "cases_answered_by_template_fallback": null,
+          "cases_reaching_llm": 8,
+          "latency_ms": {
+            "p50": 2873.685103999629,
+            "p95": 6538.66065615144
+          },
+          "cost": {
+            "usd_per_100_answers": 0.013285833333333332,
+            "neurons_per_100_answers": 1207.8000333333334,
+            "basis": "mean prompt/completion tokens per answer x catalog per-M-token price"
+          }
+        }
+      },
+      "notes": [],
+      "probe": {
+        "explain_qc": {
+          "cases": 3,
+          "live_cases": 0,
+          "neurons_probe": 223.97634887695312,
+          "neurons_per_case": 74.65878295898438,
+          "cases_replayed_from_cache": 17,
+          "cases_needing_live_calls": 0,
+          "projected_neurons_live": 0.0,
+          "neuron_budget_remaining": 600.0
+        },
+        "ask_literature": {
+          "cases": 3,
+          "live_cases": 0,
+          "neurons_probe": 150.41307067871094,
+          "neurons_per_case": 50.13769022623698,
+          "cases_replayed_from_cache": 15,
+          "cases_needing_live_calls": 0,
+          "projected_neurons_live": 0.0,
+          "neuron_budget_remaining": 600.0
+        }
+      },
+      "ledger": {
+        "live_responses": 0,
+        "neurons_billed_live": 0.0,
+        "responses_recorded_in_cache": 48,
+        "neurons_recorded_in_cache": 2339.4682111740112,
+        "http_attempts": 0,
+        "http_status": {}
+      }
+    },
+    "qwen3.8-27b": {
+      "profile": {
+        "provider": "workers_ai",
+        "model": "@cf/qwen/qwen3.8-27b",
+        "max_tokens": null,
+        "extra": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "price": {
+        "in": 0.45,
+        "out": 3.2,
+        "neurons_in": 40909,
+        "neurons_out": 290909,
+        "source": "Workers AI models catalog"
+      },
+      "status": "probe_only",
+      "groups": {
+        "explain_qc": {
+          "n_cases": 20,
+          "draft": {
+            "n_claims": 112,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 112,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0332
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 29,
+              "n": 29,
+              "rate": 1.0,
+              "ci95": [
+                0.883,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 93,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0397
+              ]
+            },
+            "supported_claims_per_case": 5.6
+          },
+          "gated": {
+            "n_claims": 112,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 112,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0332
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 29,
+              "n": 29,
+              "rate": 1.0,
+              "ci95": [
+                0.883,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 93,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.0397
+              ]
+            },
+            "supported_claims_per_case": 5.6,
+            "supported_claims_per_case_sd": 0.58309518948453,
+            "supported_by_case": {
+              "x01": 6,
+              "x02": 4,
+              "x03": 6,
+              "x04": 5,
+              "x05": 6,
+              "x06": 6,
+              "x07": 5,
+              "x08": 6,
+              "x09": 6,
+              "x10": 6,
+              "x11": 6,
+              "x12": 6,
+              "x13": 6,
+              "x14": 6,
+              "x15": 5,
+              "x16": 5,
+              "x17": 5,
+              "x18": 6,
+              "x19": 6,
+              "x20": 5
+            },
+            "blocked_claims_per_case": 0.0
+          },
+          "json_format_failure_rate": {
+            "k": 0,
+            "n": 20,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1611
+            ]
+          },
+          "explicit_abstain_rate": {
+            "k": 0,
+            "n": 20,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1611
+            ]
+          },
+          "empty_claims_rate": {
+            "k": 0,
+            "n": 20,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1611
+            ]
+          },
+          "truncated_responses": 0,
+          "empty_responses": 0,
+          "llm_calls_recorded": 20,
+          "tokens_per_answer": {
+            "prompt": 1685.05,
+            "completion": 409.6,
+            "total": 2094.65
+          },
+          "llm_calls_per_answer": 1.0,
+          "cases_answered_by_template_fallback": 0,
+          "cases_reaching_llm": 20,
+          "latency_ms": {
+            "p50": 10128.476160998409,
+            "p95": 44713.32380345236
+          },
+          "cost": {
+            "usd_per_100_answers": 0.20689925,
+            "neurons_per_100_answers": 18809.003685,
+            "basis": "mean prompt/completion tokens per answer x catalog per-M-token price"
+          }
+        },
+        "ask_literature": {
+          "n_cases": 3,
+          "draft": {
+            "n_claims": 6,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 6,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 6,
+              "n": 6,
+              "rate": 1.0,
+              "ci95": [
+                0.6097,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 0,
+              "rate": null,
+              "ci95": [
+                null,
+                null
+              ]
+            },
+            "supported_claims_per_case": 2.0
+          },
+          "gated": {
+            "n_claims": 6,
+            "unsupported_claim_rate": {
+              "k": 0,
+              "n": 6,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "valid_citation_rate": {
+              "k": 6,
+              "n": 6,
+              "rate": 1.0,
+              "ci95": [
+                0.6097,
+                1.0
+              ]
+            },
+            "numeric_hallucination_rate": {
+              "k": 0,
+              "n": 0,
+              "rate": null,
+              "ci95": [
+                null,
+                null
+              ]
+            },
+            "supported_claims_per_case": 2.0,
+            "supported_claims_per_case_sd": 0.0,
+            "supported_by_case": {
+              "a01": 2,
+              "a02": 2,
+              "a03": 2
+            },
+            "blocked_claims_per_case": 0.0
+          },
+          "json_format_failure_rate": {
+            "k": 0,
+            "n": 6,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.3903
+            ]
+          },
+          "explicit_abstain_rate": {
+            "k": 0,
+            "n": 6,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.3903
+            ]
+          },
+          "empty_claims_rate": {
+            "k": 0,
+            "n": 6,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.3903
+            ]
+          },
+          "truncated_responses": 0,
+          "empty_responses": 0,
+          "llm_calls_recorded": 6,
+          "tokens_per_answer": {
+            "prompt": 472.0,
+            "completion": 95.0,
+            "total": 567.0
+          },
+          "llm_calls_per_answer": 1.0,
+          "cases_answered_by_template_fallback": null,
+          "cases_reaching_llm": 3,
+          "latency_ms": {
+            "p50": 2244.9024109996053,
+            "p95": 2803.4601886989026
+          },
+          "cost": {
+            "usd_per_100_answers": 0.051640000000000005,
+            "neurons_per_100_answers": 4694.5403,
+            "basis": "mean prompt/completion tokens per answer x catalog per-M-token price"
+          }
+        }
+      },
+      "notes": [
+        "ask_literature: projected 1408 neurons for the 15 cases without a cached response exceeds the 600 left in the budget; 3 cases ran"
+      ],
+      "probe": {
+        "explain_qc": {
+          "cases": 3,
+          "live_cases": 0,
+          "neurons_probe": 562.0545349121094,
+          "neurons_per_case": 187.35151163736978,
+          "cases_replayed_from_cache": 17,
+          "cases_needing_live_calls": 0,
+          "projected_neurons_live": 0.0,
+          "neuron_budget_remaining": 600.0
+        },
+        "ask_literature": {
+          "cases": 3,
+          "live_cases": 0,
+          "neurons_probe": 281.67271423339844,
+          "neurons_per_case": 93.89090474446614,
+          "cases_replayed_from_cache": 0,
+          "cases_needing_live_calls": 15,
+          "projected_neurons_live": 1408.3635711669922,
+          "neuron_budget_remaining": 600.0
+        }
+      },
+      "ledger": {
+        "live_responses": 0,
+        "neurons_billed_live": 0.0,
+        "responses_recorded_in_cache": 27,
+        "neurons_recorded_in_cache": 4245.408950805664,
+        "http_attempts": 0,
+        "http_status": {}
+      }
+    },
+    "command-a-03-2025": {
+      "profile": {
+        "provider": "cohere",
+        "model": "command-a-03-2025",
+        "max_tokens": null,
+        "extra": null
+      },
+      "price": {
+        "in": null,
+        "out": null,
+        "neurons_in": null,
+        "neurons_out": null,
+        "source": "Cohere trial key (no per-token charge; production price not used)"
+      },
+      "status": "quota_exhausted",
+      "groups": {},
+      "notes": [
+        "explain_qc: provider quota error at case x03; 0 case(s) completed before it"
+      ],
+      "ledger": {
+        "live_responses": 0,
+        "neurons_billed_live": 0.0,
+        "responses_recorded_in_cache": 0,
+        "neurons_recorded_in_cache": 0.0,
+        "http_attempts": 3,
+        "http_status": {
+          "429": 3
+        }
+      }
+    }
+  },
+  "verdict": [
+    {
+      "group": "explain_qc",
+      "n_full": 20,
+      "best": "llama-3.1-8b-fast",
+      "cheapest_within_5pct": "llama-3.1-8b-fast",
+      "candidates": [
+        {
+          "id": "llama-3.1-8b-fast",
+          "per_case": 6.15,
+          "unsupported_k": 0,
+          "usd": 0.018245565,
+          "n": 20,
+          "diff_vs_best": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n_paired": 20
+          }
+        },
+        {
+          "id": "gemma-4-26b-a4b",
+          "per_case": 4.45,
+          "unsupported_k": 0,
+          "usd": 0.025715500000000002,
+          "n": 20,
+          "diff_vs_best": {
+            "mean": -1.7,
+            "ci95": [
+              -2.3,
+              -1.15
+            ],
+            "n_paired": 20
+          }
+        },
+        {
+          "id": "gpt-oss-120b",
+          "per_case": 5.3,
+          "unsupported_k": 0,
+          "usd": 0.09622549999999999,
+          "n": 20,
+          "diff_vs_best": {
+            "mean": -0.85,
+            "ci95": [
+              -1.5,
+              -0.2
+            ],
+            "n_paired": 20
+          }
+        },
+        {
+          "id": "qwen3.8-27b",
+          "per_case": 5.6,
+          "unsupported_k": 0,
+          "usd": 0.20689925,
+          "n": 20,
+          "diff_vs_best": {
+            "mean": -0.55,
+            "ci95": [
+              -1.3,
+              -0.1
+            ],
+            "n_paired": 20
+          }
+        }
+      ],
+      "text": "explain_qc: best supported claims per case at zero unsupported after the gate = llama-3.1-8b-fast (6.15/case, n=20). Cheapest within 5% of best = llama-3.1-8b-fast (6.15/case, $0.0182 per 100 answers)."
+    },
+    {
+      "group": "ask_literature",
+      "n_full": 18,
+      "best": "llama-3.1-8b-fast",
+      "cheapest_within_5pct": "llama-3.1-8b-fast",
+      "candidates": [
+        {
+          "id": "llama-3.1-8b-fast",
+          "per_case": 2.6666666666666665,
+          "unsupported_k": 0,
+          "usd": 0.009130933333333334,
+          "n": 18,
+          "diff_vs_best": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n_paired": 18
+          }
+        },
+        {
+          "id": "gemma-4-26b-a4b",
+          "per_case": 0.3333333333333333,
+          "unsupported_k": 0,
+          "usd": 0.002845555555555555,
+          "n": 18,
+          "diff_vs_best": {
+            "mean": -2.3333333333333335,
+            "ci95": [
+              -3.7777777777777777,
+              -0.9444444444444444
+            ],
+            "n_paired": 18
+          }
+        },
+        {
+          "id": "gpt-oss-120b",
+          "per_case": 0.6666666666666666,
+          "unsupported_k": 0,
+          "usd": 0.013285833333333332,
+          "n": 18,
+          "diff_vs_best": {
+            "mean": -2.0,
+            "ci95": [
+              -3.2777777777777777,
+              -0.8333333333333334
+            ],
+            "n_paired": 18
+          }
+        }
+      ],
+      "text": "ask_literature: best supported claims per case at zero unsupported after the gate = llama-3.1-8b-fast (2.67/case, n=18). Cheapest within 5% of best = llama-3.1-8b-fast (2.67/case, $0.0091 per 100 answers)."
+    }
+  ],
+  "price_check": {
+    "checked": true,
+    "result": {
+      "@cf/meta/llama-3.1-8b-instruct-fast": "not in catalog",
+      "@cf/google/gemma-4-26b-a4b-it": "matches catalog",
+      "@cf/openai/gpt-oss-120b": "matches catalog",
+      "@cf/qwen/qwen3.8-27b": "matches catalog"
+    }
+  },
+  "call_ledger": {
+    "live_responses_this_run": 0,
+    "http_attempts_this_run": 3,
+    "http_attempts_by_provider": {
+      "workers_ai": 0,
+      "cohere": 3
+    },
+    "workers_ai_neurons_billed_this_run": 0.0,
+    "cohere_call_cap": 120,
+    "wall_seconds": 4.5,
+    "note": "ledger covers this process only; manual probes made before the sweep are not included",
+    "prior_invocations": [
+      {
+        "file": "e5_sweep_run1.json",
+        "call_ledger": {
+          "live_responses_this_run": 120,
+          "http_attempts_this_run": 123,
+          "http_attempts_by_provider": {
+            "workers_ai": 120,
+            "cohere": 3
+          },
+          "workers_ai_neurons_billed_this_run": 6965.008952379227,
+          "cohere_call_cap": 120,
+          "wall_seconds": 269.4,
+          "note": "ledger covers this process only; manual probes made before the sweep are not included"
+        },
+        "per_model": {
+          "llama-3.1-8b-fast": {
+            "live_responses": 0,
+            "neurons_billed_live": 0.0,
+            "http_status": {},
+            "status": "ok"
+          },
+          "gemma-4-26b-a4b": {
+            "live_responses": 46,
+            "neurons_billed_live": 582.0635988712311,
+            "http_status": {
+              "200": 46
+            },
+            "status": "ok"
+          },
+          "gpt-oss-120b": {
+            "live_responses": 48,
+            "neurons_billed_live": 2339.4682111740112,
+            "http_status": {
+              "200": 48
+            },
+            "status": "ok"
+          },
+          "qwen3.8-27b": {
+            "live_responses": 26,
+            "neurons_billed_live": 4043.4771423339844,
+            "http_status": {
+              "200": 26
+            },
+            "status": "probe_only"
+          },
+          "command-a-03-2025": {
+            "live_responses": 0,
+            "neurons_billed_live": 0.0,
+            "http_status": {
+              "429": 3
+            },
+            "status": "quota_exhausted"
+          }
+        }
+      }
+    ]
+  },
+  "notes": [
+    "Same cases, prompts, retriever and gate for every model; only the model (and, for reasoning models, max_tokens and the reasoning-off/low switch) differs. 'draft' is the first model output before the gate; 'gated' is what the user sees after the gate and at most one repair call.",
+    "Unsupported/citation/numeric rates are judged by independent re-verification of the claims (eg.judge), as in E5.",
+    "JSON-format failure = a model reply that is neither strict JSON claims nor an ABSTAIN (it is parsed as free text).",
+    "Latency is the recorded provider latency of the live call plus local step time; replayed cache entries keep their recorded latency."
+  ]
+}

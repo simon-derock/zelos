@@ -1,0 +1,25 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is PASS with a qc_score of 1.648.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-b8f9cbfe\"\n      ]\n    },\n    {\n      \"text\": \"The density state is reported as NORMAL with a blob_density_per_mpx of 4282.6335.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-b8f9cbfe\"\n      ]\n    },\n    {\n      \"text\": \"The clip_high_frac metric is 0.1714, which corresponds to a z-score of 1.648.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-b8f9cbfe\"\n      ]\n    },\n    {\n      \"text\": \"The focus_lapvar_norm metric is 10.7917, indicating a high percentile of 94.5 for focus quality.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-b8f9cbfe\"\n      ]\n    },\n    {\n      \"text\": \"Brightfield microscopy image quality depends on specific acquisition conditions and image processing steps such as registration and blending.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC7275059::s0::0\"\n      ]\n    },\n    {\n      \"text\": \"No specific causes were flagged in the QC result, suggesting the image meets standard quality thresholds for the CACO cell line.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-b8f9cbfe\"\n      ]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1460,
+  "completion_tokens": 414
+ },
+ "latency_ms": 10858.632179999404,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 180.16363525390625
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

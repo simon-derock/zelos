@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"Camera quality matters because uneven illumination in brightfield imaging can cause vignetting that biases intensity‑based measurements, requiring correction before quantitative analysis.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE3::s1::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 443,
+  "completion_tokens": 107
+ },
+ "latency_ms": 2405.043276001379,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 21.390825271606445
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

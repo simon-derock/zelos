@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL with a total QC score of 32.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-d84187a2\"]\n    },\n    {\n      \"text\": \"The primary cause is DEBRIS, indicated by a debris count of 32.0 (z‑score 32.0).\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-d84187a2\"]\n    },\n    {\n      \"text\": \"A secondary cause is LOW_CONTRAST, shown by a contrast_p99_p1 value of 0.6789 (z‑score 6.887).\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-d84187a2\"]\n    },\n    {\n      \"text\": \"Recommended action: inspect the channel and optics for particulates and clean or exclude the affected regions.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-d84187a2\"]\n    },\n    {\n      \"text\": \"Recommended action: adjust the condenser aperture or exposure to improve contrast, then re‑image.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-d84187a2\"]\n    },\n    {\n      \"text\": \"Brightfield imaging is commonly used in organ‑on‑a‑chip devices because it requires no labeling, saving time and simplifying the workflow.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC8879989::s2::1\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1727,
+  "completion_tokens": 416
+ },
+ "latency_ms": 7816.266009998799,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 83.31330871582031
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

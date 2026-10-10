@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The image quality control result for image 221219_9 is FAIL [qc-eeb835ac].\", \"type\": \"numeric\", \"evidence\": [\"qc-eeb835ac\"]}, {\"text\": \"The main cause of failure is COMPRESSION due to block compression artifacts, with a jpeg_blockiness value of 1.1519376039505005 [qc-eeb835ac].\", \"type\": \"numeric\", \"evidence\": [\"qc-eeb835ac\"]}, {\"text\": \"It is recommended to re-export the image in a lossless format (PNG/TIFF) before quantitative analysis [qc-eeb835ac].\", \"type\": \"inference\", \"evidence\": [\"qc-eeb835ac\"]}, {\"text\": \"Transillumination methods like brightfield imaging are used in organ-on-a-chip (OOC) applications due to their simple operation principles [PMC8879989::s21::0].\", \"type\": \"literature\", \"evidence\": [\"PMC8879989::s21::0\"]}]}",
+ "usage": {
+  "prompt_tokens": 1892,
+  "completion_tokens": 263
+ },
+ "latency_ms": 6943.796546001977,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 24.372726440429688
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

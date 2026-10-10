@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-21fcfd17\"]\n    },\n    {\n      \"text\": \"The primary cause of failure is COMPRESSION, indicated by a jpeg_blockiness metric value of 1.1545 with a z‑score of 7.785.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-21fcfd17\"]\n    },\n    {\n      \"text\": \"The recommended action for the compression issue is to re‑export the image in a lossless format (PNG/TIFF) before quantitative analysis.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-21fcfd17\"]\n    },\n    {\n      \"text\": \"A secondary cause is LOW_CONTRAST, shown by a contrast_p99_p1 value of 0.7294 (z‑score 5.558).\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-21fcfd17\"]\n    },\n    {\n      \"text\": \"To improve contrast, adjust the condenser aperture or exposure and re‑image the sample.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-21fcfd17\"]\n    },\n    {\n      \"text\": \"Brightfield imaging is frequently used for organ‑on‑a‑chip studies because of its simple operation, even though it provides lower resolution compared with other methods.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC8879989::s21::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1726,
+  "completion_tokens": 463
+ },
+ "latency_ms": 3353.4692309985985,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 86.48603820800781
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL with a qc_score of 32.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-d84187a2\"\n      ]\n    },\n    {\n      \"text\": \"The primary cause identified is DEBRIS, triggered by a debris_count of 32.0 with a z-score of 32.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-d84187a2\"\n      ]\n    },\n    {\n      \"text\": \"A secondary cause is LOW_CONTRAST, indicated by a contrast_p99_p1 value of 0.6789008378982544 and a z-score of 6.887.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-d84187a2\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action for the debris issue is to inspect the channel and optics for particulates and clean or exclude affected regions.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-d84187a2\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action for the low contrast issue is to adjust the condenser aperture or exposure to recover contrast and then re-image.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-d84187a2\"\n      ]\n    },\n    {\n      \"text\": \"Brightfield imaging is commonly used in organ-on-a-chip platforms because it allows for no-labeling in situ imaging, which saves time and adds ease to the method.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC8879989::s2::1\"\n      ]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1817,
+  "completion_tokens": 460
+ },
+ "latency_ms": 9501.79694200051,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 208.14999389648438
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

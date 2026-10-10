@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]}, {\"text\": \"Flat-field correction uses a blank reference image to remove shading before quantitative analysis.\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]}]}",
+ "usage": {
+  "prompt_tokens": 466,
+  "completion_tokens": 87
+ },
+ "latency_ms": 2211.3510869967286,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 44.37272644042969
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}
