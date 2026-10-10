@@ -35,6 +35,7 @@ ZIP_URL = "https://zenodo.org/api/records/10203721/files/OOC_image_dataset.zip/c
 ZIP_SIZE = 6710767405
 OUT = ROOT / "cache" / "features_all.pkl"
 H, W = 448, 588
+DINO_REV = "ed25f3a31f01632728cabb09d1542f84ab7b0056"  # facebook/dinov2-small (Apache-2.0), pinned commit
 MEAN = np.array([0.485, 0.456, 0.406], np.float32)
 STD = np.array([0.229, 0.224, 0.225], np.float32)
 
@@ -80,7 +81,7 @@ def dino(img_gray: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         torch.set_num_threads(1)
         from transformers import AutoModel
 
-        _model = AutoModel.from_pretrained("facebook/dinov2-small").eval()
+        _model = AutoModel.from_pretrained("facebook/dinov2-small", revision=DINO_REV).eval()
     x = cv2.resize(img_gray, (W, H), interpolation=cv2.INTER_AREA).astype(np.float32) / 255.0
     x = np.repeat(x[..., None], 3, axis=2)
     x = ((x - MEAN) / STD).transpose(2, 0, 1)[None]

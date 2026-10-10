@@ -19,6 +19,7 @@ from zelos.common.config import ROOT
 
 BANK = ROOT / "results" / "culture_bank.npz"
 H, W = 448, 588
+DINO_REV = "ed25f3a31f01632728cabb09d1542f84ab7b0056"  # facebook/dinov2-small (Apache-2.0), pinned commit
 
 
 @lru_cache
@@ -38,7 +39,7 @@ def _model():
         from transformers import AutoModel
 
         torch.set_num_threads(2)
-        return AutoModel.from_pretrained("facebook/dinov2-small").eval()
+        return AutoModel.from_pretrained("facebook/dinov2-small", revision=DINO_REV).eval()
     except Exception:  # noqa: BLE001 - optional dependency
         return None
 
