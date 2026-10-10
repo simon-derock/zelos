@@ -151,7 +151,7 @@ def md(r: dict, prov: dict, fx: list[str]) -> str:
                   f"| label-trained DINOv2 linear head | {pct(h['clean_flag_rate'])} | {pct(h['detection_rate_sev3plus'])} | {f3(h['auroc_clean_vs_sev3plus'])} | no |",
                   "", f"Embedding-path check: mean |dP| between the two preprocessing paths on clean images = {f3(h.get('mean_abs_prob_diff_between_paths'))}; "
                   f"clean flag rate on the extraction path = {pct(h.get('clean_flag_rate_extraction_path'))}.",
-                  "The head is the approach family of entries that learn the expert label from frozen embeddings; it is not any entry's exact model."]
+                  "The head is one approach that learns the expert label from frozen embeddings, implemented here for comparison; it is not part of Zelos."]
         L.append("")
     cal = load("calibration")
     if cal:

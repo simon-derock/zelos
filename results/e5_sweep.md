@@ -1,6 +1,6 @@
 # E5 model sweep: which LLM behind the gate
 
-git 7a1ea000 | LLM mode replay | explain-QC n=20
+git 3d224c2c | LLM mode replay | explain-QC n=20
 
 ## Models and run status
 
@@ -32,7 +32,7 @@ git 7a1ea000 | LLM mode replay | explain-QC n=20
 | Tokens per answer (prompt + completion) | 1926 (1643 + 283) | 2026 (1753 + 273) | 2234 (1784 + 450) | 2095 (1685 + 410) |
 | LLM calls per answer | 1.05 | 1.00 | 1.10 | 1.00 |
 | Answers that reached the LLM | 20/20 | 20/20 | 20/20 | 20/20 |
-| Latency p50 / p95 (ms), answers that called the LLM | 2117 / 3184 | 6541 / 8130 | 5117 / 12862 | 10111 / 44698 |
+| Latency p50 / p95 (ms), answers that called the LLM | 2118 / 3184 | 6541 / 8126 | 5117 / 12862 | 10111 / 44698 |
 | Cost per 100 answers (USD) | $0.0182 | $0.0257 | $0.0962 | $0.2069 |
 | Neurons per 100 answers | 1662 | 2338 | 8748 | 18809 |
 

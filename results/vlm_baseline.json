@@ -36,8 +36,8 @@
     }
   },
   "provenance": {
-    "git_sha": "7a1ea0008b57cc36138802e68bd873bdbedd15a6",
-    "timestamp_utc": "2026-10-10T18:30:59+00:00",
+    "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+    "timestamp_utc": "2026-10-10T18:44:29+00:00",
     "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337,

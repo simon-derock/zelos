@@ -1,8 +1,8 @@
 {
   "experiment": "E5 model sweep",
   "provenance": {
-    "git_sha": "7a1ea0008b57cc36138802e68bd873bdbedd15a6",
-    "timestamp_utc": "2026-10-10T18:31:00+00:00",
+    "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+    "timestamp_utc": "2026-10-10T18:44:30+00:00",
     "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337,
@@ -171,8 +171,8 @@
           "cases_answered_by_template_fallback": 0,
           "cases_reaching_llm": 20,
           "latency_ms": {
-            "p50": 2117.3186114987016,
-            "p95": 3184.2124568497884
+            "p50": 2117.548611498702,
+            "p95": 3183.7549568497884
           },
           "cost": {
             "usd_per_100_answers": 0.018245565,
@@ -350,8 +350,8 @@
           "cases_answered_by_template_fallback": 0,
           "cases_reaching_llm": 20,
           "latency_ms": {
-            "p50": 6541.323935001146,
-            "p95": 8130.311526201167
+            "p50": 6541.283935001146,
+            "p95": 8126.129026201167
           },
           "cost": {
             "usd_per_100_answers": 0.025715500000000002,
@@ -527,8 +527,8 @@
           "cases_answered_by_template_fallback": 0,
           "cases_reaching_llm": 20,
           "latency_ms": {
-            "p50": 5117.235831497937,
-            "p95": 12862.467681350707
+            "p50": 5116.975831497937,
+            "p95": 12862.190681350705
           },
           "cost": {
             "usd_per_100_answers": 0.09622549999999999,
@@ -706,8 +706,8 @@
           "cases_answered_by_template_fallback": 0,
           "cases_reaching_llm": 20,
           "latency_ms": {
-            "p50": 10111.306160998407,
-            "p95": 44697.87880345235
+            "p50": 10111.201160998407,
+            "p95": 44697.73780345236
           },
           "cost": {
             "usd_per_100_answers": 0.20689925,

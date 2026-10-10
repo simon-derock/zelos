@@ -1,7 +1,7 @@
 {
   "generated": {
-    "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-    "timestamp_utc": "2026-10-10T18:22:13+00:00",
+    "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+    "timestamp_utc": "2026-10-10T18:44:49+00:00",
     "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337
@@ -137,7 +137,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 5533.2
+        "latency_ms": 5362.7
       },
       "card": {
         "image_id": "221010_86",
@@ -249,8 +249,8 @@
           "args": {
             "image_id": "221010_86"
           },
-          "result_hash": "0606bd51546c1423",
-          "latency_ms": 0.16,
+          "result_hash": "699a6c31f312a768",
+          "latency_ms": 0.14,
           "tokens": 0
         },
         {
@@ -261,7 +261,7 @@
             "k": 3
           },
           "result_hash": "b374ca5e3b40f261",
-          "latency_ms": 18.49,
+          "latency_ms": 18.3,
           "tokens": 0
         },
         {
@@ -271,7 +271,7 @@
             "n_claims": 3
           },
           "result_hash": "b27a2fc887d34e12",
-          "latency_ms": 1.35,
+          "latency_ms": 2.15,
           "tokens": 0
         }
       ],
@@ -410,7 +410,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 735.8
+        "latency_ms": 730.4
       },
       "card": {
         "image_id": "221215_14",
@@ -558,7 +558,7 @@
           "args": {
             "image_id": "221215_14"
           },
-          "result_hash": "b471921533bb572d",
+          "result_hash": "5916b8ad60517e41",
           "latency_ms": 0.14,
           "tokens": 0
         },
@@ -570,7 +570,7 @@
             "k": 3
           },
           "result_hash": "444a52dfe03e34e2",
-          "latency_ms": 14.35,
+          "latency_ms": 15.42,
           "tokens": 0
         },
         {
@@ -580,7 +580,7 @@
             "n_claims": 5
           },
           "result_hash": "75f9084e0e08447e",
-          "latency_ms": 1.35,
+          "latency_ms": 2.15,
           "tokens": 0
         }
       ],
@@ -707,7 +707,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 716.4
+        "latency_ms": 714.6
       },
       "card": {
         "image_id": "221010_9",
@@ -819,8 +819,8 @@
           "args": {
             "image_id": "221010_9"
           },
-          "result_hash": "ff49b4cf5dd7f619",
-          "latency_ms": 0.14,
+          "result_hash": "d8716042a5d3a9c8",
+          "latency_ms": 0.13,
           "tokens": 0
         },
         {
@@ -831,7 +831,7 @@
             "k": 3
           },
           "result_hash": "b374ca5e3b40f261",
-          "latency_ms": 18.57,
+          "latency_ms": 16.62,
           "tokens": 0
         },
         {
@@ -841,7 +841,7 @@
             "n_claims": 3
           },
           "result_hash": "d758f47388752807",
-          "latency_ms": 1.02,
+          "latency_ms": 1.62,
           "tokens": 0
         }
       ],
@@ -968,7 +968,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 715.9
+        "latency_ms": 712.4
       },
       "card": {
         "image_id": "221010_24",
@@ -1080,8 +1080,8 @@
           "args": {
             "image_id": "221010_24"
           },
-          "result_hash": "53ff2c988208532b",
-          "latency_ms": 0.14,
+          "result_hash": "f4032d7dd472941f",
+          "latency_ms": 0.13,
           "tokens": 0
         },
         {
@@ -1092,7 +1092,7 @@
             "k": 3
           },
           "result_hash": "b374ca5e3b40f261",
-          "latency_ms": 18.51,
+          "latency_ms": 15.43,
           "tokens": 0
         },
         {
@@ -1102,7 +1102,7 @@
             "n_claims": 3
           },
           "result_hash": "1172dd56dd78e4d5",
-          "latency_ms": 1.01,
+          "latency_ms": 1.45,
           "tokens": 0
         }
       ],
@@ -1229,7 +1229,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 702.9
+        "latency_ms": 714.9
       },
       "card": {
         "image_id": "230109_103",
@@ -1341,7 +1341,7 @@
           "args": {
             "image_id": "230109_103"
           },
-          "result_hash": "dc38bd6790782d67",
+          "result_hash": "12d9a1978bc8835a",
           "latency_ms": 0.13,
           "tokens": 0
         },
@@ -1353,7 +1353,7 @@
             "k": 3
           },
           "result_hash": "b374ca5e3b40f261",
-          "latency_ms": 16.1,
+          "latency_ms": 16.55,
           "tokens": 0
         },
         {
@@ -1363,7 +1363,7 @@
             "n_claims": 3
           },
           "result_hash": "c03e97408340e778",
-          "latency_ms": 1.17,
+          "latency_ms": 1.53,
           "tokens": 0
         }
       ],
@@ -1490,7 +1490,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 705.6
+        "latency_ms": 706.9
       },
       "card": {
         "image_id": "230405_119",
@@ -1602,8 +1602,8 @@
           "args": {
             "image_id": "230405_119"
           },
-          "result_hash": "03094a675a8b7850",
-          "latency_ms": 0.13,
+          "result_hash": "30824f3748f9f228",
+          "latency_ms": 0.14,
           "tokens": 0
         },
         {
@@ -1614,7 +1614,7 @@
             "k": 3
           },
           "result_hash": "b374ca5e3b40f261",
-          "latency_ms": 15.77,
+          "latency_ms": 18.57,
           "tokens": 0
         },
         {
@@ -1624,7 +1624,7 @@
             "n_claims": 3
           },
           "result_hash": "6350590fa6b4c0d6",
-          "latency_ms": 0.91,
+          "latency_ms": 1.55,
           "tokens": 0
         }
       ],
@@ -1751,7 +1751,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 719.3
+        "latency_ms": 710.5
       },
       "card": {
         "image_id": "230419_55",
@@ -1863,7 +1863,7 @@
           "args": {
             "image_id": "230419_55"
           },
-          "result_hash": "a5163d24775ecf99",
+          "result_hash": "7b540ba48d93cdfa",
           "latency_ms": 0.13,
           "tokens": 0
         },
@@ -1875,7 +1875,7 @@
             "k": 3
           },
           "result_hash": "b374ca5e3b40f261",
-          "latency_ms": 15.77,
+          "latency_ms": 15.89,
           "tokens": 0
         },
         {
@@ -1885,7 +1885,7 @@
             "n_claims": 3
           },
           "result_hash": "65ebeaa7f1b15284",
-          "latency_ms": 1.03,
+          "latency_ms": 1.53,
           "tokens": 0
         }
       ],
@@ -2012,7 +2012,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 705.9
+        "latency_ms": 797.5
       },
       "card": {
         "image_id": "220506_3",
@@ -2124,8 +2124,8 @@
           "args": {
             "image_id": "220506_3"
           },
-          "result_hash": "daa414b3616ed304",
-          "latency_ms": 0.13,
+          "result_hash": "21330a0183485f99",
+          "latency_ms": 0.14,
           "tokens": 0
         },
         {
@@ -2136,7 +2136,7 @@
             "k": 3
           },
           "result_hash": "b374ca5e3b40f261",
-          "latency_ms": 15.93,
+          "latency_ms": 16.52,
           "tokens": 0
         },
         {
@@ -2146,7 +2146,7 @@
             "n_claims": 3
           },
           "result_hash": "0bc0f4f79bee15ea",
-          "latency_ms": 1.0,
+          "latency_ms": 1.57,
           "tokens": 0
         }
       ],
@@ -2308,7 +2308,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 667.7
+        "latency_ms": 674.3
       },
       "card": {
         "image_id": "230525_54-defocus",
@@ -2490,8 +2490,8 @@
           "args": {
             "image_id": "230525_54-defocus"
           },
-          "result_hash": "6dccc1a965a95fd7",
-          "latency_ms": 0.17,
+          "result_hash": "3f332031459b7f04",
+          "latency_ms": 0.19,
           "tokens": 0
         },
         {
@@ -2502,7 +2502,7 @@
             "k": 3
           },
           "result_hash": "3549060954ea1cc2",
-          "latency_ms": 15.29,
+          "latency_ms": 14.73,
           "tokens": 0
         },
         {
@@ -2513,7 +2513,7 @@
             "k": 3
           },
           "result_hash": "de84a922ac8815a9",
-          "latency_ms": 15.53,
+          "latency_ms": 15.04,
           "tokens": 0
         },
         {
@@ -2523,7 +2523,7 @@
             "n_claims": 6
           },
           "result_hash": "fc41d08c629e3e9e",
-          "latency_ms": 1.56,
+          "latency_ms": 2.49,
           "tokens": 0
         }
       ],
@@ -2679,7 +2679,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 674.1
+        "latency_ms": 670.9
       },
       "card": {
         "image_id": "230510_30-bubble",
@@ -2861,8 +2861,8 @@
           "args": {
             "image_id": "230510_30-bubble"
           },
-          "result_hash": "ccacc98b673047aa",
-          "latency_ms": 0.17,
+          "result_hash": "5078b194be77642a",
+          "latency_ms": 0.16,
           "tokens": 0
         },
         {
@@ -2873,7 +2873,7 @@
             "k": 3
           },
           "result_hash": "e332a9b1dc9973f4",
-          "latency_ms": 15.93,
+          "latency_ms": 17.51,
           "tokens": 0
         },
         {
@@ -2884,7 +2884,7 @@
             "k": 3
           },
           "result_hash": "ac726433fbbb6672",
-          "latency_ms": 16.02,
+          "latency_ms": 16.6,
           "tokens": 0
         },
         {
@@ -2894,7 +2894,7 @@
             "n_claims": 6
           },
           "result_hash": "09c8b6771dc29504",
-          "latency_ms": 1.51,
+          "latency_ms": 2.7,
           "tokens": 0
         }
       ],
@@ -3033,7 +3033,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 654.4
+        "latency_ms": 665.8
       },
       "card": {
         "image_id": "230328_15-overexpose",
@@ -3181,8 +3181,8 @@
           "args": {
             "image_id": "230328_15-overexpose"
           },
-          "result_hash": "0b03dddd8bcbe080",
-          "latency_ms": 0.14,
+          "result_hash": "a79e727d83fd32b7",
+          "latency_ms": 0.13,
           "tokens": 0
         },
         {
@@ -3193,7 +3193,7 @@
             "k": 3
           },
           "result_hash": "444a52dfe03e34e2",
-          "latency_ms": 16.57,
+          "latency_ms": 13.45,
           "tokens": 0
         },
         {
@@ -3203,7 +3203,7 @@
             "n_claims": 5
           },
           "result_hash": "c1b42388a64387ed",
-          "latency_ms": 1.43,
+          "latency_ms": 2.18,
           "tokens": 0
         }
       ],
@@ -3330,7 +3330,7 @@
           "k": 15,
           "bank": 3072
         },
-        "latency_ms": 659.5
+        "latency_ms": 670.0
       },
       "card": {
         "image_id": "221012_1-illumination",
@@ -3442,8 +3442,8 @@
           "args": {
             "image_id": "221012_1-illumination"
           },
-          "result_hash": "e2f89041c974fc8c",
-          "latency_ms": 0.13,
+          "result_hash": "ae7e21de725b4d33",
+          "latency_ms": 0.14,
           "tokens": 0
         },
         {
@@ -3454,7 +3454,7 @@
             "k": 3
           },
           "result_hash": "b374ca5e3b40f261",
-          "latency_ms": 23.43,
+          "latency_ms": 18.51,
           "tokens": 0
         },
         {
@@ -3464,7 +3464,7 @@
             "n_claims": 3
           },
           "result_hash": "188b2adb1c2e5d4a",
-          "latency_ms": 1.07,
+          "latency_ms": 1.55,
           "tokens": 0
         }
       ],
@@ -3499,7 +3499,7 @@
         3,
         5
       ],
-      "operating_point": "threshold = 90th percentile of QC score on expert-good images of calibration sessions (<=10% false flags)",
+      "operating_point": "per-metric cutoffs calibrated so the mean per-session false-flag rate on expert-good development images is <=10% leave-one-session-out; flagged when score > 1",
       "variants": {
         "pooled_dev (v1)": {
           "threshold": 1.0,
@@ -4404,12 +4404,12 @@
           "clean_flag_rate_extraction_path": 0.05,
           "mean_abs_prob_diff_between_paths": 0.00960706826299429,
           "can_name_the_cause": false,
-          "n_to_be_read_as": "approach family used by entries that learn the expert label from frozen embeddings; not any entry's exact model"
+          "n_to_be_read_as": "one approach that learns the expert label from frozen embeddings, implemented here for comparison"
         }
       },
       "provenance": {
-        "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-        "timestamp_utc": "2026-10-10T18:19:34+00:00",
+        "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+        "timestamp_utc": "2026-10-10T18:44:15+00:00",
         "config_hash": "0c18777ab72c936c",
         "python": "3.12.3",
         "seed": 1337,
@@ -4576,8 +4576,8 @@
         }
       },
       "provenance": {
-        "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-        "timestamp_utc": "2026-10-10T18:18:32+00:00",
+        "git_sha": "178c6e1b88ee78e6e435fbc437ddcc98d95df8cf",
+        "timestamp_utc": "2026-10-10T18:43:10+00:00",
         "config_hash": "0c18777ab72c936c",
         "python": "3.12.3",
         "seed": 1337,
@@ -4638,7 +4638,7 @@
               "hit@5": 0.9285714285714286
             }
           },
-          "latency_ms_p50": 3.9929410013428424
+          "latency_ms_p50": 4.283018999558408
         },
         "dense": {
           "paper_level": {
@@ -4691,7 +4691,7 @@
               "hit@5": 1.0
             }
           },
-          "latency_ms_p50": 16.050272999564186
+          "latency_ms_p50": 18.932388000393985
         },
         "hybrid": {
           "paper_level": {
@@ -4744,7 +4744,7 @@
               "hit@5": 0.9285714285714286
             }
           },
-          "latency_ms_p50": 16.26141499946243
+          "latency_ms_p50": 20.918053000059444
         },
         "hybrid_rerank": {
           "paper_level": {
@@ -4797,7 +4797,7 @@
               "hit@5": 1.0
             }
           },
-          "latency_ms_p50": 16.257700997812208
+          "latency_ms_p50": 19.999746000394225
         }
       },
       "abstention": {
@@ -4908,10 +4908,10 @@
           "rerank": 93
         }
       },
-      "runtime_s": 13.604382276535034,
+      "runtime_s": 17.301355600357056,
       "provenance": {
-        "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-        "timestamp_utc": "2026-10-10T18:20:44+00:00",
+        "git_sha": "bbe14a0e5763b275b43345d920427edb076c5f58",
+        "timestamp_utc": "2026-10-10T18:30:28+00:00",
         "config_hash": "0c18777ab72c936c",
         "python": "3.12.3",
         "seed": 1337,
@@ -4921,8 +4921,8 @@
     "e5": {
       "experiment": "E5 grounding",
       "provenance": {
-        "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-        "timestamp_utc": "2026-10-10T18:20:44+00:00",
+        "git_sha": "bbe14a0e5763b275b43345d920427edb076c5f58",
+        "timestamp_utc": "2026-10-10T18:30:29+00:00",
         "config_hash": "0c18777ab72c936c",
         "python": "3.12.3",
         "seed": 1337,
@@ -4997,7 +4997,7 @@
           },
           "tokens_per_answer": 0.0,
           "llm_calls_per_answer": 0.0,
-          "latency_ms_p50": 0.93,
+          "latency_ms_p50": 0.99,
           "adversarial": {
             "refusal_correctness": {
               "k": 14,
@@ -5205,7 +5205,7 @@
           },
           "tokens_per_answer": 1280.3947368421052,
           "llm_calls_per_answer": 0.868421052631579,
-          "latency_ms_p50": 1884.737493500244,
+          "latency_ms_p50": 1885.5424935002443,
           "adversarial": {
             "refusal_correctness": {
               "k": 14,
@@ -5415,8 +5415,8 @@
       }
     },
     "provenance": {
-      "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-      "timestamp_utc": "2026-10-10T18:21:12+00:00",
+      "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+      "timestamp_utc": "2026-10-10T18:44:29+00:00",
       "config_hash": "0c18777ab72c936c",
       "python": "3.12.3",
       "seed": 1337,
@@ -5438,8 +5438,8 @@
   "llm_sweep": {
     "experiment": "E5 model sweep",
     "provenance": {
-      "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-      "timestamp_utc": "2026-10-10T18:21:13+00:00",
+      "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+      "timestamp_utc": "2026-10-10T18:44:30+00:00",
       "config_hash": "0c18777ab72c936c",
       "python": "3.12.3",
       "seed": 1337,
@@ -5608,8 +5608,8 @@
             "cases_answered_by_template_fallback": 0,
             "cases_reaching_llm": 20,
             "latency_ms": {
-              "p50": 2118.1286114987015,
-              "p95": 3183.795456849788
+              "p50": 2117.548611498702,
+              "p95": 3183.7549568497884
             },
             "cost": {
               "usd_per_100_answers": 0.018245565,
@@ -5787,8 +5787,8 @@
             "cases_answered_by_template_fallback": 0,
             "cases_reaching_llm": 20,
             "latency_ms": {
-              "p50": 6541.278935001146,
-              "p95": 8126.449526201168
+              "p50": 6541.283935001146,
+              "p95": 8126.129026201167
             },
             "cost": {
               "usd_per_100_answers": 0.025715500000000002,
@@ -5964,8 +5964,8 @@
             "cases_answered_by_template_fallback": 0,
             "cases_reaching_llm": 20,
             "latency_ms": {
-              "p50": 5116.945831497937,
-              "p95": 12862.565181350707
+              "p50": 5116.975831497937,
+              "p95": 12862.190681350705
             },
             "cost": {
               "usd_per_100_answers": 0.09622549999999999,
@@ -6143,8 +6143,8 @@
             "cases_answered_by_template_fallback": 0,
             "cases_reaching_llm": 20,
             "latency_ms": {
-              "p50": 10112.99616099841,
-              "p95": 44697.748803452356
+              "p50": 10111.201160998407,
+              "p95": 44697.73780345236
             },
             "cost": {
               "usd_per_100_answers": 0.20689925,
@@ -6517,8 +6517,8 @@
     "method": "sentence-level: all require-groups present AND lexical overlap >= theta over every corpus sentence",
     "disclosure": "theta raised from the gate default 0.30 to 0.50 after reading the matches (post hoc)",
     "provenance": {
-      "git_sha": "3674e968cefc3e5ce45ab94ceb1944c9cab83bfe",
-      "timestamp_utc": "2026-10-10T18:20:59+00:00",
+      "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+      "timestamp_utc": "2026-10-10T18:44:16+00:00",
       "config_hash": "0c18777ab72c936c",
       "python": "3.12.3",
       "seed": 1337

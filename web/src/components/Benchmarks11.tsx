@@ -102,7 +102,7 @@ export function HeadToHead({ data }: { data: SiteData }) {
   return (
     <Card
       title="Head-to-head on the same faults"
-      lede="Zelos against a linear head trained on frozen DINOv2 features to predict the expert label, scored on identical injected faults. The head is the approach family of entries that learn the expert label, not any entry’s exact model."
+      lede="Zelos against a linear head trained on frozen DINOv2 features to predict the expert label, scored on identical injected faults. The head is one approach that learns the expert label from frozen embeddings, implemented here for comparison."
       foot={<Source file="e1" sha={shaOf(e1, data)} n={num(e1?.n_base_images) !== undefined ? `${e1!.n_base_images} base images` : undefined} />}
     >
       <div className="h2h">

@@ -34,7 +34,7 @@ An evidence-gated QC agent for in vitro organ-on-a-chip cultures. It finds the i
 
 **What the evaluation also says, plainly**
 - The image-fault score does **not** predict the expert good/bad label (AUROC 0.571 with a session reference; confidence intervals include 0.5). That label tracks culture state, which is why Zelos reports image trust and culture state as two separate outputs.
-- Other entries report higher expert-label AUROC than 0.767. Zelos does not claim the best expert-label accuracy.
+- Zelos does not claim state-of-the-art expert-label accuracy; its culture-state signal is a lookup against labelled neighbours, not a tuned classifier.
 - Absolute thresholds do not transfer across imaging sessions (leave-one-session-out false flags 21.3% at the most conservative cutoffs); scoring relative to the session does (9.7% leave-one-session-out, 8.8% on test).
 - General vision LLMs asked "good or bad?" flag 40.0% and 65.0% of clean images (n = 20 per group, one prompt).
 - Illumination, debris and motion-blur faults are mostly missed at severity ≤3 (per-kind table in the results).

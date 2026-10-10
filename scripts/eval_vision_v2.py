@@ -8,7 +8,7 @@ Questions answered (all numbers computed here, nothing typed by hand):
   E1  Injected faults with known ground truth on real test-session images:
       - detection at a calibrated operating point (<=10% false alarms on calibration sessions)
       - cause attribution: v1 rule table vs v1.1 signature centroids (fitted on dev-session injections only)
-      - head-to-head: label-trained DINOv2 linear head (the approach of many entries) on the same faults
+      - head-to-head: label-trained DINOv2 linear head (a baseline implemented here) on the same faults
 Run: python scripts/eval_vision_v2.py [--n-e1 48]
 Splits: whole imaging sessions (image-id date prefix): dev 30% (half fit, half calibrate) / test 70%.
 """
@@ -423,7 +423,7 @@ def main() -> None:
         "detection_by_kind_sev3plus": {k: float((sev3[sev3.kind == k].p_lr > tau_lr).mean()) for k in KINDS},
         "operating_point": "smallest threshold whose mean per-session false-flag rate on expert-good out-of-fold dev images is <=10%",
         "clean_flag_rate_extraction_path": float((p_ext > tau_lr_ext).mean()), "mean_abs_prob_diff_between_paths": path_shift,
-        "can_name_the_cause": False, "n_to_be_read_as": "approach family used by entries that learn the expert label from frozen embeddings; not any entry's exact model"}}
+        "can_name_the_cause": False, "n_to_be_read_as": "one approach that learns the expert label from frozen embeddings, implemented here for comparison"}}
     e1["head_to_head"] = h2h
     e1["provenance"] = provenance({"n_features": int(len(F))})
     np.savez_compressed(RES / "culture_bank.npz", cls=F[CLS].to_numpy(np.float16), bad=F.bad.to_numpy(np.int8),

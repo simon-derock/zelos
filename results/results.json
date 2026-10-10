@@ -925,12 +925,12 @@
         "clean_flag_rate_extraction_path": 0.05,
         "mean_abs_prob_diff_between_paths": 0.00960706826299429,
         "can_name_the_cause": false,
-        "n_to_be_read_as": "approach family used by entries that learn the expert label from frozen embeddings; not any entry's exact model"
+        "n_to_be_read_as": "one approach that learns the expert label from frozen embeddings, implemented here for comparison"
       }
     },
     "provenance": {
-      "git_sha": "bbe14a0e5763b275b43345d920427edb076c5f58",
-      "timestamp_utc": "2026-10-10T18:29:51+00:00",
+      "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+      "timestamp_utc": "2026-10-10T18:44:15+00:00",
       "config_hash": "0c18777ab72c936c",
       "python": "3.12.3",
       "seed": 1337,
@@ -1097,8 +1097,8 @@
       }
     },
     "provenance": {
-      "git_sha": "bbe14a0e5763b275b43345d920427edb076c5f58",
-      "timestamp_utc": "2026-10-10T18:28:48+00:00",
+      "git_sha": "178c6e1b88ee78e6e435fbc437ddcc98d95df8cf",
+      "timestamp_utc": "2026-10-10T18:43:10+00:00",
       "config_hash": "0c18777ab72c936c",
       "python": "3.12.3",
       "seed": 1337,
@@ -2115,8 +2115,8 @@
     "method": "sentence-level: all require-groups present AND lexical overlap >= theta over every corpus sentence",
     "disclosure": "theta raised from the gate default 0.30 to 0.50 after reading the matches (post hoc)",
     "provenance": {
-      "git_sha": "7a1ea0008b57cc36138802e68bd873bdbedd15a6",
-      "timestamp_utc": "2026-10-10T18:30:45+00:00",
+      "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+      "timestamp_utc": "2026-10-10T18:44:16+00:00",
       "config_hash": "0c18777ab72c936c",
       "python": "3.12.3",
       "seed": 1337
@@ -2160,8 +2160,8 @@
       }
     },
     "provenance": {
-      "git_sha": "7a1ea0008b57cc36138802e68bd873bdbedd15a6",
-      "timestamp_utc": "2026-10-10T18:30:59+00:00",
+      "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+      "timestamp_utc": "2026-10-10T18:44:29+00:00",
       "config_hash": "0c18777ab72c936c",
       "python": "3.12.3",
       "seed": 1337,
@@ -2183,8 +2183,8 @@
   "e5_sweep": {
     "experiment": "E5 model sweep",
     "provenance": {
-      "git_sha": "7a1ea0008b57cc36138802e68bd873bdbedd15a6",
-      "timestamp_utc": "2026-10-10T18:31:00+00:00",
+      "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+      "timestamp_utc": "2026-10-10T18:44:30+00:00",
       "config_hash": "0c18777ab72c936c",
       "python": "3.12.3",
       "seed": 1337,
@@ -2353,8 +2353,8 @@
             "cases_answered_by_template_fallback": 0,
             "cases_reaching_llm": 20,
             "latency_ms": {
-              "p50": 2117.3186114987016,
-              "p95": 3184.2124568497884
+              "p50": 2117.548611498702,
+              "p95": 3183.7549568497884
             },
             "cost": {
               "usd_per_100_answers": 0.018245565,
@@ -2532,8 +2532,8 @@
             "cases_answered_by_template_fallback": 0,
             "cases_reaching_llm": 20,
             "latency_ms": {
-              "p50": 6541.323935001146,
-              "p95": 8130.311526201167
+              "p50": 6541.283935001146,
+              "p95": 8126.129026201167
             },
             "cost": {
               "usd_per_100_answers": 0.025715500000000002,
@@ -2709,8 +2709,8 @@
             "cases_answered_by_template_fallback": 0,
             "cases_reaching_llm": 20,
             "latency_ms": {
-              "p50": 5117.235831497937,
-              "p95": 12862.467681350707
+              "p50": 5116.975831497937,
+              "p95": 12862.190681350705
             },
             "cost": {
               "usd_per_100_answers": 0.09622549999999999,
@@ -2888,8 +2888,8 @@
             "cases_answered_by_template_fallback": 0,
             "cases_reaching_llm": 20,
             "latency_ms": {
-              "p50": 10111.306160998407,
-              "p95": 44697.87880345235
+              "p50": 10111.201160998407,
+              "p95": 44697.73780345236
             },
             "cost": {
               "usd_per_100_answers": 0.20689925,
@@ -3055,8 +3055,8 @@
     "E4: over 48 open-access papers / 2379 chunks the best mode is hybrid_rerank (paper-level MRR 1.000)."
   ],
   "provenance": {
-    "git_sha": "7a1ea0008b57cc36138802e68bd873bdbedd15a6",
-    "timestamp_utc": "2026-10-10T18:31:00+00:00",
+    "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+    "timestamp_utc": "2026-10-10T18:44:30+00:00",
     "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337
