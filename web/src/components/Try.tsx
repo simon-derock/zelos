@@ -2,6 +2,8 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { fmt, human, num, sentence } from '../util'
 import { CopyButton, LevelBadge, Reveal, SectionHead } from './common'
+import type { Basis, CultureState, QcExtras, Thresholds } from '../types'
+import { CultureCard, HowDecided, RouteChip, RouteRow, WhyAction } from './Verdict'
 
 /* ------------------------------------------------------------------ config */
 const API: string = ((import.meta.env.VITE_ZELOS_API as string | undefined) ?? '').trim().replace(/\/+$/, '')
@@ -22,13 +24,19 @@ interface ApiCause {
   value?: number
   z?: number
   action?: string
+  route?: string
+  similarity?: number
+  basis?: Basis | null
 }
-interface ApiQC {
+interface ApiQC extends QcExtras {
   tool_call_id: string
   qc_score: number
   level: string
   route?: string
   reference?: string
+  attribution?: string
+  thresholds?: Thresholds
+  culture_state?: CultureState | null
   density_state?: string
   metrics?: Record<string, number>
   zbad?: Record<string, number>
@@ -222,27 +230,21 @@ function causeOf(c: Certificate): { label?: string; note?: string; action?: stri
   return { label: first?.label, note: first?.note, action: first?.action }
 }
 
-const ROUTES: Record<string, string> = {
-  USE: 'Use',
-  REVIEW: 'Review',
-  'RE-IMAGE': 'Re-image',
-  'INSPECT-CHIP': 'Inspect the chip',
-  'RE-EXPORT': 'Re-export the file',
-}
-const routeLabel = (r: string): string => ROUTES[r.toUpperCase()] ?? sentence(r.replace(/-/g, ' '))
-
 function CertificateCard({ c }: { c: Certificate }) {
   const card = c.res.card
   const { label, note, action } = causeOf(c)
   const clean = !label || label === 'NONE'
   const cited = (card.evidence ?? []).filter((e) => e.cited)
   const shown = cited.length ? cited : (card.evidence ?? []).slice(0, 3)
+  const causes = c.qc.causes ?? []
+  const top = causes.find((x) => x.label === label) ?? causes[0]
   return (
     <aside className="cert" aria-label="Certificate">
       <div className="cert-head">
         <span className="cert-title">Certificate</span>
         <LevelBadge level={card.level ?? c.qc.level} />
       </div>
+      <RouteRow route={c.qc.route} />
       <div className="cert-block">
         <p className="k">Primary cause</p>
         <p className="cert-cause">{clean ? 'No issue found' : sentence(label)}</p>
@@ -251,6 +253,7 @@ function CertificateCard({ c }: { c: Certificate }) {
       <div className="cert-block">
         <p className="k">Recommended action</p>
         <p className="cert-action">{clean ? 'No action needed. Keep this image in the dataset.' : action || '—'}</p>
+        {!clean && <WhyAction cause={top} />}
       </div>
       {card.claims && card.claims.length > 0 && (
         <div className="cert-block">
@@ -294,6 +297,7 @@ function CertificateCard({ c }: { c: Certificate }) {
           </ul>
         </div>
       )}
+      <HowDecided qc={c.qc} causes={causes} />
       <p className="cert-disc">{card.disclaimer ?? DISCLAIMER}</p>
     </aside>
   )
@@ -857,6 +861,7 @@ function SingleResult({
             )}
             <div className="viewer-badge">
               <LevelBadge level={lvl} big />
+              {c.qc.route && <RouteChip route={c.qc.route} big />}
             </div>
           </div>
           <div className="stage-meta">
@@ -883,15 +888,9 @@ function SingleResult({
                   <dd>{sentence(c.qc.density_state)}</dd>
                 </div>
               )}
-              {c.qc.route && (
-                <div>
-                  <dt>Route</dt>
-                  <dd>{routeLabel(c.qc.route)}</dd>
-                </div>
-              )}
               <div>
                 <dt>Reference</dt>
-                <dd>Dataset reference set</dd>
+                <dd>{c.qc.reference ?? 'Dataset reference set'}</dd>
               </div>
               <div>
                 <dt>QC call</dt>
@@ -899,6 +898,7 @@ function SingleResult({
               </div>
             </dl>
           </div>
+          <CultureCard state={c.qc.culture_state} />
         </div>
         <CertificateCard c={c} />
       </div>
@@ -1001,7 +1001,7 @@ function SessionResult({
                         <span className="muted">No issue found</span>
                       )}
                     </td>
-                    <td className="try-route">{r.route ? routeLabel(r.route) : '—'}</td>
+                    <td className="try-route">{r.route ? <RouteChip route={r.route} small /> : '—'}</td>
                     <td className="r">
                       {f && (
                         <button type="button" className="try-link" disabled={busy} onClick={() => onCertificate(f)}>

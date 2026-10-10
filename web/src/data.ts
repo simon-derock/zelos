@@ -17,13 +17,24 @@ async function getJson(url: string): Promise<SiteData> {
   return j
 }
 
+/** `?data=name.json` loads another file from data/ (local preview of alternate builds). */
+function overrideName(): string | null {
+  try {
+    const v = new URLSearchParams(window.location.search).get('data')
+    return v && /^[\w.-]+\.json$/.test(v) ? v : null
+  } catch {
+    return null
+  }
+}
+
 export function useSiteData(): Loaded {
   const [state, setState] = useState<Loaded>({ data: null, sample: false, error: null })
   useEffect(() => {
     let alive = true
     ;(async () => {
       try {
-        const d = await getJson('data/site.json')
+        const o = overrideName()
+        const d = await getJson(`data/${o ?? 'site.json'}`)
         if (alive) setState({ data: d, sample: false, error: null })
       } catch {
         try {
