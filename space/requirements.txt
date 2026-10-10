@@ -1,0 +1,15 @@
+# Runtime dependencies of the demo API only (no torch / transformers). Versions match the repository pins.
+numpy==2.5.3
+scipy==1.18.1
+pandas==3.0.6
+scikit-learn==1.9.1
+opencv-python-headless==5.0.0.93
+PyYAML==6.0.3
+rank-bm25==0.2.2
+qdrant-client==1.19.1
+cohere==7.2.0
+requests==2.34.2
+fastapi==0.143.0
+uvicorn==0.54.0
+python-multipart==0.0.32
+pydantic==2.14.0

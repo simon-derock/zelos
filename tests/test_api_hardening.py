@@ -201,3 +201,8 @@ def test_body_limit_aborts_before_parsing(monkeypatch):
     blob = b"\x89PNG\r\n\x1a\n" + b"\x00" * 50_000
     r = _client().post("/api/inspect", files={"file": ("big.png", blob, "image/png")})
     assert r.status_code == 413
+
+
+def test_root_describes_service():
+    body = _client().get("/").json()
+    assert body["name"] == "Zelos" and body["health"] == "/api/health"

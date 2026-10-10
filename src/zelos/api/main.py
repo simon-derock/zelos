@@ -370,6 +370,11 @@ def create_app(env: dict[str, str] | None = None) -> FastAPI:
             raise HTTPException(400, str(e)) from e
         return await work(qc_one, data, _safe_id(file.filename, "upload"))
 
+    @app.get("/")
+    def root() -> dict:
+        return {"name": "Zelos", "docs": "/docs", "health": "/api/health",
+                "note": "Research tool. Not a medical device. No clinical or diagnostic claims."}
+
     @app.get("/api/health")
     def health() -> dict:
         return {"status": "ok", "version": VERSION, "env": mode, "retriever_loaded": bool(retriever.loaded()),

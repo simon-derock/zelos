@@ -1,0 +1,58 @@
+name: Deploy Space
+# Pushes a clean copy of the API to the Hugging Face Space. Skips with a notice when the secrets are not set.
+on:
+  push:
+    branches: [next]
+    paths:
+      - "src/**"
+      - "configs/**"
+      - "corpus/**"
+      - "space/**"
+      - "results/reference.json"
+      - "results/reference_v11.json"
+      - "results/calibration.json"
+      - "results/signatures.json"
+      - "results/rule_citations.json"
+      - ".github/workflows/deploy-space.yml"
+  workflow_dispatch:
+concurrency:
+  group: deploy-space
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HF_SPACE: ${{ secrets.HF_SPACE }}
+    steps:
+      - name: Check configuration
+        id: gate
+        run: |
+          if [ -z "$HF_TOKEN" ] || [ -z "$HF_SPACE" ]; then
+            echo "::notice::Space deploy skipped: set the repository secrets HF_TOKEN and HF_SPACE (owner/name). See docs/SPACE.md."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          elif ! printf '%s' "$HF_SPACE" | grep -Eq '^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$'; then
+            echo "::error::HF_SPACE must look like owner/name"
+            exit 1
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
+      - name: Stage files
+        if: steps.gate.outputs.run == 'true'
+        run: sh space/stage.sh "$RUNNER_TEMP/space"
+      - name: Force-push to the Space
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        working-directory: ${{ runner.temp }}/space
+        run: |
+          git init -q -b main
+          git config user.name "zelos-deploy"
+          git config user.email "deploy@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Deploy ${GITHUB_SHA}"
+          git push --force "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}" main 2>&1 | sed "s/${HF_TOKEN}/***/g"
+          echo "::notice::Deployed to https://huggingface.co/spaces/${HF_SPACE}"

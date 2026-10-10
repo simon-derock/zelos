@@ -1,0 +1,9 @@
+*
+!space/requirements.txt
+!src
+!configs
+!corpus
+!results
+**/__pycache__
+**/*.pyc
+**/*.egg-info
