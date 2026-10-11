@@ -1,0 +1,1111 @@
+{
+ "generated": {
+  "git_sha": "0000000000000000000000000000000000000000",
+  "timestamp_utc": "1970-01-01T00:00:00Z",
+  "config_hash": "placeholder"
+ },
+ "dataset": {
+  "name": "Organ-on-a-Chip (OOC) Image Dataset",
+  "citation": "Movčana et al., Data 9(2):28, 2024",
+  "doi": "10.5281/zenodo.10203721",
+  "license": "CC BY 4.0 (Zenodo) / CC BY-SA (article page)",
+  "n_images_used": 480,
+  "cell_lines": [
+   "A549",
+   "CACO",
+   "HPMEC",
+   "HSAEC",
+   "HUVEC",
+   "NHBE"
+  ]
+ },
+ "samples": [
+  {
+   "id": "sample_001",
+   "cell_line": "A549",
+   "time_bin": "0-1",
+   "expert_label": "good",
+   "thumb": "data/thumbs/sample_001.webp",
+   "variant": "original",
+   "qc": {
+    "tool_call_id": "qc-sample01",
+    "qc_score": 1.2,
+    "level": "PASS",
+    "density_state": "NORMAL",
+    "metrics": {
+     "focus_lapvar_norm": 0.17,
+     "focus_tenengrad_norm": 0.24,
+     "focus_hf_ratio": 0.31,
+     "contrast_rms": 0.38,
+     "contrast_p99_p1": 0.45,
+     "mean_intensity": 0.52,
+     "clip_low_frac": 0.59,
+     "clip_high_frac": 0.66,
+     "illum_flatness": 0.73,
+     "noise_sigma_norm": 0.8,
+     "debris_count": 0.87,
+     "debris_area_frac": 0.94,
+     "bubble_score": 1.01,
+     "jpeg_blockiness": 1.08
+    },
+    "zbad": {
+     "focus_lapvar_norm": 0.2,
+     "focus_tenengrad_norm": 0.2,
+     "focus_hf_ratio": 0.2,
+     "contrast_rms": 0.2,
+     "contrast_p99_p1": 0.2,
+     "mean_intensity": 0.2,
+     "clip_low_frac": 0.2,
+     "clip_high_frac": 0.2,
+     "illum_flatness": 0.2,
+     "noise_sigma_norm": 0.2,
+     "debris_count": 0.2,
+     "debris_area_frac": 0.2,
+     "bubble_score": 0.2,
+     "jpeg_blockiness": 0.2
+    },
+    "percentiles": {
+     "focus_lapvar_norm": 53,
+     "focus_tenengrad_norm": 53,
+     "focus_hf_ratio": 53,
+     "contrast_rms": 53,
+     "contrast_p99_p1": 53,
+     "mean_intensity": 53,
+     "clip_low_frac": 53,
+     "clip_high_frac": 53,
+     "illum_flatness": 53,
+     "noise_sigma_norm": 53,
+     "debris_count": 53,
+     "debris_area_frac": 53,
+     "bubble_score": 53,
+     "jpeg_blockiness": 53
+    },
+    "causes": [],
+    "latency_ms": 86.0
+   },
+   "card": {
+    "level": "PASS",
+    "qc_score": 1.2,
+    "primary_cause": "NONE",
+    "action": "Placeholder: re-run autofocus and re-image this position.",
+    "claims": [
+     "Placeholder supported claim [qc-sample01] [PMC000000::s2::0]",
+     "Placeholder QC score 1.2 [qc-sample01]"
+    ],
+    "blocked": [
+     "Placeholder: this fixes 99% of cases."
+    ],
+    "evidence": [
+     {
+      "chunk_id": "PMC000000::s2::0",
+      "title": "Placeholder literature record on autofocus in organ-on-chip imaging",
+      "url": "https://example.org/placeholder",
+      "license": "CC BY",
+      "excerpt": "Placeholder excerpt: sample text, not a real retrieved passage."
+     }
+    ],
+    "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims."
+   },
+   "ledger": {
+    "claims": [
+     {
+      "claim_id": "c1",
+      "text": "Placeholder: QC score is 1.2 (PASS).",
+      "type": "numeric",
+      "evidence": [
+       "qc-sample01"
+      ],
+      "status": "supported",
+      "reason": "matches qc_metrics output"
+     },
+     {
+      "claim_id": "c2",
+      "text": "Placeholder: primary cause is NONE.",
+      "type": "inference",
+      "evidence": [
+       "qc-sample01"
+      ],
+      "status": "supported",
+      "reason": "derived from cause table"
+     },
+     {
+      "claim_id": "c3",
+      "text": "Placeholder: a cited passage supports re-running autofocus.",
+      "type": "literature",
+      "evidence": [
+       "PMC000000::s2::0"
+      ],
+      "status": "supported",
+      "reason": "passage entails claim"
+     },
+     {
+      "claim_id": "c4",
+      "text": "Placeholder: this fixes 99% of cases.",
+      "type": "numeric",
+      "evidence": [],
+      "status": "unsupported",
+      "reason": "number not found in any tool output"
+     }
+    ],
+    "n_supported": 3,
+    "n_unsupported": 1,
+    "grounded_rate": 0.75
+   },
+   "ungated_draft": [
+    {
+     "text": "Placeholder: QC score is 1.2 (PASS).",
+     "type": "numeric",
+     "evidence": [
+      "qc-sample01"
+     ]
+    },
+    {
+     "text": "Placeholder: primary cause is NONE.",
+     "type": "inference",
+     "evidence": [
+      "qc-sample01"
+     ]
+    },
+    {
+     "text": "Placeholder: a cited passage supports re-running autofocus.",
+     "type": "literature",
+     "evidence": [
+      "PMC000000::s2::0"
+     ]
+    },
+    {
+     "text": "Placeholder: this fixes 99% of cases.",
+     "type": "numeric",
+     "evidence": []
+    }
+   ],
+   "trace": [
+    {
+     "step": 1,
+     "tool": "qc_metrics",
+     "latency_ms": 80.1,
+     "tokens": 0
+    },
+    {
+     "step": 2,
+     "tool": "cause_table",
+     "latency_ms": 0.4,
+     "tokens": 0
+    },
+    {
+     "step": 3,
+     "tool": "retrieve_evidence",
+     "latency_ms": 12.3,
+     "tokens": 0
+    },
+    {
+     "step": 4,
+     "tool": "llm_explainer",
+     "latency_ms": 1250.0,
+     "tokens": 1100
+    },
+    {
+     "step": 5,
+     "tool": "grounding_gate",
+     "latency_ms": 3.2,
+     "tokens": 0
+    }
+   ],
+   "usage": {
+    "llm_calls": 2,
+    "prompt_tokens": 900,
+    "completion_tokens": 200
+   }
+  },
+  {
+   "id": "sample_002",
+   "cell_line": "HUVEC",
+   "time_bin": "24-48",
+   "expert_label": "bad",
+   "thumb": "data/thumbs/sample_002.webp",
+   "variant": "original",
+   "qc": {
+    "tool_call_id": "qc-sample02",
+    "qc_score": 4.2,
+    "level": "REVIEW",
+    "density_state": "NORMAL",
+    "metrics": {
+     "focus_lapvar_norm": 0.17,
+     "focus_tenengrad_norm": 0.24,
+     "focus_hf_ratio": 0.31,
+     "contrast_rms": 0.38,
+     "contrast_p99_p1": 0.45,
+     "mean_intensity": 0.52,
+     "clip_low_frac": 0.59,
+     "clip_high_frac": 0.66,
+     "illum_flatness": 0.73,
+     "noise_sigma_norm": 0.8,
+     "debris_count": 0.87,
+     "debris_area_frac": 0.94,
+     "bubble_score": 1.01,
+     "jpeg_blockiness": 1.08
+    },
+    "zbad": {
+     "focus_lapvar_norm": 4.2,
+     "focus_tenengrad_norm": 0.2,
+     "focus_hf_ratio": 3.1,
+     "contrast_rms": 0.2,
+     "contrast_p99_p1": 0.2,
+     "mean_intensity": 0.2,
+     "clip_low_frac": 0.2,
+     "clip_high_frac": 0.2,
+     "illum_flatness": 0.2,
+     "noise_sigma_norm": 0.2,
+     "debris_count": 0.2,
+     "debris_area_frac": 0.2,
+     "bubble_score": 0.2,
+     "jpeg_blockiness": 0.2
+    },
+    "percentiles": {
+     "focus_lapvar_norm": 99,
+     "focus_tenengrad_norm": 53,
+     "focus_hf_ratio": 93,
+     "contrast_rms": 53,
+     "contrast_p99_p1": 53,
+     "mean_intensity": 53,
+     "clip_low_frac": 53,
+     "clip_high_frac": 53,
+     "illum_flatness": 53,
+     "noise_sigma_norm": 53,
+     "debris_count": 53,
+     "debris_area_frac": 53,
+     "bubble_score": 53,
+     "jpeg_blockiness": 53
+    },
+    "causes": [
+     {
+      "label": "DEFOCUS_OR_BLUR",
+      "note": "placeholder cause note",
+      "metric": "focus_lapvar_norm",
+      "value": 0.41,
+      "z": 4.2,
+      "action": "Placeholder: re-run autofocus and re-image this position."
+     }
+    ],
+    "latency_ms": 87.0
+   },
+   "card": {
+    "level": "REVIEW",
+    "qc_score": 4.2,
+    "primary_cause": "DEFOCUS_OR_BLUR",
+    "action": "Placeholder: re-run autofocus and re-image this position.",
+    "claims": [
+     "Placeholder supported claim [qc-sample02] [PMC000000::s2::0]",
+     "Placeholder QC score 4.2 [qc-sample02]"
+    ],
+    "blocked": [
+     "Placeholder: this fixes 99% of cases."
+    ],
+    "evidence": [
+     {
+      "chunk_id": "PMC000000::s2::0",
+      "title": "Placeholder literature record on autofocus in organ-on-chip imaging",
+      "url": "https://example.org/placeholder",
+      "license": "CC BY",
+      "excerpt": "Placeholder excerpt: sample text, not a real retrieved passage."
+     }
+    ],
+    "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims."
+   },
+   "ledger": {
+    "claims": [
+     {
+      "claim_id": "c1",
+      "text": "Placeholder: QC score is 4.2 (REVIEW).",
+      "type": "numeric",
+      "evidence": [
+       "qc-sample02"
+      ],
+      "status": "supported",
+      "reason": "matches qc_metrics output"
+     },
+     {
+      "claim_id": "c2",
+      "text": "Placeholder: primary cause is DEFOCUS_OR_BLUR.",
+      "type": "inference",
+      "evidence": [
+       "qc-sample02"
+      ],
+      "status": "supported",
+      "reason": "derived from cause table"
+     },
+     {
+      "claim_id": "c3",
+      "text": "Placeholder: a cited passage supports re-running autofocus.",
+      "type": "literature",
+      "evidence": [
+       "PMC000000::s2::0"
+      ],
+      "status": "supported",
+      "reason": "passage entails claim"
+     },
+     {
+      "claim_id": "c4",
+      "text": "Placeholder: this fixes 99% of cases.",
+      "type": "numeric",
+      "evidence": [],
+      "status": "unsupported",
+      "reason": "number not found in any tool output"
+     }
+    ],
+    "n_supported": 3,
+    "n_unsupported": 1,
+    "grounded_rate": 0.75
+   },
+   "ungated_draft": [
+    {
+     "text": "Placeholder: QC score is 4.2 (REVIEW).",
+     "type": "numeric",
+     "evidence": [
+      "qc-sample02"
+     ]
+    },
+    {
+     "text": "Placeholder: primary cause is DEFOCUS_OR_BLUR.",
+     "type": "inference",
+     "evidence": [
+      "qc-sample02"
+     ]
+    },
+    {
+     "text": "Placeholder: a cited passage supports re-running autofocus.",
+     "type": "literature",
+     "evidence": [
+      "PMC000000::s2::0"
+     ]
+    },
+    {
+     "text": "Placeholder: this fixes 99% of cases.",
+     "type": "numeric",
+     "evidence": []
+    }
+   ],
+   "trace": [
+    {
+     "step": 1,
+     "tool": "qc_metrics",
+     "latency_ms": 80.1,
+     "tokens": 0
+    },
+    {
+     "step": 2,
+     "tool": "cause_table",
+     "latency_ms": 0.4,
+     "tokens": 0
+    },
+    {
+     "step": 3,
+     "tool": "retrieve_evidence",
+     "latency_ms": 12.3,
+     "tokens": 0
+    },
+    {
+     "step": 4,
+     "tool": "llm_explainer",
+     "latency_ms": 1250.0,
+     "tokens": 1100
+    },
+    {
+     "step": 5,
+     "tool": "grounding_gate",
+     "latency_ms": 3.2,
+     "tokens": 0
+    }
+   ],
+   "usage": {
+    "llm_calls": 2,
+    "prompt_tokens": 900,
+    "completion_tokens": 200
+   }
+  },
+  {
+   "id": "sample_003",
+   "cell_line": "CACO",
+   "time_bin": "0-1",
+   "expert_label": "bad",
+   "thumb": "data/thumbs/sample_003.webp",
+   "variant": "corrupted:gaussian_noise:4",
+   "qc": {
+    "tool_call_id": "qc-sample03",
+    "qc_score": 8.7,
+    "level": "FAIL",
+    "density_state": "NORMAL",
+    "metrics": {
+     "focus_lapvar_norm": 0.17,
+     "focus_tenengrad_norm": 0.24,
+     "focus_hf_ratio": 0.31,
+     "contrast_rms": 0.38,
+     "contrast_p99_p1": 0.45,
+     "mean_intensity": 0.52,
+     "clip_low_frac": 0.59,
+     "clip_high_frac": 0.66,
+     "illum_flatness": 0.73,
+     "noise_sigma_norm": 0.8,
+     "debris_count": 0.87,
+     "debris_area_frac": 0.94,
+     "bubble_score": 1.01,
+     "jpeg_blockiness": 1.08
+    },
+    "zbad": {
+     "focus_lapvar_norm": 0.2,
+     "focus_tenengrad_norm": 0.2,
+     "focus_hf_ratio": 0.2,
+     "contrast_rms": 2.2,
+     "contrast_p99_p1": 0.2,
+     "mean_intensity": 0.2,
+     "clip_low_frac": 0.2,
+     "clip_high_frac": 0.2,
+     "illum_flatness": 0.2,
+     "noise_sigma_norm": 8.7,
+     "debris_count": 0.2,
+     "debris_area_frac": 0.2,
+     "bubble_score": 0.2,
+     "jpeg_blockiness": 0.2
+    },
+    "percentiles": {
+     "focus_lapvar_norm": 53,
+     "focus_tenengrad_norm": 53,
+     "focus_hf_ratio": 53,
+     "contrast_rms": 81,
+     "contrast_p99_p1": 53,
+     "mean_intensity": 53,
+     "clip_low_frac": 53,
+     "clip_high_frac": 53,
+     "illum_flatness": 53,
+     "noise_sigma_norm": 99,
+     "debris_count": 53,
+     "debris_area_frac": 53,
+     "bubble_score": 53,
+     "jpeg_blockiness": 53
+    },
+    "causes": [
+     {
+      "label": "NOISE",
+      "note": "placeholder cause note",
+      "metric": "focus_lapvar_norm",
+      "value": 0.41,
+      "z": 0.2,
+      "action": "Placeholder: re-run autofocus and re-image this position."
+     }
+    ],
+    "latency_ms": 88.0
+   },
+   "card": {
+    "level": "FAIL",
+    "qc_score": 8.7,
+    "primary_cause": "NOISE",
+    "action": "Placeholder: re-run autofocus and re-image this position.",
+    "claims": [
+     "Placeholder supported claim [qc-sample03] [PMC000000::s2::0]",
+     "Placeholder QC score 8.7 [qc-sample03]"
+    ],
+    "blocked": [
+     "Placeholder: this fixes 99% of cases."
+    ],
+    "evidence": [
+     {
+      "chunk_id": "PMC000000::s2::0",
+      "title": "Placeholder literature record on autofocus in organ-on-chip imaging",
+      "url": "https://example.org/placeholder",
+      "license": "CC BY",
+      "excerpt": "Placeholder excerpt: sample text, not a real retrieved passage."
+     }
+    ],
+    "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims."
+   },
+   "ledger": {
+    "claims": [
+     {
+      "claim_id": "c1",
+      "text": "Placeholder: QC score is 8.7 (FAIL).",
+      "type": "numeric",
+      "evidence": [
+       "qc-sample03"
+      ],
+      "status": "supported",
+      "reason": "matches qc_metrics output"
+     },
+     {
+      "claim_id": "c2",
+      "text": "Placeholder: primary cause is NOISE.",
+      "type": "inference",
+      "evidence": [
+       "qc-sample03"
+      ],
+      "status": "supported",
+      "reason": "derived from cause table"
+     },
+     {
+      "claim_id": "c3",
+      "text": "Placeholder: a cited passage supports re-running autofocus.",
+      "type": "literature",
+      "evidence": [
+       "PMC000000::s2::0"
+      ],
+      "status": "supported",
+      "reason": "passage entails claim"
+     },
+     {
+      "claim_id": "c4",
+      "text": "Placeholder: this fixes 99% of cases.",
+      "type": "numeric",
+      "evidence": [],
+      "status": "unsupported",
+      "reason": "number not found in any tool output"
+     }
+    ],
+    "n_supported": 3,
+    "n_unsupported": 1,
+    "grounded_rate": 0.75
+   },
+   "ungated_draft": [
+    {
+     "text": "Placeholder: QC score is 8.7 (FAIL).",
+     "type": "numeric",
+     "evidence": [
+      "qc-sample03"
+     ]
+    },
+    {
+     "text": "Placeholder: primary cause is NOISE.",
+     "type": "inference",
+     "evidence": [
+      "qc-sample03"
+     ]
+    },
+    {
+     "text": "Placeholder: a cited passage supports re-running autofocus.",
+     "type": "literature",
+     "evidence": [
+      "PMC000000::s2::0"
+     ]
+    },
+    {
+     "text": "Placeholder: this fixes 99% of cases.",
+     "type": "numeric",
+     "evidence": []
+    }
+   ],
+   "trace": [
+    {
+     "step": 1,
+     "tool": "qc_metrics",
+     "latency_ms": 80.1,
+     "tokens": 0
+    },
+    {
+     "step": 2,
+     "tool": "cause_table",
+     "latency_ms": 0.4,
+     "tokens": 0
+    },
+    {
+     "step": 3,
+     "tool": "retrieve_evidence",
+     "latency_ms": 12.3,
+     "tokens": 0
+    },
+    {
+     "step": 4,
+     "tool": "llm_explainer",
+     "latency_ms": 1250.0,
+     "tokens": 1100
+    },
+    {
+     "step": 5,
+     "tool": "grounding_gate",
+     "latency_ms": 3.2,
+     "tokens": 0
+    }
+   ],
+   "usage": {
+    "llm_calls": 2,
+    "prompt_tokens": 900,
+    "completion_tokens": 200
+   }
+  },
+  {
+   "id": "sample_004",
+   "cell_line": "HPMEC",
+   "time_bin": "48-72",
+   "expert_label": "good",
+   "thumb": "data/thumbs/sample_004.webp",
+   "variant": "corrupted:underexpose:3",
+   "qc": {
+    "tool_call_id": "qc-sample04",
+    "qc_score": 5.1,
+    "level": "REVIEW",
+    "density_state": "NORMAL",
+    "metrics": {
+     "focus_lapvar_norm": 0.17,
+     "focus_tenengrad_norm": 0.24,
+     "focus_hf_ratio": 0.31,
+     "contrast_rms": 0.38,
+     "contrast_p99_p1": 0.45,
+     "mean_intensity": 0.52,
+     "clip_low_frac": 0.59,
+     "clip_high_frac": 0.66,
+     "illum_flatness": 0.73,
+     "noise_sigma_norm": 0.8,
+     "debris_count": 0.87,
+     "debris_area_frac": 0.94,
+     "bubble_score": 1.01,
+     "jpeg_blockiness": 1.08
+    },
+    "zbad": {
+     "focus_lapvar_norm": 0.2,
+     "focus_tenengrad_norm": 0.2,
+     "focus_hf_ratio": 0.2,
+     "contrast_rms": 0.2,
+     "contrast_p99_p1": 0.2,
+     "mean_intensity": 5.1,
+     "clip_low_frac": 3.4,
+     "clip_high_frac": 0.2,
+     "illum_flatness": 0.2,
+     "noise_sigma_norm": 0.2,
+     "debris_count": 0.2,
+     "debris_area_frac": 0.2,
+     "bubble_score": 0.2,
+     "jpeg_blockiness": 0.2
+    },
+    "percentiles": {
+     "focus_lapvar_norm": 53,
+     "focus_tenengrad_norm": 53,
+     "focus_hf_ratio": 53,
+     "contrast_rms": 53,
+     "contrast_p99_p1": 53,
+     "mean_intensity": 99,
+     "clip_low_frac": 98,
+     "clip_high_frac": 53,
+     "illum_flatness": 53,
+     "noise_sigma_norm": 53,
+     "debris_count": 53,
+     "debris_area_frac": 53,
+     "bubble_score": 53,
+     "jpeg_blockiness": 53
+    },
+    "causes": [
+     {
+      "label": "UNDER_EXPOSED",
+      "note": "placeholder cause note",
+      "metric": "focus_lapvar_norm",
+      "value": 0.41,
+      "z": 0.2,
+      "action": "Placeholder: re-run autofocus and re-image this position."
+     }
+    ],
+    "latency_ms": 89.0
+   },
+   "card": {
+    "level": "REVIEW",
+    "qc_score": 5.1,
+    "primary_cause": "UNDER_EXPOSED",
+    "action": "Placeholder: re-run autofocus and re-image this position.",
+    "claims": [
+     "Placeholder supported claim [qc-sample04] [PMC000000::s2::0]",
+     "Placeholder QC score 5.1 [qc-sample04]"
+    ],
+    "blocked": [
+     "Placeholder: this fixes 99% of cases."
+    ],
+    "evidence": [
+     {
+      "chunk_id": "PMC000000::s2::0",
+      "title": "Placeholder literature record on autofocus in organ-on-chip imaging",
+      "url": "https://example.org/placeholder",
+      "license": "CC BY",
+      "excerpt": "Placeholder excerpt: sample text, not a real retrieved passage."
+     }
+    ],
+    "disclaimer": "Research tool. Not a medical device. No clinical or diagnostic claims."
+   },
+   "ledger": {
+    "claims": [
+     {
+      "claim_id": "c1",
+      "text": "Placeholder: QC score is 5.1 (REVIEW).",
+      "type": "numeric",
+      "evidence": [
+       "qc-sample04"
+      ],
+      "status": "supported",
+      "reason": "matches qc_metrics output"
+     },
+     {
+      "claim_id": "c2",
+      "text": "Placeholder: primary cause is UNDER_EXPOSED.",
+      "type": "inference",
+      "evidence": [
+       "qc-sample04"
+      ],
+      "status": "supported",
+      "reason": "derived from cause table"
+     },
+     {
+      "claim_id": "c3",
+      "text": "Placeholder: a cited passage supports re-running autofocus.",
+      "type": "literature",
+      "evidence": [
+       "PMC000000::s2::0"
+      ],
+      "status": "supported",
+      "reason": "passage entails claim"
+     },
+     {
+      "claim_id": "c4",
+      "text": "Placeholder: this fixes 99% of cases.",
+      "type": "numeric",
+      "evidence": [],
+      "status": "unsupported",
+      "reason": "number not found in any tool output"
+     }
+    ],
+    "n_supported": 3,
+    "n_unsupported": 1,
+    "grounded_rate": 0.75
+   },
+   "ungated_draft": [
+    {
+     "text": "Placeholder: QC score is 5.1 (REVIEW).",
+     "type": "numeric",
+     "evidence": [
+      "qc-sample04"
+     ]
+    },
+    {
+     "text": "Placeholder: primary cause is UNDER_EXPOSED.",
+     "type": "inference",
+     "evidence": [
+      "qc-sample04"
+     ]
+    },
+    {
+     "text": "Placeholder: a cited passage supports re-running autofocus.",
+     "type": "literature",
+     "evidence": [
+      "PMC000000::s2::0"
+     ]
+    },
+    {
+     "text": "Placeholder: this fixes 99% of cases.",
+     "type": "numeric",
+     "evidence": []
+    }
+   ],
+   "trace": [
+    {
+     "step": 1,
+     "tool": "qc_metrics",
+     "latency_ms": 80.1,
+     "tokens": 0
+    },
+    {
+     "step": 2,
+     "tool": "cause_table",
+     "latency_ms": 0.4,
+     "tokens": 0
+    },
+    {
+     "step": 3,
+     "tool": "retrieve_evidence",
+     "latency_ms": 12.3,
+     "tokens": 0
+    },
+    {
+     "step": 4,
+     "tool": "llm_explainer",
+     "latency_ms": 1250.0,
+     "tokens": 1100
+    },
+    {
+     "step": 5,
+     "tool": "grounding_gate",
+     "latency_ms": 3.2,
+     "tokens": 0
+    }
+   ],
+   "usage": {
+    "llm_calls": 2,
+    "prompt_tokens": 900,
+    "completion_tokens": 200
+   }
+  }
+ ],
+ "results": {
+  "e1": {
+   "n_images": 60,
+   "clean_flag_rate": 0.5,
+   "overall": {
+    "detection_rate_sev3plus": 0.5,
+    "attribution_acc_detected": 0.5,
+    "attribution_top2_detected": 0.5,
+    "auroc_clean_vs_sev3plus": 0.5,
+    "auroc_focus_only": 0.5,
+    "attribution_random_baseline": 0.111
+   },
+   "per_kind": {
+    "gaussian_blur": {
+     "expected_label": "DEFOCUS_OR_BLUR",
+     "auroc_clean_vs_sev3plus": 0.5,
+     "attribution_acc_detected": 0.5,
+     "n": 300,
+     "detection_rate_by_severity": {
+      "1": 0.5,
+      "2": 0.5,
+      "3": 0.5,
+      "4": 0.5,
+      "5": 0.5
+     }
+    },
+    "gaussian_noise": {
+     "expected_label": "NOISE",
+     "auroc_clean_vs_sev3plus": 0.5,
+     "attribution_acc_detected": 0.5,
+     "n": 300,
+     "detection_rate_by_severity": {
+      "1": 0.5,
+      "2": 0.5,
+      "3": 0.5,
+      "4": 0.5,
+      "5": 0.5
+     }
+    },
+    "illumination": {
+     "expected_label": "UNEVEN_ILLUMINATION",
+     "auroc_clean_vs_sev3plus": 0.5,
+     "attribution_acc_detected": 0.5,
+     "n": 300,
+     "detection_rate_by_severity": {
+      "1": 0.5,
+      "2": 0.5,
+      "3": 0.5,
+      "4": 0.5,
+      "5": 0.5
+     }
+    },
+    "contrast": {
+     "expected_label": "LOW_CONTRAST",
+     "auroc_clean_vs_sev3plus": 0.5,
+     "attribution_acc_detected": 0.5,
+     "n": 300,
+     "detection_rate_by_severity": {
+      "1": 0.5,
+      "2": 0.5,
+      "3": 0.5,
+      "4": 0.5,
+      "5": 0.5
+     }
+    },
+    "overexpose": {
+     "expected_label": "OVER_EXPOSED",
+     "auroc_clean_vs_sev3plus": 0.5,
+     "attribution_acc_detected": 0.5,
+     "n": 300,
+     "detection_rate_by_severity": {
+      "1": 0.5,
+      "2": 0.5,
+      "3": 0.5,
+      "4": 0.5,
+      "5": 0.5
+     }
+    },
+    "underexpose": {
+     "expected_label": "UNDER_EXPOSED",
+     "auroc_clean_vs_sev3plus": 0.5,
+     "attribution_acc_detected": 0.5,
+     "n": 300,
+     "detection_rate_by_severity": {
+      "1": 0.5,
+      "2": 0.5,
+      "3": 0.5,
+      "4": 0.5,
+      "5": 0.5
+     }
+    },
+    "debris": {
+     "expected_label": "DEBRIS",
+     "auroc_clean_vs_sev3plus": 0.5,
+     "attribution_acc_detected": 0.5,
+     "n": 300,
+     "detection_rate_by_severity": {
+      "1": 0.5,
+      "2": 0.5,
+      "3": 0.5,
+      "4": 0.5,
+      "5": 0.5
+     }
+    },
+    "bubble": {
+     "expected_label": "BUBBLE",
+     "auroc_clean_vs_sev3plus": 0.5,
+     "attribution_acc_detected": 0.5,
+     "n": 300,
+     "detection_rate_by_severity": {
+      "1": 0.5,
+      "2": 0.5,
+      "3": 0.5,
+      "4": 0.5,
+      "5": 0.5
+     }
+    },
+    "jpeg": {
+     "expected_label": "COMPRESSION",
+     "auroc_clean_vs_sev3plus": 0.5,
+     "attribution_acc_detected": 0.5,
+     "n": 300,
+     "detection_rate_by_severity": {
+      "1": 0.5,
+      "2": 0.5,
+      "3": 0.5,
+      "4": 0.5,
+      "5": 0.5
+     }
+    }
+   },
+   "threshold_sweep": {
+    "2.0": {
+     "clean_flag_rate": 0.5,
+     "sev3plus_detection_rate": 0.5
+    },
+    "3.0": {
+     "clean_flag_rate": 0.5,
+     "sev3plus_detection_rate": 0.5
+    }
+   }
+  },
+  "e2": {
+   "n_test": 0,
+   "detectors": {
+    "zelos_qc_score": {
+     "auroc": 0.5,
+     "auroc_ci95": [
+      0.4,
+      0.6
+     ]
+    },
+    "focus_only": {
+     "auroc": 0.5,
+     "auroc_ci95": [
+      0.4,
+      0.6
+     ]
+    },
+    "random": {
+     "auroc": 0.5,
+     "auroc_ci95": [
+      0.4,
+      0.6
+     ]
+    },
+    "knn_handcrafted_k15": {
+     "auroc": 0.5,
+     "auroc_ci95": [
+      0.4,
+      0.6
+     ]
+    }
+   }
+  },
+  "e4": {
+   "modes": {
+    "bm25": {
+     "recall@5": 0.5,
+     "mrr": 0.5
+    },
+    "hybrid": {
+     "recall@5": 0.5,
+     "mrr": 0.5
+    }
+   },
+   "n_queries": 0
+  },
+  "e5": {
+   "conditions": {
+    "template": {
+     "n_cases": 38,
+     "grounded_claim_rate": {
+      "k": 0,
+      "n": 0,
+      "rate": 0.5,
+      "ci95": [
+       0.4,
+       0.6
+      ]
+     },
+     "unsupported_claim_rate_in_output": {
+      "k": 0,
+      "n": 0,
+      "rate": 0.5,
+      "ci95": [
+       0.4,
+       0.6
+      ]
+     },
+     "tokens_per_answer": 0.0,
+     "latency_ms_p50": 0.0
+    },
+    "llm_ungated": {
+     "n_cases": 38,
+     "grounded_claim_rate": {
+      "k": 0,
+      "n": 0,
+      "rate": 0.5,
+      "ci95": [
+       0.4,
+       0.6
+      ]
+     },
+     "unsupported_claim_rate_in_output": {
+      "k": 0,
+      "n": 0,
+      "rate": 0.5,
+      "ci95": [
+       0.4,
+       0.6
+      ]
+     },
+     "tokens_per_answer": 0.0,
+     "latency_ms_p50": 0.0
+    },
+    "llm_gated": {
+     "n_cases": 38,
+     "grounded_claim_rate": {
+      "k": 0,
+      "n": 0,
+      "rate": 0.5,
+      "ci95": [
+       0.4,
+       0.6
+      ]
+     },
+     "unsupported_claim_rate_in_output": {
+      "k": 0,
+      "n": 0,
+      "rate": 0.5,
+      "ci95": [
+       0.4,
+       0.6
+      ]
+     },
+     "tokens_per_answer": 0.0,
+     "latency_ms_p50": 0.0
+    }
+   }
+  },
+  "e9": {
+   "inspect_ms_p50": 0,
+   "inspect_ms_p95": 0,
+   "metrics_ms_p50": 0,
+   "metrics_ms_p95": 0,
+   "n": 0
+  },
+  "findings": [
+   "Placeholder finding shown only in sample data."
+  ]
+ }
+}

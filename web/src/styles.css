@@ -558,6 +558,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;b
 /* ---------- v1.1 preview ---------- */
 .pill-ver { background: #e7f0fb; color: #174f93; border: 1px solid rgba(23, 79, 147, 0.2); }
 .hero-inner > .pill-ver { margin: 0 0 18px; padding: 5px 14px; font-size: 13px; text-align: center; }
+.pill-ver a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .foot-version { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--ink-2); max-width: 90ch; }
 
 /* route chip: what to do next */

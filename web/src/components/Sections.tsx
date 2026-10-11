@@ -149,7 +149,7 @@ export function Footer({ data }: { data: SiteData | null }) {
               {data.meta.submitted_version ?? 'v1.0-submission'}
             </a>
             ). This page is the v{data.meta.version} preview{data.meta.branch ? `, branch ${data.meta.branch}` : ''}, built after the
-            submission deadline.
+            submission deadline. The page as submitted is kept unchanged at <a href="/v1.0/">/v1.0/</a>.
           </p>
         )}
       </div>
