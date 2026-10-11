@@ -7,6 +7,8 @@ import { CultureCard, HowDecided, RouteChip, RouteRow, WhyAction } from './Verdi
 
 /* ------------------------------------------------------------------ config */
 const API: string = ((import.meta.env.VITE_ZELOS_API as string | undefined) ?? '').trim().replace(/\/+$/, '')
+/** Hosted builds show the upload section only when a demo server is configured; local dev always shows it. */
+export const TRY_AVAILABLE = API.length > 0 || import.meta.env.DEV
 const MAX_BYTES = 25 * 1024 * 1024
 const MAX_FILES = 12
 const MIN_SESSION = 4

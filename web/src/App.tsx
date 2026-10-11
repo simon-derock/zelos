@@ -5,9 +5,9 @@ import { Hero } from './components/Hero'
 import { Problem, Pipeline, Reproduce, Footer, Proof, Domain } from './components/Sections'
 import { Console } from './components/Console'
 import { Benchmarks } from './components/Benchmarks'
-import { Try } from './components/Try'
+import { Try, TRY_AVAILABLE } from './components/Try'
 
-const LINKS = [
+const ALL_LINKS = [
   ['problem', 'Problem'],
   ['how', 'How it works'],
   ['console', 'Console'],
@@ -15,6 +15,7 @@ const LINKS = [
   ['benchmarks', 'Benchmarks'],
   ['reproduce', 'Reproduce'],
 ] as const
+const LINKS = ALL_LINKS.filter(([id]) => id !== 'try' || TRY_AVAILABLE)
 
 function Nav({ sample, meta }: { sample: boolean; meta?: Meta }) {
   const [scrolled, setScrolled] = useState(false)
@@ -78,7 +79,7 @@ export default function App() {
         {data ? (
           <>
             <Console data={data} />
-            <Try />
+            {TRY_AVAILABLE && <Try />}
             <Benchmarks data={data} />
           </>
         ) : (
@@ -90,7 +91,7 @@ export default function App() {
             </div>
           </section>
         )}
-        {!data && <Try />}
+        {!data && TRY_AVAILABLE && <Try />}
         <Reproduce />
       </main>
       <Footer data={data} />
