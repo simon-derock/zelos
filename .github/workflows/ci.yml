@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with: {python-version: "3.12", cache: pip}
       - run: pip install -r requirements.txt -r requirements-dev.txt && pip install -e .
       - run: ruff check src tests scripts evaluate.py
@@ -30,7 +30,7 @@ jobs:
         python: ["3.12"]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with: {python-version: "${{ matrix.python }}", cache: pip}
       - run: pip install -r requirements.txt -r requirements-dev.txt && pip install -e .
       - name: pytest (offline, no secrets)
@@ -45,7 +45,7 @@ jobs:
     needs: test
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with: {python-version: "3.12", cache: pip}
       - run: pip install -r requirements.txt -r requirements-dev.txt && pip install -e .
       - env: {ZELOS_LLM_MODE: replay}
