@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"Autofocus routines that maximise the local variance of the Laplacian are used to keep microfluidic chips in focus during time‑lapse brightfield imaging.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE1::s1::0\"]\n    },\n    {\n      \"text\": \"Flat‑field correction with a blank reference image removes vignetting and improves the accuracy of intensity‑based measurements in brightfield microscopy of microfluidic devices.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE3::s1::0\"]\n    },\n    {\n      \"text\": \"Air bubbles trapped in microfluidic channels disturb flow and shear stress, potentially damaging the cell layer, so their presence must be monitored and mitigated.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE2::s1::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 552,
+  "completion_tokens": 335
+ },
+ "latency_ms": 6074.684024999442,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 40.40443801879883
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

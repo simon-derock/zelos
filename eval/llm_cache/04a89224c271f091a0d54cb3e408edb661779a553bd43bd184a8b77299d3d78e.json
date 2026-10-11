@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"Uneven illumination in brightfield imaging produces vignetting that biases intensity-based measurements [FIXTURE3::s1::0].\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]}]}",
+ "usage": {
+  "prompt_tokens": 407,
+  "completion_tokens": 57
+ },
+ "latency_ms": 1710.5072119993565,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 3.7999985218048096
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

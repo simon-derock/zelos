@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-a7ebe5af\"]\n    },\n    {\n      \"text\": \"The primary cause of failure is DEBRIS, indicated by a debris count of 251.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-a7ebe5af\"]\n    },\n    {\n      \"text\": \"The recommended action for the debris issue is to inspect the channel and optics for particulates and clean or exclude the affected regions.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-a7ebe5af\"]\n    },\n    {\n      \"text\": \"Uneven illumination is also flagged, with an illumination flatness metric of 3.1846 (z‑score 9.107).\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-a7ebe5af\"]\n    },\n    {\n      \"text\": \"To correct uneven illumination, flat‑field correction or re‑alignment of the condenser (Köhler illumination) should be applied before analysis.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-a7ebe5af\"]\n    },\n    {\n      \"text\": \"Literature shows that flat‑field correction is a standard method to mitigate uneven illumination artifacts in microscopy images.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC12779969::s1::2\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1834,
+  "completion_tokens": 367
+ },
+ "latency_ms": 3143.129903000954,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 83.3769302368164
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

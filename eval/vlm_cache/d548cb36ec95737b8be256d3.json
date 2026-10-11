@@ -1,0 +1,1 @@
+{"text": "{\"verdict\":\"good\",\"reason\":\"in focus, evenly lit, not saturated, no bubbles or debris\"}", "usage": {"prompt_tokens": 1084, "completion_tokens": 23, "total_tokens": 1107, "prompt_tokens_details": {"cached_tokens": 0}, "neurons": 28.384546279907227}, "latency_s": 2.19}

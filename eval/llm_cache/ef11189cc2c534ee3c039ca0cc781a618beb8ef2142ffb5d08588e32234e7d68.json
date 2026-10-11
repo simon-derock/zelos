@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The image quality control result for image 220606_5 is FAIL [qc-ff23f215].\", \"type\": \"numeric\", \"evidence\": [\"qc-ff23f215\"]}, {\"text\": \"The main cause of failure is LOW_CONTRAST with a contrast_p99_p1 value of 0.4637255370616913 [qc-ff23f215].\", \"type\": \"numeric\", \"evidence\": [\"qc-ff23f215\"]}, {\"text\": \"To address the low contrast, it is recommended to adjust the condenser aperture or exposure to recover contrast, then re-image [qc-ff23f215].\", \"type\": \"inference\", \"evidence\": [\"qc-ff23f215\"]}, {\"text\": \"Compression artifacts were also identified with a jpeg_blockiness value of 1.2086784839630127 [qc-ff23f215].\", \"type\": \"numeric\", \"evidence\": [\"qc-ff23f215\"]}, {\"text\": \"To resolve compression issues, re-export the image in a lossless format such as PNG or TIFF before quantitative analysis [qc-ff23f215].\", \"type\": \"inference\", \"evidence\": [\"qc-ff23f215\"]}, {\"text\": \"Transillumination methods like brightfield imaging offer the advantage of not requiring sample labeling [PMC8879989::s2::1].\", \"type\": \"literature\", \"evidence\": [\"PMC8879989::s2::1\"]}]}",
+ "usage": {
+  "prompt_tokens": 1894,
+  "completion_tokens": 383
+ },
+ "latency_ms": 7619.226036000327,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 27.66363525390625
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

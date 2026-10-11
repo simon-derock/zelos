@@ -1,0 +1,25 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL with a qc_score of 7.785.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-21fcfd17\"\n      ]\n    },\n    {\n      \"text\": \"The primary cause of failure is COMPRESSION, triggered by a jpeg_blockiness value of 1.1545 with a z-score of 7.785.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-21fcfd17\"\n      ]\n    },\n    {\n      \"text\": \"A secondary cause is LOW_CONTRAST, indicated by a contrast_p99_p1 value of 0.7294 and a z-score of 5.558.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-21fcfd17\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action is to re-export the image in a lossless format such as PNG or TIFF before quantitative analysis.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-21fcfd17\"\n      ]\n    },\n    {\n      \"text\": \"Brightfield imaging is commonly used in organ-on-a-chip platforms due to its simple operation principles and ability to image cells in situ without labeling.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC8879989::s21::0\",\n        \"PMC8879989::s2::1\"\n      ]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1822,
+  "completion_tokens": 393
+ },
+ "latency_ms": 8741.32004999774,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 188.86363220214844
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is PASS with a qc_score of 2.343.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-69e41c40\"\n      ]\n    },\n    {\n      \"text\": \"The primary triggering metric for the high score is clip_high_frac at 0.2226, which corresponds to a z-score of 2.343.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-69e41c40\"\n      ]\n    },\n    {\n      \"text\": \"The clip_high_frac value of 0.2226 places the image at the 100.0th percentile for this metric.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-69e41c40\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action is to accept the image for analysis as the overall level is PASS despite the high clipping fraction.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-69e41c40\"\n      ]\n    },\n    {\n      \"text\": \"Brightfield microscopy image quality in histopathology and related workflows depends on specific acquisition conditions and processing steps.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC7275059::s0::0\"\n      ]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1466,
+  "completion_tokens": 365
+ },
+ "latency_ms": 9737.200515999575,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 166.154541015625
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

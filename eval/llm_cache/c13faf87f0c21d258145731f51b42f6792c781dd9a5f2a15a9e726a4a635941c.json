@@ -1,0 +1,25 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL with a qc_score of 8.0 for image 230109_128.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-cceb0ba2\"\n      ]\n    },\n    {\n      \"text\": \"The primary cause identified is DEBRIS, triggered by a debris_count of 8.0 with a z-score of 8.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-cceb0ba2\"\n      ]\n    },\n    {\n      \"text\": \"A secondary cause is COMPRESSION, indicated by a jpeg_blockiness value of 1.1510422229766846 and a z-score of 7.609.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-cceb0ba2\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action for the debris issue is to inspect the channel and optics for particulates and clean or exclude affected regions.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-cceb0ba2\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action for the compression issue is to re-export the image in a lossless format such as PNG or TIFF before quantitative analysis.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-cceb0ba2\"\n      ]\n    },\n    {\n      \"text\": \"Experimental artifacts such as uneven illumination significantly impact the quality of measurements and the extraction of quantitative information in optical microscopy.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC12779969::s1::0\"\n      ]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1902,
+  "completion_tokens": 441
+ },
+ "latency_ms": 11380.693092000001,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 206.10000610351562
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

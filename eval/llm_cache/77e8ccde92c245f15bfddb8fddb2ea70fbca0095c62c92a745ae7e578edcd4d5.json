@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"Flat-field correction uses a blank reference image to remove uneven illumination (vignetting) from brightfield microscopy images before quantitative analysis.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE3::s1::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 499,
+  "completion_tokens": 102
+ },
+ "latency_ms": 2544.845462001831,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 22.831724166870117
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

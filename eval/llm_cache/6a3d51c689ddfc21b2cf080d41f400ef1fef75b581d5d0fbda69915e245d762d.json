@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-cceb0ba2\"]\n    },\n    {\n      \"text\": \"The primary cause is DEBRIS, indicated by a debris_count of 8.0 (z‑score 8.0).\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-cceb0ba2\"]\n    },\n    {\n      \"text\": \"Recommended action: inspect the channel and optics for particulates and clean or exclude the affected regions.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-cceb0ba2\"]\n    },\n    {\n      \"text\": \"Secondary issues include compression artifacts (jpeg_blockiness 1.151, z‑score 7.609) and low contrast (contrast_p99_p1 0.757, z‑score 4.836).\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-cceb0ba2\"]\n    },\n    {\n      \"text\": \"Experimental artifacts such as debris, compression, and low contrast can significantly degrade image quality and hinder quantitative analysis.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC12779969::s1::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1803,
+  "completion_tokens": 395
+ },
+ "latency_ms": 6933.809558002395,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 84.2996597290039
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"Air bubbles trapped in microfluidic channels disturb flow and shear stress and can damage the cell layer.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE2::s1::0\"]\n    },\n    {\n      \"text\": \"Out-of-focus blur reduces the local variance of the Laplacian in brightfield images, impairing image quality for organ-on-a-chip monitoring.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE1::s1::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 515,
+  "completion_tokens": 165
+ },
+ "latency_ms": 3403.2177530025365,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 27.63626480102539
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is PASS with a qc_score of 1.387.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-1d08d28b\"\n      ]\n    },\n    {\n      \"text\": \"The density state is reported as NORMAL with a blob_density_per_mpx of 3966.0136.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-1d08d28b\"\n      ]\n    },\n    {\n      \"text\": \"The focus_hf_ratio metric is 0.081, which corresponds to a z-score of -1.387 and a percentile of 2.9.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-1d08d28b\"\n      ]\n    },\n    {\n      \"text\": \"The clip_high_frac metric is 0.0795, corresponding to a z-score of 0.402 and a percentile of 57.4.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-1d08d28b\"\n      ]\n    },\n    {\n      \"text\": \"No specific causes were listed in the QC results, indicating the metrics fell within acceptable thresholds for a PASS verdict.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-1d08d28b\"\n      ]\n    },\n    {\n      \"text\": \"Brightfield microscopy image quality depends on specific acquisition conditions and image processing steps such as registration and blending.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC7275059::s0::0\"\n      ]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1464,
+  "completion_tokens": 440
+ },
+ "latency_ms": 11798.947347000649,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 187.89089965820312
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

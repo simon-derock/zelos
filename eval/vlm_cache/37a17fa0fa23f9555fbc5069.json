@@ -1,0 +1,1 @@
+{"text": "{\n \"verdict\": \"good\",\n \"reason\": \"The image is in focus, evenly lit, and shows no visible bubbles or debris.\"\n}", "usage": {"prompt_tokens": 669, "completion_tokens": 31, "total_tokens": 700, "prompt_tokens_details": {"cached_tokens": 0}, "neurons": 22.890172958374023}, "latency_s": 2.05}

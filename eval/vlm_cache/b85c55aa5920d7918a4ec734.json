@@ -1,0 +1,1 @@
+{"text": "{\"verdict\":\"bad\",\"reason\":\"bubble\"}", "usage": {"prompt_tokens": 1084, "completion_tokens": 11, "total_tokens": 1095, "prompt_tokens_details": {"cached_tokens": 0}, "neurons": 27.457273483276367}, "latency_s": 1.8}

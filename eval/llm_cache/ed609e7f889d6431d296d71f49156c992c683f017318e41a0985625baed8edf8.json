@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The image quality control result for image 230424_17 is FAIL [qc-8efed03b].\", \"type\": \"numeric\", \"evidence\": [\"qc-8efed03b\"]}, {\"text\": \"The main causes identified are DEBRIS with a debris_count of 772.0 and UNEVEN_ILLUMINATION with an illum_flatness of 1.7324370483315223 [qc-8efed03b].\", \"type\": \"numeric\", \"evidence\": [\"qc-8efed03b\"]}, {\"text\": \"To address debris, inspect the channel and optics for particulates and clean or exclude affected regions; for uneven illumination, apply flat-field correction or re-align the condenser [qc-8efed03b].\", \"type\": \"inference\", \"evidence\": [\"qc-8efed03b\"]}, {\"text\": \"Uneven illumination is a non-uniform illumination of the field of view that typically arises as a decrease of intensity from the optical axis to the edges, resulting in vignetting [PMC12779969::s1::0].\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::0\"]}, {\"text\": \"When uneven illumination affects images, the experimental pipeline must be adapted to remove this artifact to enable accurate image analysis [PMC12779969::s1::2].\", \"type\": \"literature\", \"evidence\": [\"PMC12779969::s1::2\"]}]}",
+ "usage": {
+  "prompt_tokens": 1949,
+  "completion_tokens": 359
+ },
+ "latency_ms": 7012.424655000359,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 27.509090423583984
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

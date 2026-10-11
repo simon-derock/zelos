@@ -1,0 +1,23 @@
+{
+ "text": "{\"claims\": []}",
+ "usage": {
+  "prompt_tokens": 553,
+  "completion_tokens": 40
+ },
+ "latency_ms": 1438.8515209975594,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 20.3226261138916
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

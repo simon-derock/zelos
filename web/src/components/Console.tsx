@@ -3,6 +3,7 @@ import type { Card, DraftClaim, LedgerClaim, Sample, SiteData } from '../types'
 import { fmt, human, num, sentence } from '../util'
 import { cellField } from './Hero'
 import { LevelBadge, Reveal, SectionHead } from './common'
+import { CultureCard, HowDecided, RouteChip, RouteRow, WhyAction } from './Verdict'
 
 function hash(s: string) {
   let h = 2166136261
@@ -94,12 +95,14 @@ function CertificateCard({ s }: { s: Sample }) {
   const cause = c?.primary_cause ?? causes[0]?.label
   const action = c?.action ?? causes[0]?.action
   const clean = !cause || cause === 'NONE'
+  const top = causes.find((x) => x.label === cause) ?? causes[0]
   return (
     <aside className="cert" aria-label="Certificate">
       <div className="cert-head">
         <span className="cert-title">Certificate</span>
         <LevelBadge level={c?.level ?? s.qc.level} />
       </div>
+      <RouteRow route={s.qc.route} />
       <div className="cert-block">
         <p className="k">Primary cause</p>
         <p className="cert-cause">{clean ? 'No issue found' : sentence(cause)}</p>
@@ -108,6 +111,7 @@ function CertificateCard({ s }: { s: Sample }) {
       <div className="cert-block">
         <p className="k">Recommended action</p>
         <p className="cert-action">{clean ? 'No action needed. Keep this image in the dataset.' : action || '—'}</p>
+        {!clean && <WhyAction cause={top} />}
       </div>
       {c?.claims && c.claims.length > 0 && (
         <div className="cert-block">
@@ -151,6 +155,7 @@ function CertificateCard({ s }: { s: Sample }) {
           </ul>
         </div>
       )}
+      <HowDecided qc={s.qc} causes={causes} />
       <p className="cert-disc">{c?.disclaimer ?? 'Research tool. Not a medical device. No clinical or diagnostic claims.'}</p>
     </aside>
   )
@@ -398,6 +403,7 @@ export function Console({ data }: { data: SiteData }) {
                 <Thumb s={s} large />
                 <div className="viewer-badge">
                   <LevelBadge level={lvl} big />
+                  {s.qc.route && <RouteChip route={s.qc.route} big />}
                 </div>
               </div>
               <div className="stage-meta">
@@ -440,6 +446,7 @@ export function Console({ data }: { data: SiteData }) {
                   </div>
                 </dl>
               </div>
+              <CultureCard state={s.qc.culture_state} />
             </div>
             <CertificateCard s={s} />
           </div>

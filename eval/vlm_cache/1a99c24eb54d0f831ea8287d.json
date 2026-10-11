@@ -1,0 +1,1 @@
+{"text": "{\n \"verdict\": \"bad\",\n \"reason\": \"out of focus and unevenly lit\"\n}", "usage": {"prompt_tokens": 669, "completion_tokens": 22, "total_tokens": 691, "prompt_tokens_details": {"cached_tokens": 0}, "neurons": 22.435781478881836}, "latency_s": 1.89}

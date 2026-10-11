@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"Autofocus routines that maximize the local variance of the Laplacian are used to maintain microfluidic chips in the focal plane during time-lapse imaging [FIXTURE1::s1::0].\", \"type\": \"literature\", \"evidence\": [\"FIXTURE1::s1::0\"]}, {\"text\": \"Uneven illumination in brightfield imaging causes vignetting, which can bias intensity-based measurements [FIXTURE3::s1::0].\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]}, {\"text\": \"Flat-field correction using a blank reference image is used to remove shading from uneven illumination before quantitative analysis [FIXTURE3::s1::0].\", \"type\": \"literature\", \"evidence\": [\"FIXTURE3::s1::0\"]}]}",
+ "usage": {
+  "prompt_tokens": 522,
+  "completion_tokens": 180
+ },
+ "latency_ms": 4049.2432119972364,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 9.654544830322266
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

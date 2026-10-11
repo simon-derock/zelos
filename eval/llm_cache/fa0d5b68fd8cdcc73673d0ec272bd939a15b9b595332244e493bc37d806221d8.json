@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"Air bubbles trapped in microfluidic channels of organ-on-a-chip devices disturb flow and shear stress and can damage the cell layer [FIXTURE2::s1::0].\", \"type\": \"literature\", \"evidence\": [\"FIXTURE2::s1::0\"]}]}",
+ "usage": {
+  "prompt_tokens": 485,
+  "completion_tokens": 69
+ },
+ "latency_ms": 2160.7050220009114,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 4.836362361907959
+ },
+ "request": {
+  "temperature": 0.0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-e2569e5e\"]\n    },\n    {\n      \"text\": \"The primary cause of failure is DEBRIS, indicated by a debris_count of 990.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-e2569e5e\"]\n    },\n    {\n      \"text\": \"The recommended action for the debris issue is to inspect the channel and optics for particulates and clean or exclude the affected regions.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-e2569e5e\"]\n    },\n    {\n      \"text\": \"Uneven illumination can be mitigated by applying flat‑field correction or re‑aligning the condenser (Köhler illumination) before analysis.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC12779969::s1::2\"]\n    },\n    {\n      \"text\": \"Flat‑field correction is a standard method to remove background gradients caused by vignetting in optical microscopy images.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC12779969::s1::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1778,
+  "completion_tokens": 346
+ },
+ "latency_ms": 6549.912651000341,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 80.1633071899414
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

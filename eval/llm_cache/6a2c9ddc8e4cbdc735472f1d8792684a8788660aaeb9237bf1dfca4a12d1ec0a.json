@@ -1,0 +1,25 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL with a qc_score of 162.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-2ac4eec2\"\n      ]\n    },\n    {\n      \"text\": \"The primary cause identified is DEBRIS, triggered by a debris_count of 162.0 and a z-score of 162.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-2ac4eec2\"\n      ]\n    },\n    {\n      \"text\": \"A secondary cause is UNEVEN_ILLUMINATION, indicated by an illum_flatness value of 3.8791 and a z-score of 11.499.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-2ac4eec2\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action for the debris issue is to inspect the channel and optics for particulates and clean or exclude affected regions.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-2ac4eec2\"\n      ]\n    },\n    {\n      \"text\": \"Uneven illumination is a common artifact in optical microscopy that results in non-uniform intensity across the field of view, typically appearing as vignetting.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC12779969::s1::0\"\n      ]\n    },\n    {\n      \"text\": \"Processing pipelines for optical imaging often require flat-field correction to remove uneven illumination artifacts before final image analysis.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC12779969::s1::2\"\n      ]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1881,
+  "completion_tokens": 439
+ },
+ "latency_ms": 9814.268886999344,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 204.65908813476562
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react'
+import type { Meta } from '../types'
 
 function lcg(seed: number) {
   let s = seed >>> 0
@@ -27,7 +28,7 @@ export function cellField(seed: number, count: number, w: number, h: number) {
   return out
 }
 
-export function Hero() {
+export function Hero({ meta }: { meta?: Meta }) {
   const cells = useMemo(() => cellField(7, 46, 1200, 520), [])
   const fieldRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -50,6 +51,11 @@ export function Hero() {
   return (
     <header className="hero" id="top">
       <div className="hero-inner">
+        {meta?.version && (
+          <p className="pill pill-ver">
+            v{meta.version} preview · built after the submission deadline · <a href="/v1.0/">view the submitted v1.0</a>
+          </p>
+        )}
         <p className="eyebrow">AI for Life Science · Organ-on-a-Chip</p>
         <h1 className="hero-title">Zelos.</h1>
         <p className="hero-sub">Every organ-on-a-chip image, certified.</p>

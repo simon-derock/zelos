@@ -1,0 +1,25 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL with a qc_score of 251.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-a7ebe5af\"\n      ]\n    },\n    {\n      \"text\": \"The primary cause identified is DEBRIS, triggered by a debris_count of 251.0 and a z-score of 251.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-a7ebe5af\"\n      ]\n    },\n    {\n      \"text\": \"A secondary cause is UNEVEN_ILLUMINATION, indicated by an illum_flatness value of 3.1846 and a z-score of 9.107.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\n        \"qc-a7ebe5af\"\n      ]\n    },\n    {\n      \"text\": \"The recommended action for the debris issue is to inspect the channel and optics for particulates and clean or exclude affected regions.\",\n      \"type\": \"inference\",\n      \"evidence\": [\n        \"qc-a7ebe5af\"\n      ]\n    },\n    {\n      \"text\": \"Uneven illumination is a common artifact in optical microscopy that results in vignetting and impacts the extraction of quantitative information.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC12779969::s1::0\"\n      ]\n    },\n    {\n      \"text\": \"Flat-field correction is a standard step in the experimental pipeline to remove uneven illumination artifacts before final image analysis.\",\n      \"type\": \"literature\",\n      \"evidence\": [\n        \"PMC12779969::s1::2\"\n      ]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1941,
+  "completion_tokens": 429
+ },
+ "latency_ms": 9564.936246999423,
+ "model": "@cf/qwen/qwen3.8-27b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 204.20452880859375
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}

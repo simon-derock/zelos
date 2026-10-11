@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"Uneven illumination in brightfield imaging creates vignetting that biases intensity‑based measurements.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE3::s1::0\"]\n    },\n    {\n      \"text\": \"Flat‑field correction using a blank reference image removes the shading caused by vignetting before quantitative analysis.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"FIXTURE3::s1::0\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 507,
+  "completion_tokens": 133
+ },
+ "latency_ms": 2131.015983999532,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 25.199905395507812
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

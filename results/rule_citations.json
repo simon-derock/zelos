@@ -1,0 +1,225 @@
+{
+  "rules": {
+    "DEFOCUS_OR_BLUR": {
+      "claim": "Out-of-focus images reduce microscopy image quality and impair quantitative analysis.",
+      "require": [
+        [
+          "focus",
+          "blur",
+          "defocus"
+        ],
+        [
+          "image",
+          "imaging",
+          "microscop"
+        ]
+      ],
+      "status": "supported",
+      "support": 0.571,
+      "chunk_id": "PMC13388963::s17::0",
+      "title": "Automation of 3D liver spheroid generation and acetaminophen dose-response on the MO:BOT enhances assay robustness and precision",
+      "url": "https://europepmc.org/article/PMC/PMC13388963",
+      "license": "cc by",
+      "excerpt": "Prior to quantitative image analysis, all MO:CROSCOPE images were screened for artefacts such as out-of-focus wells, debris, or edge-located spheroids, and wells failing these basic ..."
+    },
+    "NOISE": {
+      "claim": "Image noise degrades microscopy image quality and affects quantitative analysis.",
+      "require": [
+        [
+          "noise",
+          "noisy"
+        ],
+        [
+          "image",
+          "imaging",
+          "microscop"
+        ]
+      ],
+      "status": "unsupported",
+      "support": 0.286,
+      "chunk_id": null,
+      "title": null,
+      "url": null,
+      "license": null,
+      "excerpt": null
+    },
+    "UNEVEN_ILLUMINATION": {
+      "claim": "Uneven illumination in microscopy images can be corrected with flat-field correction.",
+      "require": [
+        [
+          "illumination",
+          "flat-field",
+          "flat field",
+          "shading",
+          "vignett"
+        ],
+        [
+          "correct",
+          "uneven",
+          "non-uniform",
+          "inhomogene"
+        ]
+      ],
+      "status": "supported",
+      "support": 0.667,
+      "chunk_id": "PMC12779969::s1::3",
+      "title": "Automatic optimization of flat-field corrections by evaluation and enhancement (EVEN) in multimodal optical microscopy",
+      "url": "https://europepmc.org/article/PMC/PMC12779969",
+      "license": "cc by",
+      "excerpt": "Regarding the image processing step, state-of-the-art algorithms have been implemented for flat-field correction and effective reduction of uneven illumination."
+    },
+    "OVER_EXPOSED": {
+      "claim": "Saturated pixels from overexposure lose information in microscopy images.",
+      "require": [
+        [
+          "saturat",
+          "overexpos",
+          "over-expos"
+        ],
+        [
+          "pixel",
+          "image",
+          "signal",
+          "intensit"
+        ]
+      ],
+      "status": "unsupported",
+      "support": 0.333,
+      "chunk_id": null,
+      "title": null,
+      "url": null,
+      "license": null,
+      "excerpt": null
+    },
+    "UNDER_EXPOSED": {
+      "claim": "Insufficient exposure produces weak signal and poor quality in microscopy images.",
+      "require": [
+        [
+          "underexpos",
+          "under-expos",
+          "low light",
+          "low-light",
+          "insufficient exposure",
+          "short exposure"
+        ],
+        [
+          "image",
+          "signal",
+          "intensit"
+        ]
+      ],
+      "status": "unsupported",
+      "support": 0.0,
+      "chunk_id": null,
+      "title": null,
+      "url": null,
+      "license": null,
+      "excerpt": null
+    },
+    "LOW_CONTRAST": {
+      "claim": "Transparent cells show low contrast in brightfield microscopy.",
+      "require": [
+        [
+          "contrast"
+        ],
+        [
+          "brightfield",
+          "bright-field",
+          "transparent",
+          "phase"
+        ]
+      ],
+      "status": "supported",
+      "support": 0.5,
+      "chunk_id": "PMC13271214::s6::4",
+      "title": "Application of gradient-consensus Richardson-Lucy deconvolution to noisy undersampled brightfield microscopy data",
+      "url": "https://europepmc.org/article/PMC/PMC13271214",
+      "license": "cc by",
+      "excerpt": "In current brightfield microscopy applications, the lack of true optical sectioning leads to reduced axial contrast and strong out-of-focus background."
+    },
+    "BUBBLE": {
+      "claim": "Air bubbles in microfluidic channels disrupt cell culture and imaging.",
+      "require": [
+        [
+          "bubble"
+        ],
+        [
+          "channel",
+          "microfluidic",
+          "chip",
+          "device",
+          "culture"
+        ]
+      ],
+      "status": "supported",
+      "support": 0.625,
+      "chunk_id": "PMC13030988::s16::2",
+      "title": "Advances and applications of organ-on-a-chip technology",
+      "url": "https://europepmc.org/article/PMC/PMC13030988",
+      "license": "cc by",
+      "excerpt": "Surface tension becomes the dominant force governing fluid behavior, while buoyancy-driven convection is eliminated.179,180 This leads to altered flow patterns and bubble formation challenges that ..."
+    },
+    "DEBRIS": {
+      "claim": "Debris and particles in microfluidic devices interfere with cell culture and imaging.",
+      "require": [
+        [
+          "debris",
+          "particulate",
+          "dust",
+          "contaminat",
+          "impurit"
+        ],
+        [
+          "channel",
+          "microfluidic",
+          "chip",
+          "device",
+          "image",
+          "imaging",
+          "culture"
+        ]
+      ],
+      "status": "unsupported",
+      "support": 0.375,
+      "chunk_id": null,
+      "title": null,
+      "url": null,
+      "license": null,
+      "excerpt": null
+    },
+    "COMPRESSION": {
+      "claim": "Lossy image compression introduces artifacts that affect quantitative image analysis.",
+      "require": [
+        [
+          "compress",
+          "jpeg",
+          "lossy"
+        ],
+        [
+          "image",
+          "imaging",
+          "microscop"
+        ]
+      ],
+      "status": "unsupported",
+      "support": 0.143,
+      "chunk_id": null,
+      "title": null,
+      "url": null,
+      "license": null,
+      "excerpt": null
+    }
+  },
+  "n_supported": 4,
+  "n_rules": 9,
+  "theta_lex": 0.5,
+  "method": "sentence-level: all require-groups present AND lexical overlap >= theta over every corpus sentence",
+  "disclosure": "theta raised from the gate default 0.30 to 0.50 after reading the matches (post hoc)",
+  "provenance": {
+    "git_sha": "3d224c2c66704839d907b8865168daab38d07d2f",
+    "timestamp_utc": "2026-10-10T18:44:16+00:00",
+    "config_hash": "0c18777ab72c936c",
+    "python": "3.12.3",
+    "seed": 1337
+  }
+}

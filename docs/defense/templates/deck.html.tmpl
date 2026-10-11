@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zelos final-round defense</title>
+<meta name="description" content="Zelos: evidence-gated QC for organ-on-a-chip images. Final-round defense deck, v1.1.">
+<style>
+:root{
+  --bg:#fbfbfd; --fg:#1d1d1f; --mut:#6e6e73; --faint:#d2d2d7; --surf:#f2f2f5; --acc:#0071e3;
+  --good:#1a7f37; --bad:#c62828; --warn:#b45309; --track:#e6e6eb; --cause:#7a7a85;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#000; --fg:#f5f5f7; --mut:#a1a1a6; --faint:#3a3a3c; --surf:#1c1c1e; --acc:#2997ff;
+    --good:#30d158; --bad:#ff6961; --warn:#ffb340; --track:#2c2c2e; --cause:#8e8e93;
+  }
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+#deck{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:-540px 0 0 -960px;
+  transform-origin:center center;transform:translateY(var(--dy,0px)) scale(var(--s,1))}
+.slide{position:absolute;inset:0;padding:74px 140px 92px;display:none;flex-direction:column;background:var(--bg)}
+.slide.on{display:flex}
+h1,h2,h3,p,ul,figure{margin:0}
+.eyebrow{font-size:26px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
+h2{font-size:72px;line-height:1.05;font-weight:700;letter-spacing:-.025em;max-width:1500px}
+h2 .dim{color:var(--mut)}
+.mega{font-size:300px;line-height:.95;font-weight:700;letter-spacing:-.05em}
+.lead{font-size:76px;line-height:1.1;font-weight:600;letter-spacing:-.02em;margin-top:30px}
+.sub{font-size:40px;line-height:1.35;color:var(--mut);margin-top:34px;max-width:1380px}
+.meta{position:absolute;left:140px;bottom:96px;font-size:28px;color:var(--mut)}
+p.body{font-size:40px;line-height:1.38;color:var(--mut);max-width:1500px;margin-top:30px}
+.note{font-size:26px;line-height:1.4;color:var(--mut);margin-top:auto;max-width:1640px}
+.note b{color:var(--fg);font-weight:600}
+.cols{display:grid;gap:56px;margin-top:40px;align-items:start}
+.c2{grid-template-columns:1fr 1fr;align-items:stretch}
+.c3{grid-template-columns:repeat(3,1fr)}
+.split{grid-template-columns:minmax(0,900px) minmax(0,1fr)}
+.cols>*{min-width:0}
+.card{background:var(--surf);border-radius:30px;padding:36px 40px}
+.card h3{font-size:38px;font-weight:650;letter-spacing:-.01em;margin-bottom:12px}
+.card p{font-size:30px;line-height:1.38;color:var(--mut)}
+.stat{display:flex;flex-direction:column;gap:6px;padding:18px 0;border-top:1px solid var(--faint)}
+.stat:first-child{border-top:0}
+.stat .n{font-size:92px;line-height:1;font-weight:700;letter-spacing:-.04em}
+.stat .l{font-size:30px;line-height:1.3;color:var(--mut)}
+.stat.good .n{color:var(--good)} .stat.bad .n{color:var(--bad)} .stat.acc .n{color:var(--acc)}
+.delta{display:grid;grid-template-columns:1fr auto;gap:8px 36px;align-items:baseline;margin-top:24px}
+.delta .l{font-size:30px;color:var(--fg)}
+.delta .v{font-size:42px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+.delta .v i{font-style:normal;color:var(--mut);font-weight:500;padding:0 14px}
+.delta .v .a{color:var(--bad)} .delta .v .b{color:var(--good)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px}
+.tile{background:var(--surf);border-radius:28px;padding:28px 34px}
+.tile .n{font-size:76px;font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--good)}
+.tile .l{font-size:28px;color:var(--mut);margin-top:8px;line-height:1.3}
+table.t{border-collapse:collapse;width:100%;font-size:28px}
+table.t th{text-align:left;font-weight:600;color:var(--mut);font-size:23px;letter-spacing:.02em;padding:10px 14px;border-bottom:2px solid var(--faint)}
+table.t td{padding:10px 14px;border-bottom:1px solid var(--faint);white-space:nowrap}
+table.t td:first-child{white-space:normal}
+table.t tr.hl td{font-weight:650;color:var(--fg)}
+table.t tr.hl td:first-child{color:var(--acc)}
+table.t.sm{font-size:25px}
+table.t.sm td{padding:8px 14px}
+table.t.wrap td{white-space:normal;vertical-align:top;font-size:27px;line-height:1.3;padding:16px 18px}
+table.t.wrap td:first-child{width:250px;font-weight:650}
+table.t.wrap td:last-child{width:230px;color:var(--mut)}
+table.t.sm th{font-size:21px}
+.cap{font-size:25px;color:var(--mut);margin:10px 0 8px;font-weight:600;letter-spacing:.01em}
+ul.pts{list-style:none;padding:0;display:flex;flex-direction:column;gap:20px}
+ul.pts li{font-size:32px;line-height:1.34;padding-left:30px;position:relative;color:var(--fg)}
+ul.pts li::before{content:"";position:absolute;left:0;top:.6em;width:12px;height:12px;border-radius:50%;background:var(--acc)}
+ul.pts li.w::before{background:var(--warn)} ul.pts li.b::before{background:var(--bad)} ul.pts li.g::before{background:var(--good)}
+ul.pts li small{display:block;font-size:26px;color:var(--mut);margin-top:4px}
+.callout{border-left:8px solid var(--warn);background:var(--surf);border-radius:0 24px 24px 0;padding:26px 34px;font-size:30px;line-height:1.36;margin-top:26px}
+.callout b{font-weight:650}
+.callout.b{border-color:var(--bad)} .callout.a{border-color:var(--acc)}
+/* certificates */
+.certs{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:26px}
+figure.cert{background:var(--surf);border-radius:30px;padding:24px;overflow:hidden;border-top:8px solid var(--faint)}
+figure.cert.fail{border-top-color:var(--bad)} figure.cert.pass{border-top-color:var(--good)}
+figure.cert img{display:block;width:100%;height:200px;object-fit:cover;border-radius:18px;filter:saturate(.9)}
+figure.cert figcaption{padding:14px 8px 0;font-size:24px;line-height:1.3}
+.cert .head{display:flex;align-items:center;gap:20px;margin-bottom:8px}
+.chip{font-size:30px;font-weight:700;letter-spacing:.04em;border-radius:12px;padding:3px 18px;color:#fff}
+.chip.fail{background:var(--bad)} .chip.pass{background:var(--good)} .chip.review{background:var(--warn)}
+.cert .score{font-size:28px;color:var(--mut)}
+.cert .row{display:flex;gap:14px}.cert .k{color:var(--mut);min-width:104px;font-weight:600;font-size:23px;letter-spacing:.03em;text-transform:uppercase;padding-top:2px}
+.cert .basis{color:var(--warn);margin:6px 0 2px;font-size:23px}
+.cert .ev{margin-top:4px;font-size:23px}.cert .ev .id{color:var(--mut);margin-left:10px;font-size:21px}
+.cert .ledger{margin-top:8px;font-size:23px}
+.cert .ledger ul{list-style:none;padding:0;margin:4px 0 0}
+.cert .ledger li{color:var(--mut);font-size:21px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cert .tick{color:var(--good);margin-right:10px;font-weight:700}
+.cert .cap{margin:0 0 8px;font-weight:500;font-size:22px}
+/* charts */
+svg{display:block;width:100%;height:auto}
+svg text{font-family:inherit;fill:var(--fg)}
+svg .lab{font-size:25px;fill:var(--fg)} svg .val{font-size:25px;font-weight:650;fill:var(--fg)} svg .val.small{font-size:19px;fill:var(--mut);font-weight:500}
+svg .track{fill:var(--track)} svg .det{fill:var(--acc)} svg .miss{fill:var(--bad)} svg .cause{fill:var(--cause)}
+svg .good{fill:var(--good)} svg .bad{fill:var(--bad)} svg .test{fill:var(--acc)}
+svg .missl{fill:var(--bad);font-weight:650} svg .okl{fill:var(--good)}
+svg .target{stroke:var(--warn);stroke-width:3;stroke-dasharray:10 8} svg .axis{stroke:var(--faint);stroke-width:2}
+.legend{display:flex;gap:34px;font-size:24px;color:var(--mut);margin-bottom:14px;flex-wrap:wrap}
+.legend span::before{content:"";display:inline-block;width:22px;height:14px;border-radius:4px;margin-right:10px;vertical-align:-1px;background:var(--acc)}
+.legend .t::before{background:none;border-top:4px dashed var(--warn);height:0;border-radius:0;width:30px;vertical-align:4px}
+.legend .c::before{background:var(--cause)} .legend .m::before{background:var(--bad)} .legend .g::before{background:var(--good)}
+/* arch + tiles */
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
+.grid6 .card{min-height:300px}
+.grid6 .card h3{font-size:36px}
+.links{display:grid;grid-template-columns:auto 1fr;gap:20px 40px;margin-top:56px;font-size:36px;align-items:baseline}
+.links .k{color:var(--mut);font-size:27px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.links .u{font-weight:600;letter-spacing:-.01em}
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:44px}
+.road .card{min-height:250px}
+.road .tag{font-size:23px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
+/* HUD */
+#hud{position:fixed;left:0;right:0;bottom:0;height:3px;background:transparent}
+#bar{height:3px;background:var(--acc);width:0;transition:width .25s ease}
+#count{position:fixed;right:22px;bottom:14px;font-size:15px;color:var(--mut);font-variant-numeric:tabular-nums;letter-spacing:.04em;z-index:5}
+#brand{position:fixed;left:22px;bottom:14px;font-size:15px;color:var(--mut);letter-spacing:.04em;z-index:5}
+#notes{position:fixed;left:0;right:0;bottom:0;display:none;max-height:30vh;overflow:auto;padding:18px 7vw 40px;
+  background:var(--surf);border-top:1px solid var(--faint);font-size:19px;line-height:1.5;z-index:6}
+#notes b{color:var(--acc);letter-spacing:.06em;text-transform:uppercase;font-size:13px}
+body.notes #notes{display:block}
+.slide aside.notes{display:none}
+@media (max-width:900px){ #notes{font-size:15px} }
+/* print: one slide per page */
+@page{size:1920px 1080px;margin:0}
+@media print{
+  html,body{height:auto;overflow:visible;background:#fff}
+  #deck{position:static;margin:0;width:1920px;height:auto;transform:none}
+  .slide,.slide.on{display:flex;position:relative;inset:auto;width:1920px;height:1080px;break-after:page;page-break-after:always;overflow:hidden}
+  #hud,#bar,#count,#brand,#notes{display:none!important}
+}
+html.print,html.print body{height:auto;overflow:visible}
+html.print #deck{position:static;margin:0;width:1920px;height:auto;transform:none}
+html.print .slide,html.print .slide.on{display:flex;position:relative;inset:auto;width:1920px;height:1080px;overflow:hidden;border-bottom:2px solid var(--faint)}
+html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #notes{display:none!important}
+</style>
+</head>
+<body>
+<!-- Generated by scripts/build_defense_kit.py from results/*.json (results produced at commit {{git_sha}} on {{date}}). Do not edit by hand. -->
+<main id="deck">
+
+<!-- 1 -->
+<section class="slide" data-title="Title">
+  <div class="eyebrow">AI4S Open Innovation &middot; AI for Life Science &middot; Final round</div>
+  <h1 class="mega">Zelos</h1>
+  <p class="lead">Every organ-on-a-chip image, certified.</p>
+  <p class="sub">An evidence-gated QC agent. It finds the imaging fault, names the lab fix, cites open literature, and blocks every claim the evidence cannot support.</p>
+  <div class="meta">Philip Simon Derock &middot; v1.1 final-round build &middot; Research tool, not a medical device</div>
+  <aside class="notes">Hello, I am Philip, and this is Zelos. In one sentence: Zelos looks at an organ-on-a-chip image, tells you whether you can trust it, says what went wrong and what to do about it, and refuses to say anything its evidence cannot back up. I will show you what works, what does not, and what I corrected since the submission.</aside>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="The problem">
+  <div class="eyebrow">The problem</div>
+  <h2>Images become datasets. Datasets become digital twins.</h2>
+  <div class="cols c2" style="margin-top:56px">
+    <div class="card"><h3>Bad frames corrupt data silently</h3><p>A defocused, saturated, vignetted or bubble-filled frame looks like any other file. Once it is in a dataset, nobody knows it is there.</p></div>
+    <div class="card"><h3>Invented evidence corrupts decisions silently</h3><p>A language model asked to explain a bad frame can invent a number or a citation, and it sounds just as confident when it does.</p></div>
+  </div>
+  <p class="body">Labs image hundreds of frames per experiment and cannot review them all. The question is not whether to automate the check, but whether the check can be trusted.</p>
+  <aside class="notes">Organ-on-a-chip labs image their cultures every day, and those images become datasets and, increasingly, inputs to digital twins. A bad frame does not announce itself, and neither does a language model that makes up a citation. Both fail silently, and both end up inside the asset. So the check has to be automatic and it has to be auditable.</aside>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="The certificate">
+  <div class="eyebrow">What Zelos outputs</div>
+  <h2>Every image gets a certificate.</h2>
+  <div class="certs">
+    {{html.card_fail}}
+    {{html.card_pass}}
+  </div>
+  <div class="note"><b>Verdict, route, cause, lab action, cited basis, claim ledger.</b> Real pipeline output (web/public/data/site.json); images from Movcana et al., Data 2024, shared under CC BY / CC BY-SA. The FAIL frame is an injected fault on a real image; the cited passage is retrieved context, and the rule's own literature basis is shown as the amber line.</div>
+  <aside class="notes">This is what comes out: a verdict, a route that says what to do next, the named cause, the lab action, the passage it cites, and a ledger that lists every sentence with the tool output or passage behind it. On the left is a real image where I injected a severity-{{sev.top}} over-exposure, and Zelos fails it and names the cause. On the right is an untouched real image that passes. The amber line on the left is deliberate: for that cause our corpus does not support the action, and the certificate says so.</aside>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Architecture">
+  <div class="eyebrow">Architecture</div>
+  <h2>The LLM proposes.<br>Tools compute.<br>The gate disposes.</h2>
+  <svg viewBox="0 0 1640 330" role="img" aria-label="Pipeline: image, physics QC, cause and action, evidence retrieval, LLM explainer, grounding gate, certificate" style="margin-top:30px">
+    <g font-size="24">
+      <rect x="0" y="20" width="210" height="230" rx="22" fill="var(--surf)"/>
+      <text x="105" y="125" text-anchor="middle" font-weight="650" font-size="27">Brightfield</text><text x="105" y="162" text-anchor="middle" style="fill:var(--mut)">image</text>
+
+      <rect x="238" y="20" width="210" height="230" rx="22" fill="var(--surf)" stroke="var(--acc)" stroke-width="3"/>
+      <text x="343" y="76" text-anchor="middle" font-weight="650" font-size="27">Physics QC</text>
+      <text x="343" y="122" text-anchor="middle" style="fill:var(--mut)">{{n_metrics}} metrics</text>
+      <text x="343" y="160" text-anchor="middle" style="fill:var(--mut)">z vs session</text>
+      <text x="343" y="198" text-anchor="middle" style="fill:var(--mut)">0 LLM calls</text>
+
+      <rect x="476" y="20" width="210" height="230" rx="22" fill="var(--surf)" stroke="var(--acc)" stroke-width="3"/>
+      <text x="581" y="76" text-anchor="middle" font-weight="650" font-size="27">Cause + action</text>
+      <text x="581" y="122" text-anchor="middle" style="fill:var(--mut)">signatures</text>
+      <text x="581" y="160" text-anchor="middle" style="fill:var(--mut)">fixed rule table</text>
+      <text x="581" y="198" text-anchor="middle" style="fill:var(--mut)">route</text>
+
+      <rect x="714" y="20" width="210" height="230" rx="22" fill="var(--surf)" stroke="var(--acc)" stroke-width="3"/>
+      <text x="819" y="76" text-anchor="middle" font-weight="650" font-size="27">Evidence</text>
+      <text x="819" y="122" text-anchor="middle" style="fill:var(--mut)">Cohere + Qdrant</text>
+      <text x="819" y="160" text-anchor="middle" style="fill:var(--mut)">BM25 + rerank</text>
+      <text x="819" y="198" text-anchor="middle" style="fill:var(--mut)">abstains</text>
+
+      <rect x="952" y="20" width="210" height="230" rx="22" fill="var(--surf)" stroke="var(--warn)" stroke-width="3"/>
+      <text x="1057" y="76" text-anchor="middle" font-weight="650" font-size="27">LLM explainer</text>
+      <text x="1057" y="122" text-anchor="middle" style="fill:var(--mut)">typed claims</text>
+      <text x="1057" y="160" text-anchor="middle" style="fill:var(--mut)">max {{agent.max_calls}} calls</text>
+      <text x="1057" y="198" text-anchor="middle" style="fill:var(--mut)">swappable</text>
+
+      <rect x="1190" y="20" width="210" height="230" rx="22" fill="var(--surf)" stroke="var(--good)" stroke-width="3"/>
+      <text x="1295" y="76" text-anchor="middle" font-weight="650" font-size="27">Gate</text>
+      <text x="1295" y="122" text-anchor="middle" style="fill:var(--mut)">numbers match</text>
+      <text x="1295" y="160" text-anchor="middle" style="fill:var(--mut)">citations support</text>
+      <text x="1295" y="198" text-anchor="middle" style="fill:var(--mut)">repair, then block</text>
+
+      <rect x="1428" y="20" width="212" height="230" rx="22" fill="var(--fg)"/>
+      <text x="1534" y="125" text-anchor="middle" font-weight="650" font-size="27" style="fill:var(--bg)">Certificate</text>
+      <text x="1534" y="162" text-anchor="middle" style="fill:var(--bg)">+ claim ledger</text>
+    </g>
+    <g stroke="var(--mut)" stroke-width="3" fill="none">
+      <path d="M212 135 H236"/><path d="M450 135 H474"/><path d="M688 135 H712"/><path d="M926 135 H950"/><path d="M1164 135 H1188"/><path d="M1402 135 H1426"/>
+    </g>
+    <g stroke-width="5" stroke-linecap="round">
+      <path d="M244 282 H918" stroke="var(--acc)"/><path d="M958 282 H1156" stroke="var(--warn)"/><path d="M1196 282 H1394" stroke="var(--good)"/>
+    </g>
+    <g font-size="26" font-weight="700">
+      <text x="581" y="322" text-anchor="middle" style="fill:var(--acc)">TOOLS COMPUTE</text>
+      <text x="1057" y="322" text-anchor="middle" style="fill:var(--warn)">LLM PROPOSES</text>
+      <text x="1295" y="322" text-anchor="middle" style="fill:var(--good)">GATE DISPOSES</text>
+    </g>
+  </svg>
+  <div class="note">The verdict, cause and action never depend on the LLM. If the model is wrong, slow or absent, the certificate is still correct; it is only less fluent.</div>
+  <aside class="notes">The design rule is the headline: the physics tools compute the verdict, the cause and the action with no language model involved, and the model only proposes sentences as typed claims, in at most {{agent.max_calls}} calls. A deterministic gate then checks every number against a tool output and every citation against a retrieved passage, repairs once, and blocks what it cannot support. That is why the model is swappable, and I will show you that it is.</aside>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="Result A: trust layer">
+  <div class="eyebrow">Result A &middot; the trust layer</div>
+  <h2>The gate caught every fabrication.</h2>
+  <div class="cols" style="grid-template-columns:minmax(0,800px) minmax(0,1fr);margin-top:26px">
+    <div>
+      <div class="tiles" style="margin-top:0">
+        <div class="tile"><div class="n">{{gate.caught}}</div><div class="l">injected fabrications blocked</div></div>
+        <div class="tile"><div class="n">{{gate.false_block}}</div><div class="l">correct claims wrongly blocked</div></div>
+      </div>
+      <div class="delta">
+        <div class="l">Unsupported claims in LLM answers</div><div class="v"><span class="a">{{e5.unsup_un}}</span><i>&rarr;</i><span class="b">{{e5.unsup_g}}</span></div>
+        <div class="l">Valid citations</div><div class="v"><span class="a">{{e5.cite_un}}</span><i>&rarr;</i><span class="b">{{e5.cite_g}}</span></div>
+        <div class="l">Unsafe adversarial outputs</div><div class="v"><span class="a">{{e5.unsafe_un}}</span><i>&rarr;</i><span class="b">{{e5.unsafe_g}}</span></div>
+        <div class="l">Abstention recall</div><div class="v"><span class="a">{{e5.abst_rec_un}}</span><i>&rarr;</i><span class="b">{{e5.abst_rec_g}}</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="cap">Same gate, {{sweep.n_models_ok}} LLMs (n={{sweep.n}} QC explanations)</div>
+      {{html.table_sweep}}
+      <div class="callout a"><b>Bigger models did not help.</b> {{sweep.best_name}} gives the most supported claims per case ({{sweep.best.per_case}}) at {{sweep.best.cost}} per 100 answers; the dearest model costs {{sweep.dearest_cost}} and supports fewer.</div>
+    </div>
+  </div>
+  <div class="note"><b>Read with care.</b> Fabrications: {{gate.n_kinds}} kinds, {{gate.per_kind_n}} each (fake numbers, fake citations, wrong support, uncited literature, orphan inferences). Without the gate: {{e5.unsup_un_k}} claims unsupported, {{e5.unsafe_un_k}} adversarial outputs unsafe. After the gate the rate is zero by construction, so the fault-injection test is the real test of the gate. Support checks are lexical: a weak test of meaning.</div>
+  <aside class="notes">First result, the trust layer: we injected {{gate.caught_n}} fabrications of {{gate.n_kinds}} kinds and the gate caught {{gate.caught}}, while blocking {{gate.false_block}} correct claims. On real model outputs the unsupported claim rate falls from {{e5.unsup_un}} to {{e5.unsup_g}} and unsafe adversarial outputs from {{e5.unsafe_un}} to {{e5.unsafe_g}}, and because the gate does the checking we could swap in {{sweep.n_others}} larger models, none of which beat the small one. The caveat is that the after-gate rate is zero by construction and the support test is lexical, so it is a weak test of meaning.</aside>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Result B: known faults">
+  <div class="eyebrow">Result B &middot; faults with known ground truth</div>
+  <h2>Found, and named. With honest misses.</h2>
+  <div class="cols" style="grid-template-columns:560px 1fr;margin-top:30px">
+    <div>
+      <div class="stat acc"><div class="n">{{e1.batch.det3}}</div><div class="l">of severity {{sev.mid}} and {{sev.top}} faults flagged, with {{e1.batch.clean}} of clean images flagged</div></div>
+      <div class="stat good"><div class="n">{{e1.batch.sig}}</div><div class="l">cause named correctly among flagged faults; chance is {{e1.chance}}</div></div>
+      <div class="callout b" style="margin-top:14px"><b>Mostly missed even at severity {{sev.mid}}:</b> {{miss_list_detail}}.</div>
+    </div>
+    <div>
+      <div class="legend"><span>Detected at severity {{sev.mid}}</span><span class="m">Mostly missed</span><span class="c">Cause named, of flagged</span></div>
+      {{html.kind_chart}}
+    </div>
+  </div>
+  <div class="note">{{n_base}} real test-session images &times; {{n_kinds}} fault kinds &times; severities {{n_sev_list}}. Session-relative reference. Cutoffs calibrated to at most {{target_ff}} false flags on expert-good calibration sessions; cause signatures fitted on {{n_sig}} development images. The faults are ours: this benchmark checks sensitivity, not clinical relevance.</div>
+  <aside class="notes">Second result, where we know the right answer because we injected the fault. At a threshold calibrated to flag {{e1.batch.clean}} of clean images, Zelos catches {{e1.batch.det3}} of the severity {{sev.mid}} and {{sev.top}} faults and names the right cause {{e1.batch.sig}} of the time, against {{e1.chance}} by chance. The red bars are the honest part: {{miss_list}} are mostly missed even at severity {{sev.mid}}. The benchmark is ours, so it shows sensitivity to these faults, not that they are the ones that matter most in a lab.</aside>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Result C: head to head">
+  <div class="eyebrow">Result C &middot; head to head</div>
+  <h2>Head to head on the same faults.</h2>
+  <div class="cols" style="grid-template-columns:minmax(0,1020px) minmax(0,1fr);margin-top:26px">
+    <div>
+      <div class="cap">Injected faults (severity {{sev.mid}} and {{sev.top}}); each system calibrated to at most {{target_ff}} false alarms</div>
+      {{html.table_h2h}}
+      <div class="cap" style="margin-top:26px">Vision LLMs, one prompt, n={{vlm.n}} per group, same images</div>
+      {{html.table_vlm}}
+    </div>
+    <ul class="pts" style="gap:16px">
+      <li>The head uses the same session-averaged false-alarm rule. One approach, implemented here for comparison.</li>
+      <li class="w">It learns the expert label, not faults, and cannot name a cause.</li>
+      <li class="w">Vision LLMs find more severe faults ({{vlm.det5_min}} to {{vlm.det5_max}} vs {{vlm.zelos.det5}}) but flag {{vlm.ff_clean_min}} to {{vlm.ff_clean_max}} of clean images.</li>
+      <li class="b">One model gave no parsable reply on {{vlm.unparsed_cases}} cases: reported, not dropped.</li>
+    </ul>
+  </div>
+  <div class="note">On the expert label itself, the same head reaches AUROC {{e2.head.auroc}} against {{e2.qc_batch.auroc}} for the Zelos artifact score (next slide). Different task, different winner.</div>
+  <aside class="notes">Third result: a head-to-head against a linear head on frozen DINOv2 embeddings trained on the expert label, which is a common approach, calibrated to the same false-alarm rule as Zelos. On the injected faults it finds {{h2h.det3}} where Zelos finds {{e1.batch.det3}}, and it cannot say what is wrong. Vision language models find more of the severe faults but flag {{vlm.ff_clean_min}} to {{vlm.ff_clean_max}} of clean images, and the caveats are that the head is my implementation, the language models got one prompt, and there are only {{vlm.n}} images per group.</aside>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="Result D: the shift finding">
+  <div class="eyebrow">Result D &middot; the shift finding</div>
+  <h2>Absolute thresholds do not transfer between imaging sessions.</h2>
+  <div class="cols split" style="margin-top:30px">
+    <div>
+      <div class="legend"><span class="g">Unseen-session estimate, within target</span><span class="m">above target</span><span>Test sessions</span><span class="t">Target</span></div>
+      {{html.shift_chart}}
+    </div>
+    <ul class="pts">
+      <li class="b">Calibrated absolute cutoffs miss the {{target_ff}} false-alarm target across unseen sessions: {{cal.pooled.loso}} and {{cal.between.loso}}. Session-relative scoring meets it: {{cal.batch.loso}}.</li>
+      <li class="w">In the upper fifth of sessions single-image scoring flags {{cal.between.p80}} of good images, session-relative {{cal.batch.p80}}.</li>
+      <li>On the {{n_test_sessions}} test sessions the absolute modes were conservative ({{op.between.ff}} false flags) and found only {{op.between.recall}} of expert-bad images. The pre-registered z={{prereg_z}} rule flags {{op.pooled.z3}} of expert-good.</li>
+    </ul>
+  </div>
+  <div class="note"><b>So Zelos scores each image against its own imaging session.</b> Single-image mode remains available, and it is the weaker mode.</div>
+  <aside class="notes">This is the finding that changed the design: fixed thresholds do not transfer across imaging sessions. When we leave one whole session out, the absolute cutoffs flag {{cal.pooled.loso}} and {{cal.between.loso}} of good images against a {{target_ff}} target, and in the worst fifth of sessions it is {{cal.between.p80}}. Scoring each image relative to its own session gives {{cal.batch.loso}}, which is why the session-relative mode is the default and single-image mode is the weaker option.</aside>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="The expert label">
+  <div class="eyebrow">What the expert label measures</div>
+  <h2>The expert label tracks culture state, not image faults.</h2>
+  <div class="cols split" style="margin-top:30px">
+    <div>
+      <div class="cap">Agreement with the expert label: {{n_test}} images, {{n_test_sessions}} held-out sessions</div>
+      {{html.table_e2}}
+    </div>
+    <ul class="pts">
+      <li class="w">The artifact QC score sits at chance: {{e2.qc_batch.auroc}} {{e2.qc_batch.ci}} against {{e2.random.auroc}} for random.</li>
+      <li class="g">A kNN lookup against expert-labelled neighbours reaches {{e2.knn_dino.auroc}} {{e2.knn_dino.ci}}; within the same imaging day {{e2.knn_dino.within}}. Zelos reports this as a separate culture-state output.</li>
+      <li class="b">Zelos does not claim state-of-the-art expert-label accuracy. Zelos answers a different question: is this frame technically sound?</li>
+    </ul>
+  </div>
+  <aside class="notes">An honest slide. Against the expert good-or-bad label the artifact score is at chance, {{e2.qc_batch.auroc}}, while a lookup against expert-labelled neighbours reaches {{e2.knn_dino.auroc}}, so the label tracks the state of the culture and not the quality of the image. We do not claim state-of-the-art expert-label accuracy; Zelos reports the culture-state signal as a second output and answers a different question, which is whether you can trust this frame.</aside>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Literature-backed actions">
+  <div class="eyebrow">Literature basis for the lab actions</div>
+  <h2>{{rc.n_supported}} of {{n_rules}} actions are literature-backed.<br><span class="dim">The other {{rc.n_unsupported}} say so.</span></h2>
+  <div class="cols split" style="margin-top:20px">
+    <div>
+      <div class="legend"><span class="g">Supported</span><span class="m">Unsupported</span></div>
+      {{html.rules_bars}}
+    </div>
+    <ul class="pts">
+      <li class="g">Supported: {{rc.supported_list}}.</li>
+      <li class="b">Unsupported in our {{e4.n_papers}}-paper corpus: {{rc.unsupported_list}}. Guidance, not citations.</li>
+      <li class="w">Threshold raised from the gate default {{rc.theta_default}} to {{rc.theta}} after reading the matches: off-topic sentences had passed for {{rc.between_list}}. Post hoc, disclosed.</li>
+      <li>Retrieval: MRR {{e4.mrr}}, {{e4.abstain_k}} off-topic questions declined; the gold set is optimistic.</li>
+    </ul>
+  </div>
+  <aside class="notes">Every lab action in the rule table is looked up in our open literature corpus, sentence by sentence. {{rc.n_supported}} of the {{n_rules}} are supported by a real sentence; {{rc.n_unsupported}} are not, and the certificate says so rather than citing something loosely related. I have to disclose one thing: the default support threshold, {{rc.theta_default}}, let off-topic sentences through, so I raised it to {{rc.theta}} after reading the matches. That is post hoc, it is in the results file, and I am telling you here.</aside>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Reproducibility">
+  <div class="eyebrow">Reproducibility and engineering</div>
+  <h2>Built to be checked, not trusted.</h2>
+  <div class="grid6">
+    <div class="card"><h3>CI on every push</h3><p>Lint, types, security scan, tests, an offline smoke run with provenance check, web build and Docker build.</p></div>
+    <div class="card"><h3>Offline replay</h3><p>Every Cohere and Workers AI response used in the results is committed. <b>make judge</b> needs no keys and no GPU.</p></div>
+    <div class="card"><h3>Provenance check</h3><p>A number in the README that is not in results/ fails CI. This deck and its Q&amp;A are generated the same way.</p></div>
+    <div class="card"><h3>Agent-native</h3><p>CLI, FastAPI, an MCP server and a SKILL.md, so any MCP-capable agent can certify images.</p></div>
+    <div class="card"><h3>Docker and Space</h3><p>One container serves the upload demo: PNG, JPEG or TIFF up to {{api.max_mb}} MB and {{api.max_mp}} MP, processed in memory, {{api.rate}} requests per minute per client.</p></div>
+    <div class="card"><h3>CPU only</h3><p>{{e9.inspect_p50}} ms per image (p50) on a CPU. No training, no fine-tuning, no GPU.</p></div>
+  </div>
+  <aside class="notes">Everything here is built to be re-run. Continuous integration runs on every push, every model response that backs a published number is committed and replayed offline, and a provenance check fails the build if a number in the README is not in the results files. The tools are exposed through a command line, an API, an MCP server and a skill file, and there is a Docker image and an upload demo with strict size limits. A full inspection takes {{e9.inspect_p50}} milliseconds on a CPU.</aside>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="Limitations">
+  <div class="eyebrow">Honest limitations</div>
+  <h2>What this does not show.</h2>
+  <div class="cols c2" style="margin-top:34px;gap:64px">
+    <ul class="pts" style="gap:16px">
+      <li class="w">Cross-session shift: single-image absolute mode misses the false-alarm target on the upper fifth of unseen sessions.</li>
+      <li class="w">Cause attribution is imperfect: blur and under-exposure are sometimes read as low contrast.</li>
+      <li class="w">Illumination, debris and motion-blur faults are mostly missed at severity {{sev.mid}} and below.</li>
+      <li class="w">The expert label is not an artifact label; the culture-state kNN uses expert-labelled neighbours.</li>
+      <li class="w">Small, single-lab data: one public dataset, one microscope, {{n_sessions}} sessions.</li>
+      <li class="w">Faults are injected by us; real-world fault prevalence is unknown.</li>
+    </ul>
+    <ul class="pts" style="gap:16px">
+      <li class="w">Retrieval gold set was written from the corpus: optimistic.</li>
+      <li class="w">Grounding checks are lexical; semantic entailment is future work.</li>
+      <li class="w">Small samples: n={{n_base}} base images; n={{vlm.n}} per vision-LLM group; {{e5.n_cases}} grounding cases.</li>
+      <li class="w">{{rc.n_unsupported}} of {{n_rules}} lab actions have no literature basis in the corpus.</li>
+      <li class="w">Certificates are content hashes, not cryptographic signatures.</li>
+      <li class="b">Research tool. No clinical use, no diagnostic claims.</li>
+    </ul>
+  </div>
+  <aside class="notes">Here is the list I would rather you hear from me. The shift problem is not fully solved in single-image mode, cause naming is imperfect, {{n_miss}} fault kinds are mostly missed, and the expert label is not an image-fault label. The data is one public dataset from one lab, the faults are ones I injected, several samples are small, and {{rc.n_unsupported}} of the {{n_rules}} actions have no literature support in our corpus. Certificates are hashes, not signatures, and this is a research tool, not a medical device.</aside>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="Corrections to v1.0">
+  <div class="eyebrow">Corrections to the submitted v1.0</div>
+  <h2>What the submission got wrong.</h2>
+  <table class="t sm wrap" style="margin-top:30px">
+    <thead><tr><th>Topic</th><th>v1.0, as submitted</th><th>v1.1</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Scope</td><td>{{v1.n_images}} of {{n_images}} images</td><td>All {{n_images}} images, {{n_sessions}} sessions; test: {{n_test}} images, {{n_test_sessions}} held-out sessions</td><td>Extended</td></tr>
+      <tr><td>Clean images flagged</td><td>{{v1.clean_flag}} (pre-registered reference); detection {{v1.det3}} at that cost</td><td>{{e1.batch.clean}} session-relative, {{e1.between.clean}} single image, at a calibrated threshold; detection {{e1.batch.det3}}</td><td>Corrected</td></tr>
+      <tr><td>Artifact score vs expert label</td><td>AUROC {{v1.qc_auroc}} on {{v1.n_test}} images</td><td>About chance, intervals include chance level: {{e2.qc_batch.auroc}} {{e2.qc_batch.ci}}</td><td>Conclusion stands, number superseded</td></tr>
+      <tr><td>Cause named</td><td>{{v1.attr}} among flagged</td><td>{{e1.batch.sig}} with signatures, {{e1.batch.rules}} with the rule table; the flagged set differs</td><td>Not comparable</td></tr>
+    </tbody>
+  </table>
+  <div class="callout a" style="margin-top:34px"><b>v1.0 (tag v1.0-submission) is what was submitted and evaluated.</b> v1.1 is a post-deadline build for the final round. Both are in the repository, and nothing in v1.0 was rewritten.</div>
+  <aside class="notes">Before the Q and A, here are the corrections. The submission evaluated {{v1.n_images}} of {{n_images}} images, its pre-registered reference flagged {{v1.clean_flag}} of clean test images, its artifact score had an AUROC of {{v1.qc_auroc}} on {{v1.n_test}} images, and the cause attribution figure came from a different flagged set. In v1.1 we use all the images, calibrate the thresholds, and the artifact score comes out at chance, which supports the same conclusion with a different number. v1.0 is what was submitted; v1.1 is a post-deadline build and I am labelling it as such.</aside>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-title="Roadmap">
+  <div class="eyebrow">Roadmap</div>
+  <h2>What I would do next.</h2>
+  <div class="road">
+    <div class="card"><div class="tag">Sponsor-aligned</div><h3>Neural OoC and MEA modality</h3><p>The same certificate for electrophysiology and calcium-imaging traces, so data assets carry one standard of trust.</p></div>
+    <div class="card"><div class="tag">Data</div><h3>Longitudinal wells</h3><p>Score each well against its own history rather than one frame, which is where drift and culture state live.</p></div>
+    <div class="card"><div class="tag">Trust</div><h3>Entailment in the gate</h3><p>Replace lexical support with a semantic entailment check, the largest known weakness of the gate.</p></div>
+    <div class="card"><div class="tag">Evidence</div><h3>Larger corpus</h3><p>Re-run rule citations over a bigger corpus when the API quota resets, aimed at the {{rc.n_unsupported}} unsupported actions.</p></div>
+    <div class="card"><div class="tag">Validation</div><h3>Prospective study</h3><p>Certify a partner lab's frames as they are acquired and compare with their own rejection decisions.</p></div>
+    <div class="card"><div class="tag">Integration</div><h3>Instrument hook</h3><p>Run on acquisition so a failing frame is re-imaged while the plate is still on the stage.</p></div>
+  </div>
+  <aside class="notes">Next steps, in the order I would take them. The sponsor works on neural organ-on-a-chip data, so the first step is to extend the certificate to those modalities. Then longitudinal monitoring per well, an entailment model in the gate, a bigger corpus once the quota resets, and a prospective validation with a partner lab, which is the only thing that can show real-world benefit.</aside>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-title="Closing">
+  <div class="eyebrow">Closing</div>
+  <h2>The LLM proposes. Tools compute. The gate disposes.</h2>
+  <p class="body">Zelos does not claim to read the culture. It certifies the frame, and every sentence it writes can be traced to a tool or a paper.</p>
+  <div class="links">
+    <div class="k">Live console</div><div class="u">https://zelos.philipsimonderock.com</div>
+    <div class="k">Code</div><div class="u">https://github.com/simon-derock/zelos</div>
+    <div class="k">Submitted</div><div class="u">tag v1.0-submission</div>
+    <div class="k">Final round</div><div class="u">branch main (v1.1)</div>
+  </div>
+  <div class="meta">Research tool. Not a medical device. No clinical or diagnostic claims.</div>
+  <aside class="notes">To close: Zelos does not read the culture and it does not diagnose anything. It certifies the frame, and every sentence it writes traces back to a tool or a paper. The submitted version is the tag v1.0-submission, the version I have shown you today is on the main branch, and every number in this deck is generated from the results files. Thank you, and I am happy to take questions.</aside>
+</section>
+
+</main>
+<div id="hud"><div id="bar"></div></div>
+<div id="brand">Zelos &middot; v1.1</div>
+<div id="count"></div>
+<div id="notes" aria-live="polite"></div>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var notes = document.getElementById('notes');
+  var count = document.getElementById('count');
+  var bar = document.getElementById('bar');
+  var cur = 0;
+  var qs = location.search;
+  if (/(^|[?&])print(&|=|$)/.test(qs)) { document.documentElement.classList.add('print'); }
+  var printing = document.documentElement.classList.contains('print');
+
+  function fit() {
+    if (printing) { return; }
+    var notesOn = document.body.classList.contains('notes');
+    var reserve = notesOn ? window.innerHeight * 0.30 : 0;
+    var s = Math.min(window.innerWidth / 1920, (window.innerHeight - reserve) / 1080);
+    deck.style.setProperty('--s', s);
+    deck.style.setProperty('--dy', (-reserve / 2) + 'px');
+  }
+  function show(n) {
+    cur = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (el, i) { el.classList.toggle('on', i === cur); });
+    count.textContent = (cur + 1) + ' / ' + slides.length;
+    bar.style.width = (100 * (cur + 1) / slides.length) + '%';
+    var a = slides[cur].querySelector('aside.notes');
+    notes.innerHTML = '<b>Speaker notes &middot; slide ' + (cur + 1) + '</b><br>' + (a ? a.innerHTML : '');
+    try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) { /* file:// in some browsers */ }
+  }
+  function toggleNotes() { document.body.classList.toggle('notes'); fit(); }
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) { return; }
+    var k = e.key;
+    if (k === 'ArrowRight' || k === ' ' || k === 'PageDown' || k === 'Enter') { show(cur + 1); e.preventDefault(); }
+    else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'Backspace') { show(cur - 1); e.preventDefault(); }
+    else if (k === 'Home') { show(0); }
+    else if (k === 'End') { show(slides.length - 1); }
+    else if (k === 'n' || k === 'N') { toggleNotes(); }
+    else if (k === 'f' || k === 'F') {
+      if (document.fullscreenElement) { document.exitFullscreen(); } else if (document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen(); }
+    }
+  });
+  document.addEventListener('click', function (e) {
+    if (printing || e.target.closest('#notes') || e.target.closest('a')) { return; }
+    show(cur + (e.clientX < window.innerWidth / 3 ? -1 : 1));
+  });
+  var touchX = null;
+  document.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (touchX === null) { return; }
+    var dx = e.changedTouches[0].clientX - touchX; touchX = null;
+    if (Math.abs(dx) > 50) { show(cur + (dx < 0 ? 1 : -1)); }
+  }, { passive: true });
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', function () { var n = parseInt(location.hash.slice(1), 10); if (n) { show(n - 1); } });
+  if (/(^|[?&])notes(&|=|$)/.test(qs)) { document.body.classList.add('notes'); }
+  var start = parseInt(location.hash.slice(1), 10);
+  show(start ? start - 1 : 0);
+  fit();
+})();
+</script>
+</body>
+</html>

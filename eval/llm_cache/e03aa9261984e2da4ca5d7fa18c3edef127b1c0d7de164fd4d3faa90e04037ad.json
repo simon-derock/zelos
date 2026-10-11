@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-9638f41b\"]\n    },\n    {\n      \"text\": \"The primary failure cause is COMPRESSION, indicated by a jpeg_blockiness metric of 1.2517 (z‑score 12.649).\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-9638f41b\"]\n    },\n    {\n      \"text\": \"To address the compression issue, re‑export the image in a lossless format such as PNG or TIFF before quantitative analysis.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-9638f41b\"]\n    },\n    {\n      \"text\": \"A secondary issue is UNEVEN ILLUMINATION, with an illumination flatness value of 1.4242 (z‑score 3.044).\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-9638f41b\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 2021,
+  "completion_tokens": 497
+ },
+ "latency_ms": 5195.122577002621,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 98.1905288696289
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

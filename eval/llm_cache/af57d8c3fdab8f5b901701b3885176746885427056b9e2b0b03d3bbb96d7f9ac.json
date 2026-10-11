@@ -1,0 +1,23 @@
+{
+ "text": "{\n  \"claims\": [\n    {\n      \"text\": \"The image QC verdict is FAIL.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-1ddc84b0\"]\n    },\n    {\n      \"text\": \"The primary cause is DEBRIS, indicated by a debris count of 147.0.\",\n      \"type\": \"numeric\",\n      \"evidence\": [\"qc-1ddc84b0\"]\n    },\n    {\n      \"text\": \"The recommended action is to inspect the channel and optics for particulates and clean or exclude the affected regions.\",\n      \"type\": \"inference\",\n      \"evidence\": [\"qc-1ddc84b0\"]\n    },\n    {\n      \"text\": \"Microfluidic channels are prone to clogging and contamination, so regular cleaning is essential for reliable imaging.\",\n      \"type\": \"literature\",\n      \"evidence\": [\"PMC13588180::s1::1\"]\n    }\n  ]\n}",
+ "usage": {
+  "prompt_tokens": 1418,
+  "completion_tokens": 267
+ },
+ "latency_ms": 5860.683073999098,
+ "model": "@cf/openai/gpt-oss-120b",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 63.32246398925781
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 1500,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "reasoning_effort": "low"
+  }
+ }
+}

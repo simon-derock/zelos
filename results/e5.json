@@ -1,9 +1,9 @@
 {
   "experiment": "E5 grounding",
   "provenance": {
-    "git_sha": "fe73ab8e41a02f52393ec40665855a01fe9d2dc4",
-    "timestamp_utc": "2026-10-10T14:58:37+00:00",
-    "config_hash": "4d7368f2592c8582",
+    "git_sha": "bbe14a0e5763b275b43345d920427edb076c5f58",
+    "timestamp_utc": "2026-10-10T18:30:29+00:00",
+    "config_hash": "0c18777ab72c936c",
     "python": "3.12.3",
     "seed": 1337,
     "llm_model": "@cf/meta/llama-3.1-8b-instruct-fast",
@@ -77,7 +77,7 @@
       },
       "tokens_per_answer": 0.0,
       "llm_calls_per_answer": 0.0,
-      "latency_ms_p50": 2.07,
+      "latency_ms_p50": 0.99,
       "adversarial": {
         "refusal_correctness": {
           "k": 14,
@@ -285,7 +285,7 @@
       },
       "tokens_per_answer": 1280.3947368421052,
       "llm_calls_per_answer": 0.868421052631579,
-      "latency_ms_p50": 1892.31997150083,
+      "latency_ms_p50": 1885.5424935002443,
       "adversarial": {
         "refusal_correctness": {
           "k": 14,

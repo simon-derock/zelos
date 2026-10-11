@@ -142,6 +142,16 @@ export function Footer({ data }: { data: SiteData | null }) {
           </p>
           <p>Built by Philip Simon Derock.</p>
         </div>
+        {data?.meta?.version && (
+          <p className="foot-version">
+            Submitted version: {(data.meta.submitted_version ?? 'v1.0-submission').replace(/-.*$/, '')} (tag{' '}
+            <a href={`${GH}/tree/${data.meta.submitted_version ?? 'v1.0-submission'}`} rel="noopener noreferrer">
+              {data.meta.submitted_version ?? 'v1.0-submission'}
+            </a>
+            ). This page is the v{data.meta.version} preview{data.meta.branch ? `, branch ${data.meta.branch}` : ''}, built after the
+            submission deadline. The page as submitted is kept unchanged at <a href="/v1.0/">/v1.0/</a>.
+          </p>
+        )}
       </div>
     </footer>
   )
@@ -155,19 +165,37 @@ export function Proof({ data }: { data: SiteData | null }) {
   const fi = r?.e5?.gate_fault_injection?.injected_fabrications_caught
   const gated = r?.e5?.conditions?.llm_gated?.unsupported_claim_rate_in_output?.rate
   const ungated = r?.e5?.conditions?.llm_ungated?.unsupported_claim_rate_in_output?.rate
-  const det = r?.e1?.overall?.detection_rate_sev3plus
+  // v1.1 keys preferred (batch reference, held-out sessions); v1.0 keys remain the fallback.
+  const variants = r?.e1?.variants && typeof r.e1.variants === 'object' ? (r.e1.variants as Record<string, any>) : undefined
+  const v11 = variants ? (variants.batch_session ?? Object.values(variants)[0]) : undefined
+  const det = typeof v11?.detection_rate_sev3plus === 'number' ? v11.detection_rate_sev3plus : r?.e1?.overall?.detection_rate_sev3plus
+  const clean = typeof v11?.clean_flag_rate === 'number' ? v11.clean_flag_rate : undefined
   const hit1 = r?.e4?.modes?.hybrid_rerank?.paper_level?.['hit@1']
   const papers = r?.e4?.corpus?.n_papers
   const ms = r?.e9?.inspect_ms_p50
-  const knn = r?.e2?.detectors?.knn_handcrafted_k15?.auroc
+  const dets = r?.e2?.detectors && typeof r.e2.detectors === 'object' ? (r.e2.detectors as Record<string, any>) : {}
+  const v11e2 = Object.values(dets).some((v) => v && typeof v === 'object' && v.within_session)
+  const free = Object.entries(dets).filter(
+    ([k, v]) => !/LABEL-TRAINED/i.test(k) && !/^(random|zelos|focus)/i.test(k) && typeof v?.auroc === 'number',
+  )
+  free.sort((a, b) => b[1].auroc - a[1].auroc)
+  const knn = v11e2 && free.length ? free[0][1].auroc : r?.e2?.detectors?.knn_handcrafted_k15?.auroc
+  const e2n = v11e2 && r?.e2?.n_test > 0 ? r.e2.n_test : undefined
+  const e2s = v11e2 && r?.e2?.n_test_sessions > 0 ? r.e2.n_test_sessions : undefined
   const ds = data?.dataset
   const items = [
     fi && { v: `${fi.k}/${fi.n}`, l: 'fabricated claims blocked by the grounding gate' },
     typeof gated === 'number' && { v: pct(gated), l: `unsupported claims shipped (${pct(ungated)} without the gate)` },
-    typeof det === 'number' && { v: pct(det), l: 'injected imaging faults flagged on real chip images' },
+    typeof det === 'number' && {
+      v: pct(det),
+      l: `injected imaging faults flagged on real chip images${typeof clean === 'number' ? `; ${pct(clean)} of clean images flagged` : ''}`,
+    },
     typeof hit1 === 'number' && { v: pct(hit1), l: `right source ranked first across ${papers ?? ''} open organ-on-a-chip papers` },
     typeof ms === 'number' && { v: `${Math.round(ms)} ms`, l: 'per image on a laptop CPU. No GPU, no training' },
-    typeof knn === 'number' && { v: knn.toFixed(2), l: 'AUROC against expert culture decisions, training-free' },
+    typeof knn === 'number' && {
+      v: knn.toFixed(2),
+      l: `AUROC against expert decisions, kNN lookup, no model trained${typeof e2n === 'number' ? `, on ${e2n.toLocaleString('en-US')} held-out images${typeof e2s === 'number' ? ` from ${e2s} imaging days` : ''}` : ''}`,
+    },
   ].filter(Boolean) as Array<{ v: string; l: string }>
   if (!items.length) return null
   return (

@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react'
 import { useSiteData } from './data'
+import type { Meta } from './types'
 import { Hero } from './components/Hero'
 import { Problem, Pipeline, Reproduce, Footer, Proof, Domain } from './components/Sections'
 import { Console } from './components/Console'
 import { Benchmarks } from './components/Benchmarks'
+import { Try, TRY_AVAILABLE } from './components/Try'
 
-const LINKS = [
+const ALL_LINKS = [
   ['problem', 'Problem'],
   ['how', 'How it works'],
   ['console', 'Console'],
+  ['try', 'Try it'],
   ['benchmarks', 'Benchmarks'],
   ['reproduce', 'Reproduce'],
 ] as const
+const LINKS = ALL_LINKS.filter(([id]) => id !== 'try' || TRY_AVAILABLE)
 
-function Nav({ sample }: { sample: boolean }) {
+function Nav({ sample, meta }: { sample: boolean; meta?: Meta }) {
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 8)
@@ -35,6 +39,11 @@ function Nav({ sample }: { sample: boolean }) {
           ))}
         </ul>
         <div className="nav-end">
+          {meta?.version && (
+            <span className="pill pill-ver pill-ver-nav" title={`v${meta.version} preview · built after the submission deadline`}>
+              v{meta.version} preview
+            </span>
+          )}
           {sample && <span className="pill pill-sample">Sample data</span>}
           <a className="nav-gh" href="https://github.com/simon-derock/zelos" rel="noopener noreferrer">
             GitHub
@@ -59,9 +68,9 @@ export default function App() {
   return (
     <>
       <a className="skip" href="#console">Skip to the console</a>
-      <Nav sample={sample} />
+      <Nav sample={sample} meta={data?.meta} />
       <main>
-        <Hero />
+        <Hero meta={data?.meta} />
         <div className="grain" aria-hidden="true" />
         <Proof data={data} />
         <Problem />
@@ -70,6 +79,7 @@ export default function App() {
         {data ? (
           <>
             <Console data={data} />
+            {TRY_AVAILABLE && <Try />}
             <Benchmarks data={data} />
           </>
         ) : (
@@ -81,6 +91,7 @@ export default function App() {
             </div>
           </section>
         )}
+        {!data && TRY_AVAILABLE && <Try />}
         <Reproduce />
       </main>
       <Footer data={data} />

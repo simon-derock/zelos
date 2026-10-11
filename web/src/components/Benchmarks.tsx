@@ -2,34 +2,8 @@ import type { ReactNode } from 'react'
 import type { SiteData } from '../types'
 import { fmt, human, isObj, num, numericLeaves, pct, shortSha } from '../util'
 import { Reveal, SectionHead, Source } from './common'
-
-type Obj = Record<string, any>
-
-function sha(data: SiteData, key: string): string {
-  const r = data.results?.[key]
-  return shortSha(r?.provenance?.git_sha ?? data.generated?.git_sha)
-}
-
-function Tile({ label, value, sub, tone }: { label: string; value: ReactNode; sub?: ReactNode; tone?: 'base' | 'ok' | 'bad' }) {
-  return (
-    <div className={`tile ${tone ? `tile-${tone}` : ''}`}>
-      <p className="tile-v">{value}</p>
-      <p className="tile-l">{label}</p>
-      {sub && <p className="tile-s">{sub}</p>}
-    </div>
-  )
-}
-
-function Card({ title, lede, children, foot, half }: { title: string; lede?: ReactNode; children: ReactNode; foot?: ReactNode; half?: boolean }) {
-  return (
-    <Reveal className={`bcard ${half ? 'half' : ''}`}>
-      <h3>{title}</h3>
-      {lede && <p className="muted bcard-lede">{lede}</p>}
-      {children}
-      {foot}
-    </Reveal>
-  )
-}
+import { E1Variants, HeadToHead, LlmSweep, RuleCitations, VlmBaseline } from './Benchmarks11'
+import { Bar, bestVariant, Card, sha, Tile, variantName, type Obj } from './benchCommon'
 
 /* ---------- E1 ---------- */
 
@@ -66,21 +40,57 @@ function E1Tiles({ o, label }: { o: Obj; label?: string }) {
   )
 }
 
+/** v1.1 results nest everything under variants; map the best one onto the v1.0 field names. */
+function adaptE1(e1: Obj): { e1: Obj; variant?: string } {
+  if (isObj(e1.overall) || !isObj(e1.variants)) return { e1 }
+  const b = bestVariant(e1)
+  if (!b) return { e1 }
+  const [name, v] = b
+  const per: Obj = {}
+  for (const [k, p] of Object.entries(isObj(v.per_kind) ? (v.per_kind as Obj) : {})) {
+    if (!isObj(p)) continue
+    per[k] = { expected_label: p.expected_label, detection_rate_by_severity: p.detection_by_severity, attribution_acc_detected: p.attribution_v2_signatures }
+  }
+  const sweep: Obj = {}
+  for (const [t, p] of Object.entries(isObj(v.threshold_sweep) ? (v.threshold_sweep as Obj) : {})) {
+    if (isObj(p)) sweep[t] = { clean_flag_rate: p.clean_flag_rate, sev3plus_detection_rate: p.sev3plus_detection_rate ?? p.sev3plus_detection }
+  }
+  return {
+    variant: name,
+    e1: {
+      ...e1,
+      overall: {
+        detection_rate_sev3plus: v.detection_rate_sev3plus,
+        attribution_acc_detected: v.attribution_v2_signatures,
+        attribution_top2_detected: v.attribution_v2_top2,
+        attribution_random_baseline: v.chance_attribution,
+        auroc_clean_vs_sev3plus: v.auroc_clean_vs_sev3plus,
+      },
+      per_kind: per,
+      threshold_sweep: sweep,
+      clean_flag_rate: v.clean_flag_rate,
+      batch_reference: undefined,
+    },
+  }
+}
+
 function E1({ data }: { data: SiteData }) {
-  const e1 = data.results?.e1 as Obj | undefined
-  if (!isObj(e1)) return null
+  const raw = data.results?.e1 as Obj | undefined
+  if (!isObj(raw)) return null
+  const { e1, variant } = adaptE1(raw)
   const overall = isObj(e1.overall) ? e1.overall : undefined
   const br = isObj(e1.batch_reference) ? (isObj(e1.batch_reference.overall) ? e1.batch_reference.overall : e1.batch_reference) : undefined
   const kinds = isObj(e1.per_kind) ? Object.entries(e1.per_kind as Obj) : []
   const sweep = isObj(e1.threshold_sweep) ? Object.entries(e1.threshold_sweep as Obj) : []
   const n = num(e1.n_images) ?? num(e1.n)
+  const sevKeys = Array.isArray(e1.severities) && e1.severities.length ? (e1.severities as unknown[]).map(String) : ['1', '2', '3', '4', '5']
   return (
     <Card
       title="Corruption benchmark"
       lede={`${kinds.length ? `${kinds.length} kinds` : 'Several kinds'} of synthetic corruption${Array.isArray(e1.severities) ? ` at ${e1.severities.length} severities` : ''}, applied to real images. Zelos has to notice each one and name the right cause.`}
-      foot={<Source file="e1" sha={sha(data, 'e1')} n={n} />}
+      foot={<Source file="e1" sha={sha(data, 'e1')} n={n ?? (num(raw.n_base_images) !== undefined ? `${raw.n_base_images} base images` : undefined)} />}
     >
-      {overall && <E1Tiles o={overall} label={br ? 'Single-image reference' : undefined} />}
+      {overall && <E1Tiles o={overall} label={variant ? `${variantName(variant)}, the variant with the highest AUROC` : br ? 'Single-image reference' : undefined} />}
       {br && <E1Tiles o={br} label="Batch reference" />}
       {num(e1.clean_flag_rate) !== undefined && (
         <p className="note">
@@ -110,8 +120,8 @@ function E1({ data }: { data: SiteData }) {
                     <Bar v={d3} cls="b1" label={`${human(k)} detected at severity 3`} />
                     <Bar v={at} cls="b2" tick={rb} label={`${human(k)} correct cause`} />
                   </div>
-                  <div className="ksev" aria-label="Detection rate by severity 1 to 5">
-                    {['1', '2', '3', '4', '5'].map((s) => {
+                  <div className="ksev" aria-label={`Detection rate by severity ${sevKeys.join(', ')}`} style={{ gridTemplateColumns: `repeat(${sevKeys.length}, 1fr)` }}>
+                    {sevKeys.map((s) => {
                       const x = num(sev[s])
                       return (
                         <i
@@ -126,7 +136,7 @@ function E1({ data }: { data: SiteData }) {
               )
             })}
           </ul>
-          <p className="muted small">The strip at the right shows detection from severity 1 to 5, light to strong.</p>
+          <p className="muted small">The strip at the right shows detection at severity {sevKeys.join(', ')}, light to strong.</p>
         </div>
       )}
       {sweep.length > 0 && (
@@ -158,19 +168,37 @@ function E1({ data }: { data: SiteData }) {
   )
 }
 
-function Bar({ v, cls, tick, label }: { v?: number; cls: string; tick?: number; label: string }) {
-  return (
-    <div className="bar" role="img" aria-label={`${label}: ${pct(v, 0)}`}>
-      <span className="bar-track">
-        {v !== undefined && <span className={`bar-fill ${cls}`} style={{ width: `${Math.max(0, Math.min(1, v)) * 100}%` }} />}
-        {tick !== undefined && <span className="bar-tick" style={{ left: `${tick * 100}%` }} />}
-      </span>
-      <span className="bar-v">{pct(v, 0)}</span>
-    </div>
-  )
+/* ---------- E2 ---------- */
+
+const E2_NAMES: Record<string, string> = {
+  zelos_qc_score: 'Zelos QC score',
+  focus_only: 'Focus metric only',
+  random: 'Random',
+  knn_physics_k15: 'k-nearest neighbours on physical metrics',
+  knn_dinov2_cls_k15: 'k-nearest neighbours on frozen DINOv2 features',
+  knn_dinov2_session_centred_k15: 'k-nearest neighbours on DINOv2, session-centred',
+  knn_handcrafted_k15: 'k-nearest neighbours on handcrafted features',
+}
+function e2Label(k: string): string {
+  if (E2_NAMES[k]) return E2_NAMES[k]
+  const m = /^(zelos_qc|focus_only)\[(.+)\]$/.exec(k)
+  if (m) return `${m[1] === 'focus_only' ? 'Focus metric only' : 'Zelos QC score'}, ${variantName(m[2]).toLowerCase()}`
+  if (/LABEL-TRAINED/i.test(k)) return 'Label-trained DINOv2 linear head'
+  if (k.startsWith('knn')) return `k-nearest neighbours, ${human(k.replace(/^knn_?/, ''))}`
+  return human(k)
 }
 
-/* ---------- E2 ---------- */
+function PlotCell({ a, lo, hi, z, trained, label }: { a?: number; lo?: number; hi?: number; z?: boolean; trained?: boolean; label: string }) {
+  return (
+    <span className="dw-plot" role="img" aria-label={label}>
+      <span className="dw-ref" />
+      {lo !== undefined && hi !== undefined && (
+        <span className={`dw-whisk ${z ? 'is-z' : ''} ${trained ? 'is-trained' : ''}`} style={{ left: `${lo * 100}%`, width: `${Math.max(0, hi - lo) * 100}%` }} />
+      )}
+      {a !== undefined && <span className={`dw-dot ${z ? 'is-z' : ''} ${trained ? 'is-trained' : ''}`} style={{ left: `${a * 100}%` }} />}
+    </span>
+  )
+}
 
 function E2({ data }: { data: SiteData }) {
   const e2 = data.results?.e2 as Obj | undefined
@@ -178,35 +206,64 @@ function E2({ data }: { data: SiteData }) {
   const dets = Object.entries(e2.detectors as Obj)
   const rv = isObj(e2.zelos_at_review_threshold) ? (e2.zelos_at_review_threshold as Obj) : undefined
   const cells = isObj(e2.per_cell_line) ? Object.entries(e2.per_cell_line as Obj) : []
-  const label = (k: string) =>
-    k === 'zelos_qc_score' ? 'Zelos QC score' : k === 'focus_only' ? 'Focus metric only' : k === 'random' ? 'Random' : k.startsWith('knn') ? 'k-nearest neighbours on handcrafted features' : human(k)
+  const ops = isObj(e2.operating_points) ? Object.entries(e2.operating_points as Obj).filter(([, v]) => isObj(v)) : []
+  const within = dets.some(([, v]) => isObj(v.within_session))
+  const anyTrained = dets.some(([k]) => /LABEL-TRAINED/i.test(k))
+  const nTest = num(e2.n_test)
+  const nSess = num(e2.n_test_sessions)
+  const nAll = num(e2.n_images)
   return (
     <Card
       title="Agreement with expert labels"
-      lede="Can the score separate images experts called good from those they called bad? Area under the ROC curve on held-out sessions, with 95% intervals. 0.5 is chance."
-      foot={<Source file="e2" sha={sha(data, 'e2')} n={num(e2.n_test)} />}
+      lede={`Can the score separate images experts called good from those they called bad? Area under the ROC curve${nSess !== undefined ? ` on ${nSess} whole imaging sessions held out from fitting and calibration` : ' on held-out sessions'}, with 95% intervals. 0.5 is chance.${within ? ' The second column asks the harder question: can it rank images within one imaging day?' : ''}`}
+      foot={<Source file="e2" sha={sha(data, 'e2')} n={nTest !== undefined ? `${nTest.toLocaleString('en-US')} held-out${nAll !== undefined ? ` of ${nAll.toLocaleString('en-US')}` : ''} images` : undefined} />}
     >
-      <ul className="dw" aria-label="AUROC per detector">
+      <div className="legend" aria-hidden="true">
+        <span><i className="sw sw-dot" />No model trained</span>
+        {anyTrained && <span><i className="sw sw-dot sw-trained" />Label-trained: learns the expert label</span>}
+        <span><i className="sw sw-r" />0.5 chance</span>
+      </div>
+      <ul className={`dw ${within ? 'dw-two' : ''}`} aria-label="AUROC per detector">
+        {within && (
+          <li className="dw-head" aria-hidden="true">
+            <span />
+            <span>All held-out images</span>
+            <span />
+            <span>Within the same imaging day</span>
+            <span />
+          </li>
+        )}
         {dets.map(([k, v]) => {
           const a = num(v.auroc)
           const ci = Array.isArray(v.auroc_ci95) ? (v.auroc_ci95 as number[]) : undefined
           const lo = ci ? num(ci[0]) : undefined
           const hi = ci ? num(ci[1]) : undefined
           const z = k.includes('zelos')
+          const trained = /LABEL-TRAINED/i.test(k)
+          const ws = isObj(v.within_session) ? (v.within_session as Obj) : undefined
+          const w = ws ? (num(ws.weighted) ?? num(ws.mean)) : undefined
+          const frac = ws ? num(ws['frac_sessions_above_0.5']) : undefined
+          const nm = e2Label(k)
           return (
-            <li key={k}>
-              <span className="dw-name">{label(k)}</span>
-              <span className="dw-plot" role="img" aria-label={`${label(k)} AUROC ${fmt(a, 2)}${lo !== undefined && hi !== undefined ? `, interval ${fmt(lo, 2)} to ${fmt(hi, 2)}` : ''}`}>
-                <span className="dw-ref" />
-                {lo !== undefined && hi !== undefined && (
-                  <span className={`dw-whisk ${z ? 'is-z' : ''}`} style={{ left: `${lo * 100}%`, width: `${Math.max(0, hi - lo) * 100}%` }} />
-                )}
-                {a !== undefined && <span className={`dw-dot ${z ? 'is-z' : ''}`} style={{ left: `${a * 100}%` }} />}
+            <li key={k} className={trained ? 'is-trained' : ''}>
+              <span className="dw-name">
+                {nm}
+                {trained && <span className="lic lic-trained">label-trained</span>}
               </span>
+              <PlotCell a={a} lo={lo} hi={hi} z={z} trained={trained} label={`${nm} AUROC ${fmt(a, 2)}${lo !== undefined && hi !== undefined ? `, interval ${fmt(lo, 2)} to ${fmt(hi, 2)}` : ''}`} />
               <span className="dw-val">
                 {fmt(a, 2)}
                 {lo !== undefined && hi !== undefined && <small> [{fmt(lo, 2)}, {fmt(hi, 2)}]</small>}
               </span>
+              {within && (
+                <>
+                  <PlotCell a={w} z={z} trained={trained} label={`${nm} within-session AUROC ${fmt(w, 2)}`} />
+                  <span className="dw-val" title={frac !== undefined ? `${pct(frac, 0)} of imaging days above 0.5` : undefined}>
+                    {fmt(w, 2)}
+                    {ws && num(ws.n_sessions) !== undefined && <small> {ws.n_sessions} days</small>}
+                  </span>
+                </>
+              )}
             </li>
           )
         })}
@@ -218,8 +275,45 @@ function E2({ data }: { data: SiteData }) {
             <b style={{ left: '100%' }}>1</b>
           </span>
           <span />
+          {within && (
+            <>
+              <span className="dw-ticks">
+                <b style={{ left: '0%' }}>0</b>
+                <b style={{ left: '50%' }}>0.5 chance</b>
+                <b style={{ left: '100%' }}>1</b>
+              </span>
+              <span />
+            </>
+          )}
         </li>
       </ul>
+      {ops.length > 0 && (
+        <details className="sweep">
+          <summary>Operating points on the held-out sessions</summary>
+          <div className="tbl-wrap">
+            <table className="tbl">
+              <thead>
+                <tr>
+                  <th>Reference</th>
+                  <th>Expert-good images flagged</th>
+                  <th>Expert-bad images flagged</th>
+                  <th>Expert-good flagged at pre-registered z = 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ops.map(([k, v]) => (
+                  <tr key={k}>
+                    <td>{variantName(k)}</td>
+                    <td>{pct(v.false_flag_rate_test_good, 1)}</td>
+                    <td>{pct(v.recall_expert_bad, 1)}</td>
+                    <td>{pct(v.preregistered_z3_false_flag, 1)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+      )}
       {rv && (
         <div className="tiles tiles-sm">
           {num(rv.balanced_accuracy) !== undefined && (
@@ -458,11 +552,16 @@ export function Benchmarks({ data }: { data: SiteData }) {
           </Reveal>
         )}
         <div className="bgrid">
+          <E1Variants data={data} />
+          <HeadToHead data={data} />
           <E1 data={data} />
           <E2 data={data} />
+          <VlmBaseline data={data} />
           <E5 data={data} />
+          <LlmSweep data={data} />
           <E4 data={data} half={pair} />
           <E9 data={data} half={pair} />
+          <RuleCitations data={data} />
         </div>
         {g?.git_sha && (
           <p className="gen">

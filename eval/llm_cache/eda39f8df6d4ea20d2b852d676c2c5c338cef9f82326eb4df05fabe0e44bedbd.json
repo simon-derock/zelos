@@ -1,0 +1,25 @@
+{
+ "text": "{\"claims\": [{\"text\": \"The image quality control verdict for image 230525_212 is FAIL [qc-1ddc84b0].\", \"type\": \"numeric\", \"evidence\": [\"qc-1ddc84b0\"]}, {\"text\": \"The main cause of failure is identified as DEBRIS, characterized by particulates or dust [qc-1ddc84b0].\", \"type\": \"inference\", \"evidence\": [\"qc-1ddc84b0\"]}, {\"text\": \"The debris_count metric is 147.0 [qc-1ddc84b0].\", \"type\": \"numeric\", \"evidence\": [\"qc-1ddc84b0\"]}, {\"text\": \"The recommended action is to inspect the channel and optics for particulates and to clean or exclude affected regions [qc-1ddc84b0].\", \"type\": \"inference\", \"evidence\": [\"qc-1ddc84b0\"]}]}",
+ "usage": {
+  "prompt_tokens": 1563,
+  "completion_tokens": 217
+ },
+ "latency_ms": 4620.1373580006475,
+ "model": "@cf/google/gemma-4-26b-a4b-it",
+ "provider": "workers_ai",
+ "meta": {
+  "finish_reason": "stop",
+  "neurons": 20.12727165222168
+ },
+ "request": {
+  "temperature": 0,
+  "max_tokens": 700,
+  "json_mode": true,
+  "n_messages": 2,
+  "extra": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ }
+}
