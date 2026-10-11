@@ -36,7 +36,7 @@ jobs:
       - name: pytest (offline, no secrets)
         env: {ZELOS_LLM_MODE: replay}
         run: pytest -q --cov=zelos --cov-report=xml --cov-report=term-missing:skip-covered
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: matrix.python == '3.12'
         with: {name: coverage, path: coverage.xml}
   smoke:
