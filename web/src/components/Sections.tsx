@@ -148,8 +148,7 @@ export function Footer({ data }: { data: SiteData | null }) {
             <a href={`${GH}/tree/${data.meta.submitted_version ?? 'v1.0-submission'}`} rel="noopener noreferrer">
               {data.meta.submitted_version ?? 'v1.0-submission'}
             </a>
-            ). This page is the v{data.meta.version} preview{data.meta.branch ? `, branch ${data.meta.branch}` : ''}, built after the
-            submission deadline. The page as submitted is kept unchanged at <a href="/v1.0/">/v1.0/</a>.
+            ). This page is v{data.meta.version}, updated after the submission deadline. The page as submitted is kept unchanged at <a href="/v1.0/">/v1.0/</a>.
           </p>
         )}
       </div>
