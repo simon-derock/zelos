@@ -6,7 +6,7 @@
 
 An evidence-gated QC agent for in vitro organ-on-a-chip cultures. It finds the imaging fault, names the lab fix and the next step, cites open organ-on-a-chip research, and **blocks every claim the evidence cannot support.**
 
-[![CI](https://github.com/simon-derock/zelos/actions/workflows/ci.yml/badge.svg?branch=next)](https://github.com/simon-derock/zelos/actions)
+[![CI](https://github.com/simon-derock/zelos/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/simon-derock/zelos/actions)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Runs](https://img.shields.io/badge/runs-CPU_·_offline-black)
 
@@ -16,7 +16,7 @@ An evidence-gated QC agent for in vitro organ-on-a-chip cultures. It finds the i
 
 </div>
 
-> **Which version is this?** The submitted and evaluated version is tag [`v1.0-submission`](https://github.com/simon-derock/zelos/tree/v1.0-submission) on `main`. This `next` branch is **v1.1, built after the submission deadline** for the final round. Corrections to v1.0 are listed in [docs/V1_1_CHANGES.md](docs/V1_1_CHANGES.md).
+> **Which version is this?** The submitted and evaluated version is tag [`v1.0-submission`](https://github.com/simon-derock/zelos/tree/v1.0-submission) on `main`. This `main` branch is **v1.1, built after the submission deadline** for the final round. Corrections to v1.0 are listed in [docs/V1_1_CHANGES.md](docs/V1_1_CHANGES.md).
 
 ---
 
@@ -57,7 +57,7 @@ brightfield image ─► 17 physics QC metrics ─► robust z vs reference ─�
 ## Quickstart
 
 ```bash
-git clone https://github.com/simon-derock/zelos && cd zelos && git checkout next
+git clone https://github.com/simon-derock/zelos && cd zelos
 make setup        # pinned deps
 make judge        # tests + retrieval + grounding replayed offline: no API keys needed
 make features     # optional: stream all 3,072 real images from Zenodo (about 45 min), keep only features

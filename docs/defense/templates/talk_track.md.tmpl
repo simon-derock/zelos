@@ -79,7 +79,7 @@ Next steps: extend the certificate to the sponsor's neural organ-on-a-chip and e
 
 ### Slide 15: Closing (11:30 to 12:00)
 
-To close: Zelos does not read the culture and does not diagnose anything. It certifies the frame, and every sentence it writes traces back to a tool or a paper. The live console is at zelos.philipsimonderock.com, the code is on GitHub, the submitted version is the tag v1.0-submission, and today's version is on the next branch. Thank you, and I am happy to take questions.
+To close: Zelos does not read the culture and does not diagnose anything. It certifies the frame, and every sentence it writes traces back to a tool or a paper. The live console is at zelos.philipsimonderock.com, the code is on GitHub, the submitted version is the tag v1.0-submission, and today's version is on the main branch. Thank you, and I am happy to take questions.
 
 ---
 

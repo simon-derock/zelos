@@ -1,16 +1,19 @@
 # Website cutover: v1.0 to v1.1
 
-The submitted site (v1.0) stays reachable at `/v1.0/` on every build of the `next` branch. It is a static
+The submitted site (v1.0) stays reachable at `/v1.0/` on every build. It is a static
 build of tag `v1.0-submission` made with `vite build --base=/v1.0/`, committed under `web/public/v1.0/` and never edited.
 
-## Switch the main domain to v1.1
+## State
 
-1. Hugging Face Space is running and `VITE_ZELOS_API` is set in Netlify (see [SPACE.md](SPACE.md)).
-2. Samples re-exported with live LLM drafts: `python scripts/export_site_data.py --provider workers_ai`.
-3. Netlify: Site configuration, Build and deploy, Branches: set **Production branch** to `next`.
-4. Check `https://zelos.philipsimonderock.com/` (v1.1) and `https://zelos.philipsimonderock.com/v1.0/` (as submitted).
+`main` carries v1.1 and the Netlify production site builds from it. Tag `v1.0-submission` is the submitted code and
+`/v1.0/` is the submitted page. The upload ("Try it") section is hidden on hosted builds until `VITE_ZELOS_API` is set
+to a running demo server (see [SPACE.md](SPACE.md)); the samples use the template explainer until they are re-exported
+with live LLM drafts (`python scripts/export_site_data.py --provider workers_ai`).
 
-Switch back by setting the production branch to `main`. Nothing in the repository changes.
+## Roll back the site to v1.0
+
+In Netlify, Deploys, publish an earlier deploy of `main`, or temporarily set the production branch to a branch created
+from the tag: `git branch v1.0-site v1.0-submission && git push origin v1.0-site`.
 
 ## Rebuild the v1.0 snapshot (only if it must be regenerated)
 

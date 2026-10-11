@@ -14,7 +14,7 @@ through one build-time variable, `VITE_ZELOS_API`. When the variable is not set 
 3. **Add two GitHub secrets.** Repository > Settings > Secrets and variables > Actions > New repository secret:
    - `HF_TOKEN` = the token from step 2
    - `HF_SPACE` = `<your-hf-username>/zelos`
-4. **Deploy.** Push to branch `next` (any change under `src/`, `configs/`, `corpus/` or `space/`), or run
+4. **Deploy.** Push to branch `main` or `next` (any change under `src/`, `configs/`, `corpus/` or `space/`), or run
    Actions > Deploy Space > Run workflow. The first build takes 2 to 4 minutes. Check
    `https://<your-hf-username>-zelos.hf.space/api/health`: it should answer `{"status":"ok", ...}`.
 5. **Point the site at it.** Netlify > Site configuration > Environment variables > Add a variable:

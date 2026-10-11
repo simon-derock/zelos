@@ -2,7 +2,7 @@ name: Deploy Space
 # Pushes a clean copy of the API to the Hugging Face Space. Skips with a notice when the secrets are not set.
 on:
   push:
-    branches: [next]
+    branches: [main, next]
     paths:
       - "src/**"
       - "configs/**"
