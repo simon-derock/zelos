@@ -53,7 +53,7 @@ export function Hero({ meta }: { meta?: Meta }) {
       <div className="hero-inner">
         {meta?.version && (
           <p className="pill pill-ver">
-            v{meta.version} preview · built after the submission deadline · <a href="/v1.0/">view the submitted v1.0</a>
+            Version {meta.version} · <a href="/v1.0/">v1.0 as submitted</a>
           </p>
         )}
         <p className="eyebrow">AI for Life Science · Organ-on-a-Chip</p>

@@ -40,8 +40,8 @@ function Nav({ sample, meta }: { sample: boolean; meta?: Meta }) {
         </ul>
         <div className="nav-end">
           {meta?.version && (
-            <span className="pill pill-ver pill-ver-nav" title={`v${meta.version} preview · built after the submission deadline`}>
-              v{meta.version} preview
+            <span className="pill pill-ver pill-ver-nav" title={`v${meta.version}, updated after the submission deadline`}>
+              v{meta.version}
             </span>
           )}
           {sample && <span className="pill pill-sample">Sample data</span>}
