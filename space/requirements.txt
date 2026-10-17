@@ -1,5 +1,5 @@
 # Runtime dependencies of the demo API only (no torch / transformers). Versions match the repository pins.
-numpy==2.5.3
+numpy==2.5.4
 scipy==1.18.1
 pandas==3.0.6
 scikit-learn==1.9.1
