@@ -90,12 +90,20 @@ def _visible_text(name: str, text: str) -> str:
     return text
 
 
+def private(files, key):
+    """Presentation material lives in the git-ignored private/ folder; tests on it are skipped in a fresh clone."""
+    if key not in files:
+        pytest.skip("private defense material is not present")
+    return files[key]
+
+
 # ----------------------------------------------------------------------------- tests
 @needs_inputs
 def test_no_placeholder_survives(kit):
     _, _, files = kit
-    assert set(files) == {"docs/defense/index.html", "docs/DEFENSE_QA.md", "docs/DEFENSE_TALK_TRACK.md",
-                          "docs/V1_1_CHANGES.md"}
+    private_keys = {"private/defense/index.html", "private/defense/DEFENSE_QA.md", "private/defense/DEFENSE_TALK_TRACK.md"}
+    assert set(files) - private_keys == {"docs/V1_1_CHANGES.md"}
+    assert set(files) & private_keys in (set(), private_keys)
     for name, text in files.items():
         assert "{{" not in text and "}}" not in text, name
         assert len(text) > 2000, name
@@ -120,7 +128,7 @@ def test_every_decimal_and_percentage_comes_from_results(kit):
 @needs_inputs
 def test_a_typed_number_would_be_caught(kit):
     gen, _, files = kit
-    sneaky = files["docs/DEFENSE_QA.md"] + "\nWe reach 99.87% on everything."
+    sneaky = private(files, "private/defense/DEFENSE_QA.md") + "\nWe reach 99.87% on everything."
     found = gen.numbers_in(_visible_text("x.md", sneaky))
     assert "99.87%" in found and "99.87%" not in gen.EMITTED
 
@@ -135,7 +143,7 @@ def test_unknown_placeholder_is_an_error(kit):
 @needs_inputs
 def test_deck_is_self_contained_and_complete(kit):
     _, _, files = kit
-    html = files["docs/defense/index.html"]
+    html = private(files, "private/defense/index.html")
     assert len(re.findall(r'<section class="slide"', html)) == 15
     assert len(re.findall(r'<aside class="notes">', html)) == 15
     assert not re.search(r"<link\b|<script[^>]+src=|@import|url\(\s*['\"]?https?:|(?:src|href)=\"https?:", html)
@@ -153,7 +161,7 @@ def test_deck_is_self_contained_and_complete(kit):
 @needs_inputs
 def test_qa_has_25_questions_with_sources(kit):
     _, _, files = kit
-    qa = files["docs/DEFENSE_QA.md"]
+    qa = private(files, "private/defense/DEFENSE_QA.md")
     qs = re.findall(r"^### Q(\d+)\. ", qa, flags=re.M)
     assert [int(q) for q in qs] == list(range(1, 26))
     assert qa.count("**Source:**") == 25
@@ -169,11 +177,11 @@ def test_qa_has_25_questions_with_sources(kit):
 def test_honesty_and_attribution_rules(kit):
     _, _, files = kit
     gen_src = (ROOT / "scripts" / "build_defense_kit.py").read_text()
-    templates = [p.read_text() for p in (ROOT / "docs" / "defense" / "templates").glob("*.tmpl")]
+    templates = [p.read_text() for d in ("docs", "private") for p in (ROOT / d / "defense" / "templates").glob("*.tmpl")]
     banned = re.compile(r"claude|anthropic|ai assistant|co-authored", re.I)
     for name, text in {**files, "generator": gen_src, **{f"tmpl{i}": t for i, t in enumerate(templates)}}.items():
         assert not banned.search(text), name
-    qa = files["docs/DEFENSE_QA.md"]
+    qa = private(files, "private/defense/DEFENSE_QA.md")
     low = qa.lower()
     assert "do not claim to beat" in low or "do not claim state-of-the-art" in low
     changes = files["docs/V1_1_CHANGES.md"]
@@ -181,7 +189,7 @@ def test_honesty_and_attribution_rules(kit):
     for key in ("single-image absolute mode", "n=", "motion blur", "expert-labelled neighbours"):
         assert key.lower() in changes.lower(), key
     # every limitation row in docs/LIMITATIONS.md has a counterpart on the limitations slide or in the changelog
-    html = files["docs/defense/index.html"].lower()
+    html = private(files, "private/defense/index.html").lower()
     for key in ("cross-session", "attribution", "expert label", "single-lab", "gold set", "lexical", "small",
                 "content hashes", "clinical"):
         assert key in html, key
