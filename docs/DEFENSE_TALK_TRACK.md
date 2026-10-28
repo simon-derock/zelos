@@ -83,6 +83,58 @@ To close: Zelos does not read the culture and does not diagnose anything. It cer
 
 ---
 
+## 5-minute script (final round: 5 minutes plus 2 minutes of questions)
+
+Open `docs/defense/index.html?short` (ten slides: 1, 3, 4, 5, 6, 7, 8, 9, 13, 15 of the full deck). Total: 5:00 at about 140 words per minute. Stop speaking at 5:00 even if a line is unfinished; the questions that follow are worth as much as the last sentence.
+
+### Slide 1 (0:00 to 0:25)
+
+I am Philip, and this is Zelos. Organ-on-a-chip labs image their cultures every day, and those images become datasets and digital twins. A defocused frame, or a language model that invents a citation, corrupts that asset silently. Zelos is a quality gate: it finds the imaging fault, names the lab fix, cites open literature, and blocks every claim the evidence cannot support.
+
+### Slide 3 (0:25 to 1:00)
+
+Every image gets a certificate: a verdict, a route that says what to do next, the cause, the lab action, the cited passage, and a ledger linking each sentence to a tool output or a paper. A real image with an injected over-exposure fails and is routed to re-imaging; an untouched image passes. Where our corpus cannot support an action, the certificate says so.
+
+### Slide 4 (1:00 to 1:30)
+
+The rule is: the LLM proposes, tools compute, the gate disposes. 17 physics metrics decide the verdict and the cause with no model involved. The language model only proposes typed claims, and a deterministic gate checks every number against a tool output and every citation against a retrieved passage.
+
+### Slide 5 (1:30 to 2:00)
+
+The gate caught 100/100 injected fabrications and blocked 0/98 correct claims. Unsupported claims in real model answers fall from 0.067 to 0.000. Larger models did not beat the small one, because the gate does the checking.
+
+### Slide 6 (2:00 to 2:35)
+
+Where the answer is known, because we injected the fault: Zelos flags 63.3% of the severity 3 and 5 faults at 3.3% false flags on clean images, and names the cause 85.4% of the time against 11.1% by chance. It mostly misses debris, uneven illumination, motion blur, and the slide says so.
+
+### Slide 7 (2:35 to 3:10)
+
+Against a linear head trained on the expert label, on the same faults and the same false-alarm rule, that head finds 25.5% where Zelos finds 63.3%, and it cannot say what is wrong. Vision language models find more severe faults, but flag 40.0% to 65.0% of clean images. Small samples, one prompt; I state that on the slide.
+
+### Slide 8 (3:10 to 3:45)
+
+The finding that changed the design: absolute thresholds do not transfer between imaging sessions. With whole sessions left out, they flag 21.3% and 17.6% of good images against a 10% target. Scoring each image against its own session gives 9.7%. So session-relative scoring is the default.
+
+### Slide 9 (3:45 to 4:10)
+
+The expert good-or-bad label tracks culture state, not image faults: our artifact score is at chance, 0.571. So Zelos reports image trust and culture state as two outputs, and does not claim state-of-the-art expert-label accuracy.
+
+### Slide 13 (4:10 to 4:40)
+
+Corrections, up front. The submission, v1.0, used 480 of 3,072 images, and its reference flagged 76.7% of clean images. v1.1 is a build made after the deadline that fixes both; detection is lower because the operating point is now honest.
+
+### Slide 15 (4:40 to 5:00)
+
+Every sentence Zelos writes traces to a tool or a paper, every number to a results file, and everything re-runs offline from the repository. A research tool, not a medical device. Thank you; I am happy to take questions.
+
+### The 2 minutes of questions
+
+- Answer in 20 seconds or less, then stop. Agree with the weakness first, then give the measured size of it.
+- Name the file and field a number comes from; `docs/DEFENSE_QA.md` has them.
+- Likely first questions: why detection fell from v1.0 (slide 13); why the expert-label AUROC is only 0.767 (slide 9); is the benchmark self-made (yes: injected faults, so it shows sensitivity, not clinical relevance); what happens with a new lab's images (slide 8, session-relative mode).
+
+---
+
 ## 3-minute script
 
 Total: 3:00. Use slides 1, 3, 4, 5, 6, 8, 9, 13 and 15; skip the rest. About 140 words per minute.
@@ -131,6 +183,7 @@ Every sentence Zelos writes traces to a tool or a paper. Research tool, not a me
 |---|---|---|
 | 10 minutes | Slides 11 and 14 (read them in one sentence) | 5 to 10, 12, 13 |
 | 7 minutes | Slides 7 and 10 | 3, 4, 5, 6, 8, 9, 13 |
+| 5 minutes | Use the 5-minute script and `?short` | |
 | 3 minutes | Use the 3-minute script | |
 
 ## Bridge to Q&A
