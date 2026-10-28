@@ -89,7 +89,7 @@ Open `docs/defense/index.html?short` (ten slides: 1, 3, 4, 5, 6, 7, 8, 9, 13, 15
 
 ### Slide 1 (0:00 to 0:25)
 
-I am Philip, and this is Zelos. Organ-on-a-chip labs image their cultures every day, and those images become datasets and digital twins. A defocused frame, or a language model that invents a citation, corrupts that asset silently. Zelos is a quality gate: it finds the imaging fault, names the lab fix, cites open literature, and blocks every claim the evidence cannot support.
+I am Philip, and this is Zelos. Organ-on-a-chip labs image their cultures every day, and those images become the data assets that digital twins are built on. A defocused frame, or a language model that invents a citation, corrupts that asset silently. Zelos is a quality gate: it finds the imaging fault, names the lab fix, cites open literature, and blocks every claim the evidence cannot support.
 
 ### Slide 3 (0:25 to 1:00)
 
@@ -125,7 +125,7 @@ Corrections, up front. The submission, v1.0, used 480 of 3,072 images, and its r
 
 ### Slide 15 (4:40 to 5:00)
 
-Every sentence Zelos writes traces to a tool or a paper, every number to a results file, and everything re-runs offline from the repository. A research tool, not a medical device. Thank you; I am happy to take questions.
+It is a complete workflow from image to certificate: it runs on a CPU, offline, with no paid service required, and the next step is a prospective validation with a partner lab. Every sentence traces to a tool or a paper, every number to a results file. A research tool, not a medical device. Thank you; I am happy to take questions.
 
 ### The 2 minutes of questions
 
