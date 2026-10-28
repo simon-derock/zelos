@@ -148,7 +148,7 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 <main id="deck">
 
 <!-- 1 -->
-<section class="slide" data-title="Title">
+<section class="slide" data-short data-title="Title">
   <div class="eyebrow">AI4S Open Innovation &middot; AI for Life Science &middot; Final round</div>
   <h1 class="mega">Zelos</h1>
   <p class="lead">Every organ-on-a-chip image, certified.</p>
@@ -170,7 +170,7 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 </section>
 
 <!-- 3 -->
-<section class="slide" data-title="The certificate">
+<section class="slide" data-short data-title="The certificate">
   <div class="eyebrow">What Zelos outputs</div>
   <h2>Every image gets a certificate.</h2>
   <div class="certs">
@@ -204,7 +204,7 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 </section>
 
 <!-- 4 -->
-<section class="slide" data-title="Architecture">
+<section class="slide" data-short data-title="Architecture">
   <div class="eyebrow">Architecture</div>
   <h2>The LLM proposes.<br>Tools compute.<br>The gate disposes.</h2>
   <svg viewBox="0 0 1640 330" role="img" aria-label="Pipeline: image, physics QC, cause and action, evidence retrieval, LLM explainer, grounding gate, certificate" style="margin-top:30px">
@@ -263,7 +263,7 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 </section>
 
 <!-- 5 -->
-<section class="slide" data-title="Result A: trust layer">
+<section class="slide" data-short data-title="Result A: trust layer">
   <div class="eyebrow">Result A &middot; the trust layer</div>
   <h2>The gate caught every fabrication.</h2>
   <div class="cols" style="grid-template-columns:minmax(0,800px) minmax(0,1fr);margin-top:26px">
@@ -290,7 +290,7 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 </section>
 
 <!-- 6 -->
-<section class="slide" data-title="Result B: known faults">
+<section class="slide" data-short data-title="Result B: known faults">
   <div class="eyebrow">Result B &middot; faults with known ground truth</div>
   <h2>Found, and named. With honest misses.</h2>
   <div class="cols" style="grid-template-columns:560px 1fr;margin-top:30px">
@@ -387,7 +387,7 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 </section>
 
 <!-- 7 -->
-<section class="slide" data-title="Result C: head to head">
+<section class="slide" data-short data-title="Result C: head to head">
   <div class="eyebrow">Result C &middot; head to head</div>
   <h2>Head to head on the same faults.</h2>
   <div class="cols" style="grid-template-columns:minmax(0,1020px) minmax(0,1fr);margin-top:26px">
@@ -409,7 +409,7 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 </section>
 
 <!-- 8 -->
-<section class="slide" data-title="Result D: the shift finding">
+<section class="slide" data-short data-title="Result D: the shift finding">
   <div class="eyebrow">Result D &middot; the shift finding</div>
   <h2>Absolute thresholds do not transfer between imaging sessions.</h2>
   <div class="cols split" style="margin-top:30px">
@@ -449,7 +449,7 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 </section>
 
 <!-- 9 -->
-<section class="slide" data-title="The expert label">
+<section class="slide" data-short data-title="The expert label">
   <div class="eyebrow">What the expert label measures</div>
   <h2>The expert label tracks culture state, not image faults.</h2>
   <div class="cols split" style="margin-top:30px">
@@ -565,7 +565,7 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 </section>
 
 <!-- 13 -->
-<section class="slide" data-title="Corrections to v1.0">
+<section class="slide" data-short data-title="Corrections to v1.0">
   <div class="eyebrow">Corrections to the submitted v1.0</div>
   <h2>What the submission got wrong.</h2>
   <table class="t sm wrap" style="margin-top:30px">
@@ -597,7 +597,7 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 </section>
 
 <!-- 15 -->
-<section class="slide" data-title="Closing">
+<section class="slide" data-short data-title="Closing">
   <div class="eyebrow">Closing</div>
   <h2>The LLM proposes. Tools compute. The gate disposes.</h2>
   <p class="body">Zelos does not claim to read the culture. It certifies the frame, and every sentence it writes can be traced to a tool or a paper.</p>
@@ -619,6 +619,10 @@ html.print #hud,html.print #bar,html.print #count,html.print #brand,html.print #
 <script>
 (function () {
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  // ?short keeps the 10 slides of the 5-minute talk (data-short) and hides the rest.
+  if (/(^|[?&])short(&|=|$)/.test(location.search)) {
+    slides = slides.filter(function (el) { return el.hasAttribute('data-short'); });
+  }
   var deck = document.getElementById('deck');
   var notes = document.getElementById('notes');
   var count = document.getElementById('count');
