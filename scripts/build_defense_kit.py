@@ -2,9 +2,9 @@
 """Build the Zelos final-round defense kit from results/*.json.
 
 Outputs (relative to --out-root, default the repository root):
-    docs/defense/index.html        15-slide self-contained deck (inline CSS/JS, thumbnails as data URIs)
-    docs/DEFENSE_QA.md             25 hard questions with sourced answers
-    docs/DEFENSE_TALK_TRACK.md     12-minute and 3-minute scripts, 30-second pitch
+    private/defense/index.html     15-slide self-contained deck (inline CSS/JS, thumbnails as data URIs)
+    private/defense/DEFENSE_QA.md  25 hard questions with sourced answers
+    private/defense/DEFENSE_TALK_TRACK.md 12-minute and 3-minute scripts, 30-second pitch
     docs/V1_1_CHANGES.md           v1.0 -> v1.1 changelog with corrections
 
 Templates live in docs/defense/templates/. They contain `{{key}}` placeholders only: every figure is
@@ -32,13 +32,15 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 TPL = ROOT / "docs" / "defense" / "templates"
+# Presentation material for the live defense is kept out of the public repository: private/ is git-ignored.
+PRIVATE_TPL = ROOT / "private" / "defense" / "templates"
 V1_TAG = "v1.0-submission"
 V1_SNAPSHOT = TPL / "v1_0_snapshot.json"
 
 OUTPUTS = {
-    "deck.html.tmpl": "docs/defense/index.html",
-    "defense_qa.md.tmpl": "docs/DEFENSE_QA.md",
-    "talk_track.md.tmpl": "docs/DEFENSE_TALK_TRACK.md",
+    "deck.html.tmpl": "private/defense/index.html",
+    "defense_qa.md.tmpl": "private/defense/DEFENSE_QA.md",
+    "talk_track.md.tmpl": "private/defense/DEFENSE_TALK_TRACK.md",
     "v1_1_changes.md.tmpl": "docs/V1_1_CHANGES.md",
 }
 
@@ -814,7 +816,10 @@ def build(out_root: Path, res_dir: Path, site_path: Path, thumbs: Path, write_sn
     values = {**V, **F}
     written = {}
     for tname, rel in OUTPUTS.items():
-        text = render((TPL / tname).read_text(), values, tname.startswith("deck"))
+        tpl = TPL / tname if (TPL / tname).exists() else PRIVATE_TPL / tname
+        if not tpl.exists():  # private templates are absent in a fresh clone
+            continue
+        text = render(tpl.read_text(), values, tname.startswith("deck"))
         dest = out_root / rel
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(text)

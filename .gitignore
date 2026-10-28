@@ -18,3 +18,6 @@ web/dist/
 src/*.egg-info/
 *.mp4
 zelos-site.zip
+
+# live-defense material (talk track, Q&A, deck): local only
+/private/
